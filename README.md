@@ -10,3 +10,6 @@ Fonctionnalités
 2. Choix d'une date de début / date de fin de publication.
 3. Gestion des alertes par entité.
 4. Affichage des alertes en fonction du profil.
+
+
+![Accueil](/screenshot.png "Message en page d'accueil.")
