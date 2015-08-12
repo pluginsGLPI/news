@@ -23,10 +23,9 @@
 
 include (GLPI_ROOT . "../../../inc/includes.php");
 
-Session::checkRight('profile', 'w');
+Session::checkRight('profile', UPDATE);
 
 $profile = new PluginNewsProfile();
-
 $profile->update($_POST);
 
 PluginNewsProfile::changeProfile();

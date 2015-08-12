@@ -23,7 +23,12 @@
 
 include ("../../../inc/includes.php");
 
-Html::header($LANG['plugin_news']['title'], '' , "plugins", "news", "alert");
+Html::header(
+   $LANG['plugin_news']['title'],
+   $_SERVER["PHP_SELF"],
+   'tools',
+   "PluginNewsAlert"
+);
 
 Search::show('PluginNewsAlert');
 

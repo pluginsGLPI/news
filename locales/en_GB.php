@@ -1,6 +1,7 @@
 <?php
 
 $LANG['plugin_news']['title']                   = "Alerts";
+$LANG['plugin_news']['manage_alerts']           = "Manage alerts";
 
 $LANG['plugin_news']['alert_name']              = "Alert name";
 $LANG['plugin_news']['alert_message']           = "Message";

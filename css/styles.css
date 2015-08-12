@@ -1,0 +1,19 @@
+.plugin_news_alert {
+   background: #FFF;
+   margin: auto;
+   width: 90%;
+   box-shadow: 0 1px 1px #CCC;
+   border: none;
+}
+
+.plugin_news_alert th {
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #eee;
+    color: #000;
+    font-size: 18px;
+    line-height: 32px;
+}
+
+.plugin_news_alert td {
+   padding: 5px 15px;
+}

@@ -25,25 +25,18 @@ function plugin_init_news() {
    global $PLUGIN_HOOKS;
 
    $PLUGIN_HOOKS['csrf_compliant']['news'] = true;
-
+   $PLUGIN_HOOKS['add_javascript']['news'] = 'scripts/alert.php';
+   $PLUGIN_HOOKS['add_css']['news']        = 'css/styles.css';
    $PLUGIN_HOOKS['change_profile']['news'] = array('PluginNewsProfile', 'changeProfile');
 
    Plugin::registerClass('PluginNewsProfile', array('addtabon' => 'Profile'));
 
    $plugin = new Plugin();
 
-   if (isset($_SESSION['glpiID'])
-      && $plugin->isInstalled('news')
-         && $plugin->isActivated('news')) {
-      if(!isset($_SESSION['glpi_news_alert'])) {
-         $PLUGIN_HOOKS['add_javascript']['news'][] = 'scripts/jquery-1.9.1.min.js';
-         $PLUGIN_HOOKS['add_javascript']['news'][] = 'scripts/alert.php';
-         $_SESSION['glpi_news_alert'] = true;
-      }
-      if(Session::haveRight('news_alert', 'w')) {
-         $PLUGIN_HOOKS['menu_entry']['news'] = 'front/alert.php';
-         $PLUGIN_HOOKS['submenu_entry']['news']['options']['alert'] = array(
-            'links' => array( 'add' => '/plugins/news/front/alert.form.php')
+   if (isset($_SESSION['glpiID']) && $plugin->isInstalled('news') && $plugin->isActivated('news')) {
+      if(Session::haveRight('plugin_news', READ)) {
+         $PLUGIN_HOOKS['menu_toadd']['news'] = array(
+            'tools'    => 'PluginNewsAlert',
          );
       }
    }
@@ -53,19 +46,18 @@ function plugin_version_news() {
    global $LANG;
 
    return array(
-      'name' => $LANG['plugin_news']['title'],
-      'version' => '0.84-1.0',
-      'author' => "<a href=\"mailto:contact@teclib.com\">TECLIB'</a>",
-      'license' => "GPLv2+",
-      'homepage' => 'http://www.teclib.com/',
-      'minGlpiVersion' => '0.84'
+      'name'           => $LANG['plugin_news']['title'],
+      'version'        => '0.85-1.0',
+      'author'         => "<a href=\"mailto:contact@teclib.com\">TECLIB'</a>",
+      'license'        => "GPLv2+",
+      'homepage'       => 'http://www.teclib.com/',
+      'minGlpiVersion' => '0.85'
    );
 }
 
 function plugin_news_check_prerequisites() {
-   if (version_compare(GLPI_VERSION, '0.84', 'lt')
-      || version_compare(GLPI_VERSION, '0.85', 'ge')) {
-      echo "GLPI v0.84.x is required.";
+   if (version_compare(GLPI_VERSION, '0.84', 'lt') || version_compare(GLPI_VERSION, '0.91', 'ge')) {
+      echo "This version require GLPI 0.85.x or 0.90.x";
       return false;
    }
    return true;

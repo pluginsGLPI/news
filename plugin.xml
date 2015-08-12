@@ -45,7 +45,6 @@ Features
          <num>0.84-1.0</num>
          <compatibility>0.84</compatibility>
       </version>
-      <!--
       <version>
          <num>0.85-1.0</num>
          <compatibility>0.85</compatibility>
@@ -53,7 +52,7 @@ Features
       <version>
          <num>0.85-1.0</num>
          <compatibility>0.90</compatibility>
-      </version>-->
+      </version>
    </versions>
    <langs>
       <lang>fr_FR</lang>

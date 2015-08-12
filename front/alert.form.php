@@ -23,40 +23,40 @@
 
 include ("../../../inc/includes.php");
 
+$plugin = new Plugin();
+if (!$plugin->isInstalled("news") || !$plugin->isActivated("news")) {
+   Html::displayNotFoundError();
+}
+
 $alert = new PluginNewsAlert();
 
 if(isset($_POST['update'])) {
-
    $alert->update($_POST);
-
    Html::back();
 
 } elseif(isset($_POST['add'])) {
-
    $alert->add($_POST);
-
    Html::back();
 
 } elseif(isset($_POST['delete'])) {
-
    $alert->delete($_POST);
-
    $alert->redirectToList();
 
 } elseif(isset($_POST['restore'])) {
-
    $alert->restore($_POST);
-
    Html::back();
 
 } elseif(isset($_POST['purge'])) {
-
    $alert->delete($_POST, 1);
-
    $alert->redirectToList();
 }
 
-Html::header($LANG['plugin_news']['title'], '' , "plugins", "news");
+Html::header(
+   $LANG['plugin_news']['title'],
+   $_SERVER["PHP_SELF"],
+   'tools',
+   "PluginNewsAlert"
+);
 
 $alert->showForm(isset($_GET['id']) ? $_GET['id'] : 0);
 

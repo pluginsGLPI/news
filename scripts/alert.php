@@ -22,7 +22,7 @@
 */
 
 define('GLPI_ROOT', '../../..');
-include (GLPI_ROOT."/inc/includes.php");
+include (GLPI_ROOT . "/inc/includes.php");
 
 header("Content-type: application/javascript");
 
@@ -32,7 +32,7 @@ $(function(){
 
 <?php foreach($alerts as $alert): ?>
 
-   $('#page').prepend('<table class="tab_cadre_fixe" style="padding: 5px"><tr><th><?php echo Toolbox::addslashes_deep($alert['name']) ?></th></tr><tr><td><?php echo str_replace(chr(13).chr(10), '', Html::entity_decode_deep(Toolbox::addslashes_deep($alert['message']))) ?></td></tr></table><br />');
+   $('#page').prepend('<table class="plugin_news_alert"><tr><th><?php echo Toolbox::addslashes_deep($alert['name']) ?></th></tr><tr><td><?php echo str_replace(chr(13).chr(10), '', Html::entity_decode_deep(Toolbox::addslashes_deep($alert['message']))) ?></td></tr></table><br />');
 
 <?php endforeach; ?>
 

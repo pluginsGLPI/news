@@ -25,40 +25,24 @@ if (!defined('GLPI_ROOT')) {
    die("Sorry. You can't access directly to this file");
 }
 
-class PluginNewsAlert extends CommonDBTM {
+class PluginNewsAlert extends CommonDBTM
+{
+   static $rightname = 'plugin_news';
 
-   static function createTable() {
-      global $DB;
-
-      return $DB->query("
-         CREATE TABLE IF NOT EXISTS `glpi_plugin_news_alerts` (
-         `id` INT NOT NULL AUTO_INCREMENT,
-         `date_mod` DATETIME NOT NULL,
-         `name` VARCHAR(255) NOT NULL,
-         `message` TEXT NOT NULL,
-         `date_start` DATE NOT NULL,
-         `date_end` DATE NOT NULL,
-         `is_deleted` TINYINT(1) NOT NULL,
-         `profiles_id` INT NOT NULL,
-         `entities_id` INT NOT NULL,
-         `is_recursive` TINYINT(1) NOT NULL,
-         PRIMARY KEY (`id`)
-         ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-      ");
+   /**
+    * Returns the type name with consideration of plural
+    *
+    * @param number $nb Number of item(s)
+    * @return string Itemtype name
+    */
+   public static function getTypeName($nb = 0)
+   {
+      return $GLOBALS['LANG']['plugin_news']['title'];
    }
 
-   static function dropTable() {
-      global $DB;
-
-      return $DB->query("
-         DROP TABLE IF EXISTS `glpi_plugin_news_alerts`
-      ");
-   }
-
-   function getSearchOptions() {
+   public function getSearchOptions()
+   {
       global $LANG;
-
-      $tab = array();
 
       $tab[1]['table']         = $this->getTable();
       $tab[1]['field']         = 'name';
@@ -95,7 +79,8 @@ class PluginNewsAlert extends CommonDBTM {
       return $tab;
    }
 
-   static function findAllToNotify() {
+   public static function findAllToNotify()
+   {
       $self = new self;
 
       $user_entities_id = array();
@@ -110,11 +95,11 @@ class PluginNewsAlert extends CommonDBTM {
          }
       }
 
-      echo '/*'.chr(10).'user_entities_id'.chr(10).'' . var_export($user_entities_id, true) . ''.chr(10).'*/';
+      echo '/*' . chr(10) . 'user_entities_id' . chr(10) . var_export($user_entities_id, true) . chr(10) . '*/';
 
       $user_profiles_id = array_keys($_SESSION['glpiprofiles']);
 
-      echo '/*'.chr(10).'user_profiles_id'.chr(10).'' . var_export($user_profiles_id, true) . ''.chr(10).'*/';
+      echo '/*' . chr(10) . 'user_profiles_id' . chr(10) . var_export($user_profiles_id, true) . chr(10) . '*/';
 
       $alerts = $self->find("
          `is_deleted` = 0
@@ -123,18 +108,15 @@ class PluginNewsAlert extends CommonDBTM {
       ");
 
       foreach($alerts as $index => $alert) {
-
          if($alert['is_recursive']) {
-
             $alert_entities_id = getSonsOf('glpi_entities', $alert['entities_id']);
          } else {
             $alert_entities_id = array($alert['entities_id']);
          }
 
-         echo '/*'.chr(10).'alert_entities_id'.chr(10).'' . var_export($alert_entities_id, true) . ''.chr(10).'*/';
+         echo '/*' . chr(10) . 'alert_entities_id' . chr(10) . var_export($alert_entities_id, true) . chr(10) . '*/';
 
          if(!array_intersect($user_entities_id, $alert_entities_id)) {
-
             unset($alerts[$index]);
          }
       }
@@ -142,15 +124,19 @@ class PluginNewsAlert extends CommonDBTM {
       return $alerts;
    }
 
-   static function canRead() {
-      return Session::haveRight('config', 'r');
+   public static function getMenuContent()
+   {
+      global $CFG_GLPI;
+
+      $menu  = parent::getMenuContent();
+      $menu['links']['search'] = PluginNewsAlert::getSearchURL(false);
+
+      return $menu;
    }
 
-   static function canCreate() {
-      return Session::haveRight('config', 'w');
-   }
 
-   function checkDate($date) {
+   public function checkDate($date)
+   {
       if ( preg_match('/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/', $date) ) {
          list($year , $month , $day) = explode('-',$date);
          return checkdate($month , $day , $year);
@@ -158,7 +144,8 @@ class PluginNewsAlert extends CommonDBTM {
       return false;
    }
 
-   function prepareInputForAdd($input) {
+   public function prepareInputForAdd($input)
+   {
       global $LANG;
 
       $errors = array();
@@ -190,14 +177,16 @@ class PluginNewsAlert extends CommonDBTM {
       return $errors ? false : $input;
    }
 
-   function prepareInputForUpdate($input) {
+   public function prepareInputForUpdate($input)
+   {
       return $this->prepareInputForAdd($input);
    }
 
-   function showForm($ID, $options = array()) {
+   public function showForm($ID, $options = array())
+   {
       global $LANG;
 
-      $this->check($ID, 'w');
+      $this->check($ID, UPDATE);
 
       if($this->getField('message') == 'N/A') {
          $this->fields['message'] = "";
@@ -207,35 +196,61 @@ class PluginNewsAlert extends CommonDBTM {
 
       $this->showFormHeader($options);
 
-      echo '<td style="width: 120px">' . __('Name') .'</td>';
-      echo '<td><input name="name" type="text" value="'.$this->getField('name').'" style="width: 300px" /></td>';
+      echo '<tr>';
+      echo '<td style="width: 150px">' . __('Name') .'</td>';
+      echo '<td colspan="3"><input name="name" type="text" value="'.$this->getField('name').'" style="width: 565px" /></td>';
       echo '</tr>';
       echo '<tr>';
       echo '<td>' . __('Description') .'</td>';
-      echo '<td>';
+      echo '<td colspan="3">';
       echo '<textarea name="message" rows="12" cols="80">'.$this->getField('message').'</textarea>';
       echo '</td>';
       echo '</tr>';
       echo '<tr>';
-      echo '<td>' . __("Visibility start date") .'</td>';
+      echo '<td style="width: 150px">' . __("Visibility start date") .'</td>';
       echo '<td>';
       Html::showDateFormItem('date_start', Html::convDate($this->getField('date_start')), false);
       echo '</td>';
-      echo '</tr>';
-      echo '<tr>';
-      echo '<td>' . __("Visibility start date") .'</td>';
+      echo '<td style="width: 150px">' . __("Visibility end date") .'</td>';
       echo '<td>';
       Html::showDateFormItem('date_end', Html::convDate($this->getField('date_end')), false);
       echo '</td>';
       echo '</tr>';
       echo '<tr>';
       echo '<td>' . __("Profile") .'</td>';
-      echo '<td>';
+      echo '<td colspan="3">';
       Dropdown::show('Profile', array('name' => 'profiles_id', 'value' => $this->getField('profiles_id') ?: 0));
       echo '</td>';
       echo '</tr>';
 
       $this->showFormButtons($options);
+   }
 
+   public static function createTable()
+   {
+      global $DB;
+
+      return $DB->query("
+         CREATE TABLE IF NOT EXISTS `glpi_plugin_news_alerts` (
+         `id` INT NOT NULL AUTO_INCREMENT,
+         `date_mod` DATETIME NOT NULL,
+         `name` VARCHAR(255) NOT NULL,
+         `message` TEXT NOT NULL,
+         `date_start` DATE NOT NULL,
+         `date_end` DATE NOT NULL,
+         `is_deleted` TINYINT(1) NOT NULL,
+         `profiles_id` INT NOT NULL,
+         `entities_id` INT NOT NULL,
+         `is_recursive` TINYINT(1) NOT NULL,
+         PRIMARY KEY (`id`)
+         ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+      ");
+   }
+
+   public static function dropTable()
+   {
+      global $DB;
+
+      return $DB->query("DROP TABLE IF EXISTS `glpi_plugin_news_alerts`");
    }
 }

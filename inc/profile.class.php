@@ -25,10 +25,12 @@ if (!defined('GLPI_ROOT')) {
    die("Sorry. You can't access directly to this file");
 }
 
-class PluginNewsProfile extends CommonDBTM {
+class PluginNewsProfile extends Profile
+{
+   static $rightname = 'profile';
 
-   static function createTable() {
-
+   public static function createTable()
+   {
       global $DB;
 
       return $DB->query("
@@ -42,29 +44,56 @@ class PluginNewsProfile extends CommonDBTM {
       ");
    }
 
-   static function dropTable() {
+   public static function dropTable()
+   {
       global $DB;
 
       return $DB->query("DROP TABLE IF EXISTS `glpi_plugin_news_profiles`");
    }
 
-   static function createFirstAccess($ID, $admin = false) {
+   public static function getAllRights()
+   {
+      global $LANG;
 
-      $profile = new self();
-
-      if (!$profile->getFromDBByProfile($ID)) {
-
-         $profile->add(array(
-            'profiles_id' => $ID,
-            'alert' => $admin ? 'w' : '',
-         ));
-      }
-
-      self::changeProfile();
+      return array(
+         array(
+            'itemtype' => 'PluginNewsProfile',
+            'label'    =>  $LANG['plugin_news']['manage_alerts'],
+            'field'    => 'plugin_news'
+         ),
+      );
    }
 
-   static function changeProfile() {
+   public static function addDefaultProfileInfos($profiles_id, $rights)
+   {
+      $profileRight = new ProfileRight();
+      foreach ($rights as $right => $value) {
+         if (!countElementsInTable('glpi_profilerights',
+                                   "`profiles_id`='$profiles_id' AND `name`='$right'")) {
+            $myright['profiles_id'] = $profiles_id;
+            $myright['name']        = $right;
+            $myright['rights']      = $value;
+            $profileRight->add($myright);
 
+            //Add right to the current session
+            $_SESSION['glpiactiveprofile'][$right] = $value;
+         }
+      }
+   }
+
+   /**
+    * @param $ID  integer
+    */
+   public static function createFirstAccess($profiles_id)
+   {
+      $profile = new self();
+      foreach ($profile->getAllRights() as $right) {
+         self::addDefaultProfileInfos($profiles_id, array($right['field'] => ALLSTANDARDRIGHT));
+      }
+   }
+
+   public static function changeProfile()
+   {
       $profile = new self();
 
       if ($profile->getFromDBByProfile($_SESSION['glpiactiveprofile']['id'])) {
@@ -74,62 +103,81 @@ class PluginNewsProfile extends CommonDBTM {
       }
    }
 
-   function getTabNameForItem(CommonGLPI $item, $withtemplate=0) {
+   public function getTabNameForItem(CommonGLPI $item, $withtemplate = 0)
+   {
       global $LANG;
 
       return $LANG['plugin_news']['title'];
    }
 
-   function getFromDBByProfile($profiles_id) {
-
+   public function getFromDBByProfile($profiles_id)
+   {
       global $DB;
 
-      $query = "SELECT * FROM `".$this->getTable()."`
-               WHERE `profiles_id` = '" . $profiles_id . "' ";
+      $query = "SELECT *
+                FROM `" . $this->getTable() . "`
+                WHERE `profiles_id` = '" . (int) $profiles_id . "' ";
 
       if ($result = $DB->query($query)) {
-         if (!$DB->numrows($result)) {
-            return false;
+         if ($DB->numrows($result)) {
+            $this->fields = $DB->fetch_assoc($result);
+            if (is_array($this->fields) && count($this->fields)) {
+               return true;
+            }
          }
-         $this->fields = $DB->fetch_assoc($result);
-         if (is_array($this->fields) && count($this->fields)) {
-            return true;
-         }
-         return false;
       }
+
       return false;
    }
 
-   static function displayTabContentForItem(CommonGLPI $item, $tabnum=1, $withtemplate=0) {
-
+   public static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0)
+   {
       $profile = new self();
 
       if(!$profile->getFromDBByProfile($item->getID())) {
-
          self::createFirstAccess($item->getID());
-
          $profile->getFromDBByProfile($item->getID());
       }
-      $profile->showForm();
+      $profile->showForm($item->getField('id'));
    }
 
-   function showForm() {
-
+   public function showForm($profiles_id, $options=array())
+   {
       global $LANG;
 
-      echo '<form method="post" action="'.$this->getFormURL().'">';
-      echo '<table class="tab_cadre_fixe">';
-      echo '<tr>';
-      echo '<th>'.$LANG['plugin_news']['title'].'</th>';
-      echo '<td align="center">';
-      Profile::dropdownNoneReadWrite('alert', $this->getField('alert'), 1, 0, 1);
-      echo '</td>';
-      echo '<td align="center">';
-      echo '<input class="submit" type="submit" value="'.__('Save').'" />';
-      echo '</td>';
-      echo '</tr>';
-      echo '</table>';
-      echo '<input type="hidden" name="id" value="'.$this->getID().'" />';
+      $profile = new Profile();
+      $profile->getFromDB($profiles_id);
+
+      if ($canedit = Session::haveRightsOr(self::$rightname, array(CREATE, UPDATE, PURGE))) {
+         echo "<form action='" . $profile->getFormURL() . "' method='post'>";
+      }
+
+      $profile = new Profile();
+      $profile->getFromDB($profiles_id);
+
+      $rights = $this->getAllRights();
+      $profile->displayRightsChoiceMatrix($rights, array(
+         'canedit'       => $canedit,
+         'default_class' => 'tab_bg_2',
+         'title'         => $LANG['plugin_news']['title'],
+      ));
+
+      if ($canedit) {
+         echo "<div class='center'>";
+         echo Html::hidden('id', array('value' => $profiles_id));
+         echo Html::submit(_sx('button', 'Save'), array('name' => 'update'));
+         echo "</div>\n";
+         Html::closeForm();
+      }
       HTML::closeForm();
+   }
+
+   public static function uninstallProfile()
+   {
+      $pfProfile = new self();
+      $a_rights  = $pfProfile->getAllRights();
+      foreach ($a_rights as $data) {
+         ProfileRight::deleteProfileRights(array($data['field']));
+      }
    }
 }
