@@ -1,0 +1,77 @@
+<root>
+   <name>News</name>
+   <key>news</key>
+   <state>stable</state>
+   <logo>https://raw.githubusercontent.com/TECLIB/news/master/icon.png</logo>
+   <description>
+      <short>
+         <fr>Ce plugin permet d'afficher des messages sur la page d'accueil de GLPI.</fr>
+         <en>This plugin allows to display messages on the GLPI's homepage.</en>
+      </short>
+      <long>
+         <fr>
+Ce plugin permet d'afficher des messages sur la page d'accueil de GLPI.
+
+Fonctionnalités
+---------------
+
+1. Création d'une alerte avec du texte riche comme les notes.
+2. Choix d'une date de début / date de fin de publication.
+3. Gestion des alertes par entité.
+4. Affichage des alertes en fonction du profil.
+         </fr>
+         <en>
+This plugin allows to display messages on the GLPI's homepage.
+
+Features
+--------
+
+1. Create alerts with rich text like notes.
+2. Choose the desired publication start and end dates.
+3. Manage alerts by entity.
+4. Displays the alerts according to the user's profile
+         </en>
+      </long>
+   </description>
+   <homepage>https://github.com/TECLIB/news</homepage>
+   <download>https://github.com/TECLIB/news/releases</download>
+   <issues>https://github.com/TECLIB/news/issues</issues>
+   <readme>https://github.com/TECLIB/news/blob/master/README.md</readme>
+   <authors>
+      <author>TECLIB'</author>
+   </authors>
+   <versions>
+      <version>
+         <num>0.84-1.0</num>
+         <compatibility>0.84</compatibility>
+      </version>
+      <!--
+      <version>
+         <num>0.85-1.0</num>
+         <compatibility>0.85</compatibility>
+      </version>
+      <version>
+         <num>0.85-1.0</num>
+         <compatibility>0.90</compatibility>
+      </version>-->
+   </versions>
+   <langs>
+      <lang>fr_FR</lang>
+      <lang>en_GB</lang>
+      <lang>es_ES</lang>
+   </langs>
+   <license>GPL v2+</license>
+   <tags>
+      <fr>
+         <tag>gestion</tag>
+         <tag>configuration</tag>
+      </fr>
+      <en>
+         <tag>management</tag>
+         <tag>setup</tag>
+      </en>
+   </tags>
+   <screenshots>
+      <screenshot>https://raw.githubusercontent.com/TECLIB/news/master/screenshot.png</screenshot>
+   </screenshots>
+</root>
