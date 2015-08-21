@@ -2,7 +2,7 @@
    <name>News</name>
    <key>news</key>
    <state>stable</state>
-   <logo>https://raw.githubusercontent.com/TECLIB/news/master/icon.png</logo>
+   <logo>https://raw.githubusercontent.com/pluginsGLPI/news/master/icon.png</logo>
    <description>
       <short>
          <fr>Ce plugin permet d'afficher des messages sur la page d'accueil de GLPI.</fr>
@@ -33,10 +33,10 @@ Features
          </en>
       </long>
    </description>
-   <homepage>https://github.com/TECLIB/news</homepage>
-   <download>https://github.com/TECLIB/news/releases</download>
-   <issues>https://github.com/TECLIB/news/issues</issues>
-   <readme>https://github.com/TECLIB/news/blob/master/README.md</readme>
+   <homepage>https://github.com/pluginsGLPI/news</homepage>
+   <download>https://github.com/pluginsGLPI/news/releases</download>
+   <issues>https://github.com/pluginsGLPI/news/issues</issues>
+   <readme>https://github.com/pluginsGLPI/news/blob/master/README.md</readme>
    <authors>
       <author>TECLIB'</author>
    </authors>
@@ -71,6 +71,6 @@ Features
       </en>
    </tags>
    <screenshots>
-      <screenshot>https://raw.githubusercontent.com/TECLIB/news/master/screenshot.png</screenshot>
+      <screenshot>https://raw.githubusercontent.com/pluginsGLPI/news/master/screenshot.png</screenshot>
    </screenshots>
 </root>
