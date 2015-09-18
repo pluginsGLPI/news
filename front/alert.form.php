@@ -52,7 +52,7 @@ if(isset($_POST['update'])) {
 }
 
 Html::header(
-   $LANG['plugin_news']['title'],
+   __('Alerts', 'news'),
    $_SERVER["PHP_SELF"],
    'tools',
    "PluginNewsAlert"

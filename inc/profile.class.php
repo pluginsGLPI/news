@@ -53,12 +53,10 @@ class PluginNewsProfile extends Profile
 
    public static function getAllRights()
    {
-      global $LANG;
-
       return array(
          array(
             'itemtype' => 'PluginNewsProfile',
-            'label'    =>  $LANG['plugin_news']['manage_alerts'],
+            'label'    =>  __('Manage alerts', 'news'),
             'field'    => 'plugin_news'
          ),
       );
@@ -107,7 +105,7 @@ class PluginNewsProfile extends Profile
    {
       global $LANG;
 
-      return $LANG['plugin_news']['title'];
+      return __('Alerts', 'news');
    }
 
    public function getFromDBByProfile($profiles_id)
@@ -143,8 +141,6 @@ class PluginNewsProfile extends Profile
 
    public function showForm($profiles_id, $options=array())
    {
-      global $LANG;
-
       $profile = new Profile();
       $profile->getFromDB($profiles_id);
 
@@ -159,7 +155,7 @@ class PluginNewsProfile extends Profile
       $profile->displayRightsChoiceMatrix($rights, array(
          'canedit'       => $canedit,
          'default_class' => 'tab_bg_2',
-         'title'         => $LANG['plugin_news']['title'],
+         'title'         => __('Alerts', 'news'),
       ));
 
       if ($canedit) {

@@ -37,13 +37,11 @@ class PluginNewsAlert extends CommonDBTM
     */
    public static function getTypeName($nb = 0)
    {
-      return $GLOBALS['LANG']['plugin_news']['title'];
+      return __('Alerts', 'news');
    }
 
    public function getSearchOptions()
    {
-      global $LANG;
-
       $tab[1]['table']         = $this->getTable();
       $tab[1]['field']         = 'name';
       $tab[1]['name']          = __('Name');
@@ -146,28 +144,26 @@ class PluginNewsAlert extends CommonDBTM
 
    public function prepareInputForAdd($input)
    {
-      global $LANG;
-
       $errors = array();
 
       if(!$input['name']) {
-         array_push($errors, $LANG['plugin_news']['alert_name_empty']);
+         array_push($errors, __('Please enter a name.', 'news'));
       }
 
       if(!$input['message']) {
-         array_push($errors, $LANG['plugin_news']['alert_message_empty']);
+         array_push($errors, __('Please enter a message.', 'news'));
       }
 
       if(!$input['date_start'] || !$this->checkDate($input['date_start'])) {
-         array_push($errors, $LANG['plugin_news']['alert_date_start_empty']);
+         array_push($errors, __('Please enter a valid start date.', 'news'));
       } elseif(!$input['date_end'] || !$this->checkDate($input['date_end'])) {
-         array_push($errors, $LANG['plugin_news']['alert_date_end_empty']);
+         array_push($errors, __('Please enter a valid end date.', 'news'));
       } elseif($input['date_end'] < $input['date_start']) {
-         array_push($errors, $LANG['plugin_news']['alert_date_error']);
+         array_push($errors, __('The end date must be greater than the start date.', 'news'));
       }
 
       if(!$input['profiles_id']) {
-         array_push($errors, $LANG['plugin_news']['alert_profiles_id_empty']);
+         array_push($errors, __('Please enter a profile.', 'news'));
       }
 
       if($errors) {
@@ -184,8 +180,6 @@ class PluginNewsAlert extends CommonDBTM
 
    public function showForm($ID, $options = array())
    {
-      global $LANG;
-
       $this->check($ID, UPDATE);
 
       if($this->getField('message') == 'N/A') {

@@ -43,10 +43,8 @@ function plugin_init_news() {
 }
 
 function plugin_version_news() {
-   global $LANG;
-
    return array(
-      'name'           => $LANG['plugin_news']['title'],
+      'name'           => __('Alerts', 'news'),
       'version'        => '0.90-1.0',
       'author'         => "<a href=\"mailto:contact@teclib.com\">TECLIB'</a>",
       'license'        => "GPLv2+",
