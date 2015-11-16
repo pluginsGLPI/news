@@ -81,16 +81,20 @@ class PluginNewsAlert extends CommonDBTM
       global $DB;
 
       $alerts = array();
+      $today  = date('Y-m-d');
+      $table  = self::getTable();
 
       $profilesRestrict = "AND `profiles_id` = '" . $_SESSION['glpiactiveprofile']['id'] . "'";
 
-      $entitiesRestrict = getEntitiesRestrictRequest("AND", self::getTable(), "", "", true, true);
+      $entitiesRestrict = getEntitiesRestrictRequest("AND", $table, "", "", true, true);
 
-      $dateRestrict = " ( DATE_FORMAT(NOW(), '%Y-%m-%d') > `date_start` 
-                                 AND DATE_FORMAT(NOW(), '%Y-%m-%d') < `date_end` )";
+      $dateRestrict     = " ((`$table`.`date_start` < '$today' 
+                               OR `$table`.`date_start` = '$today')
+                              AND (`$table`.`date_end` > '$today'
+                                    OR `$table`.`date_end` = '$today'))";
 
       $query = "SELECT *
-                  FROM " . self::getTable() . " 
+                  FROM `" . $table . "`
                   WHERE $dateRestrict 
                   AND `is_deleted` = 0 
                   $profilesRestrict 
@@ -170,6 +174,8 @@ class PluginNewsAlert extends CommonDBTM
    {
       $this->check($ID, UPDATE);
 
+      $canedit = $this->can($ID, UPDATE);
+
       if($this->getField('message') == 'N/A') {
          $this->fields['message'] = "";
       }
@@ -191,11 +197,19 @@ class PluginNewsAlert extends CommonDBTM
       echo '<tr>';
       echo '<td style="width: 150px">' . __("Visibility start date") .'</td>';
       echo '<td>';
-      Html::showDateFormItem('date_start', Html::convDate($this->getField('date_start')), false);
+      Html::showDateField("date_start",
+                              array('value'      => $this->fields["date_start"],
+                                    'timestep'   => 1,
+                                    'maybeempty' => false,
+                                    'canedit'    => $canedit));
       echo '</td>';
       echo '<td style="width: 150px">' . __("Visibility end date") .'</td>';
       echo '<td>';
-      Html::showDateFormItem('date_end', Html::convDate($this->getField('date_end')), false);
+      Html::showDateField("date_end",
+                              array('value'      => $this->fields["date_end"],
+                                    'timestep'   => 1,
+                                    'maybeempty' => true,
+                                    'canedit'    => $canedit));
       echo '</td>';
       echo '</tr>';
       echo '<tr>';
