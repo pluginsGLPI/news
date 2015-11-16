@@ -77,45 +77,33 @@ class PluginNewsAlert extends CommonDBTM
       return $tab;
    }
 
-   public static function findAllToNotify()
-   {
-      $self = new self;
+   public static function findAllToNotify() {
+      global $DB;
 
-      $user_entities_id = array();
+      $alerts = array();
 
-      foreach($_SESSION['glpiprofiles'] as $profile) {
-         foreach($profile['entities'] as $entity) {
-            if($entity['is_recursive']) {
-               $user_entities_id = array_merge(getSonsOf('glpi_entities', $entity['id']));
-            } else {
-               array_push($user_entities_id, $entity['id']);
-            }
-         }
-      }
+      $profilesRestrict = "AND `profiles_id` = '" . $_SESSION['glpiactiveprofile']['id'] . "'";
 
-      echo '/*' . chr(10) . 'user_entities_id' . chr(10) . var_export($user_entities_id, true) . chr(10) . '*/';
+      $entitiesRestrict = getEntitiesRestrictRequest("AND", self::getTable(), "", "", true, true);
 
-      $user_profiles_id = array_keys($_SESSION['glpiprofiles']);
+      $dateRestrict = " ( DATE_FORMAT(NOW(), '%Y-%m-%d') > `date_start` 
+                                 AND DATE_FORMAT(NOW(), '%Y-%m-%d') < `date_end` )";
 
-      echo '/*' . chr(10) . 'user_profiles_id' . chr(10) . var_export($user_profiles_id, true) . chr(10) . '*/';
+      $query = "SELECT *
+                  FROM " . self::getTable() . " 
+                  WHERE $dateRestrict 
+                  AND `is_deleted` = 0 
+                  $profilesRestrict 
+                  $entitiesRestrict";
 
-      $alerts = $self->find("
-         `is_deleted` = 0
-         AND ( DATE(NOW()) BETWEEN `date_start` AND `date_end` )
-         AND `profiles_id` IN (". implode(", ", $user_profiles_id) .")
-      ");
-
-      foreach($alerts as $index => $alert) {
-         if($alert['is_recursive']) {
-            $alert_entities_id = getSonsOf('glpi_entities', $alert['entities_id']);
-         } else {
-            $alert_entities_id = array($alert['entities_id']);
+      if ($result = $DB->query($query)) {
+         if ($DB->numrows($result) < 1) {
+            return false;
          }
 
-         echo '/*' . chr(10) . 'alert_entities_id' . chr(10) . var_export($alert_entities_id, true) . chr(10) . '*/';
+         while ($data = $DB->fetch_assoc($result)) {
 
-         if(!array_intersect($user_entities_id, $alert_entities_id)) {
-            unset($alerts[$index]);
+            $alerts[] = $data;
          }
       }
 
@@ -220,31 +208,4 @@ class PluginNewsAlert extends CommonDBTM
       $this->showFormButtons($options);
    }
 
-   public static function createTable()
-   {
-      global $DB;
-
-      return $DB->query("
-         CREATE TABLE IF NOT EXISTS `glpi_plugin_news_alerts` (
-         `id` INT NOT NULL AUTO_INCREMENT,
-         `date_mod` DATETIME NOT NULL,
-         `name` VARCHAR(255) NOT NULL,
-         `message` TEXT NOT NULL,
-         `date_start` DATE NOT NULL,
-         `date_end` DATE NOT NULL,
-         `is_deleted` TINYINT(1) NOT NULL,
-         `profiles_id` INT NOT NULL,
-         `entities_id` INT NOT NULL,
-         `is_recursive` TINYINT(1) NOT NULL,
-         PRIMARY KEY (`id`)
-         ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-      ");
-   }
-
-   public static function dropTable()
-   {
-      global $DB;
-
-      return $DB->query("DROP TABLE IF EXISTS `glpi_plugin_news_alerts`");
-   }
 }

@@ -23,10 +23,7 @@
 
 include ("../../../inc/includes.php");
 
-$plugin = new Plugin();
-if (!$plugin->isInstalled("news") || !$plugin->isActivated("news")) {
-   Html::displayNotFoundError();
-}
+Session::checkRight('plugin_news', READ);
 
 $alert = new PluginNewsAlert();
 

@@ -25,9 +25,38 @@ require_once "inc/alert.class.php";
 require_once "inc/profile.class.php";
 
 function plugin_news_install() {
-   if (!PluginNewsAlert::createTable() || !PluginNewsProfile::createTable()) {
-      Session::addMessageAfterRedirect('Installation failed');
-      return false;
+   global $DB;
+
+   $plugin = new Plugin();
+
+   $found = $plugin->find("name = 'news'");
+
+   $pluginNews = array_shift($found);
+
+   $migration = new Migration($pluginNews['version']);
+
+   /* New install */
+   if (! TableExists('glpi_plugin_news_alerts')) {
+      $DB->query("
+         CREATE TABLE IF NOT EXISTS `glpi_plugin_news_alerts` (
+         `id` INT NOT NULL AUTO_INCREMENT,
+         `date_mod` DATETIME NOT NULL,
+         `name` VARCHAR(255) NOT NULL,
+         `message` TEXT NOT NULL,
+         `date_start` DATE NOT NULL,
+         `date_end` DATE NOT NULL,
+         `is_deleted` TINYINT(1) NOT NULL,
+         `profiles_id` INT NOT NULL,
+         `entities_id` INT NOT NULL,
+         `is_recursive` TINYINT(1) NOT NULL,
+         PRIMARY KEY (`id`)
+         ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+      ");
+   }
+
+   /* Remove old table */
+   if (TableExists('glpi_plugin_news_profiles')) {
+      $DB->query("DROP TABLE IF EXISTS `glpi_plugin_news_profiles`;");
    }
 
    PluginNewsProfile::createFirstAccess($_SESSION['glpiactiveprofile']['id']);
@@ -36,13 +65,12 @@ function plugin_news_install() {
 }
 
 function plugin_news_uninstall() {
-   if (!PluginNewsAlert::dropTable() || !PluginNewsProfile::dropTable()) {
-      Session::addMessageAfterRedirect('Uninstallation failed');
+   global $DB;
 
-      return false;
-   }
+   $DB->query("DROP TABLE IF EXISTS `glpi_plugin_news_alerts`;");
+   $DB->query("DROP TABLE IF EXISTS `glpi_plugin_news_profiles`;");
 
-   PluginNewsProfile::uninstallProfile();
+   $DB->query("DELETE FROM `glpi_profiles` WHERE `name` LIKE '%plugin_news%';");
 
    return true;
 }

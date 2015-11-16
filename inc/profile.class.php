@@ -25,34 +25,12 @@ if (!defined('GLPI_ROOT')) {
    die("Sorry. You can't access directly to this file");
 }
 
-class PluginNewsProfile extends Profile
-{
-   static $rightname = 'profile';
+class PluginNewsProfile extends Profile {
 
-   public static function createTable()
-   {
-      global $DB;
+   static $rightname = 'plugin_news';
 
-      return $DB->query("
-         CREATE TABLE IF NOT EXISTS `glpi_plugin_news_profiles` (
-            `id` INT(11) NOT NULL AUTO_INCREMENT,
-            `profiles_id` INT(11) NOT NULL DEFAULT '0',
-            `alert` CHAR(1),
-            PRIMARY KEY (`id`),
-            KEY `profiles_id` (`profiles_id`)
-         ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-      ");
-   }
+   public static function getAllRights() {
 
-   public static function dropTable()
-   {
-      global $DB;
-
-      return $DB->query("DROP TABLE IF EXISTS `glpi_plugin_news_profiles`");
-   }
-
-   public static function getAllRights()
-   {
       return array(
          array(
             'itemtype' => 'PluginNewsProfile',
@@ -62,8 +40,8 @@ class PluginNewsProfile extends Profile
       );
    }
 
-   public static function addDefaultProfileInfos($profiles_id, $rights)
-   {
+   public static function addDefaultProfileInfos($profiles_id, $rights) {
+
       $profileRight = new ProfileRight();
       foreach ($rights as $right => $value) {
          if (!countElementsInTable('glpi_profilerights',
@@ -79,101 +57,72 @@ class PluginNewsProfile extends Profile
       }
    }
 
-   /**
-    * @param $ID  integer
-    */
-   public static function createFirstAccess($profiles_id)
-   {
+   public static function createFirstAccess($profiles_id) {
+
       $profile = new self();
       foreach ($profile->getAllRights() as $right) {
          self::addDefaultProfileInfos($profiles_id, array($right['field'] => ALLSTANDARDRIGHT));
       }
    }
 
-   public static function changeProfile()
-   {
-      $profile = new self();
+   public function getTabNameForItem(CommonGLPI $item, $withtemplate=0) {
 
-      if ($profile->getFromDBByProfile($_SESSION['glpiactiveprofile']['id'])) {
-         $_SESSION['glpiactiveprofile']['news_alert'] = $profile->getField('alert');
-      } else {
-         unset($_SESSION['glpiactiveprofile']['news_alert']);
-      }
-   }
-
-   public function getTabNameForItem(CommonGLPI $item, $withtemplate = 0)
-   {
-      global $LANG;
-
-      return __('Alerts', 'news');
-   }
-
-   public function getFromDBByProfile($profiles_id)
-   {
-      global $DB;
-
-      $query = "SELECT *
-                FROM `" . $this->getTable() . "`
-                WHERE `profiles_id` = '" . (int) $profiles_id . "' ";
-
-      if ($result = $DB->query($query)) {
-         if ($DB->numrows($result)) {
-            $this->fields = $DB->fetch_assoc($result);
-            if (is_array($this->fields) && count($this->fields)) {
-               return true;
-            }
+      if ($item->getType() == 'Profile') {
+         if ($item->getField('interface') == 'central') {
+            return __('Alerts', 'news');
          }
+         return '';
       }
-
-      return false;
+      return '';
    }
 
-   public static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0)
-   {
-      $profile = new self();
+   public static function displayTabContentForItem(CommonGLPI $item, $tabnum=1, $withtemplate=0) {
 
-      if(!$profile->getFromDBByProfile($item->getID())) {
-         self::createFirstAccess($item->getID());
-         $profile->getFromDBByProfile($item->getID());
+      if ($item->getType() == 'Profile') {
+         $profile = new self();
+         $ID   = $item->getField('id');
+         //In case there's no right for this profile, create it
+         self::addDefaultProfileInfos($item->getID(), 
+                                      array('plugin_news' => 0));
+         $profile->showForm($ID);
       }
-      $profile->showForm($item->getField('id'));
+      return true;
    }
 
-   public function showForm($profiles_id, $options=array())
-   {
+   public function showForm($profiles_id=0, $openform=TRUE, $closeform=TRUE) {
+
+      echo "<div class='firstbloc'>";
+      if (($canedit = Session::haveRightsOr('profile', array(CREATE, UPDATE, PURGE)))
+          && $openform) {
+         $profile = new Profile();
+         echo "<form method='post' action='".$profile->getFormURL()."'>";
+      }
+
       $profile = new Profile();
       $profile->getFromDB($profiles_id);
 
-      if ($canedit = Session::haveRightsOr(self::$rightname, array(CREATE, UPDATE, PURGE))) {
-         echo "<form action='" . $profile->getFormURL() . "' method='post'>";
-      }
-
-      $profile = new Profile();
-      $profile->getFromDB($profiles_id);
-
-      $rights = $this->getAllRights();
-      $profile->displayRightsChoiceMatrix($rights, array(
-         'canedit'       => $canedit,
-         'default_class' => 'tab_bg_2',
-         'title'         => __('Alerts', 'news'),
-      ));
-
-      if ($canedit) {
+      $rights = self::getAllRights();
+      $profile->displayRightsChoiceMatrix(self::getAllRights(), 
+                                          array('canedit'       => $canedit,
+                                                'default_class' => 'tab_bg_2',
+                                                'title'         => __('General')));
+      if ($canedit
+          && $closeform) {
          echo "<div class='center'>";
          echo Html::hidden('id', array('value' => $profiles_id));
          echo Html::submit(_sx('button', 'Save'), array('name' => 'update'));
          echo "</div>\n";
          Html::closeForm();
       }
-      HTML::closeForm();
+      echo "</div>";
    }
 
-   public static function uninstallProfile()
-   {
-      $pfProfile = new self();
-      $a_rights  = $pfProfile->getAllRights();
-      foreach ($a_rights as $data) {
-         ProfileRight::deleteProfileRights(array($data['field']));
-      }
+   public function cleanProfiles($ID) {
+      global $DB;
+      $query = "DELETE FROM `glpi_profiles` 
+                WHERE `profiles_id`='$ID' 
+                   AND `name` LIKE '%plugin_news%'";
+      $DB->query($query);
    }
+
 }

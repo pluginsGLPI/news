@@ -27,7 +27,6 @@ function plugin_init_news() {
    $PLUGIN_HOOKS['csrf_compliant']['news'] = true;
    $PLUGIN_HOOKS['add_javascript']['news'] = 'scripts/alert.php';
    $PLUGIN_HOOKS['add_css']['news']        = 'css/styles.css';
-   $PLUGIN_HOOKS['change_profile']['news'] = array('PluginNewsProfile', 'changeProfile');
 
    Plugin::registerClass('PluginNewsProfile', array('addtabon' => 'Profile'));
 
@@ -45,7 +44,7 @@ function plugin_init_news() {
 function plugin_version_news() {
    return array(
       'name'           => __('Alerts', 'news'),
-      'version'        => '0.90-1.0',
+      'version'        => '0.90-1.1',
       'author'         => "<a href=\"mailto:contact@teclib.com\">TECLIB'</a>",
       'license'        => "GPLv2+",
       'homepage'       => 'http://www.teclib.com/',
