@@ -27,13 +27,10 @@ require_once "inc/profile.class.php";
 function plugin_news_install() {
    global $DB;
 
-   $plugin = new Plugin();
-
-   $found = $plugin->find("name = 'news'");
-
+   $plugin     = new Plugin();
+   $found      = $plugin->find("name = 'news'");
    $pluginNews = array_shift($found);
-
-   $migration = new Migration($pluginNews['version']);
+   $migration  = new Migration($pluginNews['version']);
 
    /* New install */
    if (! TableExists('glpi_plugin_news_alerts')) {
@@ -46,6 +43,7 @@ function plugin_news_install() {
          `date_start` DATE NOT NULL,
          `date_end` DATE NOT NULL,
          `is_deleted` TINYINT(1) NOT NULL,
+         `is_displayed_onlogin` TINYINT(1) NOT NULL,
          `profiles_id` INT NOT NULL,
          `entities_id` INT NOT NULL,
          `is_recursive` TINYINT(1) NOT NULL,
@@ -59,6 +57,12 @@ function plugin_news_install() {
       $DB->query("DROP TABLE IF EXISTS `glpi_plugin_news_profiles`;");
    }
 
+   // add displayed on login flag
+   if (!FieldExists("glpi_plugin_news_alerts", "is_displayed_onlogin")) {
+      $migration->addField("glpi_plugin_news_alerts", "is_displayed_onlogin", 'bool');
+      $migration->migrationOneTable("glpi_plugin_news_alerts");
+   }
+
    PluginNewsProfile::createFirstAccess($_SESSION['glpiactiveprofile']['id']);
 
    return true;
@@ -69,7 +73,6 @@ function plugin_news_uninstall() {
 
    $DB->query("DROP TABLE IF EXISTS `glpi_plugin_news_alerts`;");
    $DB->query("DROP TABLE IF EXISTS `glpi_plugin_news_profiles`;");
-
    $DB->query("DELETE FROM `glpi_profiles` WHERE `name` LIKE '%plugin_news%';");
 
    return true;

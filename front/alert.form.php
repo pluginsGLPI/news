@@ -25,6 +25,10 @@ include ("../../../inc/includes.php");
 
 Session::checkRight('plugin_news', READ);
 
+if (!isset($_GET["id"])) {
+   $_GET["id"] = "";
+}
+
 $alert = new PluginNewsAlert();
 
 if(isset($_POST['update'])) {
@@ -55,6 +59,6 @@ Html::header(
    "PluginNewsAlert"
 );
 
-$alert->showForm(isset($_GET['id']) ? $_GET['id'] : 0);
+$alert->display(array('id'=> $_GET["id"]));
 
 Html::footer();

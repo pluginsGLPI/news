@@ -25,8 +25,7 @@ if (!defined('GLPI_ROOT')) {
    die("Sorry. You can't access directly to this file");
 }
 
-class PluginNewsAlert extends CommonDBTM
-{
+class PluginNewsAlert extends CommonDBTM {
    static $rightname = 'plugin_news';
 
    /**
@@ -35,13 +34,11 @@ class PluginNewsAlert extends CommonDBTM
     * @param number $nb Number of item(s)
     * @return string Itemtype name
     */
-   public static function getTypeName($nb = 0)
-   {
+   public static function getTypeName($nb = 0) {
       return __('Alerts', 'news');
    }
 
-   public function getSearchOptions()
-   {
+   public function getSearchOptions() {
       $tab[1]['table']         = $this->getTable();
       $tab[1]['field']         = 'name';
       $tab[1]['name']          = __('Name');
@@ -77,28 +74,27 @@ class PluginNewsAlert extends CommonDBTM
       return $tab;
    }
 
-   public static function findAllToNotify() {
+   public static function findAllToNotify($show_only_login_alerts =  false) {
       global $DB;
 
       $alerts = array();
       $today  = date('Y-m-d');
       $table  = self::getTable();
 
-      $profilesRestrict = "AND `profiles_id` = '" . $_SESSION['glpiactiveprofile']['id'] . "'";
-
-      $entitiesRestrict = getEntitiesRestrictRequest("AND", $table, "", "", true, true);
-
-      $dateRestrict     = " ((`$table`.`date_start` < '$today' 
-                               OR `$table`.`date_start` = '$today')
-                              AND (`$table`.`date_end` > '$today'
-                                    OR `$table`.`date_end` = '$today'))";
-
       $query = "SELECT *
                   FROM `" . $table . "`
-                  WHERE $dateRestrict 
-                  AND `is_deleted` = 0 
-                  $profilesRestrict 
-                  $entitiesRestrict";
+                  WHERE (`$table`.`date_start` < '$today' 
+                           OR `$table`.`date_start` = '$today')
+                    AND (`$table`.`date_end` > '$today'
+                           OR `$table`.`date_end` = '$today')
+                  AND `is_deleted` = 0";
+
+      if ($show_only_login_alerts) {
+         $query.= " AND is_displayed_onlogin = 1";
+      } else {
+         $query.= " AND `profiles_id` = '" . $_SESSION['glpiactiveprofile']['id'] . "'";
+         $query.= getEntitiesRestrictRequest("AND", $table, "", "", true, true);
+      }
 
       if ($result = $DB->query($query)) {
          if ($DB->numrows($result) < 1) {
@@ -106,7 +102,6 @@ class PluginNewsAlert extends CommonDBTM
          }
 
          while ($data = $DB->fetch_assoc($result)) {
-
             $alerts[] = $data;
          }
       }
@@ -114,10 +109,7 @@ class PluginNewsAlert extends CommonDBTM
       return $alerts;
    }
 
-   public static function getMenuContent()
-   {
-      global $CFG_GLPI;
-
+   public static function getMenuContent() {
       $menu  = parent::getMenuContent();
       $menu['links']['search'] = PluginNewsAlert::getSearchURL(false);
 
@@ -125,8 +117,7 @@ class PluginNewsAlert extends CommonDBTM
    }
 
 
-   public function checkDate($date)
-   {
+   public function checkDate($date) {
       if ( preg_match('/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/', $date) ) {
          list($year , $month , $day) = explode('-',$date);
          return checkdate($month , $day , $year);
@@ -134,8 +125,7 @@ class PluginNewsAlert extends CommonDBTM
       return false;
    }
 
-   public function prepareInputForAdd($input)
-   {
+   public function prepareInputForAdd($input) {
       $errors = array();
 
       if(!$input['name']) {
@@ -165,14 +155,12 @@ class PluginNewsAlert extends CommonDBTM
       return $errors ? false : $input;
    }
 
-   public function prepareInputForUpdate($input)
-   {
+   public function prepareInputForUpdate($input) {
       return $this->prepareInputForAdd($input);
    }
 
-   public function showForm($ID, $options = array())
-   {
-      $this->check($ID, UPDATE);
+   public function showForm($ID, $options = array()) {
+      $this->initForm($ID, $options);
 
       $canedit = $this->can($ID, UPDATE);
 
@@ -180,20 +168,21 @@ class PluginNewsAlert extends CommonDBTM
          $this->fields['message'] = "";
       }
 
-      Html::initEditorSystem('message');
-
       $this->showFormHeader($options);
 
-      echo '<tr>';
+      echo "<tr  class='tab_bg_1'>";
       echo '<td style="width: 150px">' . __('Name') .'</td>';
       echo '<td colspan="3"><input name="name" type="text" value="'.$this->getField('name').'" style="width: 565px" /></td>';
       echo '</tr>';
+
       echo '<tr>';
       echo '<td>' . __('Description') .'</td>';
       echo '<td colspan="3">';
       echo '<textarea name="message" rows="12" cols="80">'.$this->getField('message').'</textarea>';
+      Html::initEditorSystem('message');
       echo '</td>';
       echo '</tr>';
+
       echo '<tr>';
       echo '<td style="width: 150px">' . __("Visibility start date") .'</td>';
       echo '<td>';
@@ -212,14 +201,50 @@ class PluginNewsAlert extends CommonDBTM
                                     'canedit'    => $canedit));
       echo '</td>';
       echo '</tr>';
+      
       echo '<tr>';
       echo '<td>' . __("Profile") .'</td>';
-      echo '<td colspan="3">';
+      echo '<td>';
       Dropdown::show('Profile', array('name' => 'profiles_id', 'value' => $this->getField('profiles_id') ?: 0));
+      echo '</td>';
+      echo '<td>' . __("Show on login page", 'news') .'</td>';
+      echo '</td>';
+      echo '<td>';
+      Dropdown::showYesNo('is_displayed_onlogin', $this->fields['is_displayed_onlogin']);
       echo '</td>';
       echo '</tr>';
 
       $this->showFormButtons($options);
+   }
+
+   static function displayOnCentral() {
+      self::displayAlerts(false);
+   }
+
+   static function displayOnLogin() {
+      global $CFG_GLPI;
+
+      echo Html::css($CFG_GLPI["root_doc"]."/plugins/news/css/styles.css");
+      echo "<div class='plugin_news_alert-login'>";
+      self::displayAlerts(true);
+      echo "</div>";
+   }
+
+   static function displayAlerts($show_only_login_alerts = false) {
+      if($alerts = self::findAllToNotify($show_only_login_alerts)) {
+         echo "<tr><th colspan='2'>";
+         echo "<div class='plugin_news_alert-container'>";
+         foreach($alerts as $alert) {
+            $title = $alert['name'];
+            $content = Html::entity_decode_deep($alert['message']);
+            echo "<div class='plugin_news_alert'>
+                  <div class='plugin_news_alert-title'>$title</div>
+                  <div class='plugin_news_alert-content'>$content</div>
+                  </div>";
+         }
+         echo "</div>";
+         echo "</th></tr>";
+      }
    }
 
 }

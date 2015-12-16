@@ -22,21 +22,31 @@
 */
 
 function plugin_init_news() {
-   global $PLUGIN_HOOKS;
+   global $PLUGIN_HOOKS, $CFG_GLPI;
 
    $PLUGIN_HOOKS['csrf_compliant']['news'] = true;
-   $PLUGIN_HOOKS['add_javascript']['news'] = 'scripts/alert.php';
-   $PLUGIN_HOOKS['add_css']['news']        = 'css/styles.css';
-
-   Plugin::registerClass('PluginNewsProfile', array('addtabon' => 'Profile'));
 
    $plugin = new Plugin();
+   if ($plugin->isInstalled('news') && $plugin->isActivated('news')) {
+      Plugin::registerClass('PluginNewsProfile', array('addtabon' => 'Profile'));
 
-   if (isset($_SESSION['glpiID']) && $plugin->isInstalled('news') && $plugin->isActivated('news')) {
-      if(Session::haveRight('plugin_news', READ)) {
-         $PLUGIN_HOOKS['menu_toadd']['news'] = array(
-            'tools'    => 'PluginNewsAlert',
-         );
+      $PLUGIN_HOOKS['add_css']['news'] = 'css/styles.css';
+      $PLUGIN_HOOKS['display_login']['news'] = array(
+         "PluginNewsAlert", "displayOnLogin"
+      );
+
+      array_push($CFG_GLPI['layout_excluded_pages'], "alert.form.php");
+
+      if (isset($_SESSION['glpiID'])) {
+         if(Session::haveRight('plugin_news', READ)) {
+            $PLUGIN_HOOKS['menu_toadd']['news'] = array(
+               'tools' => 'PluginNewsAlert',
+            );
+
+            $PLUGIN_HOOKS['display_central']['news'] = array(
+               "PluginNewsAlert", "displayOnCentral"
+            );
+         }
       }
    }
 }
@@ -44,17 +54,17 @@ function plugin_init_news() {
 function plugin_version_news() {
    return array(
       'name'           => __('Alerts', 'news'),
-      'version'        => '0.90-1.1',
+      'version'        => '0.90-1.2',
       'author'         => "<a href=\"mailto:contact@teclib.com\">TECLIB'</a>",
       'license'        => "GPLv2+",
       'homepage'       => 'http://www.teclib.com/',
-      'minGlpiVersion' => '0.85'
+      'minGlpiVersion' => '0.90.1'
    );
 }
 
 function plugin_news_check_prerequisites() {
-   if (version_compare(GLPI_VERSION, '0.84', 'lt') || version_compare(GLPI_VERSION, '0.91', 'ge')) {
-      echo "This version require GLPI 0.85.x or 0.90.x";
+   if (version_compare(GLPI_VERSION, '0.90.1', 'lt') || version_compare(GLPI_VERSION, '0.92', 'ge')) {
+      echo "This version require GLPI >= 0.90.1";
       return false;
    }
    return true;
