@@ -55,7 +55,7 @@ if(isset($_POST['update'])) {
 Html::header(
    __('Alerts', 'news'),
    $_SERVER["PHP_SELF"],
-   'tools',
+   'admin',
    "PluginNewsAlert"
 );
 

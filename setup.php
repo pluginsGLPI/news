@@ -40,7 +40,7 @@ function plugin_init_news() {
       if (isset($_SESSION['glpiID'])) {
          if(Session::haveRight('plugin_news', READ)) {
             $PLUGIN_HOOKS['menu_toadd']['news'] = array(
-               'tools' => 'PluginNewsAlert',
+               'admin' => 'PluginNewsAlert',
             );
 
             $PLUGIN_HOOKS['display_central']['news'] = array(
