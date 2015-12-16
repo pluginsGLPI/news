@@ -201,7 +201,7 @@ class PluginNewsAlert extends CommonDBTM {
                                     'canedit'    => $canedit));
       echo '</td>';
       echo '</tr>';
-      
+
       echo '<tr>';
       echo '<td>' . __("Profile") .'</td>';
       echo '<td>';
@@ -218,7 +218,9 @@ class PluginNewsAlert extends CommonDBTM {
    }
 
    static function displayOnCentral() {
+      echo "<tr><th colspan='2'>";
       self::displayAlerts(false);
+      echo "</th></tr>";
    }
 
    static function displayOnLogin() {
@@ -232,7 +234,6 @@ class PluginNewsAlert extends CommonDBTM {
 
    static function displayAlerts($show_only_login_alerts = false) {
       if($alerts = self::findAllToNotify($show_only_login_alerts)) {
-         echo "<tr><th colspan='2'>";
          echo "<div class='plugin_news_alert-container'>";
          foreach($alerts as $alert) {
             $title = $alert['name'];
@@ -243,7 +244,6 @@ class PluginNewsAlert extends CommonDBTM {
                   </div>";
          }
          echo "</div>";
-         echo "</th></tr>";
       }
    }
 
