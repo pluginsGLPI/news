@@ -85,7 +85,8 @@ class PluginNewsAlert extends CommonDBTM {
                   FROM `" . $table . "`
                   WHERE (`$table`.`date_start` < '$today'
                            OR `$table`.`date_start` = '$today')
-                    AND (`$table`.`date_end` > '$today'
+                    AND (`$table`.`date_end` IS NULL
+                           OR `$table`.`date_end` > '$today'
                            OR `$table`.`date_end` = '$today')
                   AND `is_deleted` = 0";
 
@@ -138,10 +139,14 @@ class PluginNewsAlert extends CommonDBTM {
 
       if(!$input['date_start'] || !$this->checkDate($input['date_start'])) {
          array_push($errors, __('Please enter a valid start date.', 'news'));
-      } elseif(!$input['date_end'] || !$this->checkDate($input['date_end'])) {
-         array_push($errors, __('Please enter a valid end date.', 'news'));
-      } elseif($input['date_end'] < $input['date_start']) {
-         array_push($errors, __('The end date must be greater than the start date.', 'news'));
+      }
+
+      if (!empty($input['date_end'])) {
+         if(!$input['date_end'] || !$this->checkDate($input['date_end'])) {
+            array_push($errors, __('Please enter a valid end date.', 'news'));
+         } elseif($input['date_end'] < $input['date_start']) {
+            array_push($errors, __('The end date must be greater than the start date.', 'news'));
+         }
       }
 
       if(!$input['profiles_id']) {
