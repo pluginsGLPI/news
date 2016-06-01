@@ -2,7 +2,7 @@
    <name>News</name>
    <key>news</key>
    <state>stable</state>
-   <logo>https://raw.githubusercontent.com/pluginsGLPI/news/master/icon.png</logo>
+   <logo>https://raw.githubusercontent.com/pluginsGLPI/news/master/pics/icon.png</logo>
    <description>
       <short>
          <fr>Ce plugin permet d'afficher des messages sur la page d'accueil de GLPI.</fr>
@@ -48,10 +48,11 @@ Features
       <version>
          <num>0.90-1.0</num>
          <compatibility>0.85</compatibility>
+         <compatibility>0.90</compatibility>
       </version>
       <version>
-         <num>0.90-1.0</num>
-         <compatibility>0.90</compatibility>
+         <num>0.90-1.3</num>
+         <compatibility>0.90.1</compatibility>
       </version>
    </versions>
    <langs>
