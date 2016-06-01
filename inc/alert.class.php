@@ -170,9 +170,10 @@ class PluginNewsAlert extends CommonDBTM {
    }
 
 
-   public function checkDate($date) {
-      if ( preg_match('/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/', $date) ) {
-         list($year , $month , $day) = explode('-',$date);
+   public function checkDate($datetime) {
+      if ( preg_match('/^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/', $datetime) ) {
+         $datetime = explode(" ", $datetime);
+         list($year , $month , $day) = explode('-',$datetime[0]);
          return checkdate($month , $day , $year);
       }
       return false;
@@ -189,19 +190,11 @@ class PluginNewsAlert extends CommonDBTM {
          array_push($errors, __('Please enter a message.', 'news'));
       }
 
-      if (!empty($input['date_start'])) {
-         if(!$input['date_start'] || !$this->checkDate($input['date_start'])) {
-            array_push($errors, __('Please enter a valid start date.', 'news'));
-         }
-      }
-
-      if (!empty($input['date_end'])) {
-         if(!$input['date_end'] || !$this->checkDate($input['date_end'])) {
-            array_push($errors, __('Please enter a valid end date.', 'news'));
-         } elseif ($input['date_end'] < $input['date_start']) {
+      /*if (!empty($input['date_end'])) {
+         if ($input['date_end'] < $input['date_start']) {
             array_push($errors, __('The end date must be greater than the start date.', 'news'));
          }
-      }
+      }*/
 
       if($errors) {
          Session::addMessageAfterRedirect(implode('<br />', $errors));
