@@ -34,6 +34,9 @@
    opacity: 1;
 }
 
+.plugin_news_alert-login .plugin_news_alert-close {
+   display: none;
+}
 
 .plugin_news_alert-login .plugin_news_alert {
    background: rgba(255, 255, 255, .3);
