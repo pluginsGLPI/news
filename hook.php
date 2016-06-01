@@ -31,22 +31,35 @@ function plugin_news_install() {
    $pluginNews = array_shift($found);
    $migration  = new Migration($pluginNews['version']);
 
-   /* New install */
    if (! TableExists('glpi_plugin_news_alerts')) {
       $DB->query("
          CREATE TABLE IF NOT EXISTS `glpi_plugin_news_alerts` (
-         `id` INT NOT NULL AUTO_INCREMENT,
-         `date_mod` DATETIME NOT NULL,
-         `name` VARCHAR(255) NOT NULL,
-         `message` TEXT NOT NULL,
-         `date_start` DATE NOT NULL,
-         `date_end` DATE NOT NULL,
-         `is_deleted` TINYINT(1) NOT NULL,
+         `id`                   INT NOT NULL AUTO_INCREMENT,
+         `date_mod`             DATETIME NOT NULL,
+         `name`                 VARCHAR(255) NOT NULL,
+         `message`              TEXT NOT NULL,
+         `date_start`           DATE NOT NULL,
+         `date_end`             DATE NOT NULL,
+         `is_deleted`           TINYINT(1) NOT NULL,
          `is_displayed_onlogin` TINYINT(1) NOT NULL,
-         `profiles_id` INT NOT NULL,
-         `entities_id` INT NOT NULL,
-         `is_recursive` TINYINT(1) NOT NULL,
+         `profiles_id`          INT NOT NULL,
+         `entities_id`          INT NOT NULL,
+         `is_recursive`         TINYINT(1) NOT NULL,
          PRIMARY KEY (`id`)
+         ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+      ");
+   }
+
+   if (! TableExists('glpi_plugin_news_alerts_users')) {
+      $DB->query("
+         CREATE TABLE IF NOT EXISTS `glpi_plugin_news_alerts_users` (
+         `id`                    INT NOT NULL AUTO_INCREMENT,
+         `plugin_news_alerts_id` INT NOT NULL,
+         `users_id`              INT NOT NULL,
+         `hidden`                TINYINT(1) NOT NULL,
+         PRIMARY KEY (`id`),
+         UNIQUE KEY `hidden_for_user`
+            (`plugin_news_alerts_id`,`users_id`,`hidden`)
          ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
       ");
    }
@@ -70,6 +83,7 @@ function plugin_news_uninstall() {
 
    $DB->query("DROP TABLE IF EXISTS `glpi_plugin_news_alerts`;");
    $DB->query("DROP TABLE IF EXISTS `glpi_plugin_news_profiles`;");
+   $DB->query("DROP TABLE IF EXISTS `glpi_plugin_news_alerts_users`;");
    $DB->query("DELETE FROM `glpi_profiles` WHERE `name` LIKE '%plugin_news%';");
 
    return true;
