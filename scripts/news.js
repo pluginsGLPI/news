@@ -4,14 +4,21 @@ $(document).ready(function() {
       $(document).on("click", "a.plugin_news_alert-close",function() {
          var alert = $(this).parent(".plugin_news_alert");
          var id    = alert.attr('data-id');
-         var nurl  = "../plugins/news/ajax/hide_alert.php"
-         if (window.location.href.indexOf('plugin') >= 0) {
-            nurl   = "../../../plugins/news/ajax/hide_alert.php"
-         }
-         $.post(nurl, {'id' : id})
+         $.post("../plugins/news/ajax/hide_alert.php", {'id' : id})
             .done(function() {
                alert.remove();
             });
       });
    };
+
+   pluginNewsDisplayOnSelfService = function() {
+      $("#page > .tab_cadre_postonly > tbody")
+         .prepend("<tr><td colspan='2' id='alerts_inserted'></td></tr>");
+
+      $("#alerts_inserted").load("../plugins/news/ajax/display_alerts.php")
+   }
+
+   if (window.location.href.indexOf("helpdesk.public.php") > 0) {
+      pluginNewsDisplayOnSelfService();
+   }
 });
