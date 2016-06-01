@@ -190,11 +190,12 @@ class PluginNewsAlert extends CommonDBTM {
          array_push($errors, __('Please enter a message.', 'news'));
       }
 
-      /*if (!empty($input['date_end'])) {
-         if ($input['date_end'] < $input['date_start']) {
+      if (!empty($input['date_start'])
+          && !empty($input['date_end'])) {
+         if (strtotime($input['date_end']) < strtotime($input['date_start'])) {
             array_push($errors, __('The end date must be greater than the start date.', 'news'));
          }
-      }*/
+      }
 
       if($errors) {
          Session::addMessageAfterRedirect(implode('<br />', $errors));
@@ -244,7 +245,7 @@ class PluginNewsAlert extends CommonDBTM {
       Html::showDateTimeField("date_start",
                               array('value'      => $this->fields["date_start"],
                                     'timestep'   => 1,
-                                    'maybeempty' => false,
+                                    'maybeempty' => true,
                                     'canedit'    => $canedit));
       echo '</td>';
       echo '<td style="width: 150px">' . __("Visibility end date") .'</td>';
