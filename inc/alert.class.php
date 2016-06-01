@@ -77,16 +77,19 @@ class PluginNewsAlert extends CommonDBTM {
    public static function findAllToNotify($show_only_login_alerts =  false) {
       global $DB;
 
-      $alerts = array();
-      $today  = date('Y-m-d');
-      $table  = self::getTable();
-      $utable = PluginNewsAlert_User::getTable();
+      $alerts   = array();
+      $today    = date('Y-m-d');
+      $table    = self::getTable();
+      $utable   = PluginNewsAlert_User::getTable();
+      $users_id = isset($_SESSION['glpiID'])
+                     ? $_SESSION['glpiID']
+                     : -1;
 
       $query = "SELECT `$table`.*
                   FROM `$table`
                   LEFT JOIN `$utable`
                      ON `$utable`.`plugin_news_alerts_id` = `$table`.`id`
-                     AND `$utable`.`users_id` = ".$_SESSION['glpiID']."
+                     AND `$utable`.`users_id` = $users_id
                      AND `$utable`.`state` = ".PluginNewsAlert_User::HIDDEN."
                   WHERE `$utable`.`id` IS NULL
                     AND (`$table`.`date_start` < '$today'
