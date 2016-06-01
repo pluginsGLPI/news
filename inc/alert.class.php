@@ -292,7 +292,7 @@ class PluginNewsAlert extends CommonDBTM {
             $date_start = Html::convDateTime($alert['date_start']);
             $date_end   = Html::convDateTime($alert['date_end']);
             if (!empty($date_end)) {
-               $date_end = "=> $date_end";
+               $date_end = " => $date_end";
             }
             $content    = Html::entity_decode_deep($alert['message']);
             echo "<div class='plugin_news_alert' data-id='".$alert['id']."'>
