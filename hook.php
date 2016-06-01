@@ -22,7 +22,6 @@
 */
 
 require_once "inc/alert.class.php";
-require_once "inc/profile.class.php";
 
 function plugin_news_install() {
    global $DB;
@@ -62,8 +61,6 @@ function plugin_news_install() {
       $migration->addField("glpi_plugin_news_alerts", "is_displayed_onlogin", 'bool');
       $migration->migrationOneTable("glpi_plugin_news_alerts");
    }
-
-   PluginNewsProfile::createFirstAccess($_SESSION['glpiactiveprofile']['id']);
 
    return true;
 }

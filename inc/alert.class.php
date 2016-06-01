@@ -26,7 +26,7 @@ if (!defined('GLPI_ROOT')) {
 }
 
 class PluginNewsAlert extends CommonDBTM {
-   static $rightname = 'plugin_news';
+   static $rightname = 'entity';
 
    /**
     * Returns the type name with consideration of plural

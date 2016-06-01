@@ -38,7 +38,7 @@ function plugin_init_news() {
       array_push($CFG_GLPI['layout_excluded_pages'], "alert.form.php");
 
       if (isset($_SESSION['glpiID'])) {
-         if(Session::haveRight('plugin_news', READ)) {
+         if(Session::haveRight('entity', READ)) {
             $PLUGIN_HOOKS['menu_toadd']['news'] = array(
                'admin' => 'PluginNewsAlert',
             );
