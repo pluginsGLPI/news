@@ -28,6 +28,14 @@ if (!defined('GLPI_ROOT')) {
 class PluginNewsAlert extends CommonDBTM {
    static $rightname = 'entity';
 
+   static function canDelete() {
+      return self::canUpdate();
+   }
+
+   static function canPurge() {
+      return self::canUpdate();
+   }
+
    /**
     * Returns the type name with consideration of plural
     *
@@ -127,6 +135,7 @@ class PluginNewsAlert extends CommonDBTM {
                   WHERE `$utable`.`id` IS NULL
                      AND (`$table`.`date_start` < '$today'
                            OR `$table`.`date_start` = '$today'
+                           OR `$table`.`date_start` IS NULL
                      )
                      AND (`$table`.`date_end` IS NULL
                            OR `$table`.`date_end` > '$today'
@@ -180,14 +189,16 @@ class PluginNewsAlert extends CommonDBTM {
          array_push($errors, __('Please enter a message.', 'news'));
       }
 
-      if(!$input['date_start'] || !$this->checkDate($input['date_start'])) {
-         array_push($errors, __('Please enter a valid start date.', 'news'));
+      if (!empty($input['date_start'])) {
+         if(!$input['date_start'] || !$this->checkDate($input['date_start'])) {
+            array_push($errors, __('Please enter a valid start date.', 'news'));
+         }
       }
 
       if (!empty($input['date_end'])) {
          if(!$input['date_end'] || !$this->checkDate($input['date_end'])) {
             array_push($errors, __('Please enter a valid end date.', 'news'));
-         } elseif($input['date_end'] < $input['date_start']) {
+         } elseif ($input['date_end'] < $input['date_start']) {
             array_push($errors, __('The end date must be greater than the start date.', 'news'));
          }
       }
