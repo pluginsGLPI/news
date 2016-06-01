@@ -36,8 +36,8 @@ function plugin_news_install() {
          `date_mod`             DATETIME NOT NULL,
          `name`                 VARCHAR(255) NOT NULL,
          `message`              TEXT NOT NULL,
-         `date_start`           DATE DEFAULT NULL,
-         `date_end`             DATE DEFAULT NULL,
+         `date_start`           DATETIME DEFAULT NULL,
+         `date_end`             DATETIME DEFAULT NULL,
          `is_deleted`           TINYINT(1) NOT NULL,
          `is_displayed_onlogin` TINYINT(1) NOT NULL,
          `profiles_id`          INT NOT NULL,
@@ -89,10 +89,10 @@ function plugin_news_install() {
    // end/start dates can be null
    $migration->changeField("glpi_plugin_news_alerts",
                            "date_end", "date_end",
-                           "DATE DEFAULT NULL");
+                           "DATETIME DEFAULT NULL");
    $migration->changeField("glpi_plugin_news_alerts",
                            "date_start", "date_start",
-                           "DATE DEFAULT NULL");
+                           "DATETIME DEFAULT NULL");
 
    if (FieldExists("glpi_plugin_news_alerts", "profiles_id")) {
       // migration of direct profiles into targets table

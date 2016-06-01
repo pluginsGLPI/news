@@ -294,11 +294,17 @@ class PluginNewsAlert extends CommonDBTM {
       if($alerts = self::findAllToNotify($show_only_login_alerts)) {
          echo "<div class='plugin_news_alert-container'>";
          foreach($alerts as $alert) {
-            $title = $alert['name'];
-            $content = Html::entity_decode_deep($alert['message']);
+            $title      = $alert['name'];
+            $date_start = Html::convDateTime($alert['date_start']);
+            $date_end   = Html::convDateTime($alert['date_end']);
+            if (!empty($date_end)) {
+               $date_end = "=> $date_end";
+            }
+            $content    = Html::entity_decode_deep($alert['message']);
             echo "<div class='plugin_news_alert' data-id='".$alert['id']."'>
                   <a class='plugin_news_alert-close'></a>
                   <div class='plugin_news_alert-title'>$title</div>
+                  <span class='plugin_news_alert-date'>$date_start$date_end</span>
                   <div class='plugin_news_alert-content'>$content</div>
                   </div>";
          }

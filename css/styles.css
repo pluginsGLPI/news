@@ -11,7 +11,7 @@
    background-color: #f8f8f8;
    color: #000;
    font-size: 18px;
-   line-height: 32px;
+   line-height: 40px;
    padding: 5px;
 }
 
@@ -28,6 +28,17 @@
    position: absolute;
    top: 12px;
    right: 12px;
+}
+
+.plugin_news_alert-date {
+   width: 200px;
+   height: 20px;
+   position: absolute;
+   line-height: 20px;
+   top: 30px;
+   left: 10px;
+   font-size: .75em;
+   color: #737373;
 }
 
 .plugin_news_alert-close:hover {
