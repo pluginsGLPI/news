@@ -248,7 +248,7 @@ class PluginNewsAlert extends CommonDBTM {
       echo '<tr>';
       echo '<td style="width: 150px">' . __("Visibility start date") .'</td>';
       echo '<td>';
-      Html::showDateField("date_start",
+      Html::showDateTimeField("date_start",
                               array('value'      => $this->fields["date_start"],
                                     'timestep'   => 1,
                                     'maybeempty' => false,
@@ -256,7 +256,7 @@ class PluginNewsAlert extends CommonDBTM {
       echo '</td>';
       echo '<td style="width: 150px">' . __("Visibility end date") .'</td>';
       echo '<td>';
-      Html::showDateField("date_end",
+      Html::showDateTimeField("date_end",
                               array('value'      => $this->fields["date_end"],
                                     'timestep'   => 1,
                                     'maybeempty' => true,
