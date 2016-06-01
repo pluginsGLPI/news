@@ -310,4 +310,8 @@ class PluginNewsAlert extends CommonDBTM {
       })");
    }
 
+   function cleanDBOnPurge() {
+      $target = new PluginNewsAlert_Target;
+      $target->deleteByCriteria(array('plugin_news_alerts_id' => $this->getID()));
+   }
 }
