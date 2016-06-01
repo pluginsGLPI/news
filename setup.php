@@ -54,7 +54,7 @@ function plugin_init_news() {
 function plugin_version_news() {
    return array(
       'name'           => __('Alerts', 'news'),
-      'version'        => '0.90-1.2',
+      'version'        => '0.90-1.3',
       'author'         => "<a href=\"mailto:contact@teclib.com\">TECLIB'</a>",
       'license'        => "GPLv2+",
       'homepage'       => 'https://github.com/pluginsGLPI/news',
