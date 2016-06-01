@@ -28,6 +28,30 @@ Html::header_nocache();
 
 Session::checkLoginUser();
 
-Session::checkLoginUser();
+if (isset($_POST['type']) && !empty($_POST['type'])) {
+   echo "<table class='tab_format'>";
+   echo "<tr>";
+   echo "<td>";
+   switch ($_POST['type']) {
+      case 'User' :
+         User::dropdown(array('name'        => 'items_id',
+                              'right'       => 'all',
+                              'entity'      => $_POST['entities_id'],
+                              'entity_sons' => $_POST['is_recursive'],));
+         break;
 
-PluginNewsAlert_User::hideAlert($_POST);
+      case 'Group' :
+         Group::dropdown(array('name' => 'items_id'));
+         break;
+
+      case 'Profile' :
+         Profile::dropdown(array('name'  => 'items_id',
+                                 'toadd' => array(-1 => __('All'))));
+         break;
+   }
+   echo "</td>";
+   echo "<td><input type='submit' name='addvisibility' value=\""._sx('button','Add')."\"
+                   class='submit'></td>";
+   echo "</tr>";
+   echo "</table>";
+}

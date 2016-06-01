@@ -45,3 +45,8 @@
 .plugin_news_alert-login .plugin_news_alert-title {
    background-color: rgba(248, 248, 248, .5);
 }
+
+.plugin_news_alert-visibility {
+   margin: 0 auto;
+   width: 400px;
+}

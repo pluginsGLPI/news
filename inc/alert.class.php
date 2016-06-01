@@ -38,6 +38,19 @@ class PluginNewsAlert extends CommonDBTM {
       return __('Alerts', 'news');
    }
 
+   /**
+    * @see CommonGLPI::defineTabs()
+   **/
+   function defineTabs($options=array()) {
+
+      $ong = array();
+      $this->addDefaultFormTab($ong)
+           ->addStandardTab('PluginNewsAlert_Target', $ong, $options);
+
+      return $ong;
+   }
+
+
    public function getSearchOptions() {
       $tab[1]['table']         = $this->getTable();
       $tab[1]['field']         = 'name';
@@ -81,31 +94,52 @@ class PluginNewsAlert extends CommonDBTM {
       $today    = date('Y-m-d');
       $table    = self::getTable();
       $utable   = PluginNewsAlert_User::getTable();
+      $ttable   = PluginNewsAlert_Target::getTable();
+      $hidstate = PluginNewsAlert_User::HIDDEN;
       $users_id = isset($_SESSION['glpiID'])
                      ? $_SESSION['glpiID']
                      : -1;
+      $group_u  = new Group_User;
+      $fndgroup = implode(',', $group_u->find("users_id = ".$_SESSION['glpiID']));
+      if (empty($fndgroup)) {
+         $fndgroup = "-1";
+      }
 
       $query = "SELECT `$table`.*
                   FROM `$table`
                   LEFT JOIN `$utable`
                      ON `$utable`.`plugin_news_alerts_id` = `$table`.`id`
                      AND `$utable`.`users_id` = $users_id
-                     AND `$utable`.`state` = ".PluginNewsAlert_User::HIDDEN."
+                     AND `$utable`.`state` = $hidstate
+                  INNER JOIN `$ttable`
+                     ON `$ttable`.`plugin_news_alerts_id` = `$table`.`id`
+                     AND (
+                        `$ttable`.`itemtype` = 'Profile'
+                        AND (
+                           `$ttable`.`items_id` = {$_SESSION['glpiactiveprofile']['id']}
+                           OR `$ttable`.`items_id` = -1
+                        )
+                        OR `$ttable`.`itemtype` = 'Group'
+                           AND `$ttable`.`items_id` IN ($fndgroup)
+                        OR `$ttable`.`itemtype` = 'User'
+                           AND `$ttable`.`items_id` = {$_SESSION['glpiactiveprofile']['id']}
+                     )
                   WHERE `$utable`.`id` IS NULL
-                    AND (`$table`.`date_start` < '$today'
-                           OR `$table`.`date_start` = '$today')
-                    AND (`$table`.`date_end` IS NULL
+                     AND (`$table`.`date_start` < '$today'
+                           OR `$table`.`date_start` = '$today'
+                     )
+                     AND (`$table`.`date_end` IS NULL
                            OR `$table`.`date_end` > '$today'
-                           OR `$table`.`date_end` = '$today')
-                  AND `is_deleted` = 0";
+                           OR `$table`.`date_end` = '$today'
+                     )
+                  AND `is_deleted` = 0
+                  ";
 
       if ($show_only_login_alerts) {
          $query.= " AND `$table`.`is_displayed_onlogin` = 1";
       } else {
-         $query.= " AND `$table`.`profiles_id` = '".$_SESSION['glpiactiveprofile']['id']."'";
          $query.= getEntitiesRestrictRequest("AND", $table, "", "", true, true);
       }
-
       if ($result = $DB->query($query)) {
          if ($DB->numrows($result) < 1) {
             return false;
@@ -158,10 +192,6 @@ class PluginNewsAlert extends CommonDBTM {
          }
       }
 
-      if(!$input['profiles_id']) {
-         array_push($errors, __('Please enter a profile.', 'news'));
-      }
-
       if($errors) {
          Session::addMessageAfterRedirect(implode('<br />', $errors));
       }
@@ -171,6 +201,13 @@ class PluginNewsAlert extends CommonDBTM {
 
    public function prepareInputForUpdate($input) {
       return $this->prepareInputForAdd($input);
+   }
+
+   function post_addItem() {
+      $target = new PluginNewsAlert_Target;
+      $target->add(array('plugin_news_alerts_id' => $this->getID(),
+                         'itemtype'              => 'Profile',
+                         'items_id'              => -1));
    }
 
    public function showForm($ID, $options = array()) {
@@ -217,10 +254,6 @@ class PluginNewsAlert extends CommonDBTM {
       echo '</tr>';
 
       echo '<tr>';
-      echo '<td>' . __("Profile") .'</td>';
-      echo '<td>';
-      Dropdown::show('Profile', array('name' => 'profiles_id', 'value' => $this->getField('profiles_id') ?: 0));
-      echo '</td>';
       echo '<td>' . __("Show on login page", 'news') .'</td>';
       echo '</td>';
       echo '<td>';

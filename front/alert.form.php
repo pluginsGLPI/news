@@ -50,6 +50,11 @@ if(isset($_POST['update'])) {
 } elseif(isset($_POST['purge'])) {
    $alert->delete($_POST, 1);
    $alert->redirectToList();
+
+} elseif (isset($_POST["addvisibility"])) {
+   $target = new PluginNewsAlert_Target;
+   $target->add($_POST);
+   Html::back();
 }
 
 Html::header(

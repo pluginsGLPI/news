@@ -62,6 +62,20 @@ function plugin_news_install() {
       ");
    }
 
+   if (! TableExists('glpi_plugin_news_alerts_targets')) {
+      $DB->query("
+         CREATE TABLE IF NOT EXISTS `glpi_plugin_news_alerts_targets` (
+         `id`                    INT NOT NULL AUTO_INCREMENT,
+         `plugin_news_alerts_id` INT NOT NULL,
+         `itemtype`              VARCHAR(255) NOT NULL,
+         `items_id`              INT NOT NULL,
+         PRIMARY KEY (`id`),
+         UNIQUE KEY `itemtype_items_id`
+            (`itemtype`,`items_id`)
+         ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+      ");
+   }
+
    /* Remove old table */
    if (TableExists('glpi_plugin_news_profiles')) {
       $DB->query("DROP TABLE IF EXISTS `glpi_plugin_news_profiles`;");
@@ -76,6 +90,18 @@ function plugin_news_install() {
    $migration->changeField("glpi_plugin_news_alerts",
                            "date_end", "date_end",
                            "DATE DEFAULT NULL");
+
+   if (FieldExists("glpi_plugin_news_alerts", "profiles_id")) {
+      // migration of direct profiles into targets table
+      $query_targets = "INSERT INTO glpi_plugin_news_alerts_targets
+                           (plugin_news_alerts_id, itemtype, items_id)
+                           SELECT id, 'Profile', profiles_id
+                           FROM glpi_plugin_news_alerts";
+      $res_targets = $DB->query($query_targets) or die("fail to migration targets");
+
+      //drop old field
+      $migration->dropField("glpi_plugin_news_alerts", "profiles_id");
+   }
 
    $migration->migrationOneTable("glpi_plugin_news_alerts");
    return true;
