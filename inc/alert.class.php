@@ -83,7 +83,7 @@ class PluginNewsAlert extends CommonDBTM {
 
       $query = "SELECT *
                   FROM `" . $table . "`
-                  WHERE (`$table`.`date_start` < '$today' 
+                  WHERE (`$table`.`date_start` < '$today'
                            OR `$table`.`date_start` = '$today')
                     AND (`$table`.`date_end` > '$today'
                            OR `$table`.`date_end` = '$today')
