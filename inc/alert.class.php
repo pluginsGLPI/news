@@ -80,10 +80,16 @@ class PluginNewsAlert extends CommonDBTM {
       $alerts = array();
       $today  = date('Y-m-d');
       $table  = self::getTable();
+      $utable = PluginNewsAlert_User::getTable();
 
-      $query = "SELECT *
-                  FROM `" . $table . "`
-                  WHERE (`$table`.`date_start` < '$today'
+      $query = "SELECT `$table`.*
+                  FROM `$table`
+                  LEFT JOIN `$utable`
+                     ON `$utable`.`plugin_news_alerts_id` = `$table`.`id`
+                     AND `$utable`.`users_id` = ".$_SESSION['glpiID']."
+                     AND `$utable`.`state` = ".PluginNewsAlert_User::HIDDEN."
+                  WHERE `$utable`.`id` IS NULL
+                    AND (`$table`.`date_start` < '$today'
                            OR `$table`.`date_start` = '$today')
                     AND (`$table`.`date_end` IS NULL
                            OR `$table`.`date_end` > '$today'
@@ -91,9 +97,9 @@ class PluginNewsAlert extends CommonDBTM {
                   AND `is_deleted` = 0";
 
       if ($show_only_login_alerts) {
-         $query.= " AND is_displayed_onlogin = 1";
+         $query.= " AND `$table`.`is_displayed_onlogin` = 1";
       } else {
-         $query.= " AND `profiles_id` = '" . $_SESSION['glpiactiveprofile']['id'] . "'";
+         $query.= " AND `$table`.`profiles_id` = '".$_SESSION['glpiactiveprofile']['id']."'";
          $query.= getEntitiesRestrictRequest("AND", $table, "", "", true, true);
       }
 
@@ -243,13 +249,18 @@ class PluginNewsAlert extends CommonDBTM {
          foreach($alerts as $alert) {
             $title = $alert['name'];
             $content = Html::entity_decode_deep($alert['message']);
-            echo "<div class='plugin_news_alert'>
+            echo "<div class='plugin_news_alert' data-id='".$alert['id']."'>
+                  <a class='plugin_news_alert-close'></a>
                   <div class='plugin_news_alert-title'>$title</div>
                   <div class='plugin_news_alert-content'>$content</div>
                   </div>";
          }
          echo "</div>";
       }
+
+      echo Html::scriptBlock("$(document).ready(function() {
+         pluginNewsCloseAlerts();
+      })");
    }
 
 }

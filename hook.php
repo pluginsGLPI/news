@@ -54,10 +54,10 @@ function plugin_news_install() {
          `id`                    INT NOT NULL AUTO_INCREMENT,
          `plugin_news_alerts_id` INT NOT NULL,
          `users_id`              INT NOT NULL,
-         `hidden`                TINYINT(1) NOT NULL,
+         `state`                 TINYINT(1) NOT NULL,
          PRIMARY KEY (`id`),
-         UNIQUE KEY `hidden_for_user`
-            (`plugin_news_alerts_id`,`users_id`,`hidden`)
+         UNIQUE KEY `state_for_user`
+            (`plugin_news_alerts_id`,`users_id`,`state`)
          ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
       ");
    }

@@ -4,6 +4,7 @@
    width: 90%;
    box-shadow: 0 1px 1px #CCC;
    border: none;
+    position: relative;
 }
 
 .plugin_news_alert-title {
@@ -17,6 +18,22 @@
 .plugin_news_alert-content {
    padding: 5px 15px;
 }
+
+.plugin_news_alert-close {
+   background-image: url(../pics/close.png);
+   width: 16px;
+   height: 16px;
+   cursor: pointer;
+   opacity: .5;
+   position: absolute;
+   top: 12px;
+   right: 12px;
+}
+
+.plugin_news_alert-close:hover {
+   opacity: 1;
+}
+
 
 .plugin_news_alert-login .plugin_news_alert {
    background: rgba(255, 255, 255, .3);
