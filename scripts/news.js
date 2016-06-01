@@ -15,7 +15,9 @@ $(document).ready(function() {
       $("#page > .tab_cadre_postonly > tbody")
          .prepend("<tr><td colspan='2' id='alerts_inserted'></td></tr>");
 
-      $("#alerts_inserted").load("../plugins/news/ajax/display_alerts.php")
+      $("#page > form[name=helpdeskform]").prepend("<div id='alerts_inserted'></div>");
+
+      $("#alerts_inserted").load("../plugins/news/ajax/display_alerts.php");
    }
 
    if (window.location.href.indexOf("helpdesk.public.php") > 0) {
