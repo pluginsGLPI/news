@@ -57,13 +57,13 @@ function plugin_version_news() {
       'version'        => '0.90-1.2',
       'author'         => "<a href=\"mailto:contact@teclib.com\">TECLIB'</a>",
       'license'        => "GPLv2+",
-      'homepage'       => 'http://www.teclib.com/',
+      'homepage'       => 'https://github.com/pluginsGLPI/news',
       'minGlpiVersion' => '0.90.1'
    );
 }
 
 function plugin_news_check_prerequisites() {
-   if (version_compare(GLPI_VERSION, '0.90.1', 'lt') || version_compare(GLPI_VERSION, '0.92', 'ge')) {
+   if (version_compare(GLPI_VERSION, '0.90.1', 'lt') || version_compare(GLPI_VERSION, '10', 'ge')) {
       echo "This version require GLPI >= 0.90.1";
       return false;
    }
