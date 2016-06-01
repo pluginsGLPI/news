@@ -21,8 +21,6 @@
  --------------------------------------------------------------------------
 */
 
-require_once "inc/alert.class.php";
-
 function plugin_news_install() {
    global $DB;
 
