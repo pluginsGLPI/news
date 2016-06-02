@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-02 12:02+0200\n"
-"PO-Revision-Date: 2016-06-02 10:09+0000\n"
+"POT-Creation-Date: 2016-06-02 15:36+0200\n"
+"PO-Revision-Date: 2016-06-02 13:37+0000\n"
 "Last-Translator: Alexandre DELAUNAY <delaunay.alexandre@gmail.com>\n"
 "Language-Team: French (France) (http://www.transifex.com/teclib/glpi-plugin-news/language/fr_FR/)\n"
 "MIME-Version: 1.0\n"
@@ -43,7 +43,7 @@ msgstr "Type (pour afficher une icône avant le titre de l'alerte)"
 msgid "Show on login page"
 msgstr "Affiche sur la page de connexion"
 
-#: inc/alert.class.php:358
+#: inc/alert.class.php:360
 msgid "You have hidden alerts valid for current date"
 msgstr "Vous avez des alertes cachées valides pour la date courante"
 
@@ -60,5 +60,5 @@ msgid "Warning"
 msgstr "Avertissement"
 
 #: inc/alert.class.php:375
-msgid "Error"
-msgstr "Erreur"
+msgid "Problem"
+msgstr "Problème"

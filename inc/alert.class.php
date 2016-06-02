@@ -31,7 +31,7 @@ class PluginNewsAlert extends CommonDBTM {
    const GENERAL = 1;
    const INFO    = 2;
    const WARNING = 3;
-   const ERROR   = 4;
+   const PROBLEM = 4;
 
    static function canCreate() {
       return self::canUpdate();
@@ -372,7 +372,7 @@ class PluginNewsAlert extends CommonDBTM {
       return array(self::GENERAL => __("General", 'news'),
                    self::INFO    => __("Information", 'news'),
                    self::WARNING => __("Warning", 'news'),
-                   self::ERROR   => __("Error", 'news'));
+                   self::PROBLEM => __("Problem", 'news'));
    }
 
    function cleanDBOnPurge() {
