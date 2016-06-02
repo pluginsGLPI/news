@@ -16,6 +16,7 @@
    color: #000;
    font-size: 18px;
    padding: 5px;
+   min-height: 45px;
 }
 
 .plugin_news_alert-content {
