@@ -28,6 +28,10 @@ if (!defined('GLPI_ROOT')) {
 class PluginNewsAlert extends CommonDBTM {
    static $rightname = 'entity';
 
+   static function canCreate() {
+      return self::canUpdate();
+   }
+
    static function canDelete() {
       return self::canUpdate();
    }
