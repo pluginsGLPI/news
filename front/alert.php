@@ -26,7 +26,7 @@ include ("../../../inc/includes.php");
 Html::header(
    __('Alerts', 'news'),
    $_SERVER["PHP_SELF"],
-   'admin',
+   'tools',
    "PluginNewsAlert"
 );
 
