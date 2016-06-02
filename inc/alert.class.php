@@ -112,13 +112,34 @@ class PluginNewsAlert extends CommonDBTM {
                      ? $_SESSION['glpiID']
                      : -1;
       $group_u  = new Group_User;
-      if ($fndgroup = $group_u->find("users_id = ".$_SESSION['glpiID'])) {
+      $fndgroup = array();
+      if (isset($_SESSION['glpiID'])
+          && $fndgroup = $group_u->find("users_id = ".$_SESSION['glpiID'])) {
          $fndgroup = array_keys($fndgroup);
          $fndgroup = implode(',', $fndgroup);
       }
       if (empty($fndgroup)) {
          $fndgroup = "-1";
       }
+
+      $targets_sql = "";
+      $login_sql = "";
+      if (isset($_SESSION['glpiID'])) {
+         $targets_sql = "AND (
+                           `$ttable`.`itemtype` = 'Profile'
+                           AND (
+                              `$ttable`.`items_id` = ".$_SESSION['glpiactiveprofile']['id']."
+                              OR `$ttable`.`items_id` = -1
+                           )
+                           OR `$ttable`.`itemtype` = 'Group'
+                              AND `$ttable`.`items_id` IN ($fndgroup)
+                           OR `$ttable`.`itemtype` = 'User'
+                              AND `$ttable`.`items_id` = ".$_SESSION['glpiID']."
+                        )";
+      } else if ($show_only_login_alerts){
+         $login_sql = "OR `$table`.`is_displayed_onlogin` = 1";
+      }
+
 
       $query = "SELECT `$table`.*
                   FROM `$table`
@@ -128,18 +149,8 @@ class PluginNewsAlert extends CommonDBTM {
                      AND `$utable`.`state` = $hidstate
                   INNER JOIN `$ttable`
                      ON `$ttable`.`plugin_news_alerts_id` = `$table`.`id`
-                     AND (
-                        `$ttable`.`itemtype` = 'Profile'
-                        AND (
-                           `$ttable`.`items_id` = {$_SESSION['glpiactiveprofile']['id']}
-                           OR `$ttable`.`items_id` = -1
-                        )
-                        OR `$ttable`.`itemtype` = 'Group'
-                           AND `$ttable`.`items_id` IN ($fndgroup)
-                        OR `$ttable`.`itemtype` = 'User'
-                           AND `$ttable`.`items_id` = {$_SESSION['glpiactiveprofile']['id']}
-                     )
-                  WHERE `$utable`.`id` IS NULL
+                  $targets_sql
+                  WHERE (`$utable`.`id` IS NULL $login_sql)
                      AND (`$table`.`date_start` < '$today'
                            OR `$table`.`date_start` = '$today'
                            OR `$table`.`date_start` IS NULL
@@ -151,11 +162,12 @@ class PluginNewsAlert extends CommonDBTM {
                   AND `is_deleted` = 0
                   ";
 
-      if ($show_only_login_alerts) {
-         $query.= " AND `$table`.`is_displayed_onlogin` = 1";
-      } else {
+      if (!$show_only_login_alerts) {
          $query.= getEntitiesRestrictRequest("AND", $table, "", "", true, true);
       }
+
+      $query.= " GROUP BY `$table`.`id`";
+
       if ($result = $DB->query($query)) {
          if ($DB->numrows($result) < 1) {
             return false;
