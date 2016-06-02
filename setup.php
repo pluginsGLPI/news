@@ -22,7 +22,7 @@
 */
 
 function plugin_init_news() {
-   global $PLUGIN_HOOKS, $CFG_GLPI;
+   global $PLUGIN_HOOKS;
 
    $PLUGIN_HOOKS['csrf_compliant']['news'] = true;
 
@@ -31,23 +31,19 @@ function plugin_init_news() {
       Plugin::registerClass('PluginNewsProfile', array('addtabon' => 'Profile'));
 
       $PLUGIN_HOOKS['add_css']['news'] = 'css/styles.css';
-      $PLUGIN_HOOKS['add_javascript']['news'][] = "scripts/news.js";
+      $PLUGIN_HOOKS['add_javascript']['news'] = "scripts/news.js";
       $PLUGIN_HOOKS['display_login']['news'] = array(
          "PluginNewsAlert", "displayOnLogin"
       );
+      $PLUGIN_HOOKS['display_central']['news'] = array(
+         "PluginNewsAlert", "displayOnCentral"
+      );
 
-      if (isset($_SESSION['glpiID'])) {
-         $PLUGIN_HOOKS['display_central']['news'] = array(
-            "PluginNewsAlert", "displayOnCentral"
+      if(Session::haveRight('entity', READ)) {
+         $PLUGIN_HOOKS['menu_toadd']['news'] = array(
+            'admin' => 'PluginNewsAlert',
          );
-
-         if(Session::haveRight('entity', READ)) {
-            $PLUGIN_HOOKS['menu_toadd']['news'] = array(
-               'admin' => 'PluginNewsAlert',
-            );
-
-            $PLUGIN_HOOKS['config_page']['news'] = 'front/alert.php';
-         }
+         $PLUGIN_HOOKS['config_page']['news'] = 'front/alert.php';
       }
    }
 }
@@ -56,7 +52,7 @@ function plugin_version_news() {
    return array(
       'name'           => __('Alerts', 'news'),
       'version'        => '0.90-1.3',
-      'author'         => "<a href=\"mailto:contact@teclib.com\">TECLIB'</a>",
+      'author'         => "<a href='mailto:contact@teclib.com'>TECLIB'</a>",
       'license'        => "GPLv2+",
       'homepage'       => 'https://github.com/pluginsGLPI/news',
       'minGlpiVersion' => '0.90.1'
