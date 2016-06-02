@@ -39,9 +39,9 @@ function plugin_init_news() {
          "PluginNewsAlert", "displayOnCentral"
       );
 
-      if(Session::haveRight('entity', READ)) {
+      if(Session::haveRight('reminder_public', READ)) {
          $PLUGIN_HOOKS['menu_toadd']['news'] = array(
-            'admin' => 'PluginNewsAlert',
+            'tools' => 'PluginNewsAlert',
          );
          $PLUGIN_HOOKS['config_page']['news'] = 'front/alert.php';
       }

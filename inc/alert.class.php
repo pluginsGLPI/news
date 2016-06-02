@@ -26,7 +26,7 @@ if (!defined('GLPI_ROOT')) {
 }
 
 class PluginNewsAlert extends CommonDBTM {
-   static $rightname = 'entity';
+   static $rightname = 'reminder_public';
 
    static function canCreate() {
       return self::canUpdate();
