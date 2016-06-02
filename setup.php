@@ -46,6 +46,7 @@ function plugin_init_news() {
                'admin' => 'PluginNewsAlert',
             );
 
+            $PLUGIN_HOOKS['config_page']['news'] = 'front/alert.php';
          }
       }
    }

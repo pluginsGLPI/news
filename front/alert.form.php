@@ -23,8 +23,6 @@
 
 include ("../../../inc/includes.php");
 
-Session::checkRight('plugin_news', READ);
-
 if (!isset($_GET["id"])) {
    $_GET["id"] = "";
 }
