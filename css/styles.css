@@ -7,7 +7,7 @@
     position: relative;
 }
 
-#alerts_inserted .plugin_news_alert {
+.plugin_news_alert {
    margin-top: 20px;
 }
 

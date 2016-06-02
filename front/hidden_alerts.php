@@ -23,12 +23,16 @@
 
 include ("../../../inc/includes.php");
 
-Html::header(
-   __('Alerts', 'news'),
-   $_SERVER["PHP_SELF"],
-   'tools',
-   "PluginNewsAlert"
-);
+if ($_SESSION["glpiactiveprofile"]["interface"] != "central") {
+   Html::helpHeader(__('Alerts', 'news'), $_SERVER['PHP_SELF'], $_SESSION["glpiname"]);
+} else {
+   Html::header(
+      __('Alerts', 'news'),
+      $_SERVER["PHP_SELF"],
+      'tools',
+      "PluginNewsAlert"
+   );
+}
 
 PluginNewsAlert::displayAlerts(false, true);
 
