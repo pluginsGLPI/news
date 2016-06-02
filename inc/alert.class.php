@@ -289,7 +289,7 @@ class PluginNewsAlert extends CommonDBTM {
       echo '</tr>';
 
       echo '<tr>';
-      echo '<td>' . __("Type", 'news') .'</td>';
+      echo '<td>' . __("Type (to add an icon before alert title)", 'news') .'</td>';
       echo '</td>';
       echo '<td>';
       $types = self::getTypes();
