@@ -131,7 +131,7 @@ class PluginNewsAlert extends CommonDBTM {
       // filters for query
       $targets_sql = "";
       $login_sql = "";
-      $login_show_hiden_sql = "";
+      $login_show_hiden_sql = " `$utable`.`id` IS NULL ";
       $entity_sql = "";
       if (isset($_SESSION['glpiID'])) {
          $targets_sql = "AND (
@@ -150,7 +150,7 @@ class PluginNewsAlert extends CommonDBTM {
       }
 
       if ($show_hidden_alerts) {
-         $login_show_hiden_sql = " OR 1=1 ";
+         $login_show_hiden_sql = " `$utable`.`id` IS NOT NULL ";
       }
 
       if (!$show_only_login_alerts) {
@@ -166,7 +166,7 @@ class PluginNewsAlert extends CommonDBTM {
                   INNER JOIN `$ttable`
                      ON `$ttable`.`plugin_news_alerts_id` = `$table`.`id`
                   $targets_sql
-                  WHERE (`$utable`.`id` IS NULL $login_sql $login_show_hiden_sql)
+                  WHERE ($login_show_hiden_sql $login_sql)
                      AND (`$table`.`date_start` < '$today'
                            OR `$table`.`date_start` = '$today'
                            OR `$table`.`date_start` IS NULL
@@ -326,9 +326,9 @@ class PluginNewsAlert extends CommonDBTM {
                                  $show_hidden_alerts = false) {
       global $CFG_GLPI;
 
+      echo "<div class='plugin_news_alert-container'>";
       if($alerts = self::findAllToNotify($show_only_login_alerts,
                                          $show_hidden_alerts)) {
-         echo "<div class='plugin_news_alert-container'>";
          foreach($alerts as $alert) {
             $title      = $alert['name'];
             $type       = $alert['type'];
@@ -350,18 +350,18 @@ class PluginNewsAlert extends CommonDBTM {
             echo "<div class='plugin_news_alert-content'>$content</div>";
             echo "</div>";
          }
-         if (!$show_only_login_alerts
-             && !$show_hidden_alerts) {
-            echo "<div class='center'>";
-            echo "<a href='".$CFG_GLPI['root_doc'].
-                             "/plugins/news/front/hidden_alerts.php'>";
-            echo __("You have hidden alerts valid for current date", 'news');
-            echo "</a>";
-            echo "</div>";
-         }
-
+      }
+      if(!$show_only_login_alerts
+         && $alerts = self::findAllToNotify(false, true)
+          && !$show_hidden_alerts) {
+         echo "<div class='center'>";
+         echo "<a href='".$CFG_GLPI['root_doc'].
+                          "/plugins/news/front/hidden_alerts.php'>";
+         echo __("You have hidden alerts valid for current date", 'news');
+         echo "</a>";
          echo "</div>";
       }
+      echo "</div>";
 
       echo Html::scriptBlock("$(document).ready(function() {
          pluginNewsCloseAlerts();
