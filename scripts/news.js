@@ -12,9 +12,11 @@ $(document).ready(function() {
    };
 
    pluginNewsDisplayOnSelfService = function() {
+      // page index
       $("#page > .tab_cadre_postonly > tbody")
          .prepend("<tr><td colspan='2' id='alerts_inserted'></td></tr>");
 
+      // page create ticket
       $("#page > form[name=helpdeskform]").prepend("<div id='alerts_inserted'></div>");
 
       $("#alerts_inserted").load("../plugins/news/ajax/display_alerts.php");
