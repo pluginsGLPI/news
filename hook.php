@@ -38,6 +38,7 @@ function plugin_news_install() {
          `message`              TEXT NOT NULL,
          `date_start`           DATETIME DEFAULT NULL,
          `date_end`             DATETIME DEFAULT NULL,
+         `type`                 INT NOT NULL,
          `is_deleted`           TINYINT(1) NOT NULL,
          `is_displayed_onlogin` TINYINT(1) NOT NULL,
          `profiles_id`          INT NOT NULL,
@@ -84,6 +85,11 @@ function plugin_news_install() {
    // add displayed on login flag
    if (!FieldExists("glpi_plugin_news_alerts", "is_displayed_onlogin")) {
       $migration->addField("glpi_plugin_news_alerts", "is_displayed_onlogin", 'bool');
+   }
+
+   // add displayed on login flag
+   if (!FieldExists("glpi_plugin_news_alerts", "type")) {
+      $migration->addField("glpi_plugin_news_alerts", "type", 'integer');
    }
 
    // end/start dates can be null

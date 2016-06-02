@@ -28,6 +28,11 @@ if (!defined('GLPI_ROOT')) {
 class PluginNewsAlert extends CommonDBTM {
    static $rightname = 'reminder_public';
 
+   const GENERAL = 1;
+   const INFO    = 2;
+   const WARNING = 3;
+   const ERROR   = 4;
+
    static function canCreate() {
       return self::canUpdate();
    }
@@ -284,6 +289,13 @@ class PluginNewsAlert extends CommonDBTM {
       echo '</tr>';
 
       echo '<tr>';
+      echo '<td>' . __("Type", 'news') .'</td>';
+      echo '</td>';
+      echo '<td>';
+      $types = self::getTypes();
+      Dropdown::showFromArray('type', $types, array('value' => $this->fields['type'],
+                                                    'display_emptychoice' => true));
+      echo '</td>';
       echo '<td>' . __("Show on login page", 'news') .'</td>';
       echo '</td>';
       echo '<td>';
@@ -291,6 +303,7 @@ class PluginNewsAlert extends CommonDBTM {
       echo '</td>';
       echo '</tr>';
 
+      $options['colspan'] = 4;
       $this->showFormButtons($options);
    }
 
@@ -318,6 +331,7 @@ class PluginNewsAlert extends CommonDBTM {
          echo "<div class='plugin_news_alert-container'>";
          foreach($alerts as $alert) {
             $title      = $alert['name'];
+            $type       = $alert['type'];
             $date_start = Html::convDateTime($alert['date_start']);
             $date_end   = Html::convDateTime($alert['date_end']);
             if (!empty($date_end)) {
@@ -328,8 +342,11 @@ class PluginNewsAlert extends CommonDBTM {
             if (!$show_hidden_alerts) {
                echo "<a class='plugin_news_alert-close'></a>";
             }
-            echo "<div class='plugin_news_alert-title'>$title</div>";
-            echo "<span class='plugin_news_alert-date'>$date_start$date_end</span>";
+            echo "<div class='plugin_news_alert-title'>";
+            echo "<span class='plugin_news_alert-icon type_$type'></span>";
+            echo "<div class='plugin_news_alert-title-content'>$title</div>";
+            echo "<div class='plugin_news_alert-date'>$date_start$date_end</div>";
+            echo "</div>";
             echo "<div class='plugin_news_alert-content'>$content</div>";
             echo "</div>";
          }
@@ -349,6 +366,13 @@ class PluginNewsAlert extends CommonDBTM {
       echo Html::scriptBlock("$(document).ready(function() {
          pluginNewsCloseAlerts();
       })");
+   }
+
+   static function getTypes() {
+      return array(self::GENERAL => __("General", 'news'),
+                   self::INFO    => __("Information", 'news'),
+                   self::WARNING => __("Warning", 'news'),
+                   self::ERROR   => __("Error", 'news'));
    }
 
    function cleanDBOnPurge() {
