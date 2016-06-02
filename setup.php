@@ -37,14 +37,15 @@ function plugin_init_news() {
       );
 
       if (isset($_SESSION['glpiID'])) {
+         $PLUGIN_HOOKS['display_central']['news'] = array(
+            "PluginNewsAlert", "displayOnCentral"
+         );
+
          if(Session::haveRight('entity', READ)) {
             $PLUGIN_HOOKS['menu_toadd']['news'] = array(
                'admin' => 'PluginNewsAlert',
             );
 
-            $PLUGIN_HOOKS['display_central']['news'] = array(
-               "PluginNewsAlert", "displayOnCentral"
-            );
          }
       }
    }
