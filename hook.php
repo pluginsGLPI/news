@@ -41,7 +41,6 @@ function plugin_news_install() {
          `type`                 INT NOT NULL,
          `is_deleted`           TINYINT(1) NOT NULL DEFAULT 0,
          `is_displayed_onlogin` TINYINT(1) NOT NULL,
-         `profiles_id`          INT NOT NULL,
          `entities_id`          INT NOT NULL,
          `is_recursive`         TINYINT(1) NOT NULL DEFAULT 1,
          PRIMARY KEY (`id`)
