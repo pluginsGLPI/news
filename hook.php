@@ -39,7 +39,7 @@ function plugin_news_install() {
          `date_start`           DATETIME DEFAULT NULL,
          `date_end`             DATETIME DEFAULT NULL,
          `type`                 INT NOT NULL,
-         `is_deleted`           TINYINT(1) NOT NULL,
+         `is_deleted`           TINYINT(1) NOT NULL DEFAULT 0,
          `is_displayed_onlogin` TINYINT(1) NOT NULL,
          `profiles_id`          INT NOT NULL,
          `entities_id`          INT NOT NULL,
