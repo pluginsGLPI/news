@@ -109,7 +109,7 @@ class PluginNewsAlert extends CommonDBTM {
       global $DB;
 
       $alerts   = array();
-      $today    = date('Y-m-d');
+      $today    = date('Y-m-d H:i:s');
       $table    = self::getTable();
       $utable   = PluginNewsAlert_User::getTable();
       $ttable   = PluginNewsAlert_Target::getTable();
