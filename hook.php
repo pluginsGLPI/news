@@ -121,6 +121,7 @@ function plugin_news_uninstall() {
    $DB->query("DROP TABLE IF EXISTS `glpi_plugin_news_alerts`;");
    $DB->query("DROP TABLE IF EXISTS `glpi_plugin_news_profiles`;");
    $DB->query("DROP TABLE IF EXISTS `glpi_plugin_news_alerts_users`;");
+   $DB->query("DROP TABLE IF EXISTS `glpi_plugin_news_alerts_targets`;");
    $DB->query("DELETE FROM `glpi_profiles` WHERE `name` LIKE '%plugin_news%';");
 
    return true;
