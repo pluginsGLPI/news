@@ -36,6 +36,29 @@ class PluginNewsAlert_Target extends CommonDBTM {
       return self::canPurge();
    }
 
+   static function getSpecificValueToDisplay($field, $values, array $options=array()) {
+
+      if (!is_array($values)) {
+         $values = array($field => $values);
+      }
+      switch ($field) {
+         case 'items_id':
+            if (isset($values['itemtype'])
+                && is_subclass_of($values['itemtype'], 'CommonDBTM')) {
+               $item = new $values['itemtype'];
+               if ($values['itemtype'] == "Profile"
+                   && $values['items_id'] == -1) {
+                  return $item->getTypeName()." - ".__('All');
+               }
+               $item->getFromDB($values['items_id']);
+               return $item->getTypeName()." - ".$item->getName();
+            }
+            break;
+
+      }
+      return parent::getSpecificValueToDisplay($field, $values, $options);
+   }
+
    function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
       if ($item instanceof PluginNewsAlert) {
          $nb = countElementsInTable(self::getTable(),

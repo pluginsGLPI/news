@@ -69,40 +69,45 @@ class PluginNewsAlert extends CommonDBTM {
 
 
    public function getSearchOptions() {
-      $tab[1]['table']         = $this->getTable();
-      $tab[1]['field']         = 'name';
-      $tab[1]['name']          = __('Name');
-      $tab[1]['datatype']      = 'itemlink';
-      $tab[1]['itemlink_type'] = $this->getType();
-      $tab[1]['massiveaction'] = false;
+      $tab[1]['table']            = $this->getTable();
+      $tab[1]['field']            = 'name';
+      $tab[1]['name']             = __('Name');
+      $tab[1]['datatype']         = 'itemlink';
+      $tab[1]['itemlink_type']    = $this->getType();
+      $tab[1]['massiveaction']    = false;
 
-      $tab[2]['table']         = $this->getTable();
-      $tab[2]['field']         = 'date_start';
-      $tab[2]['datatype']      = 'date';
-      $tab[2]['name']          = __("Visibility start date");
+      $tab[2]['table']            = $this->getTable();
+      $tab[2]['field']            = 'date_start';
+      $tab[2]['datatype']         = 'date';
+      $tab[2]['name']             = __("Visibility start date");
 
-      $tab[3]['table']         = $this->getTable();
-      $tab[3]['field']         = 'date_end';
-      $tab[3]['datatype']      = 'date';
-      $tab[3]['name']          = __("Visibility end date");
+      $tab[3]['table']            = $this->getTable();
+      $tab[3]['field']            = 'date_end';
+      $tab[3]['datatype']         = 'date';
+      $tab[3]['name']             = __("Visibility end date");
 
-      $tab[4]['table']         = 'glpi_entities';
-      $tab[4]['field']         = 'completename';
-      $tab[4]['name']          = __('Entity');
-      $tab[4]['massiveaction'] = false;
+      $tab[4]['table']            = 'glpi_entities';
+      $tab[4]['field']            = 'completename';
+      $tab[4]['name']             = __('Entity');
+      $tab[4]['massiveaction']    = false;
 
-      $tab[5]['table']         = $this->getTable();
-      $tab[5]['field']         = 'is_recursive';
-      $tab[5]['name']          = __('Recursive');
-      $tab[5]['massiveaction'] = false;
-      $tab[5]['datatype']      = 'bool';
+      $tab[5]['table']            = $this->getTable();
+      $tab[5]['field']            = 'is_recursive';
+      $tab[5]['name']             = __('Recursive');
+      $tab[5]['massiveaction']    = false;
+      $tab[5]['datatype']         = 'bool';
 
-      $tab[6]['table']         = 'glpi_profiles';
-      $tab[6]['field']         = 'name';
-      $tab[6]['name']          = __('Profile');
+      $tab[6]['table']            = PluginNewsAlert_Target::getTable();
+      $tab[6]['field']            = 'items_id';
+      $tab[6]['name']             = PluginNewsAlert_Target::getTypename();
+      $tab[6]['datatype']         = 'specific';
+      $tab[6]['forcegroupby']     = true;
+      $tab[6]['joinparams']       = array('jointype' => 'child');
+      $tab[6]['additionalfields'] = array('itemtype');
 
       return $tab;
    }
+
 
    public static function findAllToNotify($show_only_login_alerts = false,
                                           $show_hidden_alerts = false) {
