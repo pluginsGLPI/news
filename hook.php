@@ -111,6 +111,18 @@ function plugin_news_install() {
       $migration->dropField("glpi_plugin_news_alerts", "profiles_id");
    }
 
+   // install default display preferences
+   $dpreferences = new DisplayPreference;
+   $found_dpref = $dpreferences->find("`itemtype` LIKE '%PluginNews%'");
+   if (count($found_dpref) == 0) {
+      $DB->query("INSERT INTO `glpi_displaypreferences`
+                     (`itemtype`, `num`, `rank`, `users_id`)
+                  VALUES
+                     ('PluginNewsAlert', 2, 1, 0),
+                     ('PluginNewsAlert', 3, 2, 0),
+                     ('PluginNewsAlert', 6, 4, 0)");
+   }
+
    $migration->migrationOneTable("glpi_plugin_news_alerts");
    return true;
 }
