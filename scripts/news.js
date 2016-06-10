@@ -25,4 +25,11 @@ $(document).ready(function() {
    if (window.location.href.indexOf("helpdesk.public.php") > 0) {
       pluginNewsDisplayOnSelfService();
    }
+
+   pluginNewsToggleAlerts = function() {
+      $(document).on("click", ".plugin_news_alert-toggle",function() {
+         var alert = $(this).parent(".plugin_news_alert");
+         alert.toggleClass('expanded');
+      });
+   }
 });

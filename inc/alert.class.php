@@ -347,6 +347,9 @@ class PluginNewsAlert extends CommonDBTM {
             if (!$show_hidden_alerts) {
                echo "<a class='plugin_news_alert-close'></a>";
             }
+            if ($show_only_login_alerts) {
+               echo "<a class='plugin_news_alert-toggle'></a>";
+            }
             echo "<div class='plugin_news_alert-title'>";
             echo "<span class='plugin_news_alert-icon type_$type'></span>";
             echo "<div class='plugin_news_alert-title-content'>$title</div>";
@@ -368,8 +371,15 @@ class PluginNewsAlert extends CommonDBTM {
       }
       echo "</div>";
 
+      if ($show_only_login_alerts) {
+         echo Html::script($CFG_GLPI["root_doc"]."/lib/jquery/js/jquery-1.10.2.min.js");
+         echo Html::script($CFG_GLPI["root_doc"]."/lib/jquery/js/jquery-ui-1.10.4.custom.min.js");
+         echo Html::script($CFG_GLPI["root_doc"]."/plugins/news/scripts/news.js");
+      }
+
       echo Html::scriptBlock("$(document).ready(function() {
          pluginNewsCloseAlerts();
+         pluginNewsToggleAlerts();
       })");
    }
 
