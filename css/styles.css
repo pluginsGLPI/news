@@ -21,7 +21,7 @@
 }
 
 .plugin_news_alert-content {
-   word-break: break-all;
+   word-break: normal;
    padding: 5px 15px;
 }
 
