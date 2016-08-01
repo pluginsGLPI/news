@@ -151,7 +151,7 @@ class PluginNewsAlert extends CommonDBTM {
                               AND `$ttable`.`items_id` = ".$_SESSION['glpiID']."
                         )";
       } else if ($show_only_login_alerts){
-         $login_sql = " OR `$table`.`is_displayed_onlogin` = 1";
+         $login_sql = " AND `$table`.`is_displayed_onlogin` = 1";
       }
 
       if ($show_hidden_alerts) {
