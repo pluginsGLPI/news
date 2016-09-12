@@ -162,7 +162,7 @@ class PluginNewsAlert extends CommonDBTM {
          $entity_sql = getEntitiesRestrictRequest("AND", $table, "", "", true, true);
       }
 
-      $query = "SELECT `$table`.*
+      $query = "SELECT DISTINCT `$table`.`id`, `$table`.*
                   FROM `$table`
                   LEFT JOIN `$utable`
                      ON `$utable`.`plugin_news_alerts_id` = `$table`.`id`
@@ -181,8 +181,7 @@ class PluginNewsAlert extends CommonDBTM {
                            OR `$table`.`date_end` = '$today'
                      )
                   AND `is_deleted` = 0
-                  $entity_sql
-                  GROUP BY `$table`.`id`";
+                  $entity_sql";
 
       if ($result = $DB->query($query)) {
          if ($DB->numrows($result) < 1) {
