@@ -86,7 +86,7 @@ function plugin_news_install() {
       $migration->addField("glpi_plugin_news_alerts", "is_displayed_onlogin", 'bool');
    }
 
-   // add displayed on login flag
+   // add type field on alert (to display icons)
    if (!FieldExists("glpi_plugin_news_alerts", "type")) {
       $migration->addField("glpi_plugin_news_alerts", "type", 'integer');
    }
