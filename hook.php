@@ -91,6 +91,14 @@ function plugin_news_install() {
       $migration->addField("glpi_plugin_news_alerts", "type", 'integer');
    }
 
+   // fix is_default default value
+   $alert_fields = $DB->list_fields("glpi_plugin_news_alerts");
+   if ($alert_fields['is_deleted']['Default'] !== '0') {
+      $migration->changeField("glpi_plugin_news_alerts",
+                           "is_deleted", "is_deleted",
+                           "TINYINT(1) NOT NULL DEFAULT 0");
+   }
+
    // end/start dates can be null
    $migration->changeField("glpi_plugin_news_alerts",
                            "date_end", "date_end",
