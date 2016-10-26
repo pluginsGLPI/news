@@ -21,7 +21,7 @@
  --------------------------------------------------------------------------
 */
 
-define ('PLUGIN_NEWS_VERSION', '1.3.2');
+define ('PLUGIN_NEWS_VERSION', '1.3.2.1');
 
 function plugin_init_news() {
    global $PLUGIN_HOOKS;
@@ -53,7 +53,7 @@ function plugin_init_news() {
 function plugin_version_news() {
    return array(
       'name'           => __('Alerts', 'news'),
-      'version'        => '0.90-1.3.1',
+      'version'        => PLUGIN_NEWS_VERSION,
       'author'         => "<a href='mailto:contact@teclib.com'>TECLIB'</a>",
       'license'        => "GPLv2+",
       'homepage'       => 'https://github.com/pluginsGLPI/news',
