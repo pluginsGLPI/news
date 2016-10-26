@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-02 15:36+0200\n"
-"PO-Revision-Date: 2016-06-02 13:36+0000\n"
-"Last-Translator: Alexandre DELAUNAY <delaunay.alexandre@gmail.com>\n"
+"PO-Revision-Date: 2016-10-05 20:30+0000\n"
+"Last-Translator: David Stepan <stepand@tiscali.cz>\n"
 "Language-Team: Czech (Czech Republic) (http://www.transifex.com/teclib/glpi-plugin-news/language/cs_CZ/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,44 +20,44 @@ msgstr ""
 #: setup.php:53 front/alert.form.php:84 front/alert.php:27
 #: front/hidden_alerts.php:27 inc/alert.class.php:55
 msgid "Alerts"
-msgstr ""
+msgstr "Výstrahy"
 
 #: inc/alert.class.php:216
 msgid "Please enter a name."
-msgstr ""
+msgstr "Prosím zadejte název."
 
 #: inc/alert.class.php:220
 msgid "Please enter a message."
-msgstr ""
+msgstr "Prosím, zadejte zprávu."
 
 #: inc/alert.class.php:226
 msgid "The end date must be greater than the start date."
-msgstr ""
+msgstr "Koncové datum musí být větší než počáteční datum."
 
 #: inc/alert.class.php:292
 msgid "Type (to add an icon before alert title)"
-msgstr ""
+msgstr "Typ (Chcete-li přidat ikonu před název výstrahy)"
 
 #: inc/alert.class.php:299
 msgid "Show on login page"
-msgstr ""
+msgstr "Zobrazit na přihlašovací stránce"
 
 #: inc/alert.class.php:360
 msgid "You have hidden alerts valid for current date"
-msgstr ""
+msgstr "Máte skrytá upozornění platná pro aktuální datum"
 
 #: inc/alert.class.php:372
 msgid "General"
-msgstr ""
+msgstr "Obecné"
 
 #: inc/alert.class.php:373
 msgid "Information"
-msgstr ""
+msgstr "Informace"
 
 #: inc/alert.class.php:374
 msgid "Warning"
-msgstr ""
+msgstr "Upozornění"
 
 #: inc/alert.class.php:375
 msgid "Problem"
-msgstr ""
+msgstr "Problém"
