@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Alexey Petukhov <lexx015@gmail.com>, 2015
+# Nikolay <techobsl@yandex.ru>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-02 15:36+0200\n"
-"PO-Revision-Date: 2016-06-02 13:36+0000\n"
-"Last-Translator: Alexandre DELAUNAY <delaunay.alexandre@gmail.com>\n"
+"PO-Revision-Date: 2016-07-28 09:10+0000\n"
+"Last-Translator: Nikolay <techobsl@yandex.ru>\n"
 "Language-Team: Russian (Russia) (http://www.transifex.com/teclib/glpi-plugin-news/language/ru_RU/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,28 +38,28 @@ msgstr "Дата окончания должна быть позже даты н
 
 #: inc/alert.class.php:292
 msgid "Type (to add an icon before alert title)"
-msgstr ""
+msgstr "Введите (добавить иконку перед заголовком оповещения)"
 
 #: inc/alert.class.php:299
 msgid "Show on login page"
-msgstr ""
+msgstr "Показать на странице входа в систему"
 
 #: inc/alert.class.php:360
 msgid "You have hidden alerts valid for current date"
-msgstr ""
+msgstr "У вас есть скрытые оповещения действующие на текущую дату"
 
 #: inc/alert.class.php:372
 msgid "General"
-msgstr ""
+msgstr "Общий"
 
 #: inc/alert.class.php:373
 msgid "Information"
-msgstr ""
+msgstr "Информация"
 
 #: inc/alert.class.php:374
 msgid "Warning"
-msgstr ""
+msgstr "Предупреждение"
 
 #: inc/alert.class.php:375
 msgid "Problem"
-msgstr ""
+msgstr "Проблема"
