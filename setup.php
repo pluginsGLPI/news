@@ -21,7 +21,7 @@
  --------------------------------------------------------------------------
 */
 
-define ('PLUGIN_NEWS_VERSION', '1.3.2.1');
+define ('PLUGIN_NEWS_VERSION', '1.3.2.2');
 
 function plugin_init_news() {
    global $PLUGIN_HOOKS;
@@ -29,7 +29,10 @@ function plugin_init_news() {
    $PLUGIN_HOOKS['csrf_compliant']['news'] = true;
 
    $plugin = new Plugin();
-   if ($plugin->isInstalled('news') && $plugin->isActivated('news')) {
+   if (Session::checkValidSessionId()
+       && isset($_SESSION['glpiactiveentities_string'])
+       && $plugin->isInstalled('news')
+       && $plugin->isActivated('news')) {
       Plugin::registerClass('PluginNewsProfile', array('addtabon' => 'Profile'));
 
       $PLUGIN_HOOKS['add_css']['news'] = 'css/styles.css';

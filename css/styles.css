@@ -25,6 +25,12 @@
    padding: 5px 15px;
 }
 
+.plugin_news_alert-content ul {
+   list-style: inherit;
+   margin:     inherit;
+   padding:    inherit;
+}
+
 .plugin_news_alert-login .plugin_news_alert-content {
    max-height: 0;
    padding: 0;
