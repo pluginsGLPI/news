@@ -29,8 +29,7 @@ function plugin_init_news() {
    $PLUGIN_HOOKS['csrf_compliant']['news'] = true;
 
    $plugin = new Plugin();
-   if (isset($_SESSION['glpiactiveentities_string'])
-       && $plugin->isInstalled('news')
+   if ($plugin->isInstalled('news')
        && $plugin->isActivated('news')) {
       Plugin::registerClass('PluginNewsProfile', array('addtabon' => 'Profile'));
 
