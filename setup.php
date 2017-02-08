@@ -34,7 +34,7 @@ function plugin_init_news() {
       Plugin::registerClass('PluginNewsProfile', array('addtabon' => 'Profile'));
 
       $PLUGIN_HOOKS['add_css']['news'] = 'css/styles.css';
-      $PLUGIN_HOOKS['add_javascript']['news'] = "scripts/news.js";
+      $PLUGIN_HOOKS['add_javascript']['news'] = "js/news.js";
       $PLUGIN_HOOKS['display_login']['news'] = array(
          "PluginNewsAlert", "displayOnLogin"
       );

@@ -375,7 +375,7 @@ class PluginNewsAlert extends CommonDBTM {
       if ($show_only_login_alerts) {
          echo Html::script($CFG_GLPI["root_doc"]."/lib/jquery/js/jquery-1.10.2.min.js");
          echo Html::script($CFG_GLPI["root_doc"]."/lib/jquery/js/jquery-ui-1.10.4.custom.min.js");
-         echo Html::script($CFG_GLPI["root_doc"]."/plugins/news/scripts/news.js");
+         echo Html::script($CFG_GLPI["root_doc"]."/plugins/news/js/news.js");
       }
 
       echo Html::scriptBlock("$(document).ready(function() {
