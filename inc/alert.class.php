@@ -152,7 +152,7 @@ class PluginNewsAlert extends CommonDBTM {
                            OR `$ttable`.`itemtype` = 'User'
                               AND `$ttable`.`items_id` = ".$_SESSION['glpiID']."
                         )";
-      } else if ($show_only_login_alerts){
+      } else if ($show_only_login_alerts) {
          $login_sql = " AND `$table`.`is_displayed_onlogin` = 1";
       }
 
@@ -207,10 +207,10 @@ class PluginNewsAlert extends CommonDBTM {
 
 
    public function checkDate($datetime) {
-      if ( preg_match('/^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/', $datetime) ) {
+      if (preg_match('/^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/', $datetime)) {
          $datetime = explode(" ", $datetime);
-         list($year , $month , $day) = explode('-',$datetime[0]);
-         return checkdate($month , $day , $year);
+         list($year , $month , $day) = explode('-', $datetime[0]);
+         return checkdate($month, $day, $year);
       }
       return false;
    }
@@ -218,11 +218,11 @@ class PluginNewsAlert extends CommonDBTM {
    public function prepareInputForAdd($input) {
       $errors = array();
 
-      if(!$input['name']) {
+      if (!$input['name']) {
          array_push($errors, __('Please enter a name.', 'news'));
       }
 
-      if(!$input['message']) {
+      if (!$input['message']) {
          array_push($errors, __('Please enter a message.', 'news'));
       }
 
@@ -233,7 +233,7 @@ class PluginNewsAlert extends CommonDBTM {
          }
       }
 
-      if($errors) {
+      if ($errors) {
          Session::addMessageAfterRedirect(implode('<br />', $errors));
       }
 
@@ -256,7 +256,7 @@ class PluginNewsAlert extends CommonDBTM {
 
       $canedit = $this->can($ID, UPDATE);
 
-      if($this->getField('message') == 'N/A') {
+      if ($this->getField('message') == 'N/A') {
          $this->fields['message'] = "";
       }
 
@@ -333,9 +333,9 @@ class PluginNewsAlert extends CommonDBTM {
       global $CFG_GLPI;
 
       echo "<div class='plugin_news_alert-container'>";
-      if($alerts = self::findAllToNotify($show_only_login_alerts,
+      if ($alerts = self::findAllToNotify($show_only_login_alerts,
                                          $show_hidden_alerts)) {
-         foreach($alerts as $alert) {
+         foreach ($alerts as $alert) {
             $title      = $alert['name'];
             $type       = $alert['type'];
             $date_start = Html::convDateTime($alert['date_start']);
@@ -360,7 +360,7 @@ class PluginNewsAlert extends CommonDBTM {
             echo "</div>";
          }
       }
-      if(!$show_only_login_alerts
+      if (!$show_only_login_alerts
          && $alerts = self::findAllToNotify(false, true)
           && !$show_hidden_alerts) {
          echo "<div class='center'>";

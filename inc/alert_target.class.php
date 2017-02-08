@@ -91,7 +91,7 @@ class PluginNewsAlert_Target extends CommonDBTM {
       $params  = array('type'         => '__VALUE__',
                        'entities_id'  => $alert->fields['entities_id'],
                        'is_recursive' => $alert->fields['is_recursive']);
-      Ajax::updateItemOnSelectEvent("dropdown_itemtype".$addrand,"visibility$rand",
+      Ajax::updateItemOnSelectEvent("dropdown_itemtype".$addrand, "visibility$rand",
                                     $CFG_GLPI["root_doc"]."/plugins/news/ajax/targets.php",
                                     $params);
       echo "<td>";
@@ -120,7 +120,7 @@ class PluginNewsAlert_Target extends CommonDBTM {
          echo "<th>".__('Recipient')."</th>";
          echo "</tr>";
 
-         foreach($found_target as $current_target) {
+         foreach ($found_target as $current_target) {
             if (class_exists($current_target['itemtype'])) {
                $item = new $current_target['itemtype'];
                $item->getFromDB($current_target['items_id']);

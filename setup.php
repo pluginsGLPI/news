@@ -42,7 +42,7 @@ function plugin_init_news() {
          "PluginNewsAlert", "displayOnCentral"
       );
 
-      if(Session::haveRight('reminder_public', READ)) {
+      if (Session::haveRight('reminder_public', READ)) {
          $PLUGIN_HOOKS['menu_toadd']['news'] = array(
             'tools' => 'PluginNewsAlert',
          );

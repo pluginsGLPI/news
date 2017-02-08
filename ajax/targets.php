@@ -50,7 +50,7 @@ if (isset($_POST['type']) && !empty($_POST['type'])) {
          break;
    }
    echo "</td>";
-   echo "<td><input type='submit' name='addvisibility' value=\""._sx('button','Add')."\"
+   echo "<td><input type='submit' name='addvisibility' value=\""._sx('button', 'Add')."\"
                    class='submit'></td>";
    echo "</tr>";
    echo "</table>";
