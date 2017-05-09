@@ -31,6 +31,10 @@
    padding:    inherit;
 }
 
+.plugin_news_alert-login {
+   margin-bottom: 40px;
+}
+
 .plugin_news_alert-login .plugin_news_alert-content {
    max-height: 0;
    padding: 0;
