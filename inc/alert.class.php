@@ -322,7 +322,12 @@ class PluginNewsAlert extends CommonDBTM {
    static function displayOnLogin() {
       global $CFG_GLPI;
 
-      echo Html::css($CFG_GLPI["root_doc"]."/plugins/news/css/styles.css");
+      $prefix = "";
+      if (version_compare(GLPI_VERSION, '9.2', 'lt')) {
+         $prefix = CFG_GLPI["root_doc"];
+      }
+
+      echo Html::css($prefix."/plugins/news/css/styles.css");
       echo "<div class='plugin_news_alert-login'>";
       self::displayAlerts(true);
       echo "</div>";
@@ -373,9 +378,14 @@ class PluginNewsAlert extends CommonDBTM {
       echo "</div>";
 
       if ($show_only_login_alerts) {
-         echo Html::script($CFG_GLPI["root_doc"]."/lib/jquery/js/jquery-1.10.2.min.js");
-         echo Html::script($CFG_GLPI["root_doc"]."/lib/jquery/js/jquery-ui-1.10.4.custom.min.js");
-         echo Html::script($CFG_GLPI["root_doc"]."/plugins/news/js/news.js");
+         $prefix = "";
+         if (version_compare(GLPI_VERSION, '9.2', 'lt')) {
+            $prefix = CFG_GLPI["root_doc"];
+         }
+
+         echo Html::script($prefix."/lib/jquery/js/jquery-1.10.2.min.js");
+         echo Html::script($prefix."/lib/jquery/js/jquery-ui-1.10.4.custom.min.js");
+         echo Html::script($prefix."/plugins/news/js/news.js");
       }
 
       echo Html::scriptBlock("$(document).ready(function() {
