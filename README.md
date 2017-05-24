@@ -16,7 +16,7 @@ This plugin allows to display news messages on GLPi homepage.
 ### Contributing
 
 * Open a ticket for each bug/feature so it can be discussed
-* Follow [development guidelines](http://glpi-developer-documentation.readthedocs.io/en/latest/plugins.html)
+* Follow [development guidelines](http://glpi-developer-documentation.readthedocs.io/en/latest/plugins/index.html)
 * Refer to [GitFlow](http://git-flow.readthedocs.io/) process for branching
 * Work on a new branch on your own fork
 * Open a PR that will be reviewed by a developer
@@ -35,7 +35,7 @@ Ce plugin permet d'afficher des messages sur la page d'accueil de GLPI.
 ### Contribuer
 
 * Ouvrez un ticket pour chaque bogue/fonctionnalité que cela puisse être discuté
-* Suivez [les règles de développement](http://glpi-developer-documentation.readthedocs.io/en/latest/plugins.html)
+* Suivez [les règles de développement](http://glpi-developer-documentation.readthedocs.io/en/latest/plugins/index.html)
 * Référez-vous au processus [GitFlow](http://git-flow.readthedocs.io/) pour gérer les branches
 * Travaillez sur une nouvelle branche sur votre fork
 * Ouvrez une PR qui sera revue par un développeur
