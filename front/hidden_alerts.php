@@ -34,6 +34,7 @@ if ($_SESSION["glpiactiveprofile"]["interface"] != "central") {
    );
 }
 
-PluginNewsAlert::displayAlerts(false, true);
+PluginNewsAlert::displayAlerts(['show_only_login_alerts' => false,
+                                'show_hidden_alerts' => true]);
 
 Html::footer();

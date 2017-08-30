@@ -39,7 +39,7 @@ class PluginNewsAlert_Target extends CommonDBTM {
    static function getSpecificValueToDisplay($field, $values, array $options=array()) {
 
       if (!is_array($values)) {
-         $values = array($field => $values);
+         $values = [$field => $values];
       }
       switch ($field) {
          case 'items_id':
@@ -86,11 +86,12 @@ class PluginNewsAlert_Target extends CommonDBTM {
       echo "<tr>";
       echo "<td>";
       echo __('Add a target').":&nbsp;";
-      $addrand = Dropdown::showItemTypes('itemtype', $types, array('width' => ''));
+      $addrand = Dropdown::showItemTypes('itemtype', $types, ['width' => '']);
       echo "</td>";
-      $params  = array('type'         => '__VALUE__',
-                       'entities_id'  => $alert->fields['entities_id'],
-                       'is_recursive' => $alert->fields['is_recursive']);
+      $params  = ['type'         => '__VALUE__',
+                  'entities_id'  => $alert->fields['entities_id'],
+                  'is_recursive' => $alert->fields['is_recursive']
+                  ];
       Ajax::updateItemOnSelectEvent("dropdown_itemtype".$addrand, "visibility$rand",
                                     $CFG_GLPI["root_doc"]."/plugins/news/ajax/targets.php",
                                     $params);
@@ -102,14 +103,15 @@ class PluginNewsAlert_Target extends CommonDBTM {
       Html::closeForm();
 
       echo "<div class='spaced'>";
-      $target = new self;
+      $target       = new self();
       $found_target = $target->find("`plugin_news_alerts_id` = ".$alert->getID());
       if ($nb = count($found_target) > 0) {
          Html::openMassiveActionsForm('mass'.__CLASS__.$rand);
          $massiveactionparams
-            = array('num_displayed'    => $nb,
-                    'container'        => 'mass'.__CLASS__.$rand,
-                    'specific_actions' => array('delete' => _x('button', 'Delete permanently')) );
+            = ['num_displayed'    => $nb,
+               'container'        => 'mass'.__CLASS__.$rand,
+               'specific_actions' => ['delete' => _x('button', 'Delete permanently')]
+               ];
          Html::showMassiveActions($massiveactionparams);
 
          echo "<table class='tab_cadre_fixehov'>";
@@ -127,7 +129,7 @@ class PluginNewsAlert_Target extends CommonDBTM {
                $name = ($current_target['items_id'] == -1
                         && $current_target['itemtype'] == "Profile")
                            ?__('All')
-                           :$item->getName(array('complete' => true));
+                           :$item->getName(['complete' => true]);
 
                echo "<tr class='tab_bg_2'>";
                echo "<td>";
@@ -141,7 +143,7 @@ class PluginNewsAlert_Target extends CommonDBTM {
 
          echo "</table>";
 
-         $massiveactionparams['ontop'] =false;
+         $massiveactionparams['ontop'] = false;
          Html::showMassiveActions($massiveactionparams);
          Html::closeForm();
       }

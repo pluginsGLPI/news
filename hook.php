@@ -29,7 +29,7 @@ function plugin_news_install() {
    $pluginNews = array_shift($found);
    $migration  = new Migration($pluginNews['version']);
 
-   if (! TableExists('glpi_plugin_news_alerts')) {
+   if (! $DB->tableExists('glpi_plugin_news_alerts')) {
       $DB->query("
          CREATE TABLE IF NOT EXISTS `glpi_plugin_news_alerts` (
          `id`                   INT NOT NULL AUTO_INCREMENT,
@@ -48,7 +48,7 @@ function plugin_news_install() {
       ");
    }
 
-   if (! TableExists('glpi_plugin_news_alerts_users')) {
+   if (! $DB->tableExists('glpi_plugin_news_alerts_users')) {
       $DB->query("
          CREATE TABLE IF NOT EXISTS `glpi_plugin_news_alerts_users` (
          `id`                    INT NOT NULL AUTO_INCREMENT,
@@ -62,7 +62,7 @@ function plugin_news_install() {
       ");
    }
 
-   if (! TableExists('glpi_plugin_news_alerts_targets')) {
+   if (! $DB->tableExists('glpi_plugin_news_alerts_targets')) {
       $DB->query("
          CREATE TABLE IF NOT EXISTS `glpi_plugin_news_alerts_targets` (
          `id`                    INT NOT NULL AUTO_INCREMENT,
@@ -77,18 +77,41 @@ function plugin_news_install() {
    }
 
    /* Remove old table */
-   if (TableExists('glpi_plugin_news_profiles')) {
+   if ($DB->tableExists('glpi_plugin_news_profiles')) {
       $DB->query("DROP TABLE IF EXISTS `glpi_plugin_news_profiles`;");
    }
 
    // add displayed on login flag
-   if (!FieldExists("glpi_plugin_news_alerts", "is_displayed_onlogin")) {
+   if (!$DB->fieldExists("glpi_plugin_news_alerts", "is_displayed_onlogin")) {
       $migration->addField("glpi_plugin_news_alerts", "is_displayed_onlogin", 'bool');
    }
 
+   // add displayed on helpdesk flag
+   if (!$DB->fieldExists("glpi_plugin_news_alerts", "is_displayed_onhelpdesk")) {
+      $migration->addField("glpi_plugin_news_alerts", "is_displayed_onhelpdesk", 'bool');
+   }
+
+   if (!$DB->fieldExists("glpi_plugin_news_alerts", "date_creation")) {
+      if ($migration->addField("glpi_plugin_news_alerts", "date_creation", 'date')) {
+         $migration->addKey("glpi_plugin_news_alerts", "date_creation");
+      }
+   }
+
+   // add close allowed flag
+   if (!$DB->fieldExists("glpi_plugin_news_alerts", "is_close_allowed")) {
+      $migration->addField("glpi_plugin_news_alerts", "is_close_allowed", 'bool');
+   }
+
    // add type field on alert (to display icons)
-   if (!FieldExists("glpi_plugin_news_alerts", "type")) {
+   if (!$DB->fieldExists("glpi_plugin_news_alerts", "type")) {
       $migration->addField("glpi_plugin_news_alerts", "type", 'integer');
+   }
+
+   // add activity flag
+   if (!$DB->fieldExists("glpi_plugin_news_alerts", "is_active")) {
+      if ($migration->addField("glpi_plugin_news_alerts", "is_active", 'bool')) {
+         $migration->addKey("glpi_plugin_news_alerts", "is_active");
+      }
    }
 
    // fix is_default default value
@@ -107,7 +130,7 @@ function plugin_news_install() {
                            "date_start", "date_start",
                            "DATETIME DEFAULT NULL");
 
-   if (FieldExists("glpi_plugin_news_alerts", "profiles_id")) {
+   if ($DB->fieldExists("glpi_plugin_news_alerts", "profiles_id")) {
       // migration of direct profiles into targets table
       $query_targets = "INSERT INTO glpi_plugin_news_alerts_targets
                            (plugin_news_alerts_id, itemtype, items_id)

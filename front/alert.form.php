@@ -75,7 +75,7 @@ if (isset($_POST['update'])) {
 
 } else if (isset($_POST["addvisibility"])) {
    $alert->check($_POST['plugin_news_alerts_id'], UPDATE);
-   $target = new PluginNewsAlert_Target;
+   $target = new PluginNewsAlert_Target();
    $target->add($_POST);
    Html::back();
 }
@@ -87,6 +87,6 @@ Html::header(
    "PluginNewsAlert"
 );
 
-$alert->display(array('id'=> $_GET["id"]));
+$alert->display(['id'=> $_GET["id"]]);
 
 Html::footer();
