@@ -1,0 +1,71 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-22 15:09+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: front/alert.php:27 front/hidden_alerts.php:27 front/hidden_alerts.php:30
+#: front/alert.form.php:84 inc/alert.class.php:56 setup.php:58
+msgid "Alerts"
+msgstr ""
+
+#: inc/alert.class.php:112 inc/alert.class.php:365
+msgid "Can close alert"
+msgstr ""
+
+#: inc/alert.class.php:118 inc/alert.class.php:374
+msgid "Show on login page"
+msgstr ""
+
+#: inc/alert.class.php:124 inc/alert.class.php:380
+msgid "Show on helpdesk page"
+msgstr ""
+
+#: inc/alert.class.php:272
+msgid "Please enter a name."
+msgstr ""
+
+#: inc/alert.class.php:276
+msgid "Please enter a message."
+msgstr ""
+
+#: inc/alert.class.php:282
+msgid "The end date must be greater than the start date."
+msgstr ""
+
+#: inc/alert.class.php:357
+msgid "Type (to add an icon before alert title)"
+msgstr ""
+
+#: inc/alert.class.php:456
+msgid "You have hidden alerts valid for current date"
+msgstr ""
+
+#: inc/alert.class.php:480
+msgid "General"
+msgstr ""
+
+#: inc/alert.class.php:481
+msgid "Information"
+msgstr ""
+
+#: inc/alert.class.php:482
+msgid "Warning"
+msgstr ""
+
+#: inc/alert.class.php:483
+msgid "Problem"
+msgstr ""
