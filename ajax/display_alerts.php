@@ -27,4 +27,4 @@ header("Content-Type: text/html; charset=UTF-8");
 Html::header_nocache();
 Session::checkLoginUser();
 
-PluginNewsAlert::displayAlerts(false);
+PluginNewsAlert::displayAlerts(['show_only_login_alerts' => false]);

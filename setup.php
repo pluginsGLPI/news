@@ -21,7 +21,7 @@
  --------------------------------------------------------------------------
 */
 
-define ('PLUGIN_NEWS_VERSION', '1.3.2.5');
+define ('PLUGIN_NEWS_VERSION', '1.3.3');
 
 function plugin_init_news() {
    global $PLUGIN_HOOKS;
@@ -31,40 +31,48 @@ function plugin_init_news() {
    $plugin = new Plugin();
    if ($plugin->isInstalled('news')
        && $plugin->isActivated('news')) {
-      Plugin::registerClass('PluginNewsProfile', array('addtabon' => 'Profile'));
+      Plugin::registerClass('PluginNewsProfile', ['addtabon' => 'Profile']);
 
       $PLUGIN_HOOKS['add_css']['news'] = 'css/styles.css';
-      $PLUGIN_HOOKS['add_javascript']['news'] = "scripts/news.js";
-      $PLUGIN_HOOKS['display_login']['news'] = array(
+      $PLUGIN_HOOKS['add_javascript']['news'] = "js/news.js";
+      $PLUGIN_HOOKS['display_login']['news'] = [
          "PluginNewsAlert", "displayOnLogin"
-      );
-      $PLUGIN_HOOKS['display_central']['news'] = array(
+      ];
+      $PLUGIN_HOOKS['display_central']['news'] = [
          "PluginNewsAlert", "displayOnCentral"
-      );
+      ];
 
-      if(Session::haveRight('reminder_public', READ)) {
-         $PLUGIN_HOOKS['menu_toadd']['news'] = array(
+      $PLUGIN_HOOKS['pre_item_form']['alert'] = ['PluginNewsAlert', 'preItemForm'];
+
+      if (Session::haveRight('reminder_public', READ)) {
+         $PLUGIN_HOOKS['menu_toadd']['news'] = [
             'tools' => 'PluginNewsAlert',
-         );
+         ];
          $PLUGIN_HOOKS['config_page']['news'] = 'front/alert.php';
       }
    }
 }
 
 function plugin_version_news() {
-   return array(
+   return [
       'name'           => __('Alerts', 'news'),
       'version'        => PLUGIN_NEWS_VERSION,
       'author'         => "<a href='mailto:contact@teclib.com'>TECLIB'</a>",
       'license'        => "GPLv2+",
       'homepage'       => 'https://github.com/pluginsGLPI/news',
-      'minGlpiVersion' => '0.90.1'
-   );
+      'requirements'   => [
+         'glpi' => [
+            'min' => '9.2',
+            'dev' => true
+         ]
+      ]
+   ];
 }
 
 function plugin_news_check_prerequisites() {
-   if (version_compare(GLPI_VERSION, '0.90.1', 'lt') || version_compare(GLPI_VERSION, '10', 'ge')) {
-      echo "This version require GLPI >= 0.90.1";
+   $version = rtrim(GLPI_VERSION, '-dev');
+   if (version_compare($version, '9.2', 'lt')) {
+      echo "This version require GLPI 9.2";
       return false;
    }
    return true;

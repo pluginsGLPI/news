@@ -3,62 +3,62 @@
 # This file is distributed under the same license as the GLPI - News plugin package.
 # 
 # Translators:
-# Kaya Zeren <kayazeren@gmail.com>, 2015-2016
+# armin0103 <kkarmintestkk@yahoo.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-02 15:36+0200\n"
 "PO-Revision-Date: 2017-08-03 17:53+0000\n"
-"Last-Translator: Kaya Zeren <kayazeren@gmail.com>\n"
-"Language-Team: Turkish (Turkey) (http://www.transifex.com/teclib/glpi-plugin-news/language/tr_TR/)\n"
+"Last-Translator: armin0103 <kkarmintestkk@yahoo.de>\n"
+"Language-Team: German (Germany) (http://www.transifex.com/teclib/glpi-plugin-news/language/de_DE/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: tr_TR\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: de_DE\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: setup.php:53 front/alert.form.php:84 front/alert.php:27
 #: front/hidden_alerts.php:27 inc/alert.class.php:55
 msgid "Alerts"
-msgstr "Uyarılar"
+msgstr "Alarme"
 
 #: inc/alert.class.php:216
 msgid "Please enter a name."
-msgstr "Lütfen bir ad yazın."
+msgstr "Bitte geben Sie einen Namen ein."
 
 #: inc/alert.class.php:220
 msgid "Please enter a message."
-msgstr "Lütfen bir ileti yazın."
+msgstr "Bitte geben Sie die Nachricht ein."
 
 #: inc/alert.class.php:226
 msgid "The end date must be greater than the start date."
-msgstr "Bitiş tarihi başlangıç tarihinden sonra olmalıdır."
+msgstr "Das Enddatum muss größer als das Startdatum sein."
 
 #: inc/alert.class.php:292
 msgid "Type (to add an icon before alert title)"
-msgstr "Tip (uyarı başlığının önüne bir simge eklenmesi için)"
+msgstr "Typ (Das Symbol wird vor dem Alarmtitel angezeigt.)"
 
 #: inc/alert.class.php:299
 msgid "Show on login page"
-msgstr "Oturum açma sayfasında görüntülensin"
+msgstr "Auf der Anmeldeseite anzeigen."
 
 #: inc/alert.class.php:360
 msgid "You have hidden alerts valid for current date"
-msgstr "Güncel tarih için geçerli olan gizli uyarılarınız var"
+msgstr "Sie haben ausgeblendete Alarme, welche für das aktuelle Datum gesetzt sind."
 
 #: inc/alert.class.php:372
 msgid "General"
-msgstr "Genel"
+msgstr "Allgemein"
 
 #: inc/alert.class.php:373
 msgid "Information"
-msgstr "Bilgi"
+msgstr "Information"
 
 #: inc/alert.class.php:374
 msgid "Warning"
-msgstr "Uyarı"
+msgstr "Warnung"
 
 #: inc/alert.class.php:375
 msgid "Problem"
-msgstr "Sorun"
+msgstr "Problem"

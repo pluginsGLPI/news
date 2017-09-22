@@ -29,7 +29,7 @@ if (!isset($_GET["id"])) {
 
 $alert = new PluginNewsAlert();
 
-if(isset($_POST['update'])) {
+if (isset($_POST['update'])) {
    $alert->check($_POST['id'], UPDATE);
    if ($alert->update($_POST)) {
       Event::log($_POST["id"], "PluginNewsAlert", 4, "admin",
@@ -37,7 +37,7 @@ if(isset($_POST['update'])) {
    }
    Html::back();
 
-} elseif(isset($_POST['add'])) {
+} else if (isset($_POST['add'])) {
    $alert->check(-1, CREATE, $_POST);
    if ($newID = $alert->add($_POST)) {
       Event::log($newID, "PluginNewsAlert", 4, "admin",
@@ -49,7 +49,7 @@ if(isset($_POST['update'])) {
    }
    Html::back();
 
-} elseif(isset($_POST['delete'])) {
+} else if (isset($_POST['delete'])) {
    $alert->check($_POST['id'], DELETE);
    if ($alert->delete($_POST)) {
       Event::log($_POST["id"], "PluginNewsAlert", 4, "admin",
@@ -57,15 +57,15 @@ if(isset($_POST['update'])) {
    }
    $alert->redirectToList();
 
-} elseif(isset($_POST['restore'])) {
+} else if (isset($_POST['restore'])) {
    $alert->check($_POST['id'], DELETE);
-   if($alert->restore($_POST)) {
-      Event::log($_POST["id"],"PluginNewsAlert", 4, "admin",
+   if ($alert->restore($_POST)) {
+      Event::log($_POST["id"], "PluginNewsAlert", 4, "admin",
                  sprintf(__('%s restores an item'), $_SESSION["glpiname"]));
    }
    Html::back();
 
-} elseif(isset($_POST['purge'])) {
+} else if (isset($_POST['purge'])) {
    $alert->check($_POST['id'], PURGE);
    if ($alert->delete($_POST, 1)) {
       Event::log($_POST["id"], "PluginNewsAlert", 4, "admin",
@@ -73,9 +73,9 @@ if(isset($_POST['update'])) {
    }
    $alert->redirectToList();
 
-} elseif (isset($_POST["addvisibility"])) {
+} else if (isset($_POST["addvisibility"])) {
    $alert->check($_POST['plugin_news_alerts_id'], UPDATE);
-   $target = new PluginNewsAlert_Target;
+   $target = new PluginNewsAlert_Target();
    $target->add($_POST);
    Html::back();
 }
@@ -87,6 +87,6 @@ Html::header(
    "PluginNewsAlert"
 );
 
-$alert->display(array('id'=> $_GET["id"]));
+$alert->display(['id'=> $_GET["id"]]);
 
 Html::footer();

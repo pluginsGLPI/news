@@ -28,7 +28,7 @@ if (!defined('GLPI_ROOT')) {
 class PluginNewsAlert_User extends CommonDBTM {
    const HIDDEN = 1;
 
-   static function hideAlert($params = array()) {
+   static function hideAlert($params = []) {
       global $DB;
 
       if (!isset($params['id'])) {
