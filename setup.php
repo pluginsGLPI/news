@@ -21,7 +21,7 @@
  --------------------------------------------------------------------------
 */
 
-define ('PLUGIN_NEWS_VERSION', '1.3.3');
+define ('PLUGIN_NEWS_VERSION', '1.3.4');
 
 function plugin_init_news() {
    global $PLUGIN_HOOKS;
@@ -34,7 +34,7 @@ function plugin_init_news() {
       Plugin::registerClass('PluginNewsProfile', ['addtabon' => 'Profile']);
 
       $PLUGIN_HOOKS['add_css']['news'] = 'css/styles.css';
-      $PLUGIN_HOOKS['add_javascript']['news'] = "js/news.js";
+      $PLUGIN_HOOKS['add_javascript']['news'][] = "js/news.js";
       $PLUGIN_HOOKS['display_login']['news'] = [
          "PluginNewsAlert", "displayOnLogin"
       ];
