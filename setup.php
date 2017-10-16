@@ -21,7 +21,7 @@
  --------------------------------------------------------------------------
 */
 
-define ('PLUGIN_NEWS_VERSION', '1.3.3');
+define ('PLUGIN_NEWS_VERSION', '1.3.4');
 
 function plugin_init_news() {
    global $PLUGIN_HOOKS;
