@@ -24,7 +24,7 @@
 define ('PLUGIN_NEWS_VERSION', '1.3.4');
 
 function plugin_init_news() {
-   global $PLUGIN_HOOKS;
+   global $PLUGIN_HOOKS, $CFG_GLPI;
 
    $PLUGIN_HOOKS['csrf_compliant']['news'] = true;
 
@@ -49,6 +49,9 @@ function plugin_init_news() {
             'tools' => 'PluginNewsAlert',
          ];
          $PLUGIN_HOOKS['config_page']['news'] = 'front/alert.php';
+
+         // require tinymce (for glpi >= 9.2)
+         $CFG_GLPI['javascript']['tools']['pluginnewsalert'] = ['tinymce'];
       }
    }
 }
