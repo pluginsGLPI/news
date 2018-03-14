@@ -1,4 +1,4 @@
-$(document).ready(function() {
+pluginNewsGetBaseUrl = function() {
    var ajax_baseurl = '../plugins/news/ajax';
    var path = document.location.pathname;
    // construct url for plugin pages
@@ -7,12 +7,15 @@ $(document).ready(function() {
       var nb_directory = (plugin_path.match(/\//g) || []).length + 1;
       var ajax_baseurl = Array(nb_directory).join("../") + 'plugins/news/ajax';
    }
-});
+
+   return ajax_baseurl;
+};
 
 pluginNewsCloseAlerts = function() {
    $(document).on("click", "a.plugin_news_alert-close",function() {
       var alert = $(this).parent(".plugin_news_alert");
       var id    = alert.attr('data-id');
+      var ajax_baseurl = pluginNewsGetBaseUrl();
       $.post(ajax_baseurl+"/hide_alert.php", {'id' : id})
          .done(function() {
             alert.remove();
