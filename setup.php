@@ -65,7 +65,7 @@ function plugin_version_news() {
       'homepage'       => 'https://github.com/pluginsGLPI/news',
       'requirements'   => [
          'glpi' => [
-            'min' => '9.2',
+            'min' => '9.3',
             'dev' => true
          ]
       ]
@@ -74,8 +74,8 @@ function plugin_version_news() {
 
 function plugin_news_check_prerequisites() {
    $version = rtrim(GLPI_VERSION, '-dev');
-   if (version_compare($version, '9.2', 'lt')) {
-      echo "This version require GLPI 9.2";
+   if (version_compare($version, '9.3', 'lt')) {
+      echo "This version require GLPI 9.3";
       return false;
    }
    return true;
