@@ -5,7 +5,7 @@ pluginNewsGetBaseUrl = function() {
    if (path.indexOf('plugins/') !== -1) {
       var plugin_path = path.substring(path.indexOf('plugins'));
       var nb_directory = (plugin_path.match(/\//g) || []).length + 1;
-      var ajax_baseurl = Array(nb_directory).join("../") + 'plugins/news/ajax';
+      ajax_baseurl = Array(nb_directory).join("../") + 'plugins/news/ajax';
    }
 
    return ajax_baseurl;
