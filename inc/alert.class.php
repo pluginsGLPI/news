@@ -469,11 +469,6 @@ class PluginNewsAlert extends CommonDBTM {
          echo Html::script($prefix."/lib/jquery/js/jquery-ui-1.10.4.custom.min.js");
          echo Html::script($prefix."/plugins/news/js/news.js");
       }
-
-      echo Html::scriptBlock("$(document).ready(function() {
-         pluginNewsCloseAlerts();
-         pluginNewsToggleAlerts();
-      })");
    }
 
    static function getTypes() {

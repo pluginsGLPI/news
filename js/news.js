@@ -29,3 +29,13 @@ pluginNewsToggleAlerts = function() {
       alert.toggleClass('expanded');
    });
 }
+
+$(document).ready(function() {
+   pluginNewsCloseAlerts();
+   pluginNewsToggleAlerts();
+
+   $(".glpi_tabs").on("tabsload", function(event, ui) {
+      pluginNewsCloseAlerts();
+      pluginNewsToggleAlerts();
+   });
+});
