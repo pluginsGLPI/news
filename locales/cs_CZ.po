@@ -3,19 +3,20 @@
 # This file is distributed under the same license as the GLPI - News plugin package.
 # 
 # Translators:
+# Pavel Borecki <pavel.borecki@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-02 15:36+0200\n"
-"PO-Revision-Date: 2017-08-03 17:53+0000\n"
-"Last-Translator: David Stepan <stepand@tiscali.cz>\n"
+"PO-Revision-Date: 2018-03-27 05:44+0000\n"
+"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech (Czech Republic) (http://www.transifex.com/teclib/glpi-plugin-news/language/cs_CZ/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: cs_CZ\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
 #: setup.php:53 front/alert.form.php:84 front/alert.php:27
 #: front/hidden_alerts.php:27 inc/alert.class.php:55
@@ -24,19 +25,19 @@ msgstr "Výstrahy"
 
 #: inc/alert.class.php:216
 msgid "Please enter a name."
-msgstr "Prosím zadejte název."
+msgstr "Zadejte název."
 
 #: inc/alert.class.php:220
 msgid "Please enter a message."
-msgstr "Prosím, zadejte zprávu."
+msgstr "Zadejte zprávu."
 
 #: inc/alert.class.php:226
 msgid "The end date must be greater than the start date."
-msgstr "Koncové datum musí být větší než počáteční datum."
+msgstr "Je třeba, aby koncové datum bylo později než počáteční datum."
 
 #: inc/alert.class.php:292
 msgid "Type (to add an icon before alert title)"
-msgstr "Typ (Chcete-li přidat ikonu před název výstrahy)"
+msgstr "Typ (pro přidání ikony před titulek výstrahy)"
 
 #: inc/alert.class.php:299
 msgid "Show on login page"
@@ -56,7 +57,7 @@ msgstr "Informace"
 
 #: inc/alert.class.php:374
 msgid "Warning"
-msgstr "Upozornění"
+msgstr "Varování"
 
 #: inc/alert.class.php:375
 msgid "Problem"

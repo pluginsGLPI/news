@@ -469,11 +469,6 @@ class PluginNewsAlert extends CommonDBTM {
          echo Html::script($prefix."/lib/jquery/js/jquery-ui-1.10.4.custom.min.js");
          echo Html::script($prefix."/plugins/news/js/news.js");
       }
-
-      echo Html::scriptBlock("$(document).ready(function() {
-         pluginNewsCloseAlerts();
-         pluginNewsToggleAlerts();
-      })");
    }
 
    static function getTypes() {
@@ -491,11 +486,14 @@ class PluginNewsAlert extends CommonDBTM {
    static function preItemForm($params = []) {
       if (isset($params['item'])
           && $params['item'] instanceof CommonITILObject) {
-         $item     = $params['item'];
-         $itemtype = get_class($item);
+         $item        = $params['item'];
+         $itemtype    = get_class($item);
+         $entities_id = isset($params['item']->fields['entities_id'])
+            ? $params['item']->fields['entities_id']
+            : 0;
          self::displayAlerts(['show_helpdesk_alerts' => true,
                               'show_hidden_alerts'   => false,
-                              'entities_id'          => $params['item']->fields['entities_id']
+                              'entities_id'          => $entities_id
                              ]);
          echo "</br>";
       }
