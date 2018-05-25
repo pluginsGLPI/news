@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the GLPI - News plugin package.
 # 
 # Translators:
-# alexandre delaunay <delaunay.alexandre@gmail.com>, 2016
+# Alexandre Delaunay <delaunay.alexandre@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-02 15:36+0200\n"
-"PO-Revision-Date: 2017-08-03 17:53+0000\n"
-"Last-Translator: alexandre delaunay <delaunay.alexandre@gmail.com>\n"
+"PO-Revision-Date: 2017-09-22 15:17+0000\n"
+"Last-Translator: Alexandre Delaunay <delaunay.alexandre@gmail.com>\n"
 "Language-Team: French (France) (http://www.transifex.com/teclib/glpi-plugin-news/language/fr_FR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
