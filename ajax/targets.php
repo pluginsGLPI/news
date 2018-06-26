@@ -34,19 +34,19 @@ if (isset($_POST['type']) && !empty($_POST['type'])) {
    echo "<td>";
    switch ($_POST['type']) {
       case 'User' :
-         User::dropdown(array('name'        => 'items_id',
-                              'right'       => 'all',
-                              'entity'      => $_POST['entities_id'],
-                              'entity_sons' => $_POST['is_recursive'],));
+         User::dropdown(['name'        => 'items_id',
+                         'right'       => 'all',
+                         'entity'      => $_POST['entities_id'],
+                         'entity_sons' => $_POST['is_recursive'],]);
          break;
 
       case 'Group' :
-         Group::dropdown(array('name' => 'items_id'));
+         Group::dropdown(['name' => 'items_id']);
          break;
 
       case 'Profile' :
-         Profile::dropdown(array('name'  => 'items_id',
-                                 'toadd' => array(-1 => __('All'))));
+         Profile::dropdown(['name'  => 'items_id',
+                            'toadd' => [-1 => __('All')]]);
          break;
    }
    echo "</td>";
