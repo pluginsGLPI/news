@@ -59,7 +59,7 @@ class PluginNewsAlert extends CommonDBTM {
    /**
     * @see CommonGLPI::defineTabs()
    **/
-   function defineTabs($options=[]) {
+   function defineTabs($options = []) {
 
       $ong = [];
       $this->addDefaultFormTab($ong)

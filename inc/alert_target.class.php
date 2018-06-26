@@ -36,7 +36,7 @@ class PluginNewsAlert_Target extends CommonDBTM {
       return self::canPurge();
    }
 
-   static function getSpecificValueToDisplay($field, $values, array $options=array()) {
+   static function getSpecificValueToDisplay($field, $values, array $options = []) {
 
       if (!is_array($values)) {
          $values = [$field => $values];
@@ -67,7 +67,7 @@ class PluginNewsAlert_Target extends CommonDBTM {
       }
    }
 
-   static function displayTabContentForItem(CommonGLPI $item, $tabnum=1, $withtemplate=0) {
+   static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0) {
       if ($item instanceof PluginNewsAlert) {
          self::showForAlert($item);
       }
@@ -81,7 +81,7 @@ class PluginNewsAlert_Target extends CommonDBTM {
       echo "<form method='post' action='".Toolbox::getItemTypeFormURL('PluginNewsAlert')."'>";
       echo "<input type='hidden' name='plugin_news_alerts_id' value='".$alert->getID()."'>";
 
-      $types = array('Group', 'Profile', 'User');
+      $types = ['Group', 'Profile', 'User'];
       echo "<table class='plugin_news_alert-visibility'>";
       echo "<tr>";
       echo "<td>";
