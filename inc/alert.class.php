@@ -59,7 +59,7 @@ class PluginNewsAlert extends CommonDBTM {
    /**
     * @see CommonGLPI::defineTabs()
    **/
-   function defineTabs($options=[]) {
+   function defineTabs($options = []) {
 
       $ong = [];
       $this->addDefaultFormTab($ong)
@@ -69,79 +69,117 @@ class PluginNewsAlert extends CommonDBTM {
       return $ong;
    }
 
+   public function rawSearchOptions() {
 
-   public function getSearchOptions() {
-      $tab[1]['table']            = $this->getTable();
-      $tab[1]['field']            = 'name';
-      $tab[1]['name']             = __('Name');
-      $tab[1]['datatype']         = 'itemlink';
-      $tab[1]['itemlink_type']    = $this->getType();
-      $tab[1]['massiveaction']    = false;
+      $tab = [];
 
-      $tab[2]['table']            = $this->getTable();
-      $tab[2]['field']            = 'date_start';
-      $tab[2]['datatype']         = 'date';
-      $tab[2]['name']             = __("Visibility start date");
+      $tab[] = [
+         'id'               => 1,
+         'table'            => $this->getTable(),
+         'field'            => 'name',
+         'name'             => __('Name'),
+         'datatype'         => 'itemlink',
+         'itemlink_type'    => $this->getType(),
+         'massiveaction'    => false,
+      ];
 
-      $tab[3]['table']            = $this->getTable();
-      $tab[3]['field']            = 'date_end';
-      $tab[3]['datatype']         = 'date';
-      $tab[3]['name']             = __("Visibility end date");
+      $tab[] = [
+         'id'               => 2,
+         'table'            => $this->getTable(),
+         'field'            => 'date_start',
+         'name'             => __('Visibility start date'),
+         'datatype'         => 'date',
+      ];
 
-      $tab[4]['table']            = 'glpi_entities';
-      $tab[4]['field']            = 'completename';
-      $tab[4]['name']             = __('Entity');
-      $tab[4]['massiveaction']    = false;
+      $tab[] = [
+         'id'               => 3,
+         'table'            => $this->getTable(),
+         'field'            => 'date_end',
+         'name'             => __('Visibility end date'),
+         'datatype'         => 'date',
+      ];
 
-      $tab[5]['table']            = $this->getTable();
-      $tab[5]['field']            = 'is_recursive';
-      $tab[5]['name']             = __('Recursive');
-      $tab[5]['massiveaction']    = false;
-      $tab[5]['datatype']         = 'bool';
+      $tab[] = [
+         'id'               => 4,
+         'table'            => 'glpi_entities',
+         'field'            => 'completename',
+         'name'             => __('Entity'),
+         'massiveaction'    => false,
+      ];
 
-      $tab[6]['table']            = PluginNewsAlert_Target::getTable();
-      $tab[6]['field']            = 'items_id';
-      $tab[6]['name']             = PluginNewsAlert_Target::getTypename();
-      $tab[6]['datatype']         = 'specific';
-      $tab[6]['forcegroupby']     = true;
-      $tab[6]['joinparams']       = ['jointype' => 'child'];
-      $tab[6]['additionalfields'] = ['itemtype'];
+      $tab[] = [
+         'id'               => 5,
+         'table'            => $this->getTable(),
+         'field'            => 'is_recursive',
+         'name'             => __('Recursive'),
+         'datatype'         => 'bool',
+         'massiveaction'    => false,
+      ];
 
-      $tab[7]['table']            = $this->getTable();
-      $tab[7]['field']            = 'is_close_allowed';
-      $tab[7]['name']             = __('Can close alert', 'news');
-      $tab[7]['massiveaction']    = false;
-      $tab[7]['datatype']         = 'bool';
+      $tab[] = [
+         'id'               => 6,
+         'table'            => PluginNewsAlert_Target::getTable(),
+         'field'            => 'items_id',
+         'name'             => PluginNewsAlert_Target::getTypename(),
+         'datatype'         => 'specific',
+         'forcegroupby'     => true,
+         'joinparams'       => ['jointype' => 'child'],
+         'additionalfields' => ['itemtype'],
+      ];
 
-      $tab[8]['table']            = $this->getTable();
-      $tab[8]['field']            = 'is_displayed_onlogin';
-      $tab[8]['name']             = __("Show on login page", 'news');
-      $tab[8]['massiveaction']    = false;
-      $tab[8]['datatype']         = 'bool';
+      $tab[] = [
+         'id'               => 7,
+         'table'            => $this->getTable(),
+         'field'            => 'is_close_allowed',
+         'name'             => __('Can close alert', 'news'),
+         'datatype'         => 'bool',
+         'massiveaction'    => false,
+      ];
 
-      $tab[9]['table']            = $this->getTable();
-      $tab[9]['field']            = 'is_displayed_onhelpdesk';
-      $tab[9]['name']             = __("Show on helpdesk page", 'news');
-      $tab[9]['massiveaction']    = false;
-      $tab[9]['datatype']         = 'bool';
+      $tab[] = [
+         'id'               => 8,
+         'table'            => $this->getTable(),
+         'field'            => 'is_displayed_onlogin',
+         'name'             => __('Show on login page', 'news'),
+         'datatype'         => 'bool',
+         'massiveaction'    => false,
+      ];
 
-      $tab[10]['table']            = $this->getTable();
-      $tab[10]['field']            = 'is_active';
-      $tab[10]['name']             = __('Active');
-      $tab[10]['massiveaction']    = false;
-      $tab[10]['datatype']         = 'bool';
+      $tab[] = [
+         'id'               => 9,
+         'table'            => $this->getTable(),
+         'field'            => 'is_displayed_onhelpdesk',
+         'name'             => __('Show on helpdesk page', 'news'),
+         'datatype'         => 'bool',
+         'massiveaction'    => false,
+      ];
 
-      $tab[19]['table']          = $this->getTable();
-      $tab[19]['field']          = 'date_mod';
-      $tab[19]['name']           = __('Last update');
-      $tab[19]['datatype']       = 'datetime';
-      $tab[19]['massiveaction']  = false;
+      $tab[] = [
+         'id'               => 10,
+         'table'            => $this->getTable(),
+         'field'            => 'is_active',
+         'name'             => __('Active'),
+         'datatype'         => 'bool',
+         'massiveaction'    => false,
+      ];
 
-      $tab[121]['table']          = $this->getTable();
-      $tab[121]['field']          = 'date_creation';
-      $tab[121]['name']           = __('Creation date');
-      $tab[121]['datatype']       = 'datetime';
-      $tab[121]['massiveaction']  = false;
+      $tab[] = [
+         'id'               => 19,
+         'table'            => $this->getTable(),
+         'field'            => 'date_mod',
+         'name'             => __('Last update'),
+         'datatype'         => 'datetime',
+         'massiveaction'    => false,
+      ];
+
+      $tab[] = [
+         'id'               => 121,
+         'table'            => $this->getTable(),
+         'field'            => 'date_creation',
+         'name'             => __('Creation date'),
+         'datatype'         => 'datetime',
+         'massiveaction'    => false,
+      ];
 
       return $tab;
    }
