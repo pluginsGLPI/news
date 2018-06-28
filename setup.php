@@ -21,7 +21,12 @@
  --------------------------------------------------------------------------
 */
 
-define ('PLUGIN_NEWS_VERSION', '1.3.5');
+define ('PLUGIN_NEWS_VERSION', '1.4.0');
+
+// Minimal GLPI version, inclusive
+define("PLUGIN_NEWS_MIN_GLPI", "9.3");
+// Maximum GLPI version, exclusive
+define("PLUGIN_NEWS_MAX_GLPI", "9.4");
 
 function plugin_init_news() {
    global $PLUGIN_HOOKS, $CFG_GLPI;
@@ -65,19 +70,33 @@ function plugin_version_news() {
       'homepage'       => 'https://github.com/pluginsGLPI/news',
       'requirements'   => [
          'glpi' => [
-            'min' => '9.3',
-            'dev' => true
+            'min' => PLUGIN_NEWS_MIN_GLPI,
+            'max' => PLUGIN_NEWS_MAX_GLPI,
          ]
       ]
    ];
 }
 
 function plugin_news_check_prerequisites() {
-   $version = rtrim(GLPI_VERSION, '-dev');
-   if (version_compare($version, '9.3', 'lt')) {
-      echo "This version require GLPI 9.3";
-      return false;
+
+   //Version check is not done by core in GLPI < 9.2 but has to be delegated to core in GLPI >= 9.2.
+   if (!method_exists('Plugin', 'checkGlpiVersion')) {
+      $version = preg_replace('/^((\d+\.?)+).*$/', '$1', GLPI_VERSION);
+      $matchMinGlpiReq = version_compare($version, PLUGIN_NEWS_MIN_GLPI, '>=');
+      $matchMaxGlpiReq = version_compare($version, PLUGIN_NEWS_MAX_GLPI, '<');
+
+      if (!$matchMinGlpiReq || !$matchMaxGlpiReq) {
+         echo vsprintf(
+            'This plugin requires GLPI >= %1$s and < %2$s.',
+            [
+               PLUGIN_NEWS_MIN_GLPI,
+               PLUGIN_NEWS_MAX_GLPI,
+            ]
+         );
+         return false;
+      }
    }
+
    return true;
 }
 
