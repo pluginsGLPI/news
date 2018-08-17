@@ -61,8 +61,10 @@ class PluginNewsAlert_Target extends CommonDBTM {
 
    function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
       if ($item instanceof PluginNewsAlert) {
-         $nb = countElementsInTable(self::getTable(),
-                                    "`plugin_news_alerts_id` = ".$item->getID());
+         $nb = countElementsInTable(
+            self::getTable(),
+            ['plugin_news_alerts_id' => $item->getID()]
+         );
          return self::createTabEntry(self::getTypeName(Session::getPluralNumber()), $nb);
       }
    }
