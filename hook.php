@@ -44,7 +44,7 @@ function plugin_news_install() {
          `entities_id`          INT NOT NULL,
          `is_recursive`         TINYINT(1) NOT NULL DEFAULT 1,
          PRIMARY KEY (`id`)
-         ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+         ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
       ");
    }
 
@@ -58,7 +58,7 @@ function plugin_news_install() {
          PRIMARY KEY (`id`),
          UNIQUE KEY `state_for_user`
             (`plugin_news_alerts_id`,`users_id`,`state`)
-         ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+         ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
       ");
    }
 
@@ -72,7 +72,7 @@ function plugin_news_install() {
          PRIMARY KEY (`id`),
          UNIQUE KEY `alert_itemtype_items_id`
             (`plugin_news_alerts_id`, `itemtype`,`items_id`)
-         ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+         ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
       ");
    }
 
