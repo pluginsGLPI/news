@@ -5,21 +5,11 @@
    <logo>https://raw.githubusercontent.com/pluginsGLPI/news/master/pics/icon.png</logo>
    <description>
       <short>
-         <fr>Ce plugin permet d'afficher des messages sur la page d'accueil de GLPI.</fr>
          <en>This plugin allows to display messages on the GLPI's homepage.</en>
+         <cs>Tento zásuvný modul umožňuje zobrazovat zprávy na hlavní stránce rozhraní GLPI.</cs>
+         <fr>Ce plugin permet d'afficher des messages sur la page d'accueil de GLPI.</fr>
       </short>
       <long>
-         <fr>
-Ce plugin permet d'afficher des messages sur la page d'accueil de GLPI.
-
-Fonctionnalités
----------------
-
-1. Création d'une alerte avec du texte riche comme les notes.
-2. Choix d'une date de début / date de fin de publication.
-3. Gestion des alertes par entité.
-4. Affichage des alertes en fonction du profil.
-         </fr>
          <en>
 This plugin allows to display messages on the GLPI's homepage.
 
@@ -31,6 +21,28 @@ Features
 3. Manage alerts by entity.
 4. Displays the alerts according to the user's profile
          </en>
+         <cs>
+Tento zásuvný modul umožňuje zobrazování zpráv na hlavní stránce rozhraní GLPi.
+
+Funkce
+--------
+
+1. Vytvářet upozornění pomocí poznámek v podobě formátovaného textu.
+2. Zvolit datum požadovaného začátku a konce zveřejnění.
+3. Spravovat upozornění podle entit.
+4. Zobrazit upozornění v závislosti na profilu uživatele
+         </cs>
+         <fr>
+Ce plugin permet d'afficher des messages sur la page d'accueil de GLPI.
+
+Fonctionnalités
+---------------
+
+1. Création d'une alerte avec du texte riche comme les notes.
+2. Choix d'une date de début / date de fin de publication.
+3. Gestion des alertes par entité.
+4. Affichage des alertes en fonction du profil.
+         </fr>
       </long>
    </description>
    <homepage>https://github.com/pluginsGLPI/news</homepage>
@@ -41,6 +53,10 @@ Features
       <author>TECLIB'</author>
    </authors>
    <versions>
+      <version>
+         <num>1.4.1</num>
+         <compatibility>9.3</compatibility>
+      </version>
       <version>
          <num>1.4.0</num>
          <compatibility>9.3</compatibility>
@@ -102,20 +118,25 @@ Features
       </version>
    </versions>
    <langs>
-      <lang>fr_FR</lang>
+      <lang>cs_CZ</lang>
       <lang>en_GB</lang>
       <lang>es_ES</lang>
+      <lang>fr_FR</lang>
    </langs>
    <license>GPL v2+</license>
    <tags>
-      <fr>
-         <tag>gestion</tag>
-         <tag>configuration</tag>
-      </fr>
       <en>
          <tag>management</tag>
          <tag>setup</tag>
       </en>
+      <cs>
+         <tag>správa</tag>
+         <tag>nastavení</tag>
+      </cs>
+      <fr>
+         <tag>gestion</tag>
+         <tag>configuration</tag>
+      </fr>
    </tags>
    <screenshots>
       <screenshot>https://raw.githubusercontent.com/pluginsGLPI/news/master/screenshot.png</screenshot>

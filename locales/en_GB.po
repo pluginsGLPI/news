@@ -1,20 +1,20 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# English translations for PACKAGE package.
+# Copyright (C) 2018 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
-# Translators:
+# Automatically generated, 2018.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: GLPI Plugin - News\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-28 08:48+0000\n"
-"PO-Revision-Date: 2018-06-28 08:48+0000\n"
-"Last-Translator: Cédric Anne\n"
-"Language-Team: English (United Kingdom) (http://www.transifex.com/teclib/glpi-plugin-news/language/en_GB/)\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2018-09-10 08:41+0000\n"
+"PO-Revision-Date: 2018-09-10 08:41+0000\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
 "Language: en_GB\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: front/alert.php:27 front/alert.form.php:86 front/hidden_alerts.php:27
@@ -24,15 +24,15 @@ msgstr "Alerts"
 
 #: inc/alert.class.php:134 inc/alert.class.php:403
 msgid "Can close alert"
-msgstr ""
+msgstr "Can close alert"
 
 #: inc/alert.class.php:143 inc/alert.class.php:412
 msgid "Show on login page"
-msgstr ""
+msgstr "Show on login page"
 
 #: inc/alert.class.php:152 inc/alert.class.php:418
 msgid "Show on helpdesk page"
-msgstr ""
+msgstr "Show on helpdesk page"
 
 #: inc/alert.class.php:310
 msgid "Please enter a name."
@@ -48,24 +48,24 @@ msgstr "The end date must be greater than the start date."
 
 #: inc/alert.class.php:395
 msgid "Type (to add an icon before alert title)"
-msgstr ""
+msgstr "Type (to add an icon before alert title)"
 
 #: inc/alert.class.php:494
 msgid "You have hidden alerts valid for current date"
-msgstr ""
+msgstr "You have hidden alerts valid for current date"
 
 #: inc/alert.class.php:513
 msgid "General"
-msgstr ""
+msgstr "General"
 
 #: inc/alert.class.php:514
 msgid "Information"
-msgstr ""
+msgstr "Information"
 
 #: inc/alert.class.php:515
 msgid "Warning"
-msgstr ""
+msgstr "Warning"
 
 #: inc/alert.class.php:516
 msgid "Problem"
-msgstr ""
+msgstr "Problem"

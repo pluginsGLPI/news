@@ -1,26 +1,27 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
+# 
+# Translators:
+# liAnGjiA <liangjia@qq.com>, 2018
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-10 08:41+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2018-08-21 15:11+0000\n"
+"Last-Translator: Cédric Anne\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/teclib/glpi-plugin-news/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: front/alert.php:27 front/alert.form.php:86 front/hidden_alerts.php:27
 #: front/hidden_alerts.php:30 inc/alert.class.php:56 setup.php:66
 msgid "Alerts"
-msgstr ""
+msgstr "警告"
 
 #: inc/alert.class.php:134 inc/alert.class.php:403
 msgid "Can close alert"
@@ -28,7 +29,7 @@ msgstr ""
 
 #: inc/alert.class.php:143 inc/alert.class.php:412
 msgid "Show on login page"
-msgstr ""
+msgstr "登陆界面显示"
 
 #: inc/alert.class.php:152 inc/alert.class.php:418
 msgid "Show on helpdesk page"
@@ -36,36 +37,36 @@ msgstr ""
 
 #: inc/alert.class.php:310
 msgid "Please enter a name."
-msgstr ""
+msgstr "请输入一个名称。"
 
 #: inc/alert.class.php:314
 msgid "Please enter a message."
-msgstr ""
+msgstr "请输入信息。"
 
 #: inc/alert.class.php:320
 msgid "The end date must be greater than the start date."
-msgstr ""
+msgstr "结束日期不能早于起始日期啊。"
 
 #: inc/alert.class.php:395
 msgid "Type (to add an icon before alert title)"
-msgstr ""
+msgstr "类型（在警告标题之前添加图标）"
 
 #: inc/alert.class.php:494
 msgid "You have hidden alerts valid for current date"
-msgstr ""
+msgstr "您有针对当前日期有效的隐藏警报"
 
 #: inc/alert.class.php:513
 msgid "General"
-msgstr ""
+msgstr "常规"
 
 #: inc/alert.class.php:514
 msgid "Information"
-msgstr ""
+msgstr "信息"
 
 #: inc/alert.class.php:515
 msgid "Warning"
-msgstr ""
+msgstr "警告"
 
 #: inc/alert.class.php:516
 msgid "Problem"
-msgstr ""
+msgstr "问题"

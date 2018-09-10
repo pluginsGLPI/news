@@ -528,7 +528,7 @@ class PluginNewsAlert extends CommonDBTM {
          $itemtype    = get_class($item);
          $entities_id = isset($params['item']->fields['entities_id'])
             ? $params['item']->fields['entities_id']
-            : 0;
+            : false; // false to use current entity
          self::displayAlerts(['show_helpdesk_alerts' => true,
                               'show_hidden_alerts'   => false,
                               'entities_id'          => $entities_id
