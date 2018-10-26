@@ -246,13 +246,9 @@ class PluginNewsAlert extends CommonDBTM {
       //and not the current entity
       if ($p['show_helpdesk_alerts']) {
          $show_helpdesk_sql = " AND `$table`.`is_displayed_onhelpdesk`='1'";
-         $entity_sql = getEntitiesRestrictRequest(" AND", $table, "",
-                                                  $p['entities_id'], true);
-      } else if (!$p['show_only_login_alerts']) {
-         $entity_sql = getEntitiesRestrictRequest("AND", $table, "",
-                                                  $_SESSION['glpiactive_entity'],
-                                                  $_SESSION['glpiactive_entity_recursive'],
-                                                  true);
+      }
+      if (!$p['show_only_login_alerts']) {
+         $entity_sql = getEntitiesRestrictRequest("AND", $table, "", $p['entities_id'], true);
       }
 
       $query = "SELECT DISTINCT `$table`.`id`, `$table`.*
