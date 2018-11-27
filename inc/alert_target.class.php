@@ -106,7 +106,7 @@ class PluginNewsAlert_Target extends CommonDBTM {
 
       echo "<div class='spaced'>";
       $target       = new self();
-      $found_target = $target->find("`plugin_news_alerts_id` = ".$alert->getID());
+      $found_target = $target->find(['plugin_news_alerts_id' => $alert->getID()]);
       if ($nb = count($found_target) > 0) {
          Html::openMassiveActionsForm('mass'.__CLASS__.$rand);
          $massiveactionparams

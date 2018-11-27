@@ -25,7 +25,7 @@ function plugin_news_install() {
    global $DB;
 
    $plugin     = new Plugin();
-   $found      = $plugin->find("name = 'news'");
+   $found      = $plugin->find(['name' => 'news']);
    $pluginNews = array_shift($found);
    $migration  = new Migration($pluginNews['version']);
 
@@ -144,7 +144,7 @@ function plugin_news_install() {
 
    // install default display preferences
    $dpreferences = new DisplayPreference;
-   $found_dpref = $dpreferences->find("`itemtype` LIKE '%PluginNews%'");
+   $found_dpref = $dpreferences->find(['itemtype' => ['LIKE', '%PluginNews%']]);
    if (count($found_dpref) == 0) {
       $DB->query("INSERT INTO `glpi_displaypreferences`
                      (`itemtype`, `num`, `rank`, `users_id`)
