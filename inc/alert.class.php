@@ -206,7 +206,7 @@ class PluginNewsAlert extends CommonDBTM {
       $group_u  = new Group_User();
       $fndgroup = [];
       if (isset($_SESSION['glpiID'])
-          && $fndgroup_user = $group_u->find("users_id = ".$_SESSION['glpiID'])) {
+          && $fndgroup_user = $group_u->find(['users_id' => $_SESSION['glpiID']])) {
          foreach ($fndgroup_user as $group) {
             $fndgroup[] = $group['groups_id'];
          }
