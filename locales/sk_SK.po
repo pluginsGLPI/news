@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-10 08:41+0000\n"
+"POT-Creation-Date: 2019-02-15 09:41+0000\n"
 "PO-Revision-Date: 2018-12-03 09:43+0000\n"
 "Last-Translator: feonsu <feonsu@gmail.com>\n"
 "Language-Team: Slovak (Slovakia) (http://www.transifex.com/teclib/glpi-plugin-news/language/sk_SK/)\n"
@@ -19,54 +19,54 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
 
 #: front/alert.php:27 front/alert.form.php:86 front/hidden_alerts.php:27
-#: front/hidden_alerts.php:30 inc/alert.class.php:56 setup.php:66
+#: front/hidden_alerts.php:30 inc/alert.class.php:48 setup.php:66
 msgid "Alerts"
 msgstr "Upozornenia"
 
-#: inc/alert.class.php:134 inc/alert.class.php:403
+#: inc/alert.class.php:126 inc/alert.class.php:391
 msgid "Can close alert"
 msgstr "Upozornenie je možné zavrieť"
 
-#: inc/alert.class.php:143 inc/alert.class.php:412
+#: inc/alert.class.php:135 inc/alert.class.php:400
 msgid "Show on login page"
 msgstr "Zobraziť na prihlasovacej stránke"
 
-#: inc/alert.class.php:152 inc/alert.class.php:418
+#: inc/alert.class.php:144 inc/alert.class.php:406
 msgid "Show on helpdesk page"
 msgstr "Zobraziť na stránke helpdesku"
 
-#: inc/alert.class.php:310
+#: inc/alert.class.php:298
 msgid "Please enter a name."
 msgstr "Zadajte názov."
 
-#: inc/alert.class.php:314
+#: inc/alert.class.php:302
 msgid "Please enter a message."
 msgstr "Zadajte správu."
 
-#: inc/alert.class.php:320
+#: inc/alert.class.php:308
 msgid "The end date must be greater than the start date."
 msgstr "Dátum ukončenia musí byť neskorší ako počiatočný."
 
-#: inc/alert.class.php:395
+#: inc/alert.class.php:383
 msgid "Type (to add an icon before alert title)"
 msgstr "Typ (pre pridanie ikony pred názov upozornenia)"
 
-#: inc/alert.class.php:494
+#: inc/alert.class.php:482
 msgid "You have hidden alerts valid for current date"
 msgstr "Máte skryté upozornenia platné pre aktuálny dátum"
 
-#: inc/alert.class.php:513
+#: inc/alert.class.php:501
 msgid "General"
 msgstr "Všeobecné"
 
-#: inc/alert.class.php:514
+#: inc/alert.class.php:502
 msgid "Information"
 msgstr "Imformácia"
 
-#: inc/alert.class.php:515
+#: inc/alert.class.php:503
 msgid "Warning"
 msgstr "Varovanie"
 
-#: inc/alert.class.php:516
+#: inc/alert.class.php:504
 msgid "Problem"
 msgstr "Problém"
