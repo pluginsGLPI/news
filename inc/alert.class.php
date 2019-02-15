@@ -34,16 +34,8 @@ class PluginNewsAlert extends CommonDBTM {
    const WARNING = 3;
    const PROBLEM = 4;
 
-   static function canCreate() {
-      return self::canUpdate();
-   }
-
    static function canDelete() {
-      return self::canUpdate();
-   }
-
-   static function canPurge() {
-      return self::canUpdate();
+      return self::canPurge();
    }
 
    /**

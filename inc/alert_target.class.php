@@ -26,7 +26,7 @@ if (!defined('GLPI_ROOT')) {
 }
 
 class PluginNewsAlert_Target extends CommonDBTM {
-   static $rightname = 'entity';
+   static $rightname = 'reminder_public';
 
    static function getTypeName($nb = 0) {
       return _n('Target', 'Targets', $nb);
