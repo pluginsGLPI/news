@@ -33,7 +33,11 @@ class PluginNewsAlert_Target extends CommonDBTM {
    }
 
    static function canDelete() {
-      return self::canPurge();
+      return self::canUpdate();
+   }
+
+   static function canPurge() {
+      return self::canUpdate();
    }
 
    static function getSpecificValueToDisplay($field, $values, array $options = []) {

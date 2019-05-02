@@ -3,21 +3,20 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Andrei Bernardo Simoni <andrei_simoni@hotmail.com>, 2017
-# Deivid Valença de Araujo <deivid_valenca_araujo@yahoo.com.br>, 2019
+# Rui Melo <viper5000pt@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-15 09:41+0000\n"
-"PO-Revision-Date: 2019-03-02 15:32+0000\n"
-"Last-Translator: Deivid Valença de Araujo <deivid_valenca_araujo@yahoo.com.br>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/teclib/glpi-plugin-news/language/pt_BR/)\n"
+"PO-Revision-Date: 2019-02-26 14:15+0000\n"
+"Last-Translator: Rui Melo <viper5000pt@gmail.com>\n"
+"Language-Team: Portuguese (Portugal) (http://www.transifex.com/teclib/glpi-plugin-news/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: pt_BR\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: pt_PT\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: front/alert.php:27 front/alert.form.php:86 front/hidden_alerts.php:27
 #: front/hidden_alerts.php:30 inc/alert.class.php:48 setup.php:66
@@ -26,35 +25,35 @@ msgstr "Alertas"
 
 #: inc/alert.class.php:126 inc/alert.class.php:391
 msgid "Can close alert"
-msgstr "Alerta pode ser fechado"
+msgstr "Posso fechar um alerta"
 
 #: inc/alert.class.php:135 inc/alert.class.php:400
 msgid "Show on login page"
-msgstr "Mostrar na pagina de login"
+msgstr "Mostrar Página de Login"
 
 #: inc/alert.class.php:144 inc/alert.class.php:406
 msgid "Show on helpdesk page"
-msgstr "Mostrar na página de helpdesk "
+msgstr "Mostrar paginas de Helpdesk"
 
 #: inc/alert.class.php:298
 msgid "Please enter a name."
-msgstr "Digite um nome."
+msgstr "Inserir o nome."
 
 #: inc/alert.class.php:302
 msgid "Please enter a message."
-msgstr "Digite uma mensagem."
+msgstr "Inserir Mensagem."
 
 #: inc/alert.class.php:308
 msgid "The end date must be greater than the start date."
-msgstr "A data de término deve ser maior que a data de início."
+msgstr ".A tem tem que ser após a data de inicio "
 
 #: inc/alert.class.php:383
 msgid "Type (to add an icon before alert title)"
-msgstr "Digite (para adicionar um ícone antes do título do alerta)"
+msgstr "Tipo (para adicionar antes do nome do alerta)"
 
 #: inc/alert.class.php:482
 msgid "You have hidden alerts valid for current date"
-msgstr "Você tem alertas ocultos válidos para a data atual"
+msgstr "Alertas ocultados na data atual"
 
 #: inc/alert.class.php:501
 msgid "General"
@@ -66,7 +65,7 @@ msgstr "Informação"
 
 #: inc/alert.class.php:503
 msgid "Warning"
-msgstr "Atenção"
+msgstr "Aviso"
 
 #: inc/alert.class.php:504
 msgid "Problem"
