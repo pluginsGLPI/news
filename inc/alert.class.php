@@ -345,7 +345,7 @@ class PluginNewsAlert extends CommonDBTM {
 
       echo "<tr  class='tab_bg_1'>";
       echo '<td style="width: 150px">' . __('Name') .'</td>';
-      echo '<td colspan="3"><input name="name" type="text" value="'.$this->getField('name').'" style="width: 565px" /></td>';
+      echo '<td colspan="3"><input name="name" type="text" value="'.Html::cleanInputText($this->getField('name')).'" style="width: 565px" /></td>';
       echo '</tr>';
 
       echo "<tr class='tab_bg_1'><td>".__('Active')."</td><td colspan='3'>";
