@@ -47,7 +47,7 @@ function plugin_init_news() {
          "PluginNewsAlert", "displayOnCentral"
       ];
 
-      $PLUGIN_HOOKS['pre_item_form']['alert'] = ['PluginNewsAlert', 'preItemForm'];
+      $PLUGIN_HOOKS['pre_item_form']['news'] = ['PluginNewsAlert', 'preItemForm'];
 
       if (Session::haveRight('reminder_public', READ)) {
          $PLUGIN_HOOKS['menu_toadd']['news'] = [
