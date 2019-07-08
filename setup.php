@@ -21,7 +21,7 @@
  --------------------------------------------------------------------------
 */
 
-define ('PLUGIN_NEWS_VERSION', '1.5.3');
+define ('PLUGIN_NEWS_VERSION', '1.5.4');
 
 // Minimal GLPI version, inclusive
 define("PLUGIN_NEWS_MIN_GLPI", "9.4");
@@ -47,7 +47,7 @@ function plugin_init_news() {
          "PluginNewsAlert", "displayOnCentral"
       ];
 
-      $PLUGIN_HOOKS['pre_item_form']['alert'] = ['PluginNewsAlert', 'preItemForm'];
+      $PLUGIN_HOOKS['pre_item_form']['news'] = ['PluginNewsAlert', 'preItemForm'];
 
       if (Session::haveRight('reminder_public', READ)) {
          $PLUGIN_HOOKS['menu_toadd']['news'] = [
