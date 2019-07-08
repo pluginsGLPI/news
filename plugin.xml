@@ -54,6 +54,10 @@ Fonctionnalités
    </authors>
    <versions>
       <version>
+         <num>1.5.4</num>
+         <compatibility>9.4</compatibility>
+      </version>
+      <version>
          <num>1.5.3</num>
          <compatibility>9.4</compatibility>
       </version>
