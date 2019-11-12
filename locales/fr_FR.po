@@ -5,13 +5,14 @@
 # Translators:
 # alexandre delaunay <delaunay.alexandre@gmail.com>, 2016
 # Cédric Anne, 2018
+# Christophe Brissy <metastase83@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-15 09:41+0000\n"
-"PO-Revision-Date: 2018-08-21 15:11+0000\n"
-"Last-Translator: Cédric Anne\n"
+"POT-Creation-Date: 2019-11-12 10:18+0000\n"
+"PO-Revision-Date: 2019-09-09 13:36+0000\n"
+"Last-Translator: Christophe Brissy <metastase83@gmail.com>\n"
 "Language-Team: French (France) (http://www.transifex.com/teclib/glpi-plugin-news/language/fr_FR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,7 +27,7 @@ msgstr "Alertes"
 
 #: inc/alert.class.php:126 inc/alert.class.php:391
 msgid "Can close alert"
-msgstr ""
+msgstr "Peut fermer l'alerte"
 
 #: inc/alert.class.php:135 inc/alert.class.php:400
 msgid "Show on login page"
@@ -34,7 +35,7 @@ msgstr "Affiche sur la page de connexion"
 
 #: inc/alert.class.php:144 inc/alert.class.php:406
 msgid "Show on helpdesk page"
-msgstr ""
+msgstr "Affiche sur la page d'accueil de la Hotline"
 
 #: inc/alert.class.php:298
 msgid "Please enter a name."
