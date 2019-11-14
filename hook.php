@@ -30,11 +30,11 @@ function plugin_news_install() {
       $DB->query("
          CREATE TABLE IF NOT EXISTS `glpi_plugin_news_alerts` (
          `id`                   INT NOT NULL AUTO_INCREMENT,
-         `date_mod`             DATETIME NOT NULL,
+         `date_mod`             TIMESTAMP NOT NULL,
          `name`                 VARCHAR(255) NOT NULL,
          `message`              TEXT NOT NULL,
-         `date_start`           DATETIME DEFAULT NULL,
-         `date_end`             DATETIME DEFAULT NULL,
+         `date_start`           TIMESTAMP NULL DEFAULT NULL,
+         `date_end`             TIMESTAMP NULL DEFAULT NULL,
          `type`                 INT NOT NULL,
          `is_deleted`           TINYINT(1) NOT NULL DEFAULT 0,
          `is_displayed_onlogin` TINYINT(1) NOT NULL,
@@ -112,7 +112,7 @@ function plugin_news_install() {
    }
 
    // fix is_default default value
-   $alert_fields = $DB->list_fields("glpi_plugin_news_alerts");
+   $alert_fields = $DB->listFields('glpi_plugin_news_alerts');
    if ($alert_fields['is_deleted']['Default'] !== '0') {
       $migration->changeField("glpi_plugin_news_alerts",
                            "is_deleted", "is_deleted",
@@ -122,10 +122,10 @@ function plugin_news_install() {
    // end/start dates can be null
    $migration->changeField("glpi_plugin_news_alerts",
                            "date_end", "date_end",
-                           "DATETIME DEFAULT NULL");
+                           "TIMESTAMP NULL DEFAULT NULL");
    $migration->changeField("glpi_plugin_news_alerts",
                            "date_start", "date_start",
-                           "DATETIME DEFAULT NULL");
+                           "TIMESTAMP NULL DEFAULT NULL");
 
    if ($DB->fieldExists("glpi_plugin_news_alerts", "profiles_id")) {
       // migration of direct profiles into targets table
