@@ -112,7 +112,10 @@ function plugin_news_install() {
    }
 
    // fix is_default default value
-   $alert_fields = $DB->list_fields("glpi_plugin_news_alerts");
+   $table = 'glpi_plugin_news_alerts';
+   $alert_fields = method_exists($DB, 'listFields')
+      ? $DB->listFields($table)
+      : $DB->list_fields($table);
    if ($alert_fields['is_deleted']['Default'] !== '0') {
       $migration->changeField("glpi_plugin_news_alerts",
                            "is_deleted", "is_deleted",
