@@ -44,7 +44,8 @@
 }
 .plugin_news_alert-login .expanded .plugin_news_alert-content {
    padding: 5px 15px;
-   max-height: 500px;
+   max-height: 300px;
+   overflow-y: auto;
    transition: max-height .25s ease-in;
    transition: padding .25s ease-in;
 }
