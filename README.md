@@ -1,19 +1,41 @@
-# GLPi News plugin
+# News GLPI plugin
 
-![Accueil](/screenshot.png "Message en page d'accueil.")
+[![License](https://img.shields.io/github/license/pluginsGLPI/news.svg?&label=License)](https://github.com/pluginsGLPI/news/blob/develop/LICENSE)
+[![Follow twitter](https://img.shields.io/twitter/follow/Teclib.svg?style=social&label=Twitter&style=flat-square)](https://twitter.com/teclib)
+[![Telegram Group](https://img.shields.io/badge/Telegram-Group-blue.svg)](https://t.me/glpien)
+[![Project Status: Active](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![GitHub release](https://img.shields.io/github/release/pluginsGLPI/news.svg)](https://github.com/pluginsGLPI/news/releases)
+[![GitHub build](https://travis-ci.org/pluginsGLPI/news.svg?)](https://travis-ci.org/pluginsGLPI/news/)
 
-## Introduction (en)
+![Screenshot](./news.gif "Alert")
 
-This plugin allows to display news messages on GLPi homepage.
 
-### Features
+This plugin allows to display alerts messages on GLPI homepage and / or login page.
 
 1. Create alert with rich text as for notes.
 2. Choice of begin/end publication date.
 3. Manage alerts by entity.
-4. Display alerts regarding to profile.
+4. Target : display alerts by profile / group / user.
 
-### Contributing
+
+## Documentation
+
+We maintain a detailed documentation here -> [Documentation](https://glpi-plugins.readthedocs.io/en/latest/news/index.html)
+
+## Contact
+
+For notices about major changes and general discussion of news, subscribe to the [/r/glpi](https://www.reddit.com/r/glpi/) subreddit.
+You can also chat with us via IRC in [#glpi on freenode](http://webchat.freenode.net/?channels=glpi) or [@glpi on Telegram](https://t.me/glpien).
+
+## Professional Services
+
+![GLPI Network](./glpi_network.png "GLPI network")
+
+The GLPI Network services are available through our [Partner's Network](http://www.teclib-edition.com/en/partners/). We provide special training, bug fixes with editor subscription, contributions for new features, and more.
+
+Obtain a personalized service experience, associated with benefits and opportunities.
+
+## Contributing
 
 * Open a ticket for each bug/feature so it can be discussed
 * Follow [development guidelines](http://glpi-developer-documentation.readthedocs.io/en/latest/plugins/index.html)
@@ -21,21 +43,7 @@ This plugin allows to display news messages on GLPi homepage.
 * Work on a new branch on your own fork
 * Open a PR that will be reviewed by a developer
 
-## Introduction (fr)
+## Copying
 
-Ce plugin permet d'afficher des messages sur la page d'accueil de GLPI.
-
-### Fonctionnalités
-
-1. Création d'une alerte avec du texte riche comme les notes.
-2. Choix d'une date de début / date de fin de publication.
-3. Gestion des alertes par entité.
-4. Affichage des alertes en fonction du profil.
-
-### Contribuer
-
-* Ouvrez un ticket pour chaque bogue/fonctionnalité que cela puisse être discuté
-* Suivez [les règles de développement](http://glpi-developer-documentation.readthedocs.io/en/latest/plugins/index.html)
-* Référez-vous au processus [GitFlow](http://git-flow.readthedocs.io/) pour gérer les branches
-* Travaillez sur une nouvelle branche sur votre fork
-* Ouvrez une PR qui sera revue par un développeur
+* **Code**: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License ([GPL-2.0](https://www.gnu.org/licenses/gpl-2.0.en.html)).
