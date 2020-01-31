@@ -24,10 +24,7 @@
 function plugin_news_install() {
    global $DB;
 
-   $plugin     = new Plugin();
-   $found      = $plugin->find(['name' => 'news']);
-   $pluginNews = array_shift($found);
-   $migration  = new Migration($pluginNews['version']);
+   $migration = new Migration(Plugin::getInfo('news', 'version'));
 
    if (! $DB->tableExists('glpi_plugin_news_alerts')) {
       $DB->query("
