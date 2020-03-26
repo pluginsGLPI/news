@@ -99,7 +99,7 @@ class PluginNewsAlert_Target extends CommonDBTM {
                   'is_recursive' => $alert->fields['is_recursive']
                   ];
       Ajax::updateItemOnSelectEvent("dropdown_itemtype".$addrand, "visibility$rand",
-                                    $CFG_GLPI["root_doc"]."/plugins/news/ajax/targets.php",
+                                    Plugin::getWebDir('news', false)."/ajax/targets.php",
                                     $params);
       echo "<td>";
       echo "<span id='visibility$rand'></span>";

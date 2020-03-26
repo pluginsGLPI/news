@@ -421,14 +421,7 @@ class PluginNewsAlert extends CommonDBTM {
    }
 
    static function displayOnLogin() {
-      global $CFG_GLPI;
-
-      $prefix = "";
-      if (version_compare(GLPI_VERSION, '9.2', 'lt')) {
-         $prefix = $CFG_GLPI["root_doc"];
-      }
-
-      echo Html::css($prefix."/plugins/news/css/styles.css");
+      echo Html::css(Plugin::getWebDir('news', false)."/css/styles.css");
       echo "<div class='plugin_news_alert-login'>";
       self::displayAlerts(['show_only_login_alerts' => true]);
       echo "</div>";
@@ -477,8 +470,7 @@ class PluginNewsAlert extends CommonDBTM {
                                              'show_hidden_alerts'     => true])
           && !$p['show_hidden_alerts']) {
          echo "<div class='center'>";
-         echo "<a href='".$CFG_GLPI['root_doc'].
-                          "/plugins/news/front/hidden_alerts.php'>";
+         echo "<a href='".Plugin::getWebDir('news')."/front/hidden_alerts.php'>";
          echo __("You have hidden alerts valid for current date", 'news');
          echo "</a>";
          echo "</div>";
@@ -486,14 +478,7 @@ class PluginNewsAlert extends CommonDBTM {
       echo "</div>";
 
       if ($p['show_only_login_alerts']) {
-         $prefix = "";
-         if (version_compare(GLPI_VERSION, '9.2', 'lt')) {
-            $prefix = $CFG_GLPI["root_doc"];
-         }
-
-         echo Html::script($prefix."/lib/jquery/js/jquery-1.10.2.min.js");
-         echo Html::script($prefix."/lib/jquery/js/jquery-ui-1.10.4.custom.min.js");
-         echo Html::script($prefix."/plugins/news/js/news.js");
+         echo Html::script(Plugin::getWebDir('news', false)."/js/news.js");
       }
    }
 
