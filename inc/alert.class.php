@@ -509,4 +509,9 @@ class PluginNewsAlert extends CommonDBTM {
          echo "</br>";
       }
    }
+
+
+   static function getIcon() {
+      return "fas fa-bell";
+   }
 }
