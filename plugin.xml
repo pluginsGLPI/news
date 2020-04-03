@@ -48,7 +48,7 @@ Fonctionnalités
    <homepage>https://github.com/pluginsGLPI/news</homepage>
    <download>https://github.com/pluginsGLPI/news/releases</download>
    <issues>https://github.com/pluginsGLPI/news/issues</issues>
-   <readme>https://github.com/pluginsGLPI/news/blob/master/README.md</readme>
+   <readme>https://glpi-plugins.readthedocs.io/en/latest/news/index.html</readme>
    <authors>
       <author>TECLIB'</author>
    </authors>
