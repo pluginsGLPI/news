@@ -1,14 +1,14 @@
 # English translations for PACKAGE package.
-# Copyright (C) 2019 THE PACKAGE'S COPYRIGHT HOLDER
+# Copyright (C) 2020 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Automatically generated, 2019.
+# Automatically generated, 2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-12 10:18+0000\n"
-"PO-Revision-Date: 2019-11-12 10:18+0000\n"
+"POT-Creation-Date: 2020-07-03 19:34+0000\n"
+"PO-Revision-Date: 2020-07-03 19:34+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en_GB\n"
@@ -50,22 +50,22 @@ msgstr "The end date must be greater than the start date."
 msgid "Type (to add an icon before alert title)"
 msgstr "Type (to add an icon before alert title)"
 
-#: inc/alert.class.php:482
+#: inc/alert.class.php:474
 msgid "You have hidden alerts valid for current date"
 msgstr "You have hidden alerts valid for current date"
 
-#: inc/alert.class.php:501
+#: inc/alert.class.php:486
 msgid "General"
 msgstr "General"
 
-#: inc/alert.class.php:502
+#: inc/alert.class.php:487
 msgid "Information"
 msgstr "Information"
 
-#: inc/alert.class.php:503
+#: inc/alert.class.php:488
 msgid "Warning"
 msgstr "Warning"
 
-#: inc/alert.class.php:504
+#: inc/alert.class.php:489
 msgid "Problem"
 msgstr "Problem"

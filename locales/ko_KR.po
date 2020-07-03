@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-12 10:18+0000\n"
+"POT-Creation-Date: 2020-07-03 19:34+0000\n"
 "PO-Revision-Date: 2020-01-30 02:05+0000\n"
 "Last-Translator: SeongHyeon Cho <jaymz9634@gmail.com>\n"
 "Language-Team: Korean (Korea) (http://www.transifex.com/teclib/glpi-plugin-news/language/ko_KR/)\n"
@@ -51,22 +51,22 @@ msgstr "종료 일자는 시작 일자보다 커야 합니다."
 msgid "Type (to add an icon before alert title)"
 msgstr "유형 (경고 제목 앞에 추가할 아이콘)"
 
-#: inc/alert.class.php:482
+#: inc/alert.class.php:474
 msgid "You have hidden alerts valid for current date"
 msgstr "현재 날짜에 대한 숨겨진 경고가 있습니다"
 
-#: inc/alert.class.php:501
+#: inc/alert.class.php:486
 msgid "General"
 msgstr "일반"
 
-#: inc/alert.class.php:502
+#: inc/alert.class.php:487
 msgid "Information"
 msgstr "정보"
 
-#: inc/alert.class.php:503
+#: inc/alert.class.php:488
 msgid "Warning"
 msgstr "경고"
 
-#: inc/alert.class.php:504
+#: inc/alert.class.php:489
 msgid "Problem"
 msgstr "문제"

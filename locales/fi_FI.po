@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-12 10:18+0000\n"
+"POT-Creation-Date: 2020-07-03 19:34+0000\n"
 "PO-Revision-Date: 2018-11-06 17:00+0000\n"
 "Last-Translator: Markku Vepsä\n"
 "Language-Team: Finnish (Finland) (http://www.transifex.com/teclib/glpi-plugin-news/language/fi_FI/)\n"
@@ -51,22 +51,22 @@ msgstr "Päättymispäivän on oltava myöhäisempi kuin alkamispäivän."
 msgid "Type (to add an icon before alert title)"
 msgstr "Tyyppi (lisätäksesi kuvakkeen ennen hälytysnimeä)"
 
-#: inc/alert.class.php:482
+#: inc/alert.class.php:474
 msgid "You have hidden alerts valid for current date"
 msgstr "Sinulla on piilotettuja hälytyksiä, jotka ovat voimassa nykyiselle päivämäärälle"
 
-#: inc/alert.class.php:501
+#: inc/alert.class.php:486
 msgid "General"
 msgstr "Yleinen"
 
-#: inc/alert.class.php:502
+#: inc/alert.class.php:487
 msgid "Information"
 msgstr "Tietoja"
 
-#: inc/alert.class.php:503
+#: inc/alert.class.php:488
 msgid "Warning"
 msgstr "Varoitus"
 
-#: inc/alert.class.php:504
+#: inc/alert.class.php:489
 msgid "Problem"
 msgstr "Ongelma"
