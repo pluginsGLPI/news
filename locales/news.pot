@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-12 10:18+0000\n"
+"POT-Creation-Date: 2020-07-03 19:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,22 +50,22 @@ msgstr ""
 msgid "Type (to add an icon before alert title)"
 msgstr ""
 
-#: inc/alert.class.php:482
+#: inc/alert.class.php:474
 msgid "You have hidden alerts valid for current date"
 msgstr ""
 
-#: inc/alert.class.php:501
+#: inc/alert.class.php:486
 msgid "General"
 msgstr ""
 
-#: inc/alert.class.php:502
+#: inc/alert.class.php:487
 msgid "Information"
 msgstr ""
 
-#: inc/alert.class.php:503
+#: inc/alert.class.php:488
 msgid "Warning"
 msgstr ""
 
-#: inc/alert.class.php:504
+#: inc/alert.class.php:489
 msgid "Problem"
 msgstr ""

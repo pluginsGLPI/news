@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Alexander J. Salas B. <inactive+alexandersalas@transifex.com>, 2016
+# 5b63a00e0726b96d7ef35c99d5553cd0_b787b5f <8bb2d0f7e8927228f17fba8639d787be_31711>, 2016
 # JAVIER ANDREU <jandreugx@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-12 10:18+0000\n"
+"POT-Creation-Date: 2020-07-03 19:34+0000\n"
 "PO-Revision-Date: 2018-08-21 15:11+0000\n"
 "Last-Translator: Cédric Anne\n"
 "Language-Team: Spanish (Spain) (http://www.transifex.com/teclib/glpi-plugin-news/language/es_ES/)\n"
@@ -52,22 +52,22 @@ msgstr "La fecha de finalización debe ser mayor que la fecha de inicio."
 msgid "Type (to add an icon before alert title)"
 msgstr "Escriba (para añadir un icono antes del título de alerta)"
 
-#: inc/alert.class.php:482
+#: inc/alert.class.php:474
 msgid "You have hidden alerts valid for current date"
 msgstr "Ha ocultado alertas válidas para la fecha actual"
 
-#: inc/alert.class.php:501
+#: inc/alert.class.php:486
 msgid "General"
 msgstr "General"
 
-#: inc/alert.class.php:502
+#: inc/alert.class.php:487
 msgid "Information"
 msgstr "Información"
 
-#: inc/alert.class.php:503
+#: inc/alert.class.php:488
 msgid "Warning"
 msgstr "Advertencia"
 
-#: inc/alert.class.php:504
+#: inc/alert.class.php:489
 msgid "Problem"
 msgstr "Problema"
