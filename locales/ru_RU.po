@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-12 10:18+0000\n"
+"POT-Creation-Date: 2020-07-03 19:34+0000\n"
 "PO-Revision-Date: 2018-08-21 15:11+0000\n"
 "Last-Translator: Cédric Anne\n"
 "Language-Team: Russian (Russia) (http://www.transifex.com/teclib/glpi-plugin-news/language/ru_RU/)\n"
@@ -53,22 +53,22 @@ msgstr "Дата окончания должна быть позже даты н
 msgid "Type (to add an icon before alert title)"
 msgstr "Введите (добавить иконку перед заголовком оповещения)"
 
-#: inc/alert.class.php:482
+#: inc/alert.class.php:474
 msgid "You have hidden alerts valid for current date"
 msgstr "У вас есть скрытые оповещения действующие на текущую дату"
 
-#: inc/alert.class.php:501
+#: inc/alert.class.php:486
 msgid "General"
 msgstr "Общий"
 
-#: inc/alert.class.php:502
+#: inc/alert.class.php:487
 msgid "Information"
 msgstr "Информация"
 
-#: inc/alert.class.php:503
+#: inc/alert.class.php:488
 msgid "Warning"
 msgstr "Предупреждение"
 
-#: inc/alert.class.php:504
+#: inc/alert.class.php:489
 msgid "Problem"
 msgstr "Проблема"

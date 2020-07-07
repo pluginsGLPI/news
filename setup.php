@@ -21,12 +21,12 @@
  --------------------------------------------------------------------------
 */
 
-define ('PLUGIN_NEWS_VERSION', '1.6.0');
+define ('PLUGIN_NEWS_VERSION', '1.7.0');
 
 // Minimal GLPI version, inclusive
-define("PLUGIN_NEWS_MIN_GLPI", "9.4");
+define("PLUGIN_NEWS_MIN_GLPI", "9.5");
 // Maximum GLPI version, exclusive
-define("PLUGIN_NEWS_MAX_GLPI", "9.5");
+define("PLUGIN_NEWS_MAX_GLPI", "9.6");
 
 function plugin_init_news() {
    global $PLUGIN_HOOKS, $CFG_GLPI;
@@ -75,31 +75,4 @@ function plugin_version_news() {
          ]
       ]
    ];
-}
-
-function plugin_news_check_prerequisites() {
-
-   //Version check is not done by core in GLPI < 9.2 but has to be delegated to core in GLPI >= 9.2.
-   if (!method_exists('Plugin', 'checkGlpiVersion')) {
-      $version = preg_replace('/^((\d+\.?)+).*$/', '$1', GLPI_VERSION);
-      $matchMinGlpiReq = version_compare($version, PLUGIN_NEWS_MIN_GLPI, '>=');
-      $matchMaxGlpiReq = version_compare($version, PLUGIN_NEWS_MAX_GLPI, '<');
-
-      if (!$matchMinGlpiReq || !$matchMaxGlpiReq) {
-         echo vsprintf(
-            'This plugin requires GLPI >= %1$s and < %2$s.',
-            [
-               PLUGIN_NEWS_MIN_GLPI,
-               PLUGIN_NEWS_MAX_GLPI,
-            ]
-         );
-         return false;
-      }
-   }
-
-   return true;
-}
-
-function plugin_news_check_config() {
-   return true;
 }
