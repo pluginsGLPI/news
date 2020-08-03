@@ -25,8 +25,15 @@ if (!defined('GLPI_ROOT')) {
    die("Sorry. You can't access directly to this file");
 }
 
-class PluginNewsAlert_User extends CommonDBTM {
+class PluginNewsAlert_User extends CommonDBRelation {
    const HIDDEN = 1;
+
+   static public $itemtype_1 = 'PluginNewsAlert';
+   static public $items_id_1 = 'plugin_news_alerts_id';
+   static public $checkItem_1_Rights = self::HAVE_VIEW_RIGHT_ON_ITEM;
+
+   static public $itemtype_2 = 'User';
+   static public $items_id_2 = 'users_id';
 
    static function hideAlert($params = []) {
       global $DB;
@@ -43,5 +50,27 @@ class PluginNewsAlert_User extends CommonDBTM {
                            VALUES
                            ($users_id, $plugin_news_alerts_id, ".self::HIDDEN.")";
       return $res_hidealert = $DB->query($query_hidealert);
+   }
+
+   public function canCreateItem() {
+      if ($this->fields['users_id'] != Session::getLoginUserID()) {
+         return false;
+      }
+
+      return true;
+   }
+
+   public function rawSearchOptions() {
+      $tab = parent::rawSearchOptions();
+
+      $tab[] = [
+         'id'               => 5,
+         'table'            => $this->getTable(),
+         'field'            => 'state',
+         'name'             => __('Status'),
+         'datatype'         => 'dropdown',
+      ];
+
+      return $tab;
    }
 }
