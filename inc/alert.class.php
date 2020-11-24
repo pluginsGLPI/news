@@ -456,12 +456,12 @@ class PluginNewsAlert extends CommonDBTM {
             if ($p['show_only_login_alerts']) {
                echo "<a class='plugin_news_alert-toggle'></a>";
             }
-            echo "<div class='plugin_news_alert-title'>";
+            echo "<div class='plugin_news_alert-title ui-widget-header'>";
             echo "<span class='plugin_news_alert-icon type_$type'></span>";
             echo "<div class='plugin_news_alert-title-content'>$title</div>";
             echo "<div class='plugin_news_alert-date'>$date_start$date_end</div>";
             echo "</div>";
-            echo "<div class='plugin_news_alert-content'>$content</div>";
+            echo "<div class='plugin_news_alert-content ui-widget-content'>$content</div>";
             echo "</div>";
          }
       }
