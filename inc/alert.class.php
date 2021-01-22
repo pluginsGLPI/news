@@ -180,10 +180,10 @@ class PluginNewsAlert extends CommonDBTM {
    public static function findAllToNotify($params = []) {
       global $DB;
 
-      $p['show_only_login_alerts'] = false;
-      $p['show_hidden_alerts']     = false;
-      $p['show_helpdesk_alerts']   = false;
-      $p['entities_id']            = false;
+      $p['show_only_login_alerts']     = false;
+      $p['show_hidden_alerts']         = false;
+      $p['show_only_helpdesk_alerts']  = false;
+      $p['entities_id']                = false;
       foreach ($params as $key => $value) {
          $p[$key] = $value;
       }
@@ -236,7 +236,7 @@ class PluginNewsAlert extends CommonDBTM {
 
       //If the alert must be displayed on helpdesk form : filter by ticket's entity
       //and not the current entity
-      if ($p['show_helpdesk_alerts']) {
+      if ($p['show_only_helpdesk_alerts']) {
          $show_helpdesk_sql = " AND `$table`.`is_displayed_onhelpdesk`='1'";
       }
       if (!$p['show_only_login_alerts']) {
@@ -416,7 +416,7 @@ class PluginNewsAlert extends CommonDBTM {
 
    static function displayOnCentral() {
       echo "<tr><th colspan='2'>";
-      self::displayAlerts(['show_helpdesk_alerts' => true]);
+      self::displayAlerts(['show_only_helpdesk_alerts' => true]);
       echo "</th></tr>";
    }
 
@@ -430,10 +430,10 @@ class PluginNewsAlert extends CommonDBTM {
    static function displayAlerts($params = []) {
       global $CFG_GLPI;
 
-      $p['show_only_login_alerts'] = false;
-      $p['show_hidden_alerts']     = false;
-      $p['show_helpdesk_alerts']   = false;
-      $p['entities_id']            = false;
+      $p['show_only_login_alerts']     = false;
+      $p['show_hidden_alerts']         = false;
+      $p['show_only_helpdesk_alerts']  = false;
+      $p['entities_id']                = false;
       foreach ($params as $key => $value) {
          $p[$key] = $value;
       }
@@ -502,9 +502,9 @@ class PluginNewsAlert extends CommonDBTM {
          $entities_id = isset($params['item']->fields['entities_id'])
             ? $params['item']->fields['entities_id']
             : false; // false to use current entity
-         self::displayAlerts(['show_helpdesk_alerts' => true,
-                              'show_hidden_alerts'   => false,
-                              'entities_id'          => $entities_id
+         self::displayAlerts(['show_only_helpdesk_alerts'   => true,
+                              'show_hidden_alerts'          => false,
+                              'entities_id'                 => $entities_id
                              ]);
          echo "</br>";
       }
