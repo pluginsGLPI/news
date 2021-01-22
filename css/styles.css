@@ -1,20 +1,13 @@
 .plugin_news_alert {
-   background: #FFF;
    margin: auto;
    width: 90%;
-   box-shadow: 0 1px 1px #CCC;
    border: none;
    position: relative;
    max-width: 800px;
-}
-
-.plugin_news_alert {
    margin-top: 20px;
 }
 
 .plugin_news_alert-title {
-   background-color: #f8f8f8;
-   color: #000;
    font-size: 18px;
    padding: 5px;
    min-height: 45px;
@@ -23,6 +16,7 @@
 .plugin_news_alert-content {
    word-break: normal;
    padding: 5px 15px;
+   border: none;
 }
 
 .plugin_news_alert-content ul {
