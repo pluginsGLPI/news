@@ -416,7 +416,7 @@ class PluginNewsAlert extends CommonDBTM {
 
    static function displayOnCentral() {
       echo "<tr><th colspan='2'>";
-      self::displayAlerts(['show_only_login_alerts' => false]);
+      self::displayAlerts(['show_helpdesk_alerts' => true]);
       echo "</th></tr>";
    }
 
