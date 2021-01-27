@@ -467,6 +467,7 @@ class PluginNewsAlert extends CommonDBTM {
       }
       if (!$p['show_only_login_alerts']
          && $alerts = self::findAllToNotify(['show_only_login_alerts' => false,
+                                             'show_only_helpdesk_alerts' => true,
                                              'show_hidden_alerts'     => true])
           && !$p['show_hidden_alerts']) {
          echo "<div class='center'>";
