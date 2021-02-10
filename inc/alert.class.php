@@ -465,10 +465,16 @@ class PluginNewsAlert extends CommonDBTM {
             echo "</div>";
          }
       }
+
+      $hidden_params = [
+         'show_hidden_alerts'          => true,
+         'show_only_login_alerts'      => false,
+         'show_only_helpdesk_alerts'   => true,
+         'entities_id'                 => $p['entities_id']
+      ];
+
       if (!$p['show_only_login_alerts']
-         && $alerts = self::findAllToNotify(['show_only_login_alerts' => false,
-                                             'show_only_helpdesk_alerts' => true,
-                                             'show_hidden_alerts'     => true])
+         && $alerts = self::findAllToNotify($hidden_params)
           && !$p['show_hidden_alerts']) {
          echo "<div class='center'>";
          echo "<a href='".Plugin::getWebDir('news')."/front/hidden_alerts.php'>";
