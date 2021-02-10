@@ -416,7 +416,7 @@ class PluginNewsAlert extends CommonDBTM {
 
    static function displayOnCentral() {
       echo "<tr><th colspan='2'>";
-      self::displayAlerts(['show_only_helpdesk_alerts' => Session::getCurrentInterface() == 'helpdesk']);
+      self::displayAlerts(['show_only_helpdesk_alerts' => Session::getCurrentInterface() == 'central']);
       echo "</th></tr>";
    }
 
@@ -469,7 +469,7 @@ class PluginNewsAlert extends CommonDBTM {
       $hidden_params = [
          'show_hidden_alerts'          => true,
          'show_only_login_alerts'      => false,
-         'show_only_helpdesk_alerts'   => true,
+         'show_only_helpdesk_alerts'   => $p['show_only_helpdesk_alerts'],
          'entities_id'                 => $p['entities_id']
       ];
 
