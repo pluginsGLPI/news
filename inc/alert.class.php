@@ -231,7 +231,8 @@ class PluginNewsAlert extends CommonDBTM {
       }
 
       if ($p['show_hidden_alerts']) {
-         $login_show_hidden_sql = " `$utable`.`id` IS NOT NULL ";
+         //dont show hidden alert if they should no longer be visible
+         $login_show_hidden_sql = " `$utable`.`id` IS NOT NULL AND ( `$table`.`is_displayed_onhelpdesk`='1' OR `$table`.`is_displayed_onlogin`='1')";
       }
 
       //If the alert must be displayed on helpdesk form : filter by ticket's entity
@@ -416,7 +417,7 @@ class PluginNewsAlert extends CommonDBTM {
 
    static function displayOnCentral() {
       echo "<tr><th colspan='2'>";
-      self::displayAlerts(['show_only_helpdesk_alerts' => Session::getCurrentInterface() == 'central']);
+      self::displayAlerts();
       echo "</th></tr>";
    }
 
