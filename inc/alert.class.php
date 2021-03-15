@@ -181,7 +181,7 @@ class PluginNewsAlert extends CommonDBTM {
       global $DB;
 
       $p['show_only_login_alerts']     = false;
-      $p['show_alert_on_central']      = false;
+      $p['show_only_central_alerts']   = false;
       $p['show_hidden_alerts']         = false;
       $p['show_only_helpdesk_alerts']  = false;
       $p['entities_id']                = false;
@@ -236,7 +236,7 @@ class PluginNewsAlert extends CommonDBTM {
          $login_show_hidden_sql = " `$utable`.`id` IS NOT NULL";
       }
 
-      if ($p['show_alert_on_central']) {
+      if ($p['show_only_central_alerts']) {
          //dont show central alert if they should no longer be visible
          $show_central_sql = " AND `$table`.`is_displayed_oncentral`='1'";
       }
@@ -430,7 +430,7 @@ class PluginNewsAlert extends CommonDBTM {
 
    static function displayOnCentral() {
       echo "<tr><th colspan='2'>";
-      self::displayAlerts(['show_alert_on_central' => true]);
+      self::displayAlerts(['show_only_central_alerts' => true]);
       echo "</th></tr>";
    }
 
@@ -445,7 +445,7 @@ class PluginNewsAlert extends CommonDBTM {
       global $CFG_GLPI;
 
       $p['show_only_login_alerts']     = false;
-      $p['show_alert_on_central']      = false;
+      $p['show_only_central_alerts']      = false;
       $p['show_hidden_alerts']         = false;
       $p['show_only_helpdesk_alerts']  = false;
       $p['entities_id']                = false;
@@ -484,7 +484,7 @@ class PluginNewsAlert extends CommonDBTM {
       $hidden_params = [
          'show_hidden_alerts'          => true,
          'show_only_login_alerts'      => false,
-         'show_alert_on_central'       => $p['show_alert_on_central'],
+         'show_only_central_alerts'    => $p['show_only_central_alerts'],
          'show_only_helpdesk_alerts'   => $p['show_only_helpdesk_alerts'],
          'entities_id'                 => $p['entities_id']
       ];
