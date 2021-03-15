@@ -181,6 +181,7 @@ class PluginNewsAlert extends CommonDBTM {
       global $DB;
 
       $p['show_only_login_alerts']     = false;
+      $p['show_alert_on_central']      = false;
       $p['show_hidden_alerts']         = false;
       $p['show_only_helpdesk_alerts']  = false;
       $p['entities_id']                = false;
@@ -232,7 +233,12 @@ class PluginNewsAlert extends CommonDBTM {
 
       if ($p['show_hidden_alerts']) {
          //dont show hidden alert if they should no longer be visible
-         $login_show_hidden_sql = " `$utable`.`id` IS NOT NULL AND ( `$table`.`is_displayed_onhelpdesk`='1' OR `$table`.`is_displayed_onlogin`='1')";
+         $login_show_hidden_sql = " `$utable`.`id` IS NOT NULL";
+      }
+
+      if ($p['show_alert_on_central']) {
+         //dont show central alert if they should no longer be visible
+         $show_central_sql = " AND `$table`.`is_displayed_oncentral`='1'";
       }
 
       //If the alert must be displayed on helpdesk form : filter by ticket's entity
@@ -253,7 +259,7 @@ class PluginNewsAlert extends CommonDBTM {
                   INNER JOIN `$ttable`
                      ON `$ttable`.`plugin_news_alerts_id` = `$table`.`id`
                   $targets_sql
-                  WHERE ($login_show_hidden_sql $login_sql $show_helpdesk_sql)
+                  WHERE ($login_show_hidden_sql $login_sql $show_central_sql $show_helpdesk_sql)
                      AND (`$table`.`date_start` < '$today'
                            OR `$table`.`date_start` = '$today'
                            OR `$table`.`date_start` IS NULL
@@ -409,15 +415,23 @@ class PluginNewsAlert extends CommonDBTM {
       echo '<td>';
       Dropdown::showYesNo('is_displayed_onhelpdesk', $this->fields['is_displayed_onhelpdesk']);
       echo '</td>';
-
       echo '</tr>';
+
+      echo '<tr>';
+      echo '<td>' . __("Show on central page", 'news') .'</td>';
+      echo '</td>';
+      echo '<td>';
+      Dropdown::showYesNo('is_displayed_oncentral', $this->fields['is_displayed_oncentral']);
+      echo '</td>';
+      echo '</tr>';
+
 
       $this->showFormButtons($options);
    }
 
    static function displayOnCentral() {
       echo "<tr><th colspan='2'>";
-      self::displayAlerts();
+      self::displayAlerts(['show_alert_on_central' => true]);
       echo "</th></tr>";
    }
 
@@ -432,6 +446,7 @@ class PluginNewsAlert extends CommonDBTM {
       global $CFG_GLPI;
 
       $p['show_only_login_alerts']     = false;
+      $p['show_alert_on_central']      = false;
       $p['show_hidden_alerts']         = false;
       $p['show_only_helpdesk_alerts']  = false;
       $p['entities_id']                = false;
@@ -470,6 +485,7 @@ class PluginNewsAlert extends CommonDBTM {
       $hidden_params = [
          'show_hidden_alerts'          => true,
          'show_only_login_alerts'      => false,
+         'show_alert_on_central'       => $p['show_alert_on_central'],
          'show_only_helpdesk_alerts'   => $p['show_only_helpdesk_alerts'],
          'entities_id'                 => $p['entities_id']
       ];

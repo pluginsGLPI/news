@@ -151,6 +151,11 @@ function plugin_news_install() {
                      ('PluginNewsAlert', 6, 4, 0)");
    }
 
+   // add displayed on central flag
+   if (!$DB->fieldExists("glpi_plugin_news_alerts", "is_displayed_oncentral")) {
+      $migration->addField("glpi_plugin_news_alerts", "is_displayed_oncentral", 'bool', ['value' => true]);
+   }
+
    $migration->migrationOneTable("glpi_plugin_news_alerts");
    return true;
 }
