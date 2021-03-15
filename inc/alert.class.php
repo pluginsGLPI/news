@@ -425,7 +425,6 @@ class PluginNewsAlert extends CommonDBTM {
       echo '</td>';
       echo '</tr>';
 
-
       $this->showFormButtons($options);
    }
 
