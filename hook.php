@@ -29,17 +29,18 @@ function plugin_news_install() {
    if (! $DB->tableExists('glpi_plugin_news_alerts')) {
       $DB->query("
          CREATE TABLE IF NOT EXISTS `glpi_plugin_news_alerts` (
-         `id`                   INT NOT NULL AUTO_INCREMENT,
-         `date_mod`             TIMESTAMP NOT NULL,
-         `name`                 VARCHAR(255) NOT NULL,
-         `message`              TEXT NOT NULL,
-         `date_start`           TIMESTAMP NULL DEFAULT NULL,
-         `date_end`             TIMESTAMP NULL DEFAULT NULL,
-         `type`                 INT NOT NULL,
-         `is_deleted`           TINYINT(1) NOT NULL DEFAULT 0,
-         `is_displayed_onlogin` TINYINT(1) NOT NULL,
-         `entities_id`          INT NOT NULL,
-         `is_recursive`         TINYINT(1) NOT NULL DEFAULT 1,
+         `id`                       INT NOT NULL AUTO_INCREMENT,
+         `date_mod`                 TIMESTAMP NOT NULL,
+         `name`                     VARCHAR(255) NOT NULL,
+         `message`                  TEXT NOT NULL,
+         `date_start`               TIMESTAMP NULL DEFAULT NULL,
+         `date_end`                 TIMESTAMP NULL DEFAULT NULL,
+         `type`                     INT NOT NULL,
+         `is_deleted`               TINYINT(1) NOT NULL DEFAULT 0,
+         `is_displayed_onlogin`     TINYINT(1) NOT NULL,
+         `is_displayed_oncentral`   TINYINT(1) NOT NULL,
+         `entities_id`              INT NOT NULL,
+         `is_recursive`             TINYINT(1) NOT NULL DEFAULT 1,
          PRIMARY KEY (`id`)
          ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
       ");
