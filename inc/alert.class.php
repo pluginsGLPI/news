@@ -215,6 +215,7 @@ class PluginNewsAlert extends CommonDBTM {
       $login_show_hidden_sql = " `$utable`.`id` IS NULL ";
       $entity_sql            = "";
       $show_helpdesk_sql     = '';
+      $show_central_sql      = '';
       if (isset($_SESSION['glpiID']) && isset($_SESSION['glpiactiveprofile']['id'])) {
          $targets_sql = "AND (
                            `$ttable`.`itemtype` = 'Profile'
