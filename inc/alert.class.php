@@ -430,9 +430,9 @@ class PluginNewsAlert extends CommonDBTM {
    }
 
    static function displayOnCentral() {
-      echo "<tr><th colspan='2'>";
+      echo "<tr><td colspan='2'>";
       self::displayAlerts(['show_only_central_alerts' => true]);
-      echo "</th></tr>";
+      echo "</td></tr>";
    }
 
    static function displayOnLogin() {
@@ -443,8 +443,6 @@ class PluginNewsAlert extends CommonDBTM {
    }
 
    static function displayAlerts($params = []) {
-      global $CFG_GLPI;
-
       $p['show_only_login_alerts']     = false;
       $p['show_only_central_alerts']      = false;
       $p['show_hidden_alerts']         = false;
@@ -465,20 +463,59 @@ class PluginNewsAlert extends CommonDBTM {
                $date_end = " - $date_end";
             }
             $content    = Html::entity_decode_deep($alert['message']);
-            echo "<div class='plugin_news_alert' data-id='".$alert['id']."'>";
+
+            $close_class = "";
+            $close_tag = "";
             if ($alert['is_close_allowed'] && !$p['show_hidden_alerts']) {
-               echo "<a class='plugin_news_alert-close'></a>";
+                $close_class = "alert-dismissible";
+                $close_tag = "<a class='btn-close' data-bs-dismiss='alert' aria-label='close'></a>";
             }
+
+            $toggle_tag = "";
             if ($p['show_only_login_alerts']) {
-               echo "<a class='plugin_news_alert-toggle'></a>";
+                $toggle_tag = "<a class='plugin_news_alert-toggle'></a>";
             }
-            echo "<div class='plugin_news_alert-title ui-widget-header'>";
-            echo "<span class='plugin_news_alert-icon type_$type'></span>";
-            echo "<div class='plugin_news_alert-title-content'>$title</div>";
-            echo "<div class='plugin_news_alert-date'>$date_start$date_end</div>";
-            echo "</div>";
-            echo "<div class='plugin_news_alert-content ui-widget-content'>$content</div>";
-            echo "</div>";
+
+            $alert_type = "";
+            $alert_icon = "";
+            switch ($type) {
+                case self::GENERAL:
+                    $alert_icon = "ti ti-settings fa-2x me-2";
+                    break;
+                case self::INFO:
+                    $alert_type = "alert-info";
+                    $alert_icon = "ti ti-alert-circle fa-2x me-2";
+                    break;
+                case self::WARNING:
+                    $alert_type = "alert-warning alert-important";
+                    $alert_icon = "ti ti-alert-triangle fa-2x me-2";
+                    break;
+                case self::PROBLEM:
+                    $alert_type = "alert-danger alert-important";
+                    $alert_icon = "ti ti-alert-octagon fa-2x me-2";
+                    break;
+            }
+
+            echo "<div class='plugin_news_alert' data-id='{$alert['id']}'>
+                <div class='alert text-start $alert_type $close_class'>
+                    <div class='d-flex'>
+                        <i class='$alert_icon'></i>
+                        <div>
+                            <h3>
+                                $title
+                                $toggle_tag
+                            </h3>
+                            <div class='text-muted'>
+                                $date_start$date_end
+                            </div>
+                            <p class='mt-2 plugin_news_alert-content'>
+                                $content
+                            </p>
+                        </div>
+                    </div>
+                    $close_tag
+                </div>
+            </div>";
          }
       }
 

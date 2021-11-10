@@ -26,6 +26,9 @@ function plugin_news_install() {
 
    $migration = new Migration(Plugin::getInfo('news', 'version'));
 
+   $default_charset = DBConnection::getDefaultCharset();
+   $default_collation = DBConnection::getDefaultCollation();
+
    if (! $DB->tableExists('glpi_plugin_news_alerts')) {
       $DB->query("
          CREATE TABLE IF NOT EXISTS `glpi_plugin_news_alerts` (
@@ -36,13 +39,13 @@ function plugin_news_install() {
          `date_start`               TIMESTAMP NULL DEFAULT NULL,
          `date_end`                 TIMESTAMP NULL DEFAULT NULL,
          `type`                     INT NOT NULL,
-         `is_deleted`               TINYINT(1) NOT NULL DEFAULT 0,
-         `is_displayed_onlogin`     TINYINT(1) NOT NULL,
-         `is_displayed_oncentral`   TINYINT(1) NOT NULL,
+         `is_deleted`               TINYINT NOT NULL DEFAULT 0,
+         `is_displayed_onlogin`     TINYINT NOT NULL,
+         `is_displayed_oncentral`   TINYINT NOT NULL,
          `entities_id`              INT NOT NULL,
-         `is_recursive`             TINYINT(1) NOT NULL DEFAULT 1,
+         `is_recursive`             TINYINT NOT NULL DEFAULT 1,
          PRIMARY KEY (`id`)
-         ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+         ) ENGINE=InnoDB DEFAULT CHARSET={$default_charset} COLLATE={$default_collation} ROW_FORMAT=DYNAMIC;
       ");
    }
 
@@ -52,11 +55,11 @@ function plugin_news_install() {
          `id`                    INT NOT NULL AUTO_INCREMENT,
          `plugin_news_alerts_id` INT NOT NULL,
          `users_id`              INT NOT NULL,
-         `state`                 TINYINT(1) NOT NULL,
+         `state`                 TINYINT NOT NULL,
          PRIMARY KEY (`id`),
          UNIQUE KEY `state_for_user`
             (`plugin_news_alerts_id`,`users_id`,`state`)
-         ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+         ) ENGINE=InnoDB DEFAULT CHARSET={$default_charset} COLLATE={$default_collation} ROW_FORMAT=DYNAMIC;
       ");
    }
 
@@ -70,7 +73,7 @@ function plugin_news_install() {
          PRIMARY KEY (`id`),
          UNIQUE KEY `alert_itemtype_items_id`
             (`plugin_news_alerts_id`, `itemtype`,`items_id`)
-         ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+         ) ENGINE=InnoDB DEFAULT CHARSET={$default_charset} COLLATE={$default_collation} ROW_FORMAT=DYNAMIC;
       ");
    }
 
@@ -117,7 +120,7 @@ function plugin_news_install() {
    if ($alert_fields['is_deleted']['Default'] !== '0') {
       $migration->changeField("glpi_plugin_news_alerts",
                            "is_deleted", "is_deleted",
-                           "TINYINT(1) NOT NULL DEFAULT 0");
+                           "TINYINT NOT NULL DEFAULT 0");
    }
 
    // end/start dates can be null
