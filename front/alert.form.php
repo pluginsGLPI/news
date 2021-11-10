@@ -53,7 +53,7 @@ if (isset($_POST['update'])) {
                  sprintf(__('%1$s adds the item %2$s'), $_SESSION["glpiname"], $_POST["name"]));
 
       if ($_SESSION['glpibackcreated']) {
-         Html::redirect($alert->getFormURL()."?id=".$newID);
+         Html::redirect($alert->getLinkURL());
       }
    }
    Html::back();

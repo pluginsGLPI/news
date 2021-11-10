@@ -31,9 +31,9 @@
 define ('PLUGIN_NEWS_VERSION', '1.9.1');
 
 // Minimal GLPI version, inclusive
-define("PLUGIN_NEWS_MIN_GLPI", "9.5");
+define("PLUGIN_NEWS_MIN_GLPI", "10.0.0");
 // Maximum GLPI version, exclusive
-define("PLUGIN_NEWS_MAX_GLPI", "9.6");
+define("PLUGIN_NEWS_MAX_GLPI", "10.0.99");
 
 function plugin_init_news() {
    global $PLUGIN_HOOKS, $CFG_GLPI;
