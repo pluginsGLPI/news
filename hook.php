@@ -67,6 +67,7 @@ function plugin_news_install() {
          `plugin_news_alerts_id` INT NOT NULL,
          `itemtype`              VARCHAR(255) NOT NULL,
          `items_id`              INT NOT NULL,
+         `all_items`             TINYINT(1) NOT NULL DEFAULT 0,
          PRIMARY KEY (`id`),
          UNIQUE KEY `alert_itemtype_items_id`
             (`plugin_news_alerts_id`, `itemtype`,`items_id`)
@@ -140,6 +141,18 @@ function plugin_news_install() {
       $migration->dropField("glpi_plugin_news_alerts", "profiles_id");
    }
 
+   // Replace -1 value usage in items_id foreign key
+   if (!$DB->fieldExists("glpi_plugin_news_alerts_targets", "all_items")) {
+      $migration->addField("glpi_plugin_news_alerts_targets", "all_items", 'bool');
+      $migration->addPostQuery(
+          $DB->buildUpdate(
+              'glpi_plugin_news_alerts_targets',
+              ['items_id' => '0', 'all_items' => '1'],
+              ['items_id' => '-1']
+          )
+      );
+   }
+
    // install default display preferences
    $dpreferences = new DisplayPreference;
    $found_dpref = $dpreferences->find(['itemtype' => ['LIKE', '%PluginNews%']]);
@@ -157,7 +170,7 @@ function plugin_news_install() {
       $migration->addField("glpi_plugin_news_alerts", "is_displayed_oncentral", 'bool', ['value' => true]);
    }
 
-   $migration->migrationOneTable("glpi_plugin_news_alerts");
+   $migration->executeMigration();
    return true;
 }
 

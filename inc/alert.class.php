@@ -221,7 +221,7 @@ class PluginNewsAlert extends CommonDBTM {
                            `$ttable`.`itemtype` = 'Profile'
                            AND (
                               `$ttable`.`items_id` = ".$_SESSION['glpiactiveprofile']['id']."
-                              OR `$ttable`.`items_id` = -1
+                              OR `$ttable`.`all_items` = 1
                            )
                            OR `$ttable`.`itemtype` = 'Group'
                               AND `$ttable`.`items_id` IN ($fndgroup)
@@ -329,10 +329,15 @@ class PluginNewsAlert extends CommonDBTM {
    }
 
    function post_addItem() {
-      $target = new PluginNewsAlert_Target;
-      $target->add(['plugin_news_alerts_id' => $this->getID(),
-                    'itemtype'              => 'Profile',
-                    'items_id'              => -1]);
+      $target = new PluginNewsAlert_Target();
+      $target->add(
+         [
+            'plugin_news_alerts_id' => $this->getID(),
+            'itemtype'              => 'Profile',
+            'items_id'              => 0,
+            'all_items'             => 1,
+         ]
+      );
    }
 
    function getEmpty() {
