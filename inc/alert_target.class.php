@@ -51,7 +51,7 @@ class PluginNewsAlert_Target extends CommonDBTM {
                 && is_subclass_of($values['itemtype'], 'CommonDBTM')) {
                $item = new $values['itemtype'];
                if ($values['itemtype'] == "Profile"
-                   && $values['items_id'] == -1) {
+                   && $values['all_items'] == 1) {
                   return $item->getTypeName()." - ".__('All');
                }
                $item->getFromDB($values['items_id']);
@@ -132,7 +132,7 @@ class PluginNewsAlert_Target extends CommonDBTM {
             if (class_exists($current_target['itemtype'])) {
                $item = new $current_target['itemtype'];
                $item->getFromDB($current_target['items_id']);
-               $name = ($current_target['items_id'] == -1
+               $name = ($current_target['all_items'] == 1
                         && $current_target['itemtype'] == "Profile")
                            ?__('All')
                            :$item->getName(['complete' => true]);
