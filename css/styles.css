@@ -31,12 +31,11 @@
 }
 
 .plugin_news_alert {
-   margin: auto;
+   margin: 10px auto;
    width: 90%;
    border: none;
    position: relative;
    max-width: 800px;
-   margin-top: 20px;
 }
 
 .plugin_news_alert h3 {
