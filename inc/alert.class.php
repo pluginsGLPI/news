@@ -454,6 +454,12 @@ class PluginNewsAlert extends CommonDBTM {
       echo "</div>";
    }
 
+   static function displayOnTicket() {
+      echo "<tr><th colspan='2'>";
+      self::displayAlerts(['show_only_helpdesk_alerts' => true]);
+      echo "</th></tr>";
+   }
+
    static function displayAlerts($params = []) {
       $p['show_only_login_alerts']     = false;
       $p['show_only_central_alerts']      = false;
@@ -579,6 +585,14 @@ class PluginNewsAlert extends CommonDBTM {
                               'show_hidden_alerts'          => false,
                               'entities_id'                 => $entities_id
                              ]);
+      }
+   }
+
+   static function preItemList($params = []) {
+      if (isset($params['itemtype']) && $params['itemtype'] == "Ticket") {
+         echo "<tr><th colspan='2'>";
+         self::displayAlerts(['show_only_helpdesk_alerts' => true]);
+         echo "</th></tr>";
       }
    }
 

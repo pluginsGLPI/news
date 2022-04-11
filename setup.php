@@ -53,6 +53,7 @@ function plugin_init_news() {
       $PLUGIN_HOOKS['display_central']['news'] = [
          "PluginNewsAlert", "displayOnCentral"
       ];
+      $PLUGIN_HOOKS['pre_item_list']['news'] = ["PluginNewsAlert", "preItemList"];
 
       $PLUGIN_HOOKS['pre_item_form']['news'] = ['PluginNewsAlert', 'preItemForm'];
 
