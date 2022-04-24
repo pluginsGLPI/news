@@ -76,3 +76,7 @@
 .plugin_news_alert-visibility {
    margin: 0 auto;
 }
+
+.plugin_news_alert-container:empty {
+   display: none;
+}
