@@ -26,6 +26,10 @@
  * -------------------------------------------------------------------------
  */
 
+.plugin_news_alert-container {
+    margin-bottom: 1rem;
+}
+
 .plugin_news_alert {
    margin: auto;
    width: 90%;
