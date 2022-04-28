@@ -579,7 +579,6 @@ class PluginNewsAlert extends CommonDBTM {
                               'show_hidden_alerts'          => false,
                               'entities_id'                 => $entities_id
                              ]);
-         echo "</br>";
       }
    }
 
