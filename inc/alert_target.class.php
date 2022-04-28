@@ -47,6 +47,18 @@ class PluginNewsAlert_Target extends CommonDBTM {
       return self::canUpdate();
    }
 
+   public function addNeededInfoToInput($input)
+   {
+        if (
+            $input['itemtype'] == 'Profile'
+            && $input['items_id'] == -1
+        ) {
+            $input['all_items'] = 1;
+            $input['items_id'] = 0;
+        }
+        return $input;
+   }
+
    static function getSpecificValueToDisplay($field, $values, array $options = []) {
 
       if (!is_array($values)) {
