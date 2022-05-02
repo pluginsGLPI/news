@@ -123,7 +123,7 @@ class PluginNewsAlert extends CommonDBTM {
          'datatype'         => 'specific',
          'forcegroupby'     => true,
          'joinparams'       => ['jointype' => 'child'],
-         'additionalfields' => ['itemtype'],
+         'additionalfields' => ['itemtype', 'all_items'],
       ];
 
       $tab[] = [
