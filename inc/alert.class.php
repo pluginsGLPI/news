@@ -365,7 +365,7 @@ class PluginNewsAlert extends CommonDBTM {
 
       echo "<tr  class='tab_bg_1'>";
       echo '<td style="width: 150px">' . __('Name') .'</td>';
-      echo '<td colspan="3"><input name="name" type="text" value="'.Html::cleanInputText($this->getField('name')).'" style="width: 565px" /></td>';
+      echo '<td colspan="3"><input name="name" class="form-control" type="text" value="'.Html::cleanInputText($this->getField('name')).'" style="width: 565px" /></td>';
       echo '</tr>';
 
       echo "<tr class='tab_bg_1'><td>".__('Active')."</td><td colspan='3'>";
@@ -375,7 +375,7 @@ class PluginNewsAlert extends CommonDBTM {
       echo '<tr>';
       echo '<td>' . __('Description') .'</td>';
       echo '<td colspan="3">';
-      echo '<textarea name="message" rows="12" cols="80">'.$this->getField('message').'</textarea>';
+      echo '<textarea name="message" rows="12" cols="80" class="form-control">'.$this->getField('message').'</textarea>';
       Html::initEditorSystem('message');
       echo '</td>';
       echo '</tr>';
