@@ -520,9 +520,9 @@ class PluginNewsAlert extends CommonDBTM {
                             <div class='text-muted'>
                                 $date_start$date_end
                             </div>
-                            <p class='mt-2 plugin_news_alert-content'>
+                            <div class='mt-2 plugin_news_alert-content'>
                                 $content
-                            </p>
+                            </div>
                         </div>
                     </div>
                     $close_tag
