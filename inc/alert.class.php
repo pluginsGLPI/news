@@ -375,8 +375,8 @@ class PluginNewsAlert extends CommonDBTM {
       echo '<tr>';
       echo '<td>' . __('Description') .'</td>';
       echo '<td colspan="3">';
-      echo '<textarea name="message" rows="12" cols="80" class="form-control">'.$this->getField('message').'</textarea>';
-      Html::initEditorSystem('message');
+      echo '<textarea id="plugin_news_message_field" name="message" rows="12" cols="80" class="form-control">'.$this->getField('message').'</textarea>';
+      Html::initEditorSystem('plugin_news_message_field');
       echo '</td>';
       echo '</tr>';
 
