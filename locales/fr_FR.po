@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# alexandre delaunay <delaunay.alexandre@gmail.com>, 2016
+# Alexandre Delaunay <delaunay.alexandre@gmail.com>, 2016
 # Cédric Anne, 2018,2021
 # Christophe Brissy <metastase83@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-20 13:47+0000\n"
+"POT-Creation-Date: 2022-09-13 08:40+0000\n"
 "PO-Revision-Date: 2015-09-18 13:33+0000\n"
 "Last-Translator: Cédric Anne, 2018,2021\n"
 "Language-Team: French (France) (http://www.transifex.com/teclib/glpi-plugin-news/language/fr_FR/)\n"
@@ -20,8 +20,8 @@ msgstr ""
 "Language: fr_FR\n"
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
-#: front/alert.php:34 front/alert.form.php:93 front/hidden_alerts.php:34
-#: front/hidden_alerts.php:37 inc/alert.class.php:55 setup.php:73
+#: inc/alert.class.php:55 front/alert.php:34 front/alert.form.php:93
+#: front/hidden_alerts.php:34 front/hidden_alerts.php:37 setup.php:73
 msgid "Alerts"
 msgstr "Alertes"
 

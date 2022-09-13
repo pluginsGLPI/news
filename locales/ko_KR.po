@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# SeongHyeon Cho <jaymz9634@gmail.com>, 2020
+# 조성현 <jaymz9634@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-20 13:47+0000\n"
+"POT-Creation-Date: 2022-09-13 08:40+0000\n"
 "PO-Revision-Date: 2015-09-18 13:33+0000\n"
-"Last-Translator: SeongHyeon Cho <jaymz9634@gmail.com>, 2020\n"
+"Last-Translator: 조성현 <jaymz9634@gmail.com>, 2020\n"
 "Language-Team: Korean (Korea) (http://www.transifex.com/teclib/glpi-plugin-news/language/ko_KR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,8 +18,8 @@ msgstr ""
 "Language: ko_KR\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: front/alert.php:34 front/alert.form.php:93 front/hidden_alerts.php:34
-#: front/hidden_alerts.php:37 inc/alert.class.php:55 setup.php:73
+#: inc/alert.class.php:55 front/alert.php:34 front/alert.form.php:93
+#: front/hidden_alerts.php:34 front/hidden_alerts.php:37 setup.php:73
 msgid "Alerts"
 msgstr "경고"
 
