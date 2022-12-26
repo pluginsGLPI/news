@@ -52,11 +52,16 @@ class PluginNewsAlert_User extends CommonDBRelation {
       $plugin_news_alerts_id = intval($params['id']);
       $users_id = $_SESSION['glpiID'];
 
-      $query_hidealert = "REPLACE INTO `".self::getTable()."`
-                           (`users_id`, `plugin_news_alerts_id`, `state`)
-                           VALUES
-                           ($users_id, $plugin_news_alerts_id, ".self::HIDDEN.")";
-      return $res_hidealert = $DB->query($query_hidealert);
+      return $DB->updateOrInsert(
+         self::getTable(),
+         [
+            'state' => self::HIDDEN,
+         ],
+         [
+            'plugin_news_alerts_id' => $plugin_news_alerts_id,
+            'users_id' => $users_id,
+         ]
+      );
    }
 
    public function canCreateItem() {
