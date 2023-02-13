@@ -70,6 +70,7 @@ class PluginNewsAlert_Target extends CommonDBTM {
                 && is_subclass_of($values['itemtype'], 'CommonDBTM')) {
                $item = new $values['itemtype'];
                if ($values['itemtype'] == "Profile"
+                   && isset($values['all_items'])
                    && $values['all_items'] == 1) {
                   return $item->getTypeName()." - ".__('All');
                }
