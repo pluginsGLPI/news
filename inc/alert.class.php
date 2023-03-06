@@ -332,6 +332,9 @@ class PluginNewsAlert extends CommonDBTM {
    }
 
    public function prepareInputForUpdate($input) {
+      if ($input['_transfer'] ?? false) {
+         return $input;
+      }
       return $this->prepareInputForAdd($input);
    }
 
