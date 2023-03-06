@@ -28,18 +28,46 @@
  * -------------------------------------------------------------------------
  */
 
+use Glpi\Application\View\TemplateRenderer;
+
 if (!defined('GLPI_ROOT')) {
    die("Sorry. You can't access directly to this file");
 }
 
 class PluginNewsAlert extends CommonDBTM {
-   static $rightname = 'reminder_public';
+   static $rightname = 'plugin_news_alert';
    public $dohistory = true;
 
+   // Available templates
    const GENERAL = 1;
    const INFO    = 2;
    const WARNING = 3;
    const PROBLEM = 4;
+
+   // Available sizes
+   const SMALL   = 'small';
+   const MEDIUM  = 'medium';
+   const BIG     = 'big';
+   const MAXIMUM = 'maximum';
+
+   // Available icons
+   const SETTINGS       = 'settings';
+   const ALERT_CIRCLE   = 'alert-circle';
+   const ALERT_TRIANGLE = 'alert-triangle';
+   const ALERT_OCTAGON  = 'alert-octagon';
+
+   // Available colors
+   const DARK   = 'dark';
+   const WHITE  = 'white';
+   const BLUE   = 'blue';
+   const CYAN   = 'cyan';
+   const INDIGO = 'indigo';
+   const PURPLE = 'purple';
+   const PINK   = 'pink';
+   const RED    = 'red';
+   const ORANGE = 'orange';
+   const YELLOW = 'yellow';
+   const LIME   = 'lime';
 
    static function canDelete() {
       return self::canPurge();
@@ -313,10 +341,6 @@ class PluginNewsAlert extends CommonDBTM {
          array_push($errors, __('Please enter a name.', 'news'));
       }
 
-      if (!$input['message']) {
-         array_push($errors, __('Please enter a message.', 'news'));
-      }
-
       if (!empty($input['date_start'])
           && !empty($input['date_end'])) {
          if (strtotime($input['date_end']) < strtotime($input['date_start'])) {
@@ -352,102 +376,26 @@ class PluginNewsAlert extends CommonDBTM {
 
    function getEmpty() {
       parent::getEmpty();
+
       $this->fields['is_close_allowed'] = 1;
+      $this->fields['display_dates']    = 1;
+      $this->fields['background_color'] = self::WHITE;
+      $this->fields['text_color']       = self::DARK;
+      $this->fields['accent_color']     = self::DARK;
+      $this->fields['size']             = self::MEDIUM;
    }
 
    public function showForm($ID, $options = []) {
-      $this->initForm($ID, $options);
-
-      $canedit = $this->can($ID, UPDATE);
-
-      if ($this->getField('message') == NOT_AVAILABLE) {
-         $this->fields['message'] = "";
-      }
-
-      $this->showFormHeader($options);
-
-      echo "<tr  class='tab_bg_1'>";
-      echo '<td style="width: 150px">' . __('Name') .'</td>';
-      echo '<td colspan="3"><input name="name" class="form-control" type="text" value="'.Html::cleanInputText($this->getField('name')).'" style="width: 565px" /></td>';
-      echo '</tr>';
-
-      echo "<tr class='tab_bg_1'><td>".__('Active')."</td><td colspan='3'>";
-      Dropdown::showYesNo("is_active", $this->fields["is_active"]);
-      echo "</td></tr>";
-
-      echo '<tr>';
-      echo '<td>' . __('Description') .'</td>';
-      echo '<td colspan="3">';
-      Html::textarea(
-          [
-              'name'              => 'message',
-              'value'             => $this->fields["message"],
-              'enable_richtext'   => true,
-              'enable_images'     => false,
-          ]
-      );
-      echo '</td>';
-      echo '</tr>';
-
-      echo '<tr>';
-      echo '<td style="width: 150px">' . __("Visibility start date") .'</td>';
-      echo '<td>';
-      Html::showDateTimeField("date_start",
-                              ['value'      => $this->fields["date_start"],
-                               'timestep'   => 1,
-                               'maybeempty' => true,
-                               'canedit'    => $canedit]);
-      echo '</td>';
-      echo '<td style="width: 150px">' . __("Visibility end date") .'</td>';
-      echo '<td>';
-      Html::showDateTimeField("date_end",
-                              ['value'      => $this->fields["date_end"],
-                               'timestep'   => 1,
-                               'maybeempty' => true,
-                               'canedit'    => $canedit]);
-      echo '</td>';
-      echo '</tr>';
-
-      echo '<tr>';
-      echo '<td>' . __("Type (to add an icon before alert title)", 'news') .'</td>';
-      echo '</td>';
-      echo '<td>';
-      Dropdown::showFromArray('type', self::getTypes(),
-                              ['value'               => $this->fields['type'],
-                               'display_emptychoice' => true]);
-      echo '</td>';
-
-      echo '<td>' . __("Can close alert", 'news') .'</td>';
-      echo '</td>';
-      echo '<td>';
-      Dropdown::showYesNo('is_close_allowed', $this->fields['is_close_allowed']);
-      echo '</td>';
-
-      echo '</tr>';
-
-      echo '<tr>';
-      echo '<td>' . __("Show on login page", 'news') .'</td>';
-      echo '</td>';
-      echo '<td>';
-      Dropdown::showYesNo('is_displayed_onlogin', $this->fields['is_displayed_onlogin']);
-      echo '</td>';
-
-      echo '<td>' . __("Show on helpdesk page", 'news') .'</td>';
-      echo '</td>';
-      echo '<td>';
-      Dropdown::showYesNo('is_displayed_onhelpdesk', $this->fields['is_displayed_onhelpdesk']);
-      echo '</td>';
-      echo '</tr>';
-
-      echo '<tr>';
-      echo '<td>' . __("Show on central page", 'news') .'</td>';
-      echo '</td>';
-      echo '<td>';
-      Dropdown::showYesNo('is_displayed_oncentral', $this->fields['is_displayed_oncentral']);
-      echo '</td>';
-      echo '</tr>';
-
-      $this->showFormButtons($options);
+      $twig = TemplateRenderer::getInstance();
+      $twig->display('@news/alert_form.html.twig', [
+         'item'             => $this,
+         'templates'        => self::getTypes(),
+         'sizes'            => self::getSizes(),
+         'colors'           => self::getColors(),
+         'icons'            => self::getIcons(),
+         'templates_values' => self::getTemplatesValues(),
+         'preview_url'      => Plugin::getWebDir('news') . "/ajax/alert_preview.php",
+      ]);
    }
 
    static function displayOnCentral() {
@@ -471,7 +419,7 @@ class PluginNewsAlert extends CommonDBTM {
 
    static function displayAlerts($params = []) {
       $p['show_only_login_alerts']     = false;
-      $p['show_only_central_alerts']      = false;
+      $p['show_only_central_alerts']   = false;
       $p['show_hidden_alerts']         = false;
       $p['show_only_helpdesk_alerts']  = false;
       $p['entities_id']                = false;
@@ -479,70 +427,10 @@ class PluginNewsAlert extends CommonDBTM {
          $p[$key] = $value;
       }
 
-      echo "<div class='plugin_news_alert-container'>";
+      echo "<div class='plugin_news_alert-container row align-items-stretch'>";
       if ($alerts = self::findAllToNotify($p)) {
          foreach ($alerts as $alert) {
-            $title      = $alert['name'];
-            $type       = $alert['type'];
-            $date_start = Html::convDateTime($alert['date_start']);
-            $date_end   = Html::convDateTime($alert['date_end']);
-            if (!empty($date_end)) {
-               $date_end = " - $date_end";
-            }
-            $content    = Html::entity_decode_deep($alert['message']);
-
-            $close_class = "";
-            $close_tag = "";
-            if ($alert['is_close_allowed'] && !$p['show_hidden_alerts']) {
-                $close_class = "alert-dismissible";
-                $close_tag = "<a class='btn-close' data-bs-dismiss='alert' aria-label='close'></a>";
-            }
-
-            $toggle_tag = "";
-            if ($p['show_only_login_alerts']) {
-                $toggle_tag = "<a class='plugin_news_alert-toggle'></a>";
-            }
-
-            $alert_type = "";
-            $alert_icon = "";
-            switch ($type) {
-                case self::GENERAL:
-                    $alert_icon = "ti ti-settings fa-2x me-2";
-                    break;
-                case self::INFO:
-                    $alert_type = "alert-info";
-                    $alert_icon = "ti ti-alert-circle fa-2x me-2";
-                    break;
-                case self::WARNING:
-                    $alert_type = "alert-warning alert-important";
-                    $alert_icon = "ti ti-alert-triangle fa-2x me-2";
-                    break;
-                case self::PROBLEM:
-                    $alert_type = "alert-danger alert-important";
-                    $alert_icon = "ti ti-alert-octagon fa-2x me-2";
-                    break;
-            }
-
-            echo "<div class='plugin_news_alert' data-id='{$alert['id']}'>
-                <div class='alert text-start $alert_type $close_class'>
-                    <div class='d-flex'>
-                        <i class='$alert_icon'></i>
-                        <div>
-                            <h3>
-                                $title
-                                $toggle_tag
-                            </h3>
-                            <div class='text-muted'>
-                                $date_start$date_end
-                            </div>
-                            <div class='mt-2 plugin_news_alert-content'>
-                                $content
-                            </div>
-                        </div>
-                    </div>
-                    $close_tag
-                </div>
-            </div>";
+            self::displayAlert($alert, $p);
          }
       }
 
@@ -570,11 +458,140 @@ class PluginNewsAlert extends CommonDBTM {
       }
    }
 
-   static function getTypes() {
-      return [self::GENERAL => __("General", 'news'),
-              self::INFO    => __("Information", 'news'),
-              self::WARNING => __("Warning", 'news'),
-              self::PROBLEM => __("Problem", 'news')];
+   /**
+    * Compute alert size classes
+    *
+    * @param string $size Alert size
+    *
+    * @return string Bootstrap col classes
+    */
+   public static function getSizeClasses(string $size): string {
+      switch ($size) {
+         case self::SMALL:
+            return "col-xxl-4 col-xl-4 col-12";
+
+         default:
+         case self::MEDIUM:
+            return "col-xxl-6 col-xl-6 col-12";
+
+         case self::BIG:
+            return "col-xxl-8 col-xl-8 col-12";
+
+         case self::MAXIMUM:
+            return "col-12";
+      }
+   }
+
+   public static function displayAlert($alert, $p)
+   {
+      // Clean unexpected \r\n values (is there a better way to prevent this ?)
+      $alert['message'] = str_replace('\r\n', "", $alert['message']);
+
+      $twig = TemplateRenderer::getInstance();
+      $twig->display('@news/display_alert.html.twig', [
+         'size'                   => self::getSizeClasses($alert['size']),
+         'alert_fields'           => $alert,
+         'content'                => Html::entity_decode_deep($alert['message']),
+         'can_close'              => $alert['is_close_allowed'] && !$p['show_hidden_alerts'],
+         'show_only_login_alerts' => $p['show_only_login_alerts'],
+      ]);
+   }
+
+   /**
+    * Get available templates for alerts
+    *
+    * @return array
+    */
+   public static function getTypes(): array {
+      return [
+         self::GENERAL => __("General", 'news'),
+         self::INFO    => __("Information", 'news'),
+         self::WARNING => __("Warning", 'news'),
+         self::PROBLEM => __("Problem", 'news'),
+      ];
+   }
+
+   /**
+    * Get available sizes for alerts
+    *
+    * @return array
+    */
+   public static function getSizes(): array {
+      return [
+         self::SMALL   => __("Small", 'news'),
+         self::MEDIUM  => __("Medium", 'news'),
+         self::BIG     => __("Big", 'news'),
+         self::MAXIMUM => __("Max", 'news'),
+      ];
+   }
+
+   /**
+    * Get available icons for alerts
+    *
+    * @return array
+    */
+   public static function getIcons(): array {
+      return [
+         self::SETTINGS       => __('Settings'),
+         self::ALERT_CIRCLE   => __('Alert circle', 'news'),
+         self::ALERT_TRIANGLE => __('Alert triangle', 'news'),
+         self::ALERT_OCTAGON  => __('Alert octagon', 'news'),
+      ];
+   }
+
+   /**
+    * Get available colors for alerts (text, background and accent)
+    *
+    * @return array
+    */
+   public static function getColors(): array {
+      return [
+         self::DARK   => __("Black", 'news'),
+         self::WHITE  => __("White", 'news'),
+         self::BLUE   => __("Blue", 'news'),
+         self::CYAN   => __("Cyan", 'news'),
+         self::INDIGO => __("Indigo", 'news'),
+         self::PURPLE => __("Purple", 'news'),
+         self::PINK   => __("Pink", 'news'),
+         self::RED    => __("Red", 'news'),
+         self::ORANGE => __("Orange", 'news'),
+         self::YELLOW => __("Yellow", 'news'),
+         self::LIME   => __("Lime", 'news'),
+      ];
+   }
+
+   /**
+    * Get icon and colors values for each available templates
+    *
+    * @return array
+    */
+   public static function getTemplatesValues(): array {
+      return [
+         self::GENERAL => [
+            'icon'             => self::SETTINGS,
+            'background_color' => self::WHITE,
+            'text_color'       => self::DARK,
+            'accent_color'     => self::DARK,
+         ],
+         self::INFO => [
+            'icon'             => self::ALERT_CIRCLE,
+            'background_color' => self::WHITE,
+            'text_color'       => self::DARK,
+            'accent_color'     => self::BLUE,
+         ],
+         self::WARNING => [
+            'icon'             => self::ALERT_TRIANGLE,
+            'background_color' => self::ORANGE,
+            'text_color'       => self::WHITE,
+            'accent_color'     => self::ORANGE,
+         ],
+         self::PROBLEM => [
+            'icon'             => self::ALERT_OCTAGON,
+            'background_color' => self::RED,
+            'text_color'       => self::WHITE,
+            'accent_color'     => self::RED,
+         ],
+      ];
    }
 
    function cleanDBOnPurge() {

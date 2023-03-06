@@ -57,7 +57,7 @@ function plugin_init_news() {
 
       $PLUGIN_HOOKS['pre_item_form']['news'] = ['PluginNewsAlert', 'preItemForm'];
 
-      if (Session::haveRight('reminder_public', READ)) {
+      if (Session::haveRight(PluginNewsAlert::$rightname, READ)) {
          $PLUGIN_HOOKS['menu_toadd']['news'] = [
             'tools' => 'PluginNewsAlert',
          ];

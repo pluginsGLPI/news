@@ -27,15 +27,24 @@
  */
 
 .plugin_news_alert-container {
-    margin-bottom: 1rem;
+   margin-bottom: 1rem;
+}
+
+/* Needed to have similar height for alerts on the same row */
+.plugin_news_alert-container .alert {
+   height: 100%;
+}
+
+/* No padding for last <p> in alert content, to avoid excessive bottom padding */
+.plugin_news_alert-content p:last-child {
+   margin-bottom: 0;
 }
 
 .plugin_news_alert {
    margin: 10px auto;
-   width: 90%;
+   width: 100%;
    border: none;
    position: relative;
-   max-width: 800px;
 }
 
 .plugin_news_alert h3 {
