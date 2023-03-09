@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-13 08:40+0000\n"
+"POT-Creation-Date: 2023-03-09 11:08+0000\n"
 "PO-Revision-Date: 2015-09-18 13:33+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Russian (Latvia) (http://www.transifex.com/teclib/glpi-plugin-news/language/ru_lv/)\n"
@@ -18,19 +18,19 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: inc/alert.class.php:55 front/alert.php:34 front/alert.form.php:93
-#: front/hidden_alerts.php:34 front/hidden_alerts.php:37 setup.php:73
+#: front/hidden_alerts.php:34 front/hidden_alerts.php:37 setup.php:74
 msgid "Alerts"
 msgstr ""
 
-#: inc/alert.class.php:133 inc/alert.class.php:411
+#: inc/alert.class.php:133 inc/alert.class.php:420
 msgid "Can close alert"
 msgstr ""
 
-#: inc/alert.class.php:559
+#: inc/alert.class.php:574
 msgid "General"
 msgstr ""
 
-#: inc/alert.class.php:560
+#: inc/alert.class.php:575
 msgid "Information"
 msgstr ""
 
@@ -42,19 +42,19 @@ msgstr ""
 msgid "Please enter a name."
 msgstr ""
 
-#: inc/alert.class.php:562
+#: inc/alert.class.php:577
 msgid "Problem"
 msgstr ""
 
-#: inc/alert.class.php:434
+#: inc/alert.class.php:443
 msgid "Show on central page"
 msgstr ""
 
-#: inc/alert.class.php:151 inc/alert.class.php:426
+#: inc/alert.class.php:151 inc/alert.class.php:435
 msgid "Show on helpdesk page"
 msgstr ""
 
-#: inc/alert.class.php:142 inc/alert.class.php:420
+#: inc/alert.class.php:142 inc/alert.class.php:429
 msgid "Show on login page"
 msgstr ""
 
@@ -62,14 +62,14 @@ msgstr ""
 msgid "The end date must be greater than the start date."
 msgstr ""
 
-#: inc/alert.class.php:403
+#: inc/alert.class.php:412
 msgid "Type (to add an icon before alert title)"
 msgstr ""
 
-#: inc/alert.class.php:561
+#: inc/alert.class.php:576
 msgid "Warning"
 msgstr ""
 
-#: inc/alert.class.php:547
+#: inc/alert.class.php:562
 msgid "You have hidden alerts valid for current date"
 msgstr ""

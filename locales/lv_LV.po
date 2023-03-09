@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-13 08:40+0000\n"
+"POT-Creation-Date: 2023-03-09 11:08+0000\n"
 "PO-Revision-Date: 2015-09-18 13:33+0000\n"
 "Last-Translator: Andrejs <andrew.k2@gmail.com>, 2018\n"
 "Language-Team: Latvian (Latvia) (http://www.transifex.com/teclib/glpi-plugin-news/language/lv_LV/)\n"
@@ -19,19 +19,19 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);\n"
 
 #: inc/alert.class.php:55 front/alert.php:34 front/alert.form.php:93
-#: front/hidden_alerts.php:34 front/hidden_alerts.php:37 setup.php:73
+#: front/hidden_alerts.php:34 front/hidden_alerts.php:37 setup.php:74
 msgid "Alerts"
 msgstr "Brīdinājumi"
 
-#: inc/alert.class.php:133 inc/alert.class.php:411
+#: inc/alert.class.php:133 inc/alert.class.php:420
 msgid "Can close alert"
 msgstr "Var aizvērt brīdinājumu"
 
-#: inc/alert.class.php:559
+#: inc/alert.class.php:574
 msgid "General"
 msgstr "Vispārējs"
 
-#: inc/alert.class.php:560
+#: inc/alert.class.php:575
 msgid "Information"
 msgstr "Informācija"
 
@@ -43,19 +43,19 @@ msgstr "Lūdzu ievadiet ziņojumu."
 msgid "Please enter a name."
 msgstr "Lūdzu ievadiet nosaukumu."
 
-#: inc/alert.class.php:562
+#: inc/alert.class.php:577
 msgid "Problem"
 msgstr "Problēma"
 
-#: inc/alert.class.php:434
+#: inc/alert.class.php:443
 msgid "Show on central page"
 msgstr ""
 
-#: inc/alert.class.php:151 inc/alert.class.php:426
+#: inc/alert.class.php:151 inc/alert.class.php:435
 msgid "Show on helpdesk page"
 msgstr "Parādīt uz palīdzības lapas"
 
-#: inc/alert.class.php:142 inc/alert.class.php:420
+#: inc/alert.class.php:142 inc/alert.class.php:429
 msgid "Show on login page"
 msgstr "Parādīt pieteikšanās lapā"
 
@@ -63,14 +63,14 @@ msgstr "Parādīt pieteikšanās lapā"
 msgid "The end date must be greater than the start date."
 msgstr "Beigu datumam jābūt lielākam par sākuma datumu."
 
-#: inc/alert.class.php:403
+#: inc/alert.class.php:412
 msgid "Type (to add an icon before alert title)"
 msgstr "Tips (lai pievienotu ikonu pirms brīdinājuma nosaukuma)"
 
-#: inc/alert.class.php:561
+#: inc/alert.class.php:576
 msgid "Warning"
 msgstr "Brīdinājums"
 
-#: inc/alert.class.php:547
+#: inc/alert.class.php:562
 msgid "You have hidden alerts valid for current date"
 msgstr "Jums ir paslēpti brīdinājumi, kas derīgi pašreizējam datumam"

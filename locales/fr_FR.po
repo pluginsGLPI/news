@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Alexandre Delaunay <delaunay.alexandre@gmail.com>, 2016
+# alexandre delaunay <delaunay.alexandre@gmail.com>, 2016
 # Cédric Anne, 2018,2021
 # Christophe Brissy <metastase83@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-13 08:40+0000\n"
+"POT-Creation-Date: 2023-03-09 11:08+0000\n"
 "PO-Revision-Date: 2015-09-18 13:33+0000\n"
 "Last-Translator: Cédric Anne, 2018,2021\n"
 "Language-Team: French (France) (http://www.transifex.com/teclib/glpi-plugin-news/language/fr_FR/)\n"
@@ -21,19 +21,19 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: inc/alert.class.php:55 front/alert.php:34 front/alert.form.php:93
-#: front/hidden_alerts.php:34 front/hidden_alerts.php:37 setup.php:73
+#: front/hidden_alerts.php:34 front/hidden_alerts.php:37 setup.php:74
 msgid "Alerts"
 msgstr "Alertes"
 
-#: inc/alert.class.php:133 inc/alert.class.php:411
+#: inc/alert.class.php:133 inc/alert.class.php:420
 msgid "Can close alert"
 msgstr "Peut fermer l'alerte"
 
-#: inc/alert.class.php:559
+#: inc/alert.class.php:574
 msgid "General"
 msgstr "Général"
 
-#: inc/alert.class.php:560
+#: inc/alert.class.php:575
 msgid "Information"
 msgstr "Information"
 
@@ -45,19 +45,19 @@ msgstr "Veuillez saisir un message."
 msgid "Please enter a name."
 msgstr "Veuillez saisir un nom."
 
-#: inc/alert.class.php:562
+#: inc/alert.class.php:577
 msgid "Problem"
 msgstr "Problème"
 
-#: inc/alert.class.php:434
+#: inc/alert.class.php:443
 msgid "Show on central page"
 msgstr "Affiche sur la page centrale"
 
-#: inc/alert.class.php:151 inc/alert.class.php:426
+#: inc/alert.class.php:151 inc/alert.class.php:435
 msgid "Show on helpdesk page"
 msgstr "Affiche sur la page d'assistance"
 
-#: inc/alert.class.php:142 inc/alert.class.php:420
+#: inc/alert.class.php:142 inc/alert.class.php:429
 msgid "Show on login page"
 msgstr "Affiche sur la page de connexion"
 
@@ -65,14 +65,14 @@ msgstr "Affiche sur la page de connexion"
 msgid "The end date must be greater than the start date."
 msgstr "La date de fin doit succéder la date de début."
 
-#: inc/alert.class.php:403
+#: inc/alert.class.php:412
 msgid "Type (to add an icon before alert title)"
 msgstr "Type (pour afficher une icône avant le titre de l'alerte)"
 
-#: inc/alert.class.php:561
+#: inc/alert.class.php:576
 msgid "Warning"
 msgstr "Avertissement"
 
-#: inc/alert.class.php:547
+#: inc/alert.class.php:562
 msgid "You have hidden alerts valid for current date"
 msgstr "Vous avez des alertes cachées valides pour la date courante"

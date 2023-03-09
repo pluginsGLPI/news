@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-13 08:40+0000\n"
+"POT-Creation-Date: 2023-03-09 11:08+0000\n"
 "PO-Revision-Date: 2015-09-18 13:33+0000\n"
 "Last-Translator: Kaya Zeren <kayazeren@gmail.com>, 2015-2016,2018,2021\n"
 "Language-Team: Turkish (Turkey) (http://www.transifex.com/teclib/glpi-plugin-news/language/tr_TR/)\n"
@@ -19,19 +19,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: inc/alert.class.php:55 front/alert.php:34 front/alert.form.php:93
-#: front/hidden_alerts.php:34 front/hidden_alerts.php:37 setup.php:73
+#: front/hidden_alerts.php:34 front/hidden_alerts.php:37 setup.php:74
 msgid "Alerts"
 msgstr "Uyarılar"
 
-#: inc/alert.class.php:133 inc/alert.class.php:411
+#: inc/alert.class.php:133 inc/alert.class.php:420
 msgid "Can close alert"
 msgstr "Uyarı kapatılabilsin"
 
-#: inc/alert.class.php:559
+#: inc/alert.class.php:574
 msgid "General"
 msgstr "Genel"
 
-#: inc/alert.class.php:560
+#: inc/alert.class.php:575
 msgid "Information"
 msgstr "Bilgi"
 
@@ -43,19 +43,19 @@ msgstr "Lütfen bir ileti yazın."
 msgid "Please enter a name."
 msgstr "Lütfen bir ad yazın."
 
-#: inc/alert.class.php:562
+#: inc/alert.class.php:577
 msgid "Problem"
 msgstr "Sorun"
 
-#: inc/alert.class.php:434
+#: inc/alert.class.php:443
 msgid "Show on central page"
 msgstr "Ana sayfada görüntülensin"
 
-#: inc/alert.class.php:151 inc/alert.class.php:426
+#: inc/alert.class.php:151 inc/alert.class.php:435
 msgid "Show on helpdesk page"
 msgstr "Destek sayfasında görüntülensin"
 
-#: inc/alert.class.php:142 inc/alert.class.php:420
+#: inc/alert.class.php:142 inc/alert.class.php:429
 msgid "Show on login page"
 msgstr "Oturum açma sayfasında görüntülensin"
 
@@ -63,14 +63,14 @@ msgstr "Oturum açma sayfasında görüntülensin"
 msgid "The end date must be greater than the start date."
 msgstr "Bitiş tarihi başlangıç tarihinden sonra olmalıdır."
 
-#: inc/alert.class.php:403
+#: inc/alert.class.php:412
 msgid "Type (to add an icon before alert title)"
 msgstr "Tür (uyarı başlığının önüne bir simge eklenmesi için)"
 
-#: inc/alert.class.php:561
+#: inc/alert.class.php:576
 msgid "Warning"
 msgstr "Uyarı"
 
-#: inc/alert.class.php:547
+#: inc/alert.class.php:562
 msgid "You have hidden alerts valid for current date"
 msgstr "Güncel tarih için geçerli olan gizli uyarılarınız var"

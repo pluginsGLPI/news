@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# 조성현 <jaymz9634@gmail.com>, 2020
+# SeongHyeon Cho <jaymz9634@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-13 08:40+0000\n"
+"POT-Creation-Date: 2023-03-09 11:08+0000\n"
 "PO-Revision-Date: 2015-09-18 13:33+0000\n"
-"Last-Translator: 조성현 <jaymz9634@gmail.com>, 2020\n"
+"Last-Translator: SeongHyeon Cho <jaymz9634@gmail.com>, 2020\n"
 "Language-Team: Korean (Korea) (http://www.transifex.com/teclib/glpi-plugin-news/language/ko_KR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,19 +19,19 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: inc/alert.class.php:55 front/alert.php:34 front/alert.form.php:93
-#: front/hidden_alerts.php:34 front/hidden_alerts.php:37 setup.php:73
+#: front/hidden_alerts.php:34 front/hidden_alerts.php:37 setup.php:74
 msgid "Alerts"
 msgstr "경고"
 
-#: inc/alert.class.php:133 inc/alert.class.php:411
+#: inc/alert.class.php:133 inc/alert.class.php:420
 msgid "Can close alert"
 msgstr "경고 닫기 허용"
 
-#: inc/alert.class.php:559
+#: inc/alert.class.php:574
 msgid "General"
 msgstr "일반"
 
-#: inc/alert.class.php:560
+#: inc/alert.class.php:575
 msgid "Information"
 msgstr "정보"
 
@@ -43,19 +43,19 @@ msgstr "메시지를 입력해 주세요"
 msgid "Please enter a name."
 msgstr "이름을 입력해 주세요"
 
-#: inc/alert.class.php:562
+#: inc/alert.class.php:577
 msgid "Problem"
 msgstr "문제"
 
-#: inc/alert.class.php:434
+#: inc/alert.class.php:443
 msgid "Show on central page"
 msgstr ""
 
-#: inc/alert.class.php:151 inc/alert.class.php:426
+#: inc/alert.class.php:151 inc/alert.class.php:435
 msgid "Show on helpdesk page"
 msgstr "안내 페이지에 표시"
 
-#: inc/alert.class.php:142 inc/alert.class.php:420
+#: inc/alert.class.php:142 inc/alert.class.php:429
 msgid "Show on login page"
 msgstr "로그인 페이지에 표시"
 
@@ -63,14 +63,14 @@ msgstr "로그인 페이지에 표시"
 msgid "The end date must be greater than the start date."
 msgstr "종료 일자는 시작 일자보다 커야 합니다."
 
-#: inc/alert.class.php:403
+#: inc/alert.class.php:412
 msgid "Type (to add an icon before alert title)"
 msgstr "유형 (경고 제목 앞에 추가할 아이콘)"
 
-#: inc/alert.class.php:561
+#: inc/alert.class.php:576
 msgid "Warning"
 msgstr "경고"
 
-#: inc/alert.class.php:547
+#: inc/alert.class.php:562
 msgid "You have hidden alerts valid for current date"
 msgstr "현재 날짜에 대한 숨겨진 경고가 있습니다"

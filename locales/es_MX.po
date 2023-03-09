@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Carlos Moreno Rodríguez <carlosm.rodriguez@prodigy.net.mx>, 2022
 msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-13 08:40+0000\n"
+"POT-Creation-Date: 2023-03-09 11:08+0000\n"
 "PO-Revision-Date: 2015-09-18 13:33+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: Carlos Moreno Rodríguez <carlosm.rodriguez@prodigy.net.mx>, 2022\n"
 "Language-Team: Spanish (Mexico) (http://www.transifex.com/teclib/glpi-plugin-news/language/es_MX/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,58 +19,58 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: inc/alert.class.php:55 front/alert.php:34 front/alert.form.php:93
-#: front/hidden_alerts.php:34 front/hidden_alerts.php:37 setup.php:73
+#: front/hidden_alerts.php:34 front/hidden_alerts.php:37 setup.php:74
 msgid "Alerts"
-msgstr ""
+msgstr "Noticias"
 
-#: inc/alert.class.php:133 inc/alert.class.php:411
+#: inc/alert.class.php:133 inc/alert.class.php:420
 msgid "Can close alert"
-msgstr ""
+msgstr "Permitir cerrar las noticias"
 
-#: inc/alert.class.php:559
+#: inc/alert.class.php:574
 msgid "General"
-msgstr ""
+msgstr "General"
 
-#: inc/alert.class.php:560
+#: inc/alert.class.php:575
 msgid "Information"
-msgstr ""
+msgstr "Información"
 
 #: inc/alert.class.php:317
 msgid "Please enter a message."
-msgstr ""
+msgstr "Introducir un mensaje"
 
 #: inc/alert.class.php:313
 msgid "Please enter a name."
-msgstr ""
+msgstr "Introducir nombre"
 
-#: inc/alert.class.php:562
+#: inc/alert.class.php:577
 msgid "Problem"
-msgstr ""
+msgstr "Problema"
 
-#: inc/alert.class.php:434
+#: inc/alert.class.php:443
 msgid "Show on central page"
-msgstr ""
+msgstr "Mostrar en la página central de GLPI"
 
-#: inc/alert.class.php:151 inc/alert.class.php:426
+#: inc/alert.class.php:151 inc/alert.class.php:435
 msgid "Show on helpdesk page"
-msgstr ""
+msgstr "Mostrar en la página de la mesa de ayuda"
 
-#: inc/alert.class.php:142 inc/alert.class.php:420
+#: inc/alert.class.php:142 inc/alert.class.php:429
 msgid "Show on login page"
-msgstr ""
+msgstr "Mostrar en la página de inicio de sesión"
 
 #: inc/alert.class.php:323
 msgid "The end date must be greater than the start date."
-msgstr ""
+msgstr "La fecha de finalización debe ser mayor que la fecha de inicio."
 
-#: inc/alert.class.php:403
+#: inc/alert.class.php:412
 msgid "Type (to add an icon before alert title)"
-msgstr ""
+msgstr "Escribir (para agregar un ícono antes del título de la noticia)"
 
-#: inc/alert.class.php:561
+#: inc/alert.class.php:576
 msgid "Warning"
-msgstr ""
+msgstr "¡Advertencia!"
 
-#: inc/alert.class.php:547
+#: inc/alert.class.php:562
 msgid "You have hidden alerts valid for current date"
-msgstr ""
+msgstr "Has ocultado alertas válidas para la fecha actual"
