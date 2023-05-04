@@ -286,6 +286,8 @@ function plugin_news_install() {
       ["name" => PluginNewsAlert::$rightname]
    ) > 0;
 
+   // Add the same standard rights on alerts as the rights already granted on
+   // public reminders
    if (!$right_exist) {
       $reminder_rights = $DB->request([
          'SELECT' => ['profiles_id', 'rights'],
