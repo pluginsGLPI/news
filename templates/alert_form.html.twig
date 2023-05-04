@@ -178,7 +178,10 @@
                 tinyMCE.triggerSave();
 
                 // Load preview
-                $(".alert-preview").load("{{ preview_url }}" + "?" + $("form[name=asset_form]").serialize());
+                $(".alert-preview").load(
+                    "{{ preview_url }}",
+                    $("form[name=asset_form]").serialize()
+                );
             };
 
             // Debounced function to not spam the backend for changes less than 0.4 seconds appart
