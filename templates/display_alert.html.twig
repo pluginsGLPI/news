@@ -51,7 +51,7 @@
             <i class="ti ti-{{ alert_fields.icon }} fa-2x me-2"></i>
             <div>
                 <h3 class="mt-1">
-                    {{ alert_fields.name }}
+                    {{ alert_fields.name|verbatim_value  }}
                     {% if show_only_login_alerts %}
                         <a class="plugin_news_alert-toggle"></a>
                     {% endif %}
@@ -73,7 +73,7 @@
                     </div>
                 {% endif %}
                 <div class="mt-2 plugin_news_alert-content">
-                    {{ content|raw }}
+                    {{ content|safe_html }}
                 </div>
             </div>
         </div>
