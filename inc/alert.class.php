@@ -29,6 +29,7 @@
  */
 
 use Glpi\Application\View\TemplateRenderer;
+use Glpi\Toolbox\Sanitizer;
 
 if (!defined('GLPI_ROOT')) {
    die("Sorry. You can't access directly to this file");
@@ -484,14 +485,11 @@ class PluginNewsAlert extends CommonDBTM {
 
    public static function displayAlert($alert, $p)
    {
-      // Clean unexpected \r\n values (is there a better way to prevent this ?)
-      $alert['message'] = str_replace('\r\n', "", $alert['message']);
-
       $twig = TemplateRenderer::getInstance();
       $twig->display('@news/display_alert.html.twig', [
          'size'                   => self::getSizeClasses($alert['size']),
          'alert_fields'           => $alert,
-         'content'                => Html::entity_decode_deep($alert['message']),
+         'content'                => Sanitizer::unsanitize($alert['message']),
          'can_close'              => $alert['is_close_allowed'] && !$p['show_hidden_alerts'],
          'show_only_login_alerts' => $p['show_only_login_alerts'],
       ]);
