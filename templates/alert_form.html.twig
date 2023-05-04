@@ -216,10 +216,10 @@
                     switch ($(e.target).val()) {
                         {% for key, values in templates_values %}
                             case '{{ key }}':
-                                $("form[name=asset_form] :input[name=icon][value={{ values.icon }}]").prop('checked', true);
-                                $("form[name=asset_form] :input[name=background_color][value={{ values.background_color }}]").prop('checked', true);
-                                $("form[name=asset_form] :input[name=text_color][value={{ values.text_color }}]").prop('checked', true);
-                                $("form[name=asset_form] :input[name=accent_color][value={{ values.accent_color }}]").prop('checked', true);
+                                $('form[name="asset_form"] :input[name="icon"][value="{{ values.icon }}"]').prop('checked', true);
+                                $('form[name="asset_form"] :input[name="background_color"][value="{{ values.background_color }}"]').prop('checked', true);
+                                $('form[name="asset_form"] :input[name="text_color"][value="{{ values.text_color }}"]').prop('checked', true);
+                                $('form[name="asset_form"] :input[name="accent_color"][value="{{ values.accent_color }}"]').prop('checked', true);
                                 break;
                         {% endfor %}
                     }
