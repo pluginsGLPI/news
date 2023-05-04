@@ -207,19 +207,19 @@
                     }
 
                     // Clear values
-                    $("form[name=asset_form] :input[name=icon]").prop('checked', false);
-                    $("form[name=asset_form] :input[name=background_color]").prop('checked', false);
-                    $("form[name=asset_form] :input[name=text_color]").prop('checked', false);
-                    $("form[name=asset_form] :input[name=accent_color]").prop('checked', false);
+                    $("form[name=asset_form] input[name=icon]").prop('checked', false);
+                    $("form[name=asset_form] input[name=background_color]").prop('checked', false);
+                    $("form[name=asset_form] input[name=text_color]").prop('checked', false);
+                    $("form[name=asset_form] input[name=accent_color]").prop('checked', false);
 
                     // Apply template values
                     switch ($(e.target).val()) {
                         {% for key, values in templates_values %}
                             case '{{ key }}':
-                                $('form[name="asset_form"] :input[name="icon"][value="{{ values.icon }}"]').prop('checked', true);
-                                $('form[name="asset_form"] :input[name="background_color"][value="{{ values.background_color }}"]').prop('checked', true);
-                                $('form[name="asset_form"] :input[name="text_color"][value="{{ values.text_color }}"]').prop('checked', true);
-                                $('form[name="asset_form"] :input[name="accent_color"][value="{{ values.accent_color }}"]').prop('checked', true);
+                                $('form[name="asset_form"] input[name="icon"][value="{{ values.icon }}"]').prop('checked', true);
+                                $('form[name="asset_form"] input[name="background_color"][value="{{ values.background_color }}"]').prop('checked', true);
+                                $('form[name="asset_form"] input[name="text_color"][value="{{ values.text_color }}"]').prop('checked', true);
+                                $('form[name="asset_form"] input[name="accent_color"][value="{{ values.accent_color }}"]').prop('checked', true);
                                 break;
                         {% endfor %}
                     }
@@ -227,7 +227,7 @@
                     updating_template = false;
                 } else if (['icon', 'background_color', 'text_color', 'accent_color'].includes($(e.target).prop('name'))){
                     // Manual color or icone change, disable templating
-                    $("form[name=asset_form] :input[name=type]").val(0).trigger("change");
+                    $("form[name=asset_form] input[name=type]").val(0).trigger("change");
                 }
 
                 reload_preview_debounced();
