@@ -26,7 +26,7 @@
  # -------------------------------------------------------------------------
  #}
 
-{% macro checkboxesField(name, possible_values, fields, label = '', options = {}) %}
+{% macro checkboxesField(name, possible_values, current_values, label = '', options = {}) %}
     {% import 'components/form/fields_macros.html.twig' as fields %}
     {% set field %}
         <div>
@@ -38,7 +38,7 @@
                         name="{{ key }}"
                         type="checkbox"
                         value="1"
-                        {{ fields[key] ? 'checked' : '' }}
+                        {{ current_values[key] ? 'checked' : '' }}
                         {{ options.readonly ? 'readonly' : '' }}
                         {{ options.disabled ? 'disabled' : '' }}
                     >
