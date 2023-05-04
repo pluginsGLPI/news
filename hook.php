@@ -40,6 +40,9 @@ function plugin_news_install() {
    $alert_table = "glpi_plugin_news_alerts";
 
    if (!$DB->tableExists($alert_table)) {
+      $white = PluginNewsAlert::WHITE;
+      $dark = PluginNewsAlert::DARK;
+      $medium = PluginNewsAlert::MEDIUM;
       $DB->query("
          CREATE TABLE IF NOT EXISTS `$alert_table` (
          `id`                       INT {$default_key_sign} NOT NULL AUTO_INCREMENT,
@@ -53,10 +56,10 @@ function plugin_news_install() {
          `is_displayed_onlogin`     TINYINT NOT NULL,
          `is_displayed_oncentral`   TINYINT NOT NULL,
          `display_dates`            TINYINT NOT NULL DEFAULT 1,
-         `background_color`         VARCHAR(255) NOT NULL,
-         `text_color`               VARCHAR(255) NOT NULL,
-         `accent_color`             VARCHAR(255) NOT NULL,
-         `size`                     VARCHAR(255) NOT NULL,
+         `background_color`         VARCHAR(255) NOT NULL DEFAULT '$white',
+         `text_color`               VARCHAR(255) NOT NULL DEFAULT '$dark',
+         `accent_color`             VARCHAR(255) NOT NULL DEFAULT '$dark',
+         `size`                     VARCHAR(255) NOT NULL DEFAUKT '$medium',
          `icon`                     VARCHAR(255) NOT NULL,
          `entities_id`              INT {$default_key_sign} NOT NULL,
          `is_recursive`             TINYINT NOT NULL DEFAULT 1,
