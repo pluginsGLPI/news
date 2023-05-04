@@ -225,7 +225,7 @@
                     }
 
                     updating_template = false;
-                } else if (['icon', 'background_color', 'text_color', 'accent_color'].includes($(e.target).prop('name'))){
+                } else if (['icon', 'background_color', 'text_color', 'accent_color'].includes($(e.target).prop('name'))) {
                     // Manual color or icone change, disable templating
                     $("form[name=asset_form] input[name=type]").val(0).trigger("change");
                 }
