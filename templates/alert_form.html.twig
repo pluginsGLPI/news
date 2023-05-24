@@ -179,7 +179,7 @@
 
                 // Load preview
                 $(".alert-preview").load(
-                    "{{ preview_url }}",
+                    "{{ get_plugin_web_dir('news')) }}/ajax/alert_preview.php",
                     $("form[name=asset_form]").serialize()
                 );
             };

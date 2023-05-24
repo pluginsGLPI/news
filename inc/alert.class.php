@@ -395,7 +395,6 @@ class PluginNewsAlert extends CommonDBTM {
          'colors'           => self::getColors(),
          'icons'            => self::getIcons(),
          'templates_values' => self::getTemplatesValues(),
-         'preview_url'      => Plugin::getWebDir('news') . "/ajax/alert_preview.php",
       ]);
    }
 
