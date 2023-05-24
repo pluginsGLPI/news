@@ -54,6 +54,11 @@ Fonctionnalités
    </authors>
    <versions>
       <version>
+         <num>1.11.0</num>
+         <compatibility>~10.0.0</compatibility>
+         <download_url>https://github.com/pluginsGLPI/news/releases/download/1.11.0/glpi-news-1.11.0.tar.bz2</download_url>
+      </version>
+      <version>
          <num>1.10.6</num>
          <compatibility>~10.0.0</compatibility>
          <download_url>https://github.com/pluginsGLPI/news/releases/download/1.10.6/glpi-news-1.10.6.tar.bz2</download_url>
