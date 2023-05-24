@@ -53,11 +53,11 @@ if (isset($_POST['type']) && !empty($_POST['type'])) {
 
       case 'Profile' :
          Profile::dropdown(['name'  => 'items_id',
-                            'toadd' => [-1 => __('All')]]);
+                            'toadd' => [-1 => __('All', 'news')]]);
          break;
    }
    echo "</td>";
-   echo "<td><input type='submit' name='addvisibility' value=\""._sx('button', 'Add')."\"
+   echo "<td><input type='submit' name='addvisibility' value=\""._sx('button', 'Add', 'news')."\"
                    class='submit'></td>";
    echo "</tr>";
    echo "</table>";

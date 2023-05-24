@@ -32,7 +32,7 @@
 
         <div class="center">
             <input type="hidden" name="id" value="{{ id }}">
-            {{ call('Html::submit', [_x('button', 'Save'), {'name': 'update'}])|raw }}
+            {{ call('Html::submit', [_x('button', 'Save', 'news'), {'name': 'update'}])|raw }}
         </div>
 
         <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}">

@@ -42,7 +42,7 @@ if (isset($_POST['update'])) {
    $alert->check($_POST['id'], UPDATE);
    if ($alert->update($_POST)) {
       Event::log($_POST["id"], "PluginNewsAlert", 4, "admin",
-              sprintf(__('%s updates an item'), $_SESSION["glpiname"]));
+              sprintf(__('%s updates an item', 'news'), $_SESSION["glpiname"]));
    }
    Html::back();
 
@@ -50,7 +50,7 @@ if (isset($_POST['update'])) {
    $alert->check(-1, CREATE, $_POST);
    if ($newID = $alert->add($_POST)) {
       Event::log($newID, "PluginNewsAlert", 4, "admin",
-                 sprintf(__('%1$s adds the item %2$s'), $_SESSION["glpiname"], $_POST["name"]));
+                 sprintf(__('%1$s adds the item %2$s', 'news'), $_SESSION["glpiname"], $_POST["name"]));
 
       if ($_SESSION['glpibackcreated']) {
          Html::redirect($alert->getLinkURL());
@@ -62,7 +62,7 @@ if (isset($_POST['update'])) {
    $alert->check($_POST['id'], DELETE);
    if ($alert->delete($_POST)) {
       Event::log($_POST["id"], "PluginNewsAlert", 4, "admin",
-                 sprintf(__('%s deletes an item'), $_SESSION["glpiname"]));
+                 sprintf(__('%s deletes an item', 'news'), $_SESSION["glpiname"]));
    }
    $alert->redirectToList();
 
@@ -70,7 +70,7 @@ if (isset($_POST['update'])) {
    $alert->check($_POST['id'], DELETE);
    if ($alert->restore($_POST)) {
       Event::log($_POST["id"], "PluginNewsAlert", 4, "admin",
-                 sprintf(__('%s restores an item'), $_SESSION["glpiname"]));
+                 sprintf(__('%s restores an item', 'news'), $_SESSION["glpiname"]));
    }
    Html::back();
 
@@ -78,7 +78,7 @@ if (isset($_POST['update'])) {
    $alert->check($_POST['id'], PURGE);
    if ($alert->delete($_POST, 1)) {
       Event::log($_POST["id"], "PluginNewsAlert", 4, "admin",
-                 sprintf(__('%s purges an item'), $_SESSION["glpiname"]));
+                 sprintf(__('%s purges an item', 'news'), $_SESSION["glpiname"]));
    }
    $alert->redirectToList();
 

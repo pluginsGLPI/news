@@ -47,20 +47,20 @@
     {{ fields.textField(
         'name',
         item.fields.name,
-        __('Name'),
+        __('Name', 'news'),
         base_option
     ) }}
     {{ fields.dropdownYesNo(
         'is_active',
         item.fields.is_active,
-        __('Active'),
+        __('Active', 'news'),
         base_option
     ) }}
 
     {{ fields.textareaField(
         'message',
         item.fields.message,
-        __('Description'),
+        __('Description', 'news'),
         {
             'full_width': true,
             'enable_richtext': true,
@@ -71,13 +71,13 @@
     {{ fields.dateTimeField(
         'date_start',
         item.fields.date_start,
-        __('Visibility start date'),
+        __('Visibility start date', 'news'),
         base_option
     ) }}
      {{ fields.dateTimeField(
         'date_end',
         item.fields.date_end,
-        __('Visibility end date'),
+        __('Visibility end date', 'news'),
         base_option
     ) }}
 
@@ -95,7 +95,7 @@
     {{ fields.dropdownYesNo(
         'is_close_allowed',
         item.fields.is_close_allowed,
-        __("Can close alert", 'news'),
+        __('Can close alert', 'news'),
         base_option
     ) }}
 
@@ -108,7 +108,7 @@
         'type',
         item.fields.type,
         templates,
-        __("Template"),
+        __('Template', 'news'),
         {
             'display_emptychoice': true,
         }|merge(base_option_small)
@@ -119,14 +119,14 @@
         'size',
         item.fields.size,
         sizes,
-        __("Size"),
+        __('Size', 'news'),
         base_option_small
     ) }}
     {{ news_fields.iconField(
         "icon",
         icons,
         item.fields.icon,
-        __('Icon'),
+        __('Icon', 'news'),
         {
             'display_emptychoice': true,
         }|merge(base_option_small)
@@ -134,7 +134,7 @@
     {{ fields.dropdownYesNo(
         'display_dates',
         item.fields.display_dates,
-        __('Show dates'),
+        __('Show dates', 'news'),
         base_option_small
     ) }}
 
@@ -142,27 +142,27 @@
         "background_color",
         colors,
         item.fields.background_color,
-        __('Background color'),
+        __('Background color', 'news'),
         base_option_small
     )}}
     {{ news_fields.colorField(
         "text_color",
         colors,
         item.fields.text_color,
-        __('Text color'),
+        __('Text color', 'news'),
         base_option_small
     )}}
     {{ news_fields.colorField(
         "emphasis_color",
         colors,
         item.fields.emphasis_color,
-        __('Emphasis color'),
+        __('Emphasis color', 'news'),
         base_option_small
     )}}
 
     <div class="hr-text preview-section {{ item.isNewItem() ? "d-none" : "" }}">
         <i class="ti ti-eye"></i>
-        <span>{{ __('Preview') }}</span>
+        <span>{{ __('Preview', 'news') }}</span>
     </div>
 
     <div class="alert-preview">

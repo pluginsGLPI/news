@@ -105,7 +105,7 @@ class PluginNewsAlert extends CommonDBTM {
          'id'               => 1,
          'table'            => $this->getTable(),
          'field'            => 'name',
-         'name'             => __('Name'),
+         'name'             => __('Name', 'news'),
          'datatype'         => 'itemlink',
          'itemlink_type'    => $this->getType(),
          'massiveaction'    => false,
@@ -115,7 +115,7 @@ class PluginNewsAlert extends CommonDBTM {
          'id'               => 2,
          'table'            => $this->getTable(),
          'field'            => 'date_start',
-         'name'             => __('Visibility start date'),
+         'name'             => __('Visibility start date', 'news'),
          'datatype'         => 'date',
       ];
 
@@ -123,7 +123,7 @@ class PluginNewsAlert extends CommonDBTM {
          'id'               => 3,
          'table'            => $this->getTable(),
          'field'            => 'date_end',
-         'name'             => __('Visibility end date'),
+         'name'             => __('Visibility end date', 'news'),
          'datatype'         => 'date',
       ];
 
@@ -131,7 +131,7 @@ class PluginNewsAlert extends CommonDBTM {
          'id'               => 4,
          'table'            => 'glpi_entities',
          'field'            => 'completename',
-         'name'             => __('Entity'),
+         'name'             => __('Entity', 'news'),
          'massiveaction'    => false,
       ];
 
@@ -139,7 +139,7 @@ class PluginNewsAlert extends CommonDBTM {
          'id'               => 5,
          'table'            => $this->getTable(),
          'field'            => 'is_recursive',
-         'name'             => __('Recursive'),
+         'name'             => __('Recursive', 'news'),
          'datatype'         => 'bool',
          'massiveaction'    => false,
       ];
@@ -186,7 +186,7 @@ class PluginNewsAlert extends CommonDBTM {
          'id'               => 10,
          'table'            => $this->getTable(),
          'field'            => 'is_active',
-         'name'             => __('Active'),
+         'name'             => __('Active', 'news'),
          'datatype'         => 'bool',
          'massiveaction'    => false,
       ];
@@ -195,7 +195,7 @@ class PluginNewsAlert extends CommonDBTM {
          'id'               => 19,
          'table'            => $this->getTable(),
          'field'            => 'date_mod',
-         'name'             => __('Last update'),
+         'name'             => __('Last update', 'news'),
          'datatype'         => 'datetime',
          'massiveaction'    => false,
       ];
@@ -204,7 +204,7 @@ class PluginNewsAlert extends CommonDBTM {
          'id'               => 121,
          'table'            => $this->getTable(),
          'field'            => 'date_creation',
-         'name'             => __('Creation date'),
+         'name'             => __('Creation date', 'news'),
          'datatype'         => 'datetime',
          'massiveaction'    => false,
       ];
@@ -529,7 +529,7 @@ class PluginNewsAlert extends CommonDBTM {
     */
    public static function getIcons(): array {
       return [
-         self::SETTINGS       => __('Settings'),
+         self::SETTINGS       => __('Settings', 'news'),
          self::ALERT_CIRCLE   => __('Alert circle', 'news'),
          self::ALERT_TRIANGLE => __('Alert triangle', 'news'),
          self::ALERT_OCTAGON  => __('Alert octagon', 'news'),
