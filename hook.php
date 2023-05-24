@@ -296,11 +296,20 @@ function plugin_news_install() {
       ]);
 
       foreach ($reminder_rights as $row) {
+         $profile_id  = $row['profiles_id'];
+         $right_value = $row['rights'] & ALLSTANDARDRIGHT;
+
          $migration->addPostQuery($DB->buildInsert('glpi_profilerights', [
-            'profiles_id' => $row['profiles_id'],
-            'rights'      => $row['rights'] & ALLSTANDARDRIGHT,
+            'profiles_id' => $profile_id,
+            'rights'      => $right_value,
             'name'        => PluginNewsAlert::$rightname,
          ]));
+
+         if (($_SESSION['glpiactiveprofile']['id'] ?? null) === $profile_id) {
+            // Ensure menu will be displayed as soon as right is added.
+            $_SESSION['glpiactiveprofile'][PluginNewsAlert::$rightname] = $right_value;
+            unset($_SESSION['glpimenu']);
+         }
       }
    }
 
