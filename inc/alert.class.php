@@ -382,7 +382,7 @@ class PluginNewsAlert extends CommonDBTM {
       $this->fields['display_dates']    = 1;
       $this->fields['background_color'] = self::WHITE;
       $this->fields['text_color']       = self::DARK;
-      $this->fields['accent_color']     = self::DARK;
+      $this->fields['emphasis_color']   = self::DARK;
       $this->fields['size']             = self::MEDIUM;
    }
 
@@ -569,25 +569,25 @@ class PluginNewsAlert extends CommonDBTM {
             'icon'             => self::SETTINGS,
             'background_color' => self::WHITE,
             'text_color'       => self::DARK,
-            'accent_color'     => self::DARK,
+            'emphasis_color'   => self::DARK,
          ],
          self::INFO => [
             'icon'             => self::ALERT_CIRCLE,
             'background_color' => self::WHITE,
             'text_color'       => self::DARK,
-            'accent_color'     => self::BLUE,
+            'emphasis_color'   => self::BLUE,
          ],
          self::WARNING => [
             'icon'             => self::ALERT_TRIANGLE,
             'background_color' => self::ORANGE,
             'text_color'       => self::WHITE,
-            'accent_color'     => self::ORANGE,
+            'emphasis_color'   => self::ORANGE,
          ],
          self::PROBLEM => [
             'icon'             => self::ALERT_OCTAGON,
             'background_color' => self::RED,
             'text_color'       => self::WHITE,
-            'accent_color'     => self::RED,
+            'emphasis_color'   => self::RED,
          ],
       ];
    }

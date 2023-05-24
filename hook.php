@@ -58,7 +58,7 @@ function plugin_news_install() {
          `display_dates`            TINYINT NOT NULL DEFAULT 1,
          `background_color`         VARCHAR(255) NOT NULL DEFAULT '$white',
          `text_color`               VARCHAR(255) NOT NULL DEFAULT '$dark',
-         `accent_color`             VARCHAR(255) NOT NULL DEFAULT '$dark',
+         `emphasis_color`          VARCHAR(255) NOT NULL DEFAULT '$dark',
          `size`                     VARCHAR(255) NOT NULL DEFAUKT '$medium',
          `icon`                     VARCHAR(255) NOT NULL,
          `entities_id`              INT {$default_key_sign} NOT NULL,
@@ -226,11 +226,11 @@ function plugin_news_install() {
       );
    }
 
-   // Add accent_color field
-    if (!$DB->fieldExists($alert_table, 'accent_color')) {
+   // Add emphasis_color field
+    if (!$DB->fieldExists($alert_table, 'emphasis_color')) {
       $migration->addField(
          $alert_table,
-         'accent_color',
+         'emphasis_color',
          'string',
          ['value' => PluginNewsAlert::DARK]
       );
