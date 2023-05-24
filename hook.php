@@ -37,9 +37,14 @@ function plugin_news_install() {
    $default_collation = DBConnection::getDefaultCollation();
    $default_key_sign = DBConnection::getDefaultPrimaryKeySignOption();
 
-   if (! $DB->tableExists('glpi_plugin_news_alerts')) {
+   $alert_table = "glpi_plugin_news_alerts";
+
+   if (!$DB->tableExists($alert_table)) {
+      $white = PluginNewsAlert::WHITE;
+      $dark = PluginNewsAlert::DARK;
+      $medium = PluginNewsAlert::MEDIUM;
       $DB->query("
-         CREATE TABLE IF NOT EXISTS `glpi_plugin_news_alerts` (
+         CREATE TABLE IF NOT EXISTS `$alert_table` (
          `id`                       INT {$default_key_sign} NOT NULL AUTO_INCREMENT,
          `date_mod`                 TIMESTAMP NOT NULL,
          `name`                     VARCHAR(255) NOT NULL,
@@ -50,6 +55,12 @@ function plugin_news_install() {
          `is_deleted`               TINYINT NOT NULL DEFAULT 0,
          `is_displayed_onlogin`     TINYINT NOT NULL,
          `is_displayed_oncentral`   TINYINT NOT NULL,
+         `display_dates`            TINYINT NOT NULL DEFAULT 1,
+         `background_color`         VARCHAR(255) NOT NULL DEFAULT '$white',
+         `text_color`               VARCHAR(255) NOT NULL DEFAULT '$dark',
+         `emphasis_color`           VARCHAR(255) NOT NULL DEFAULT '$dark',
+         `size`                     VARCHAR(255) NOT NULL DEFAULT '$medium',
+         `icon`                     VARCHAR(255) NOT NULL,
          `entities_id`              INT {$default_key_sign} NOT NULL,
          `is_recursive`             TINYINT NOT NULL DEFAULT 1,
          PRIMARY KEY (`id`)
@@ -57,7 +68,7 @@ function plugin_news_install() {
       ");
    }
 
-   if (! $DB->tableExists('glpi_plugin_news_alerts_users')) {
+   if (!$DB->tableExists('glpi_plugin_news_alerts_users')) {
       $DB->query("
          CREATE TABLE IF NOT EXISTS `glpi_plugin_news_alerts_users` (
          `id`                    INT {$default_key_sign} NOT NULL AUTO_INCREMENT,
@@ -71,7 +82,7 @@ function plugin_news_install() {
       ");
    }
 
-   if (! $DB->tableExists('glpi_plugin_news_alerts_targets')) {
+   if (!$DB->tableExists('glpi_plugin_news_alerts_targets')) {
       $DB->query("
          CREATE TABLE IF NOT EXISTS `glpi_plugin_news_alerts_targets` (
          `id`                    INT {$default_key_sign} NOT NULL AUTO_INCREMENT,
@@ -92,64 +103,73 @@ function plugin_news_install() {
    }
 
    // add displayed on login flag
-   if (!$DB->fieldExists("glpi_plugin_news_alerts", "is_displayed_onlogin")) {
-      $migration->addField("glpi_plugin_news_alerts", "is_displayed_onlogin", 'bool');
+   if (!$DB->fieldExists($alert_table, "is_displayed_onlogin")) {
+      $migration->addField($alert_table, "is_displayed_onlogin", 'bool');
    }
 
    // add displayed on helpdesk flag
-   if (!$DB->fieldExists("glpi_plugin_news_alerts", "is_displayed_onhelpdesk")) {
-      $migration->addField("glpi_plugin_news_alerts", "is_displayed_onhelpdesk", 'bool');
+   if (!$DB->fieldExists($alert_table, "is_displayed_onhelpdesk")) {
+      $migration->addField($alert_table, "is_displayed_onhelpdesk", 'bool');
    }
 
-   if (!$DB->fieldExists("glpi_plugin_news_alerts", "date_creation")) {
-      if ($migration->addField("glpi_plugin_news_alerts", "date_creation", 'date')) {
-         $migration->addKey("glpi_plugin_news_alerts", "date_creation");
+   if (!$DB->fieldExists($alert_table, "date_creation")) {
+      if ($migration->addField($alert_table, "date_creation", 'date')) {
+         $migration->addKey($alert_table, "date_creation");
       }
    }
 
    // add close allowed flag
-   if (!$DB->fieldExists("glpi_plugin_news_alerts", "is_close_allowed")) {
-      $migration->addField("glpi_plugin_news_alerts", "is_close_allowed", 'bool');
+   if (!$DB->fieldExists($alert_table, "is_close_allowed")) {
+      $migration->addField($alert_table, "is_close_allowed", 'bool');
    }
 
    // add type field on alert (to display icons)
-   if (!$DB->fieldExists("glpi_plugin_news_alerts", "type")) {
-      $migration->addField("glpi_plugin_news_alerts", "type", 'integer');
+   if (!$DB->fieldExists($alert_table, "type")) {
+      $migration->addField($alert_table, "type", 'integer');
    }
 
    // add activity flag
-   if (!$DB->fieldExists("glpi_plugin_news_alerts", "is_active")) {
-      if ($migration->addField("glpi_plugin_news_alerts", "is_active", 'bool')) {
-         $migration->addKey("glpi_plugin_news_alerts", "is_active");
+   if (!$DB->fieldExists($alert_table, "is_active")) {
+      if ($migration->addField($alert_table, "is_active", 'bool')) {
+         $migration->addKey($alert_table, "is_active");
       }
    }
 
    // fix is_default default value
-   $alert_fields = $DB->listFields('glpi_plugin_news_alerts');
+   $alert_fields = $DB->listFields($alert_table);
    if ($alert_fields['is_deleted']['Default'] !== '0') {
-      $migration->changeField("glpi_plugin_news_alerts",
-                           "is_deleted", "is_deleted",
-                           "TINYINT NOT NULL DEFAULT 0");
+      $migration->changeField(
+         $alert_table,
+         "is_deleted",
+         "is_deleted",
+         "TINYINT NOT NULL DEFAULT 0"
+      );
    }
 
    // end/start dates can be null
-   $migration->changeField("glpi_plugin_news_alerts",
-                           "date_end", "date_end",
-                           "TIMESTAMP NULL DEFAULT NULL");
-   $migration->changeField("glpi_plugin_news_alerts",
-                           "date_start", "date_start",
-                           "TIMESTAMP NULL DEFAULT NULL");
+   $migration->changeField(
+      $alert_table,
+      "date_end",
+      "date_end",
+      "TIMESTAMP NULL DEFAULT NULL"
+   );
+   $migration->changeField(
+      $alert_table,
+      "date_start",
+      "date_start",
+      "TIMESTAMP NULL DEFAULT NULL"
+   );
 
-   if ($DB->fieldExists("glpi_plugin_news_alerts", "profiles_id")) {
+   if ($DB->fieldExists($alert_table, "profiles_id")) {
       // migration of direct profiles into targets table
       $query_targets = "INSERT INTO glpi_plugin_news_alerts_targets
                            (plugin_news_alerts_id, itemtype, items_id)
                            SELECT id, 'Profile', profiles_id
-                           FROM glpi_plugin_news_alerts";
-      $res_targets = $DB->query($query_targets) or die("fail to migration targets");
+                           FROM $alert_table";
+      $DB->query($query_targets) or die("fail to migration targets");
 
       //drop old field
-      $migration->dropField("glpi_plugin_news_alerts", "profiles_id");
+      $migration->dropField($alert_table, "profiles_id");
    }
 
    // Replace -1 value usage in items_id foreign key
@@ -177,8 +197,120 @@ function plugin_news_install() {
    }
 
    // add displayed on central flag
-   if (!$DB->fieldExists("glpi_plugin_news_alerts", "is_displayed_oncentral")) {
-      $migration->addField("glpi_plugin_news_alerts", "is_displayed_oncentral", 'bool', ['value' => true]);
+   if (!$DB->fieldExists($alert_table, "is_displayed_oncentral")) {
+      $migration->addField(
+         $alert_table,
+         "is_displayed_oncentral",
+         'bool',
+         ['value' => true]
+      );
+   }
+
+   // Add background_color field
+   if (!$DB->fieldExists($alert_table, 'background_color')) {
+      $migration->addField(
+         $alert_table,
+         'background_color',
+         'string',
+         ['value' => PluginNewsAlert::WHITE]
+      );
+   }
+
+   // Add text_color field
+   if (!$DB->fieldExists($alert_table, 'text_color')) {
+      $migration->addField(
+         $alert_table,
+         'text_color',
+         'string',
+         ['value' => PluginNewsAlert::DARK]
+      );
+   }
+
+   // Add emphasis_color field
+    if (!$DB->fieldExists($alert_table, 'emphasis_color')) {
+      $migration->addField(
+         $alert_table,
+         'emphasis_color',
+         'string',
+         ['value' => PluginNewsAlert::DARK]
+      );
+   }
+
+   // Add size field
+   if (!$DB->fieldExists($alert_table, 'size')) {
+      $migration->addField(
+         $alert_table,
+         'size',
+         'string',
+         ['value' => PluginNewsAlert::MEDIUM]
+      );
+   }
+
+   // Add icon field
+   if (!$DB->fieldExists($alert_table, 'icon')) {
+      $migration->addField(
+         $alert_table,
+         'icon',
+         'string',
+         ['value' => '']
+      );
+   }
+
+   // Add display_dates field
+   if (!$DB->fieldExists($alert_table, 'display_dates')) {
+      $migration->addField(
+         $alert_table,
+         'display_dates',
+         'bool',
+         ['value' => '1']
+      );
+   }
+
+   // Build or rebuild templates data
+   // -> Will fill new columns (colors + icon) with the expected values for each
+   //    templates
+   // -> Will update template values if changed in future updates
+   foreach (array_keys(PluginNewsAlert::getTypes()) as $type) {
+      $migration->addPostQuery(
+         $DB->buildUpdate(
+            $alert_table,
+            PluginNewsAlert::getTemplatesValues()[$type],
+            ['type' => $type],
+         )
+      );
+   }
+
+   // $migration->addRight() does not allow to copy an existing right, we must write some custom code
+   $right_exist = countElementsInTable(
+      "glpi_profilerights",
+      ["name" => PluginNewsAlert::$rightname]
+   ) > 0;
+
+   // Add the same standard rights on alerts as the rights already granted on
+   // public reminders
+   if (!$right_exist) {
+      $reminder_rights = $DB->request([
+         'SELECT' => ['profiles_id', 'rights'],
+         'FROM'   => 'glpi_profilerights',
+         'WHERE'  => ['name' => 'reminder_public']
+      ]);
+
+      foreach ($reminder_rights as $row) {
+         $profile_id  = $row['profiles_id'];
+         $right_value = $row['rights'] & ALLSTANDARDRIGHT;
+
+         $migration->addPostQuery($DB->buildInsert('glpi_profilerights', [
+            'profiles_id' => $profile_id,
+            'rights'      => $right_value,
+            'name'        => PluginNewsAlert::$rightname,
+         ]));
+
+         if (($_SESSION['glpiactiveprofile']['id'] ?? null) === $profile_id) {
+            // Ensure menu will be displayed as soon as right is added.
+            $_SESSION['glpiactiveprofile'][PluginNewsAlert::$rightname] = $right_value;
+            unset($_SESSION['glpimenu']);
+         }
+      }
    }
 
    $migration->executeMigration();

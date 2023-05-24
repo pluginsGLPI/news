@@ -1,0 +1,120 @@
+{#
+ # -------------------------------------------------------------------------
+ # News plugin for GLPI
+ # -------------------------------------------------------------------------
+ #
+ # LICENSE
+ #
+ # This file is part of News.
+ #
+ # News is free software; you can redistribute it and/or modify
+ # it under the terms of the GNU General Public License as published by
+ # the Free Software Foundation; either version 2 of the License, or
+ # (at your option) any later version.
+ #
+ # News is distributed in the hope that it will be useful,
+ # but WITHOUT ANY WARRANTY; without even the implied warranty of
+ # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ # GNU General Public License for more details.
+ #
+ # You should have received a copy of the GNU General Public License
+ # along with News. If not, see <http://www.gnu.org/licenses/>.
+ # -------------------------------------------------------------------------
+ # @copyright Copyright (C) 2015-2022 by News plugin team.
+ # @license   GPLv2 https://www.gnu.org/licenses/gpl-2.0.html
+ # @link      https://github.com/pluginsGLPI/news
+ # -------------------------------------------------------------------------
+ #}
+
+{% macro checkboxesField(name, possible_values, current_values, label = '', options = {}) %}
+    {% import 'components/form/fields_macros.html.twig' as fields %}
+    {% set field %}
+        <div>
+            {% for key, label in possible_values %}
+                <label class="form-check form-check-inline mb-0">
+                    <input type="hidden" name="{{ key }}" value="0">
+                    <input
+                        class="form-check-input"
+                        name="{{ key }}"
+                        type="checkbox"
+                        value="1"
+                        {{ current_values[key] ? 'checked' : '' }}
+                        {{ options.readonly ? 'readonly' : '' }}
+                        {{ options.disabled ? 'disabled' : '' }}
+                    >
+                    <span class="form-check-label">{{ label }}</span>
+                </label>
+            {% endfor %}
+        </div>
+    {% endset %}
+
+    {{ fields.field(name, field, label, options) }}
+{% endmacro %}
+
+{% macro iconField(name, main_values, value, label = '', options = {}) %}
+    {% import 'components/form/fields_macros.html.twig' as fields %}
+    {% set field %}
+        <div class="form-selectgroup">
+            {% if options.display_emptychoice|default(false) %}
+                <label class="form-selectgroup-item">
+                    <input
+                        type="radio"
+                        name="{{ name }}"
+                        value=""
+                        class="form-selectgroup-input"
+                        {{ value == key ? 'checked' : '' }}
+                    >
+                    <span class="form-selectgroup-label">{{ __('No icon', 'news') }}</span>
+                </label>
+            {% endif %}
+
+            {% for key, label in main_values %}
+                <label class="form-selectgroup-item" title="{{ label }}">
+                    <input
+                        name="{{ name }}"
+                        value="{{ key }}"
+                        class="form-selectgroup-input"
+                        type="radio"
+                        {{ value == key ? 'checked' : '' }}
+                    >
+                    <span class="form-selectgroup-label">
+                        <i
+                            class="ti ti-{{ key }} icon fa-fw d-inline-block"
+                            style="font-size: 1.4em !important; width: 1em !important"
+                        ></i>
+                    </span>
+                </label>
+            {% endfor %}
+        </div>
+    {% endset %}
+
+    {{ fields.field(name, field, label, options) }}
+{% endmacro %}
+
+{% macro colorField(name, colors, value, label = '', options = {}) %}
+    {% import 'components/form/fields_macros.html.twig' as fields %}
+
+    {% set field %}
+        <div class="row g-2">
+            {% for color, label in colors %}
+                <div class="col-auto">
+                    <label
+                        class="form-colorinput {{ color == 'white' ? 'form-colorinput-light' : '' }}"
+                        title="{{ label }}"
+                    >
+                        <input
+                            name="{{ name }}"
+                            type="radio"
+                            value="{{ color }}"
+                            class="form-colorinput-input"
+                            {{ value == color ? 'checked' : '' }}
+                        >
+                        <span class="form-colorinput-color bg-{{ color }}"></span>
+                    </label>
+                </div>
+            {% endfor %}
+        </div>
+    {% endset %}
+
+    {{ fields.field(name, field, label, options) }}
+{% endmacro %}

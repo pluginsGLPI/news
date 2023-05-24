@@ -1,0 +1,255 @@
+{#
+ # -------------------------------------------------------------------------
+ # News plugin for GLPI
+ # -------------------------------------------------------------------------
+ #
+ # LICENSE
+ #
+ # This file is part of News.
+ #
+ # News is free software; you can redistribute it and/or modify
+ # it under the terms of the GNU General Public License as published by
+ # the Free Software Foundation; either version 2 of the License, or
+ # (at your option) any later version.
+ #
+ # News is distributed in the hope that it will be useful,
+ # but WITHOUT ANY WARRANTY; without even the implied warranty of
+ # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ # GNU General Public License for more details.
+ #
+ # You should have received a copy of the GNU General Public License
+ # along with News. If not, see <http://www.gnu.org/licenses/>.
+ # -------------------------------------------------------------------------
+ # @copyright Copyright (C) 2015-2022 by News plugin team.
+ # @license   GPLv2 https://www.gnu.org/licenses/gpl-2.0.html
+ # @link      https://github.com/pluginsGLPI/news
+ # -------------------------------------------------------------------------
+ #}
+
+{% extends "generic_show_form.html.twig" %}
+{% import 'components/form/fields_macros.html.twig' as fields %}
+{% import '@news/components/news_fields_macros.html.twig' as news_fields %}
+
+{% set params  = params ?? [] %}
+
+{% block form_fields %}
+
+    {# Horizontal mode solve a few layout problems for this page, such as displaying
+       properly a field on an entire row or splitting the layout into 3 columns
+       without losing too much space #}
+    {% set base_option = {
+        'is_horizontal' : false,
+    } %}
+    {% set base_option_small = {
+        'field_class' : 'col-xxl-4 col-xl-6',
+    }|merge(base_option) %}
+
+    {{ fields.textField(
+        'name',
+        item.fields.name,
+        __('Name', 'news'),
+        base_option
+    ) }}
+    {{ fields.dropdownYesNo(
+        'is_active',
+        item.fields.is_active,
+        __('Active', 'news'),
+        base_option
+    ) }}
+
+    {{ fields.textareaField(
+        'message',
+        item.fields.message,
+        __('Description', 'news'),
+        {
+            'full_width': true,
+            'enable_richtext': true,
+            'enable_images'  : false,
+        }|merge(base_option)
+    ) }}
+
+    {{ fields.dateTimeField(
+        'date_start',
+        item.fields.date_start,
+        __('Visibility start date', 'news'),
+        base_option
+    ) }}
+     {{ fields.dateTimeField(
+        'date_end',
+        item.fields.date_end,
+        __('Visibility end date', 'news'),
+        base_option
+    ) }}
+
+    {{ news_fields.checkboxesField(
+        "show_on_pages",
+        {
+            'is_displayed_oncentral' : __('Central page', 'news'),
+            'is_displayed_onlogin'   : __('Login page', 'news'),
+            'is_displayed_onhelpdesk': __('Helpdesk page', 'news'),
+        },
+        item.fields,
+        __('Show on pages', 'news'),
+        base_option
+    )}}
+    {{ fields.dropdownYesNo(
+        'is_close_allowed',
+        item.fields.is_close_allowed,
+        __('Can close alert', 'news'),
+        base_option
+    ) }}
+
+    <div class="hr-text">
+        <i class="ti ti-palette"></i>
+        <span>{{ __('Customization', 'news') }}</span>
+    </div>
+
+    {{ fields.dropdownArrayField(
+        'type',
+        item.fields.type,
+        templates,
+        __('Template', 'news'),
+        {
+            'display_emptychoice': true,
+        }|merge(base_option_small)
+    ) }}
+    {{ fields.nullField() }}
+
+    {{ fields.dropdownArrayField(
+        'size',
+        item.fields.size,
+        sizes,
+        __('Size', 'news'),
+        base_option_small
+    ) }}
+    {{ news_fields.iconField(
+        "icon",
+        icons,
+        item.fields.icon,
+        __('Icon', 'news'),
+        {
+            'display_emptychoice': true,
+        }|merge(base_option_small)
+    ) }}
+    {{ fields.dropdownYesNo(
+        'display_dates',
+        item.fields.display_dates,
+        __('Show dates', 'news'),
+        base_option_small
+    ) }}
+
+    {{ news_fields.colorField(
+        "background_color",
+        colors,
+        item.fields.background_color,
+        __('Background color', 'news'),
+        base_option_small
+    )}}
+    {{ news_fields.colorField(
+        "text_color",
+        colors,
+        item.fields.text_color,
+        __('Text color', 'news'),
+        base_option_small
+    )}}
+    {{ news_fields.colorField(
+        "emphasis_color",
+        colors,
+        item.fields.emphasis_color,
+        __('Emphasis color', 'news'),
+        base_option_small
+    )}}
+
+    <div class="hr-text preview-section {{ item.isNewItem() ? "d-none" : "" }}">
+        <i class="ti ti-eye"></i>
+        <span>{{ __('Preview', 'news') }}</span>
+    </div>
+
+    <div class="alert-preview">
+    </div>
+
+    <script>
+        (async function () {
+            const reload_preview = function () {
+                // Show preview section if hidden
+                $('.preview-section').removeClass('d-none');
+
+                // Send tinymce content to the forms textarea
+                tinyMCE.triggerSave();
+
+                // Load preview
+                $(".alert-preview").load(
+                    "{{ get_plugin_web_dir('news') }}/ajax/alert_preview.php",
+                    $("form[name=asset_form]").serialize()
+                );
+            };
+
+            // Debounced function to not spam the backend for changes less than 0.4 seconds appart
+            const reload_preview_debounced = _.debounce(reload_preview, 400, false);
+
+            // Any input or dropdown change on our form
+            let updating_template = false;
+            $("form[name=asset_form] :input").on('input', function(e) {
+                if (updating_template) {
+                    // Prevent infinite loops as modifying the template will trigger
+                    // an update on others fields
+                    return;
+                }
+
+                if ($(e.target).prop('name') == 'type') {
+                    // Template change
+                    updating_template = true;
+
+                    // Template disabled, stop processing
+                    if ($(e.target).val() == "0") {
+                        updating_template = false;
+                        return;
+                    }
+
+                    // Clear values
+                    $('form[name="asset_form"] input[name="icon"]').prop('checked', false);
+                    $('form[name="asset_form"] input[name="background_color"]').prop('checked', false);
+                    $('form[name="asset_form"] input[name="text_color"]').prop('checked', false);
+                    $('form[name="asset_form"] input[name="emphasis_color"]').prop('checked', false);
+
+                    // Apply template values
+                    switch ($(e.target).val()) {
+                        {% for key, values in templates_values %}
+                            case '{{ key }}':
+                                $('form[name="asset_form"] input[name="icon"][value="{{ values.icon }}"]').prop('checked', true);
+                                $('form[name="asset_form"] input[name="background_color"][value="{{ values.background_color }}"]').prop('checked', true);
+                                $('form[name="asset_form"] input[name="text_color"][value="{{ values.text_color }}"]').prop('checked', true);
+                                $('form[name="asset_form"] input[name="emphasis_color"][value="{{ values.emphasis_color }}"]').prop('checked', true);
+                                break;
+                        {% endfor %}
+                    }
+
+                    updating_template = false;
+                } else if (['icon', 'background_color', 'text_color', 'emphasis_color'].includes($(e.target).prop('name'))) {
+                    // Manual color or icon change, disable templating
+                    $("form[name=asset_form] input[name=type]").val(0).trigger("change");
+                }
+
+                reload_preview_debounced();
+            });
+
+            // Specific tinymce change detection
+            await new Promise(r => setTimeout(r, 500)); // Wait for all editors to be loaded
+            let i = 0;
+            while (e = tinymce.get(i++)) {
+                e.on('input NodeChange', function(e) {
+                    reload_preview_debounced();
+                });
+            }
+
+
+            {% if not item.isNewItem() %}
+                // If existing alert, load preview immediatly
+                // New alerts will not have a preview until a change is made on any inputs
+                reload_preview();
+            {% endif %}
+        })();
+    </script>
+
+{% endblock %}
+

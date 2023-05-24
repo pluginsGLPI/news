@@ -79,7 +79,7 @@ class PluginNewsAlert_User extends CommonDBRelation {
          'id'               => 5,
          'table'            => $this->getTable(),
          'field'            => 'state',
-         'name'             => __('Status'),
+         'name'             => __('Status', 'news'),
          'datatype'         => 'dropdown',
       ];
 

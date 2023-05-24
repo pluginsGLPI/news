@@ -1,0 +1,104 @@
+{#
+ # -------------------------------------------------------------------------
+ # News plugin for GLPI
+ # -------------------------------------------------------------------------
+ #
+ # LICENSE
+ #
+ # This file is part of News.
+ #
+ # News is free software; you can redistribute it and/or modify
+ # it under the terms of the GNU General Public License as published by
+ # the Free Software Foundation; either version 2 of the License, or
+ # (at your option) any later version.
+ #
+ # News is distributed in the hope that it will be useful,
+ # but WITHOUT ANY WARRANTY; without even the implied warranty of
+ # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ # GNU General Public License for more details.
+ #
+ # You should have received a copy of the GNU General Public License
+ # along with News. If not, see <http://www.gnu.org/licenses/>.
+ # -------------------------------------------------------------------------
+ # @copyright Copyright (C) 2015-2022 by News plugin team.
+ # @license   GPLv2 https://www.gnu.org/licenses/gpl-2.0.html
+ # @link      https://github.com/pluginsGLPI/news
+ # -------------------------------------------------------------------------
+ #}
+
+<style>
+    /* Mising tabler variable */
+    :root{
+        --tblr-lime: #74b816;
+    }
+</style>
+
+{% set js_rand = random() %}
+
+<div class="plugin_news_alert {{ size }}" data-id="{{ alert_fields.id|default(0) }}">
+    <div
+        class="
+            alert-{{ js_rand }}
+            alert text-start bg-{{ alert_fields.background_color }}
+            {{ can_close ? "alert-dismissible"  : ""}}
+        "
+        style="
+            color: var(--tblr-{{ alert_fields.text_color }}) !important;
+            border-left-color: var(--tblr-{{ alert_fields.emphasis_color }}) !important;
+        "
+    >
+        <div class="d-flex">
+            <i class="ti ti-{{ alert_fields.icon }} fa-2x me-2"></i>
+            <div>
+                <h3 class="mt-1">
+                    {{ alert_fields.name|verbatim_value  }}
+                    {% if show_only_login_alerts %}
+                        <a class="plugin_news_alert-toggle"></a>
+                    {% endif %}
+                </h3>
+                {% if alert_fields.display_dates %}
+                    <div
+                        {# Different color for dates if the background color allows it #}
+                        {% if alert_fields.background_color in ['dark', 'white', 'yellow', 'lime'] %}
+                            class="text-muted"
+                        {% else %}
+                            style="font-style: italic"
+                        {% endif %}
+                    >
+                        {{ alert_fields.date_start|formatted_datetime }}
+                        {% if not alert_fields.date_start is empty and not alert_fields.date_end is empty %}
+                            -
+                        {% endif %}
+                        {{ alert_fields.date_end|formatted_datetime }}
+                    </div>
+                {% endif %}
+                <div class="mt-2 plugin_news_alert-content">
+                    {{ content|safe_html }}
+                </div>
+            </div>
+        </div>
+        {% if can_close %}
+            <a class="btn-close" aria-label="close"></a>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+    (function () {
+        // Accentuation color must have a lower opacity
+        // Must be done in JS, we can't do a rgba on hex variables directly from css
+        const background = $('.alert-{{ js_rand }}').css('background-color');
+        const accent = $('.alert-{{ js_rand }}').css('border-left-color');
+
+        // Do not add opacity if background and accent are identical (= no accent)
+        if (background !== accent) {
+            // Rewrite "rgb(r,g,b)" into "rgba(r,g,b,0.6)"
+            $('.alert-{{ js_rand }}').css(
+                'border-left-color',
+                $('.alert-{{ js_rand }}').css('border-left-color')
+                    .replace('rgb', 'rgba')
+                    .replace(')', ', 0.6)')
+            )
+        }
+    })();
+</script>

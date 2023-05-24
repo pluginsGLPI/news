@@ -33,10 +33,10 @@ if (!defined('GLPI_ROOT')) {
 }
 
 class PluginNewsAlert_Target extends CommonDBTM {
-   static $rightname = 'reminder_public';
+   static $rightname = 'plugin_news_alert';
 
    static function getTypeName($nb = 0) {
-      return _n('Target', 'Targets', $nb);
+      return _n('Target', 'Targets', $nb, 'news');
    }
 
    static function canDelete() {
@@ -71,7 +71,7 @@ class PluginNewsAlert_Target extends CommonDBTM {
                $item = new $values['itemtype'];
                if ($values['itemtype'] == "Profile"
                    && $values['all_items'] == 1) {
-                  return $item->getTypeName()." - ".__('All');
+                  return $item->getTypeName()." - ".__('All', 'news');
                }
                $item->getFromDB($values['items_id']);
                return $item->getTypeName()." - ".$item->getName();
@@ -110,7 +110,7 @@ class PluginNewsAlert_Target extends CommonDBTM {
       echo "<table class='plugin_news_alert-visibility'>";
       echo "<tr>";
       echo "<td>";
-      echo __('Add a target').":&nbsp;";
+      echo __('Add a target', 'news').":&nbsp;";
       $addrand = Dropdown::showItemTypes('itemtype', $types, ['width' => '']);
       echo "</td>";
       $params  = ['type'         => '__VALUE__',
@@ -135,7 +135,7 @@ class PluginNewsAlert_Target extends CommonDBTM {
          $massiveactionparams
             = ['num_displayed'    => $nb,
                'container'        => 'mass'.__CLASS__.$rand,
-               'specific_actions' => ['delete' => _x('button', 'Delete permanently')]
+               'specific_actions' => ['delete' => _x('button', 'Delete permanently', 'news')]
                ];
          Html::showMassiveActions($massiveactionparams);
 
@@ -143,8 +143,8 @@ class PluginNewsAlert_Target extends CommonDBTM {
 
          echo "<tr>";
          echo "<th width='10'>".Html::getCheckAllAsCheckbox('mass'.__CLASS__.$rand)."</th>";
-         echo "<th>".__('Type')."</th>";
-         echo "<th>".__('Recipient')."</th>";
+         echo "<th>".__('Type', 'news')."</th>";
+         echo "<th>".__('Recipient', 'news')."</th>";
          echo "</tr>";
 
          foreach ($found_target as $current_target) {
@@ -153,7 +153,7 @@ class PluginNewsAlert_Target extends CommonDBTM {
                $item->getFromDB($current_target['items_id']);
                $name = ($current_target['all_items'] == 1
                         && $current_target['itemtype'] == "Profile")
-                           ?__('All')
+                           ?__('All', 'news')
                            :$item->getName(['complete' => true]);
 
                echo "<tr class='tab_bg_2'>";
