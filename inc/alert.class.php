@@ -188,7 +188,6 @@ class PluginNewsAlert extends CommonDBTM {
          'field'            => 'is_active',
          'name'             => __('Active', 'news'),
          'datatype'         => 'bool',
-         'massiveaction'    => false,
       ];
 
       $tab[] = [
@@ -338,7 +337,13 @@ class PluginNewsAlert extends CommonDBTM {
    public function prepareInputForAdd($input) {
       $errors = [];
 
-      if (!$input['name']) {
+      if ($this->isNewItem()) {
+         $missing_name = empty($input['name'] ?? "");
+      } else {
+         $missing_name = isset($input['name']) && empty($input['name']);
+      }
+
+      if ($missing_name) {
          array_push($errors, __('Please enter a name.', 'news'));
       }
 
