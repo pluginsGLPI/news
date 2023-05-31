@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-24 12:01+0000\n"
+"POT-Creation-Date: 2023-05-31 08:58+0000\n"
 "PO-Revision-Date: 2015-09-18 13:33+0000\n"
 "Last-Translator: Matheus Rafael, 2023\n"
 "Language-Team: Portuguese (Brazil) (http://app.transifex.com/teclib/glpi-plugin-news/language/pt_BR/)\n"
@@ -23,52 +23,52 @@ msgstr ""
 #: front/alert.form.php:53
 #, php-format
 msgid "%1$s adds the item %2$s"
-msgstr ""
+msgstr "%1$s adiciona o item %2$s"
 
 #: front/alert.form.php:65
 #, php-format
 msgid "%s deletes an item"
-msgstr ""
+msgstr "%s exclui um item"
 
 #: front/alert.form.php:81
 #, php-format
 msgid "%s purges an item"
-msgstr ""
+msgstr "%s limpa um item"
 
 #: front/alert.form.php:73
 #, php-format
 msgid "%s restores an item"
-msgstr ""
+msgstr "%s restaura um item"
 
 #: front/alert.form.php:45
 #, php-format
 msgid "%s updates an item"
-msgstr ""
+msgstr "%s atualiza um item"
 
 #: templates/alert_form.html.twig inc/alert.class.php:189
 msgid "Active"
-msgstr ""
+msgstr "Ativo"
 
 #: ajax/targets.php:60
 msgctxt "button"
 msgid "Add"
-msgstr ""
+msgstr "Adicionar"
 
 #: inc/alert_target.class.php:113
 msgid "Add a target"
-msgstr ""
+msgstr "Adicionar um alvo"
 
-#: inc/alert.class.php:533
+#: inc/alert.class.php:538
 msgid "Alert circle"
-msgstr ""
+msgstr "Alerta círculo"
 
-#: inc/alert.class.php:535
+#: inc/alert.class.php:540
 msgid "Alert octagon"
-msgstr ""
+msgstr "Alerta octógono"
 
-#: inc/alert.class.php:534
+#: inc/alert.class.php:539
 msgid "Alert triangle"
-msgstr ""
+msgstr "Alerta triângulo"
 
 #: inc/alert.class.php:84 front/alert.php:34 front/alert.form.php:93
 #: front/hidden_alerts.php:34 front/hidden_alerts.php:37 setup.php:74
@@ -78,23 +78,23 @@ msgstr "Alertas"
 #: inc/alert_target.class.php:74 inc/alert_target.class.php:156
 #: ajax/targets.php:56
 msgid "All"
-msgstr ""
+msgstr "Todos"
 
 #: templates/alert_form.html.twig
 msgid "Background color"
-msgstr ""
+msgstr "Cor de fundo"
 
-#: inc/alert.class.php:520
+#: inc/alert.class.php:525
 msgid "Big"
-msgstr ""
+msgstr "Grande"
 
-#: inc/alert.class.php:546
+#: inc/alert.class.php:551
 msgid "Black"
-msgstr ""
+msgstr "Preto"
 
-#: inc/alert.class.php:548
+#: inc/alert.class.php:553
 msgid "Blue"
-msgstr ""
+msgstr "Azul"
 
 #: templates/alert_form.html.twig inc/alert.class.php:162
 msgid "Can close alert"
@@ -102,133 +102,133 @@ msgstr "Alerta pode ser fechado"
 
 #: templates/alert_form.html.twig
 msgid "Central page"
-msgstr ""
+msgstr "Página central"
 
-#: inc/alert.class.php:207
+#: inc/alert.class.php:206
 msgid "Creation date"
-msgstr ""
+msgstr "Data de criação"
 
 #: templates/alert_form.html.twig
 msgid "Customization"
-msgstr ""
+msgstr "Customização"
 
-#: inc/alert.class.php:549
+#: inc/alert.class.php:554
 msgid "Cyan"
-msgstr ""
+msgstr "Ciano"
 
 #: inc/alert_target.class.php:138
 msgctxt "button"
 msgid "Delete permanently"
-msgstr ""
+msgstr "Deletar permanentemente"
 
 #: templates/alert_form.html.twig
 msgid "Description"
-msgstr ""
+msgstr "Descrição"
 
 #: templates/alert_form.html.twig
 msgid "Emphasis color"
-msgstr ""
+msgstr "Cor de destaque"
 
 #: inc/alert.class.php:134
 msgid "Entity"
-msgstr ""
+msgstr "Entidade"
 
-#: inc/alert.class.php:504
+#: inc/alert.class.php:509
 msgid "General"
 msgstr "Geral"
 
 #: templates/alert_form.html.twig
 msgid "Helpdesk page"
-msgstr ""
+msgstr "Página de helpdesk"
 
 #: templates/alert_form.html.twig
 msgid "Icon"
-msgstr ""
+msgstr "Icone"
 
-#: inc/alert.class.php:550
+#: inc/alert.class.php:555
 msgid "Indigo"
-msgstr ""
+msgstr "Azul Indigo"
 
-#: inc/alert.class.php:505
+#: inc/alert.class.php:510
 msgid "Information"
 msgstr "Informação"
 
-#: inc/alert.class.php:198
+#: inc/alert.class.php:197
 msgid "Last update"
-msgstr ""
+msgstr "Última atualização"
 
-#: inc/alert.class.php:556
+#: inc/alert.class.php:561
 msgid "Lime"
-msgstr ""
+msgstr "Lima"
 
 #: templates/alert_form.html.twig
 msgid "Login page"
-msgstr ""
+msgstr "Página de login"
 
-#: inc/alert.class.php:521
+#: inc/alert.class.php:526
 msgid "Max"
-msgstr ""
+msgstr "Máximo"
 
-#: inc/alert.class.php:519
+#: inc/alert.class.php:524
 msgid "Medium"
-msgstr ""
+msgstr "Médio"
 
 #: templates/alert_form.html.twig inc/alert.class.php:108
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #: templates/components/news_fields_macros.html.twig
 msgid "No icon"
-msgstr ""
+msgstr "Sem ícone"
 
-#: inc/alert.class.php:554
+#: inc/alert.class.php:559
 msgid "Orange"
-msgstr ""
+msgstr "Laranja"
 
-#: inc/alert.class.php:552
+#: inc/alert.class.php:557
 msgid "Pink"
-msgstr ""
+msgstr "Rosa"
 
-#: inc/alert.class.php:342
+#: inc/alert.class.php:347
 msgid "Please enter a name."
 msgstr "Digite um nome."
 
 #: templates/alert_form.html.twig
 msgid "Preview"
-msgstr ""
+msgstr "Visualização"
 
-#: inc/alert.class.php:507
+#: inc/alert.class.php:512
 msgid "Problem"
 msgstr "Problema"
 
-#: inc/alert.class.php:551
+#: inc/alert.class.php:556
 msgid "Purple"
-msgstr ""
+msgstr "Roxo"
 
 #: inc/alert_target.class.php:147
 msgid "Recipient"
-msgstr ""
+msgstr "Destinatário"
 
 #: inc/alert.class.php:142
 msgid "Recursive"
-msgstr ""
+msgstr "Recursivo"
 
-#: inc/alert.class.php:553
+#: inc/alert.class.php:558
 msgid "Red"
-msgstr ""
+msgstr "Vermelho"
 
 #: templates/profile.html.twig
 msgctxt "button"
 msgid "Save"
-msgstr ""
+msgstr "Salvar"
 
-#: inc/alert.class.php:532
+#: inc/alert.class.php:537
 msgid "Settings"
-msgstr ""
+msgstr "Configurações"
 
 #: templates/alert_form.html.twig
 msgid "Show dates"
-msgstr ""
+msgstr "Mostrar datas"
 
 #: inc/alert.class.php:180
 msgid "Show on helpdesk page"
@@ -240,63 +240,63 @@ msgstr "Mostrar na pagina de login"
 
 #: templates/alert_form.html.twig
 msgid "Show on pages"
-msgstr ""
+msgstr "Mostrar nas páginas"
 
 #: templates/alert_form.html.twig
 msgid "Size"
-msgstr ""
+msgstr "Tamanho"
 
-#: inc/alert.class.php:518
+#: inc/alert.class.php:523
 msgid "Small"
-msgstr ""
+msgstr "Pequeno"
 
 #: inc/alert_user.class.php:82
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: inc/alert_target.class.php:39
 msgid "Target"
 msgid_plural "Targets"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Alvo"
+msgstr[1] "Alvos"
+msgstr[2] "Alvos"
 
 #: templates/alert_form.html.twig
 msgid "Template"
-msgstr ""
+msgstr "Modelo"
 
 #: templates/alert_form.html.twig
 msgid "Text color"
-msgstr ""
+msgstr "Cor do texto"
 
-#: inc/alert.class.php:348
+#: inc/alert.class.php:353
 msgid "The end date must be greater than the start date."
 msgstr "A data de término deve ser maior que a data de início."
 
 #: inc/alert_target.class.php:146
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #: templates/alert_form.html.twig inc/alert.class.php:126
 msgid "Visibility end date"
-msgstr ""
+msgstr "Data de término da visibilidade"
 
 #: templates/alert_form.html.twig inc/alert.class.php:118
 msgid "Visibility start date"
-msgstr ""
+msgstr "Data de início da visibilidade"
 
-#: inc/alert.class.php:506
+#: inc/alert.class.php:511
 msgid "Warning"
 msgstr "Atenção"
 
-#: inc/alert.class.php:547
+#: inc/alert.class.php:552
 msgid "White"
-msgstr ""
+msgstr "Branco"
 
-#: inc/alert.class.php:555
+#: inc/alert.class.php:560
 msgid "Yellow"
-msgstr ""
+msgstr "Amarelo"
 
-#: inc/alert.class.php:450
+#: inc/alert.class.php:455
 msgid "You have hidden alerts valid for current date"
 msgstr "Você tem alertas ocultos válidos para a data atual"

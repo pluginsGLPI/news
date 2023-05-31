@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-24 12:01+0000\n"
+"POT-Creation-Date: 2023-05-31 08:58+0000\n"
 "PO-Revision-Date: 2015-09-18 13:33+0000\n"
 "Last-Translator: Markku Vepsä, 2018\n"
 "Language-Team: Finnish (Finland) (http://app.transifex.com/teclib/glpi-plugin-news/language/fi_FI/)\n"
@@ -56,15 +56,15 @@ msgstr ""
 msgid "Add a target"
 msgstr ""
 
-#: inc/alert.class.php:533
+#: inc/alert.class.php:538
 msgid "Alert circle"
 msgstr ""
 
-#: inc/alert.class.php:535
+#: inc/alert.class.php:540
 msgid "Alert octagon"
 msgstr ""
 
-#: inc/alert.class.php:534
+#: inc/alert.class.php:539
 msgid "Alert triangle"
 msgstr ""
 
@@ -82,15 +82,15 @@ msgstr ""
 msgid "Background color"
 msgstr ""
 
-#: inc/alert.class.php:520
+#: inc/alert.class.php:525
 msgid "Big"
 msgstr ""
 
-#: inc/alert.class.php:546
+#: inc/alert.class.php:551
 msgid "Black"
 msgstr ""
 
-#: inc/alert.class.php:548
+#: inc/alert.class.php:553
 msgid "Blue"
 msgstr ""
 
@@ -102,7 +102,7 @@ msgstr "Voi sulkea hälytyksen"
 msgid "Central page"
 msgstr ""
 
-#: inc/alert.class.php:207
+#: inc/alert.class.php:206
 msgid "Creation date"
 msgstr ""
 
@@ -110,7 +110,7 @@ msgstr ""
 msgid "Customization"
 msgstr ""
 
-#: inc/alert.class.php:549
+#: inc/alert.class.php:554
 msgid "Cyan"
 msgstr ""
 
@@ -131,7 +131,7 @@ msgstr ""
 msgid "Entity"
 msgstr ""
 
-#: inc/alert.class.php:504
+#: inc/alert.class.php:509
 msgid "General"
 msgstr "Yleinen"
 
@@ -143,19 +143,19 @@ msgstr ""
 msgid "Icon"
 msgstr ""
 
-#: inc/alert.class.php:550
+#: inc/alert.class.php:555
 msgid "Indigo"
 msgstr ""
 
-#: inc/alert.class.php:505
+#: inc/alert.class.php:510
 msgid "Information"
 msgstr "Tietoja"
 
-#: inc/alert.class.php:198
+#: inc/alert.class.php:197
 msgid "Last update"
 msgstr ""
 
-#: inc/alert.class.php:556
+#: inc/alert.class.php:561
 msgid "Lime"
 msgstr ""
 
@@ -163,11 +163,11 @@ msgstr ""
 msgid "Login page"
 msgstr ""
 
-#: inc/alert.class.php:521
+#: inc/alert.class.php:526
 msgid "Max"
 msgstr ""
 
-#: inc/alert.class.php:519
+#: inc/alert.class.php:524
 msgid "Medium"
 msgstr ""
 
@@ -179,15 +179,15 @@ msgstr ""
 msgid "No icon"
 msgstr ""
 
-#: inc/alert.class.php:554
+#: inc/alert.class.php:559
 msgid "Orange"
 msgstr ""
 
-#: inc/alert.class.php:552
+#: inc/alert.class.php:557
 msgid "Pink"
 msgstr ""
 
-#: inc/alert.class.php:342
+#: inc/alert.class.php:347
 msgid "Please enter a name."
 msgstr "Anna nimi."
 
@@ -195,11 +195,11 @@ msgstr "Anna nimi."
 msgid "Preview"
 msgstr ""
 
-#: inc/alert.class.php:507
+#: inc/alert.class.php:512
 msgid "Problem"
 msgstr "Ongelma"
 
-#: inc/alert.class.php:551
+#: inc/alert.class.php:556
 msgid "Purple"
 msgstr ""
 
@@ -211,7 +211,7 @@ msgstr ""
 msgid "Recursive"
 msgstr ""
 
-#: inc/alert.class.php:553
+#: inc/alert.class.php:558
 msgid "Red"
 msgstr ""
 
@@ -220,7 +220,7 @@ msgctxt "button"
 msgid "Save"
 msgstr ""
 
-#: inc/alert.class.php:532
+#: inc/alert.class.php:537
 msgid "Settings"
 msgstr ""
 
@@ -244,7 +244,7 @@ msgstr ""
 msgid "Size"
 msgstr ""
 
-#: inc/alert.class.php:518
+#: inc/alert.class.php:523
 msgid "Small"
 msgstr ""
 
@@ -266,7 +266,7 @@ msgstr ""
 msgid "Text color"
 msgstr ""
 
-#: inc/alert.class.php:348
+#: inc/alert.class.php:353
 msgid "The end date must be greater than the start date."
 msgstr "Päättymispäivän on oltava myöhäisempi kuin alkamispäivän."
 
@@ -282,18 +282,18 @@ msgstr ""
 msgid "Visibility start date"
 msgstr ""
 
-#: inc/alert.class.php:506
+#: inc/alert.class.php:511
 msgid "Warning"
 msgstr "Varoitus"
 
-#: inc/alert.class.php:547
+#: inc/alert.class.php:552
 msgid "White"
 msgstr ""
 
-#: inc/alert.class.php:555
+#: inc/alert.class.php:560
 msgid "Yellow"
 msgstr ""
 
-#: inc/alert.class.php:450
+#: inc/alert.class.php:455
 msgid "You have hidden alerts valid for current date"
 msgstr "Sinulla on piilotettuja hälytyksiä, jotka ovat voimassa nykyiselle päivämäärälle"
