@@ -28,7 +28,7 @@
  * -------------------------------------------------------------------------
  */
 
-define ('PLUGIN_NEWS_VERSION', '1.11.0');
+define ('PLUGIN_NEWS_VERSION', '1.12.0');
 
 // Minimal GLPI version, inclusive
 define("PLUGIN_NEWS_MIN_GLPI", "10.0.0");
