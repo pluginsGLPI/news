@@ -27,11 +27,15 @@
  */
 
 pluginNewsCloseAlerts = function() {
-    $(document).on("mousedown", ".plugin_news_alert .alert a[data-bs-dismiss=alert]", function(event) {
+    $(document).on("mousedown", ".plugin_news_alert .alert a.btn-close", function(event) {
         var alert = $(this).closest(".plugin_news_alert");
         var id    = alert.attr('data-id');
         var a_url = CFG_GLPI.root_doc+"/"+GLPI_PLUGINS_PATH.news+"/ajax";
-        $.post(a_url+"/hide_alert.php", {'id' : id});
+        $.post(a_url+"/hide_alert.php", {'id' : id})
+            .done(function(data) {
+                document.location.reload();
+            }
+        );
     });
 };
 
