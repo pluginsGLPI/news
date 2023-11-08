@@ -30,6 +30,7 @@
 
 function plugin_news_install()
 {
+    /** @var DBmysql $DB */
     global $DB;
 
     $migration = new Migration(Plugin::getInfo('news', 'version'));
@@ -320,6 +321,7 @@ function plugin_news_install()
 
 function plugin_news_uninstall()
 {
+    /** @var DBmysql $DB */
     global $DB;
 
     $DB->query("DROP TABLE IF EXISTS `glpi_plugin_news_alerts`;");

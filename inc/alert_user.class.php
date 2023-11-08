@@ -47,6 +47,7 @@ class PluginNewsAlert_User extends CommonDBRelation
 
     public static function hideAlert($params = [])
     {
+        /** @var DBmysql $DB */
         global $DB;
 
         if (!isset($params['id'])) {

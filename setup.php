@@ -37,6 +37,10 @@ define("PLUGIN_NEWS_MAX_GLPI", "10.0.99");
 
 function plugin_init_news()
 {
+    /**
+     * @var array $PLUGIN_HOOKS
+     * @var array $CFG_GLPI
+     */
     global $PLUGIN_HOOKS, $CFG_GLPI;
 
     $PLUGIN_HOOKS['csrf_compliant']['news'] = true;

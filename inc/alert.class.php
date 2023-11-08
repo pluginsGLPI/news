@@ -219,6 +219,7 @@ class PluginNewsAlert extends CommonDBTM
 
     public static function findAllToNotify($params = [])
     {
+        /** @var DBmysql $DB */
         global $DB;
 
         $p['show_only_login_alerts']     = false;
@@ -339,7 +340,7 @@ class PluginNewsAlert extends CommonDBTM
         if (preg_match('/^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/', $datetime)) {
             $datetime = explode(" ", $datetime);
             list($year , $month , $day) = explode('-', $datetime[0]);
-            return checkdate($month, $day, $year);
+            return checkdate((int)$month, (int)$day, (int)$year);
         }
         return false;
     }
@@ -399,7 +400,9 @@ class PluginNewsAlert extends CommonDBTM
 
     public function getEmpty()
     {
-        parent::getEmpty();
+        if (!parent::getEmpty()) {
+            return false;
+        }
 
         $this->fields['is_close_allowed'] = 1;
         $this->fields['display_dates']    = 1;
@@ -407,6 +410,8 @@ class PluginNewsAlert extends CommonDBTM
         $this->fields['text_color']       = self::DARK;
         $this->fields['emphasis_color']   = self::DARK;
         $this->fields['size']             = self::MEDIUM;
+
+        return true;
     }
 
     public function showForm($ID, $options = [])
@@ -420,6 +425,7 @@ class PluginNewsAlert extends CommonDBTM
             'icons'            => self::getIcons(),
             'templates_values' => self::getTemplatesValues(),
         ]);
+        return true;
     }
 
     public static function displayOnCentral()

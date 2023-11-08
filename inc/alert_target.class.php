@@ -53,7 +53,7 @@ class PluginNewsAlert_Target extends CommonDBTM
         return self::canUpdate();
     }
 
-    public public function addNeededInfoToInput($input)
+    public function addNeededInfoToInput($input)
     {
         if (
             $input['itemtype'] == 'Profile'
@@ -101,6 +101,8 @@ class PluginNewsAlert_Target extends CommonDBTM
             );
             return self::createTabEntry(self::getTypeName(Session::getPluralNumber()), $nb);
         }
+
+        return '';
     }
 
     public static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0)
@@ -108,12 +110,12 @@ class PluginNewsAlert_Target extends CommonDBTM
         if ($item instanceof PluginNewsAlert) {
             self::showForAlert($item);
         }
+
+        return true;
     }
 
     public static function showForAlert(PluginNewsAlert $alert)
     {
-        global $CFG_GLPI;
-
         $rand = mt_rand();
 
         echo "<form method='post' action='" . Toolbox::getItemTypeFormURL('PluginNewsAlert') . "'>";

@@ -92,7 +92,7 @@ if (isset($_POST['update'])) {
     Html::back();
 } else if (isset($_POST['purge'])) {
     $alert->check($_POST['id'], PURGE);
-    if ($alert->delete($_POST, 1)) {
+    if ($alert->delete($_POST, true)) {
         Event::log(
             $_POST["id"],
             "PluginNewsAlert",
