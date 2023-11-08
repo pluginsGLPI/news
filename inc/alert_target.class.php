@@ -32,26 +32,28 @@ if (!defined('GLPI_ROOT')) {
     die("Sorry. You can't access directly to this file");
 }
 
+// @codingStandardsIgnoreStart
 class PluginNewsAlert_Target extends CommonDBTM
 {
-    static $rightname = 'plugin_news_alert';
+    // @codingStandardsIgnoreEnd
+    public static $rightname = 'plugin_news_alert';
 
-    static function getTypeName($nb = 0)
+    public static function getTypeName($nb = 0)
     {
         return _n('Target', 'Targets', $nb, 'news');
     }
 
-    static function canDelete()
+    public static function canDelete()
     {
         return self::canUpdate();
     }
 
-    static function canPurge()
+    public static function canPurge()
     {
         return self::canUpdate();
     }
 
-    public function addNeededInfoToInput($input)
+    public public function addNeededInfoToInput($input)
     {
         if (
             $input['itemtype'] == 'Profile'
@@ -63,7 +65,7 @@ class PluginNewsAlert_Target extends CommonDBTM
         return $input;
     }
 
-    static function getSpecificValueToDisplay($field, $values, array $options = [])
+    public static function getSpecificValueToDisplay($field, $values, array $options = [])
     {
 
         if (!is_array($values)) {
@@ -90,7 +92,7 @@ class PluginNewsAlert_Target extends CommonDBTM
         return parent::getSpecificValueToDisplay($field, $values, $options);
     }
 
-    function getTabNameForItem(CommonGLPI $item, $withtemplate = 0)
+    public function getTabNameForItem(CommonGLPI $item, $withtemplate = 0)
     {
         if ($item instanceof PluginNewsAlert) {
             $nb = countElementsInTable(
@@ -101,14 +103,14 @@ class PluginNewsAlert_Target extends CommonDBTM
         }
     }
 
-    static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0)
+    public static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0)
     {
         if ($item instanceof PluginNewsAlert) {
             self::showForAlert($item);
         }
     }
 
-    static function showForAlert(PluginNewsAlert $alert)
+    public static function showForAlert(PluginNewsAlert $alert)
     {
         global $CFG_GLPI;
 

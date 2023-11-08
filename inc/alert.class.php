@@ -37,7 +37,7 @@ if (!defined('GLPI_ROOT')) {
 
 class PluginNewsAlert extends CommonDBTM
 {
-    static $rightname = 'plugin_news_alert';
+    public static $rightname = 'plugin_news_alert';
     public $dohistory = true;
 
    // Available templates
@@ -71,7 +71,7 @@ class PluginNewsAlert extends CommonDBTM
     const YELLOW = 'yellow';
     const LIME   = 'lime';
 
-    static function canDelete()
+    public static function canDelete()
     {
         return self::canPurge();
     }
@@ -90,7 +90,7 @@ class PluginNewsAlert extends CommonDBTM
    /**
     * @see CommonGLPI::defineTabs()
    **/
-    function defineTabs($options = [])
+    public function defineTabs($options = [])
     {
 
         $ong = [];
@@ -382,8 +382,10 @@ class PluginNewsAlert extends CommonDBTM
         return $this->prepareInputForAdd($input);
     }
 
-    function post_addItem()
+    // @codingStandardsIgnoreStart
+    public function post_addItem()
     {
+        // @codingStandardsIgnoreEnd
         $target = new PluginNewsAlert_Target();
         $target->add(
             [
@@ -395,7 +397,7 @@ class PluginNewsAlert extends CommonDBTM
         );
     }
 
-    function getEmpty()
+    public function getEmpty()
     {
         parent::getEmpty();
 
@@ -420,14 +422,14 @@ class PluginNewsAlert extends CommonDBTM
         ]);
     }
 
-    static function displayOnCentral()
+    public static function displayOnCentral()
     {
         echo "<tr><td colspan='2'>";
         self::displayAlerts(['show_only_central_alerts' => true]);
         echo "</td></tr>";
     }
 
-    static function displayOnLogin()
+    public static function displayOnLogin()
     {
         echo Html::css(Plugin::getPhpDir('news', false) . "/css/styles.css");
         echo "<div class='plugin_news_alert-login'>";
@@ -435,14 +437,14 @@ class PluginNewsAlert extends CommonDBTM
         echo "</div>";
     }
 
-    static function displayOnTicket()
+    public static function displayOnTicket()
     {
         echo "<tr><th colspan='2'>";
         self::displayAlerts(['show_only_helpdesk_alerts' => true]);
         echo "</th></tr>";
     }
 
-    static function displayAlerts($params = [])
+    public static function displayAlerts($params = [])
     {
         $p['show_only_login_alerts']     = false;
         $p['show_only_central_alerts']   = false;
@@ -625,13 +627,13 @@ class PluginNewsAlert extends CommonDBTM
         ];
     }
 
-    function cleanDBOnPurge()
+    public function cleanDBOnPurge()
     {
         $target = new PluginNewsAlert_Target();
         $target->deleteByCriteria(['plugin_news_alerts_id' => $this->getID()]);
     }
 
-    static function preItemForm($params = [])
+    public static function preItemForm($params = [])
     {
         if (
             isset($params['item'])
@@ -649,7 +651,7 @@ class PluginNewsAlert extends CommonDBTM
         }
     }
 
-    static function preItemList($params = [])
+    public static function preItemList($params = [])
     {
         if (isset($params['itemtype']) && $params['itemtype'] == "Ticket") {
             echo "<tr><th colspan='2'>";
@@ -659,7 +661,7 @@ class PluginNewsAlert extends CommonDBTM
     }
 
 
-    static function getIcon()
+    public static function getIcon()
     {
         return "fas fa-bell";
     }

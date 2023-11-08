@@ -32,8 +32,10 @@ if (!defined('GLPI_ROOT')) {
     die("Sorry. You can't access directly to this file");
 }
 
+// @codingStandardsIgnoreStart
 class PluginNewsAlert_User extends CommonDBRelation
 {
+    // @codingStandardsIgnoreEnd
     const HIDDEN = 1;
 
     public static $itemtype_1 = 'PluginNewsAlert';
@@ -43,7 +45,7 @@ class PluginNewsAlert_User extends CommonDBRelation
     public static $itemtype_2 = 'User';
     public static $items_id_2 = 'users_id';
 
-    static function hideAlert($params = [])
+    public static function hideAlert($params = [])
     {
         global $DB;
 
