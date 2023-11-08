@@ -58,40 +58,41 @@ use Glpi\Application\View\TemplateRenderer;
  * -------------------------------------------------------------------------
  */
 
-class PluginNewsProfile extends Profile {
+class PluginNewsProfile extends Profile
+{
+    public function getTabNameForItem(CommonGLPI $item, $withtemplate = 0)
+    {
+        return self::createTabEntry(
+            PluginNewsAlert::getTypeName(Session::getPluralNumber())
+        );
+    }
 
-   public function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
-      return self::createTabEntry(
-         PluginNewsAlert::getTypeName(Session::getPluralNumber())
-      );
-   }
+    public static function displayTabContentForItem(
+        CommonGLPI $item,
+        $tabnum = 1,
+        $withtemplate = 0
+    ) {
+        if (!$item instanceof Profile || !self::canView()) {
+            return false;
+        }
 
-   public static function displayTabContentForItem(
-      CommonGLPI $item,
-      $tabnum = 1,
-      $withtemplate = 0
-   ) {
-      if (!$item instanceof Profile || !self::canView()) {
-         return false;
-      }
+        $profile = new Profile();
+        $profile->getFromDB($item->getID());
 
-      $profile = new Profile();
-      $profile->getFromDB($item->getID());
-
-      $twig = TemplateRenderer::getInstance();
-      $twig->display("@news/profile.html.twig", [
-         'id'      => $item->getID(),
-         'profile' => $profile,
-         'title'   => PluginNewsAlert::getTypeName(Session::getPluralNumber()),
-         'rights'  => [
-            [
-               'itemtype' => PluginNewsAlert::getType(),
-               'label'    => PluginNewsAlert::getTypeName(Session::getPluralNumber()),
-               'field'    => PluginNewsAlert::$rightname,
+        $twig = TemplateRenderer::getInstance();
+        $twig->display("@news/profile.html.twig", [
+            'id'      => $item->getID(),
+            'profile' => $profile,
+            'title'   => PluginNewsAlert::getTypeName(Session::getPluralNumber()),
+            'rights'  => [
+                [
+                    'itemtype' => PluginNewsAlert::getType(),
+                    'label'    => PluginNewsAlert::getTypeName(Session::getPluralNumber()),
+                    'field'    => PluginNewsAlert::$rightname,
+                ]
             ]
-         ]
-      ]);
+        ]);
 
-      return true;
-   }
+        return true;
+    }
 }

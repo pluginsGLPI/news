@@ -28,59 +28,63 @@
  * -------------------------------------------------------------------------
  */
 
-define ('PLUGIN_NEWS_VERSION', '1.12.1');
+define('PLUGIN_NEWS_VERSION', '1.12.1');
 
 // Minimal GLPI version, inclusive
 define("PLUGIN_NEWS_MIN_GLPI", "10.0.0");
 // Maximum GLPI version, exclusive
 define("PLUGIN_NEWS_MAX_GLPI", "10.0.99");
 
-function plugin_init_news() {
-   global $PLUGIN_HOOKS, $CFG_GLPI;
+function plugin_init_news()
+{
+    global $PLUGIN_HOOKS, $CFG_GLPI;
 
-   $PLUGIN_HOOKS['csrf_compliant']['news'] = true;
+    $PLUGIN_HOOKS['csrf_compliant']['news'] = true;
 
-   $plugin = new Plugin();
-   if ($plugin->isInstalled('news')
-       && $plugin->isActivated('news')) {
-      Plugin::registerClass('PluginNewsProfile', ['addtabon' => 'Profile']);
+    $plugin = new Plugin();
+    if (
+        $plugin->isInstalled('news')
+        && $plugin->isActivated('news')
+    ) {
+        Plugin::registerClass('PluginNewsProfile', ['addtabon' => 'Profile']);
 
-      $PLUGIN_HOOKS['add_css']['news'] = 'css/styles.css';
-      $PLUGIN_HOOKS['add_javascript']['news'][] = "js/news.js";
-      $PLUGIN_HOOKS['display_login']['news'] = [
-         "PluginNewsAlert", "displayOnLogin"
-      ];
-      $PLUGIN_HOOKS['display_central']['news'] = [
-         "PluginNewsAlert", "displayOnCentral"
-      ];
-      $PLUGIN_HOOKS['pre_item_list']['news'] = ["PluginNewsAlert", "preItemList"];
+        $PLUGIN_HOOKS['add_css']['news'] = 'css/styles.css';
+        $PLUGIN_HOOKS['add_javascript']['news'][] = "js/news.js";
+        $PLUGIN_HOOKS['display_login']['news'] = [
+            "PluginNewsAlert", "displayOnLogin"
+        ];
+        $PLUGIN_HOOKS['display_central']['news'] = [
+            "PluginNewsAlert", "displayOnCentral"
+        ];
+        $PLUGIN_HOOKS['pre_item_list']['news'] = ["PluginNewsAlert", "preItemList"];
 
-      $PLUGIN_HOOKS['pre_item_form']['news'] = ['PluginNewsAlert', 'preItemForm'];
+        $PLUGIN_HOOKS['pre_item_form']['news'] = ['PluginNewsAlert', 'preItemForm'];
 
-      if (Session::haveRight(PluginNewsAlert::$rightname, READ)) {
-         $PLUGIN_HOOKS['menu_toadd']['news'] = [
-            'tools' => 'PluginNewsAlert',
-         ];
-         $PLUGIN_HOOKS['config_page']['news'] = 'front/alert.php';
+        if (Session::haveRight(PluginNewsAlert::$rightname, READ)) {
+            $PLUGIN_HOOKS['menu_toadd']['news'] = [
+                'tools' => 'PluginNewsAlert',
+            ];
+            $PLUGIN_HOOKS['config_page']['news'] = 'front/alert.php';
 
-         // require tinymce (for glpi >= 9.2)
-         $CFG_GLPI['javascript']['tools']['pluginnewsalert'] = ['tinymce'];
-      }
-   }
+           // require tinymce (for glpi >= 9.2)
+            $CFG_GLPI['javascript']['tools']['pluginnewsalert'] = ['tinymce'];
+        }
+    }
 }
 
-function plugin_version_news() {
-   return [
-      'name'           => __('Alerts', 'news'),
-      'version'        => PLUGIN_NEWS_VERSION,
-      'author'         => "<a href='mailto:contact@teclib.com'>TECLIB'</a>",
-      'license'        => "GPLv2+",
-      'homepage'       => 'https://github.com/pluginsGLPI/news',
-      'requirements'   => [
-         'glpi' => [
-            'min' => PLUGIN_NEWS_MIN_GLPI,
-            'max' => PLUGIN_NEWS_MAX_GLPI,
-         ]
-      ]
-   ];
+function plugin_version_news()
+{
+    return [
+        'name'           => __('Alerts', 'news'),
+        'version'        => PLUGIN_NEWS_VERSION,
+        'author'         => "<a href='mailto:contact@teclib.com'>TECLIB'</a>",
+        'license'        => "GPLv2+",
+        'homepage'       => 'https://github.com/pluginsGLPI/news',
+        'requirements'   => [
+            'glpi' => [
+                'min' => PLUGIN_NEWS_MIN_GLPI,
+                'max' => PLUGIN_NEWS_MAX_GLPI,
+            ]
+        ]
+    ];
 }

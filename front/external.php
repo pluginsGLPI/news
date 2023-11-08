@@ -28,7 +28,7 @@
  * -------------------------------------------------------------------------
  */
 
-include ("../../../inc/includes.php");
+include("../../../inc/includes.php");
 
 Html::nullHeader(PluginNewsAlert::getTypeName());
 $logged = isset($_SESSION['glpiID']);

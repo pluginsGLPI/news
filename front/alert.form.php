@@ -30,72 +30,92 @@
 
 use Glpi\Event;
 
-include ("../../../inc/includes.php");
+include("../../../inc/includes.php");
 
 if (!isset($_GET["id"])) {
-   $_GET["id"] = "";
+    $_GET["id"] = "";
 }
 
 $alert = new PluginNewsAlert();
 
 if (isset($_POST['update'])) {
-   $alert->check($_POST['id'], UPDATE);
-   if ($alert->update($_POST)) {
-      Event::log($_POST["id"], "PluginNewsAlert", 4, "admin",
-              sprintf(__('%s updates an item', 'news'), $_SESSION["glpiname"]));
-   }
-   Html::back();
-
+    $alert->check($_POST['id'], UPDATE);
+    if ($alert->update($_POST)) {
+        Event::log(
+            $_POST["id"],
+            "PluginNewsAlert",
+            4,
+            "admin",
+            sprintf(__('%s updates an item', 'news'), $_SESSION["glpiname"])
+        );
+    }
+    Html::back();
 } else if (isset($_POST['add'])) {
-   $alert->check(-1, CREATE, $_POST);
-   if ($newID = $alert->add($_POST)) {
-      Event::log($newID, "PluginNewsAlert", 4, "admin",
-                 sprintf(__('%1$s adds the item %2$s', 'news'), $_SESSION["glpiname"], $_POST["name"]));
+    $alert->check(-1, CREATE, $_POST);
+    if ($newID = $alert->add($_POST)) {
+        Event::log(
+            $newID,
+            "PluginNewsAlert",
+            4,
+            "admin",
+            sprintf(__('%1$s adds the item %2$s', 'news'), $_SESSION["glpiname"], $_POST["name"])
+        );
 
-      if ($_SESSION['glpibackcreated']) {
-         Html::redirect($alert->getLinkURL());
-      }
-   }
-   Html::back();
-
+        if ($_SESSION['glpibackcreated']) {
+            Html::redirect($alert->getLinkURL());
+        }
+    }
+    Html::back();
 } else if (isset($_POST['delete'])) {
-   $alert->check($_POST['id'], DELETE);
-   if ($alert->delete($_POST)) {
-      Event::log($_POST["id"], "PluginNewsAlert", 4, "admin",
-                 sprintf(__('%s deletes an item', 'news'), $_SESSION["glpiname"]));
-   }
-   $alert->redirectToList();
-
+    $alert->check($_POST['id'], DELETE);
+    if ($alert->delete($_POST)) {
+        Event::log(
+            $_POST["id"],
+            "PluginNewsAlert",
+            4,
+            "admin",
+            sprintf(__('%s deletes an item', 'news'), $_SESSION["glpiname"])
+        );
+    }
+    $alert->redirectToList();
 } else if (isset($_POST['restore'])) {
-   $alert->check($_POST['id'], DELETE);
-   if ($alert->restore($_POST)) {
-      Event::log($_POST["id"], "PluginNewsAlert", 4, "admin",
-                 sprintf(__('%s restores an item', 'news'), $_SESSION["glpiname"]));
-   }
-   Html::back();
-
+    $alert->check($_POST['id'], DELETE);
+    if ($alert->restore($_POST)) {
+        Event::log(
+            $_POST["id"],
+            "PluginNewsAlert",
+            4,
+            "admin",
+            sprintf(__('%s restores an item', 'news'), $_SESSION["glpiname"])
+        );
+    }
+    Html::back();
 } else if (isset($_POST['purge'])) {
-   $alert->check($_POST['id'], PURGE);
-   if ($alert->delete($_POST, 1)) {
-      Event::log($_POST["id"], "PluginNewsAlert", 4, "admin",
-                 sprintf(__('%s purges an item', 'news'), $_SESSION["glpiname"]));
-   }
-   $alert->redirectToList();
-
+    $alert->check($_POST['id'], PURGE);
+    if ($alert->delete($_POST, 1)) {
+        Event::log(
+            $_POST["id"],
+            "PluginNewsAlert",
+            4,
+            "admin",
+            sprintf(__('%s purges an item', 'news'), $_SESSION["glpiname"])
+        );
+    }
+    $alert->redirectToList();
 } else if (isset($_POST["addvisibility"])) {
-   $target = new PluginNewsAlert_Target();
-   $target->check(-1, CREATE, $_POST);
-   $target->add($_POST);
-   Html::back();
+    $target = new PluginNewsAlert_Target();
+    $target->check(-1, CREATE, $_POST);
+    $target->add($_POST);
+    Html::back();
 }
 
 Html::header(
-   __('Alerts', 'news'),
-   $_SERVER["PHP_SELF"],
-   'tools',
-   "PluginNewsAlert"
+    __('Alerts', 'news'),
+    $_SERVER["PHP_SELF"],
+    'tools',
+    "PluginNewsAlert"
 );
 
-$alert->display(['id'=> $_GET["id"]]);
+$alert->display(['id' => $_GET["id"]]);
 
 Html::footer();

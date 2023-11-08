@@ -28,13 +28,13 @@
  * -------------------------------------------------------------------------
  */
 
-include ("../../../inc/includes.php");
+include("../../../inc/includes.php");
 
 Html::header(
-   __('Alerts', 'news'),
-   $_SERVER["PHP_SELF"],
-   'tools',
-   "PluginNewsAlert"
+    __('Alerts', 'news'),
+    $_SERVER["PHP_SELF"],
+    'tools',
+    "PluginNewsAlert"
 );
 
 Search::show('PluginNewsAlert');
