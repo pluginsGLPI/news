@@ -29,60 +29,67 @@
  */
 
 if (!defined('GLPI_ROOT')) {
-   die("Sorry. You can't access directly to this file");
+    die("Sorry. You can't access directly to this file");
 }
 
-class PluginNewsAlert_User extends CommonDBRelation {
-   const HIDDEN = 1;
+// @codingStandardsIgnoreStart
+class PluginNewsAlert_User extends CommonDBRelation
+{
+    // @codingStandardsIgnoreEnd
+    const HIDDEN = 1;
 
-   static public $itemtype_1 = 'PluginNewsAlert';
-   static public $items_id_1 = 'plugin_news_alerts_id';
-   static public $checkItem_1_Rights = self::HAVE_VIEW_RIGHT_ON_ITEM;
+    public static $itemtype_1 = 'PluginNewsAlert';
+    public static $items_id_1 = 'plugin_news_alerts_id';
+    public static $checkItem_1_Rights = self::HAVE_VIEW_RIGHT_ON_ITEM;
 
-   static public $itemtype_2 = 'User';
-   static public $items_id_2 = 'users_id';
+    public static $itemtype_2 = 'User';
+    public static $items_id_2 = 'users_id';
 
-   static function hideAlert($params = []) {
-      global $DB;
+    public static function hideAlert($params = [])
+    {
+        /** @var DBmysql $DB */
+        global $DB;
 
-      if (!isset($params['id'])) {
-         return false;
-      }
+        if (!isset($params['id'])) {
+            return false;
+        }
 
-      $plugin_news_alerts_id = intval($params['id']);
-      $users_id = $_SESSION['glpiID'];
+        $plugin_news_alerts_id = intval($params['id']);
+        $users_id = $_SESSION['glpiID'];
 
-      return $DB->updateOrInsert(
-         self::getTable(),
-         [
-            'state' => self::HIDDEN,
-         ],
-         [
-            'plugin_news_alerts_id' => $plugin_news_alerts_id,
-            'users_id' => $users_id,
-         ]
-      );
-   }
+        return $DB->updateOrInsert(
+            self::getTable(),
+            [
+                'state' => self::HIDDEN,
+            ],
+            [
+                'plugin_news_alerts_id' => $plugin_news_alerts_id,
+                'users_id' => $users_id,
+            ]
+        );
+    }
 
-   public function canCreateItem() {
-      if ($this->fields['users_id'] != Session::getLoginUserID()) {
-         return false;
-      }
+    public function canCreateItem()
+    {
+        if ($this->fields['users_id'] != Session::getLoginUserID()) {
+            return false;
+        }
 
-      return true;
-   }
+        return true;
+    }
 
-   public function rawSearchOptions() {
-      $tab = parent::rawSearchOptions();
+    public function rawSearchOptions()
+    {
+        $tab = parent::rawSearchOptions();
 
-      $tab[] = [
-         'id'               => 5,
-         'table'            => $this->getTable(),
-         'field'            => 'state',
-         'name'             => __('Status', 'news'),
-         'datatype'         => 'dropdown',
-      ];
+        $tab[] = [
+            'id'               => 5,
+            'table'            => $this->getTable(),
+            'field'            => 'state',
+            'name'             => __('Status', 'news'),
+            'datatype'         => 'dropdown',
+        ];
 
-      return $tab;
-   }
+        return $tab;
+    }
 }
