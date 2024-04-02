@@ -39,7 +39,7 @@
     <div
         class="
             alert-{{ js_rand }}
-            alert text-start bg-{{ alert_fields.background_color }}
+            alert bg-{{ alert_fields.background_color }}
             {{ can_close ? "alert-dismissible"  : ""}}
         "
         style="
@@ -49,7 +49,7 @@
     >
         <div class="d-flex">
             <i class="ti ti-{{ alert_fields.icon }} fa-2x me-2"></i>
-            <div>
+            <div class="overflow-hidden">
                 <h3 class="mt-1">
                     {{ alert_fields.name|verbatim_value  }}
                     {% if show_only_login_alerts %}
@@ -72,7 +72,7 @@
                         {{ alert_fields.date_end|formatted_datetime }}
                     </div>
                 {% endif %}
-                <div class="mt-2 plugin_news_alert-content">
+                <div class="plugin_news_alert-content overflow-hidden">
                     {{ content|safe_html }}
                 </div>
             </div>
