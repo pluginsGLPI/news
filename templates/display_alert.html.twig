@@ -34,7 +34,6 @@
 </style>
 
 {% set js_rand = random() %}
-
 <div class="plugin_news_alert {{ size }}" data-id="{{ alert_fields.id|default(0) }}">
     <div
         class="
@@ -101,4 +100,11 @@
             )
         }
     })();
+    var formElement = document.querySelector('form[id="itil-form"]');
+        if (formElement) {
+            var currentElement = formElement.querySelector('.plugin_news_alert');
+            if (currentElement) {
+                currentElement.className = 'plugin_news_alert w-100';
+            }
+        }
 </script>

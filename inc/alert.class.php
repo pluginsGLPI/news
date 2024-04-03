@@ -515,7 +515,7 @@ class PluginNewsAlert extends CommonDBTM
                 return "col-xxl-8 col-xl-8 col-12";
 
             case self::MAXIMUM:
-                return "col-12";
+                return "w-100";
         }
     }
 
