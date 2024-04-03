@@ -7,11 +7,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-
-## [1.12.1] - 2024-04-02
-
-### Added
-
 ### Fixed
 
-- Fix of alert text wrapping to prevent it from going outside the div of its alert
+- Improve alert text wrapping, preventing it from going outside the content of its parent
