@@ -99,12 +99,14 @@
                     .replace(')', ', 0.6)')
             )
         }
+
+        // ITIL form has a specified layout, we must always display the full size
+        // alert.
+        // The "col-12" class can't be directly used for this purpose because
+        // a GLPI's core script will automatically replace it by "col-6" when
+        // expending the sidebar.
+        $('form[id="itil-form"]')
+            .find('.plugin_news_alert')
+            .addClass('w-100');
     })();
-    var formElement = document.querySelector('form[id="itil-form"]');
-        if (formElement) {
-            var currentElement = formElement.querySelector('.plugin_news_alert');
-            if (currentElement) {
-                currentElement.className = 'plugin_news_alert w-100';
-            }
-        }
 </script>
