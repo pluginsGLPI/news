@@ -219,7 +219,10 @@ class PluginNewsAlert extends CommonDBTM
     public function post_updateItem($history = true)
     {
         // if close is not allowed update all user alerts to force display
-        if (!$this->input['is_close_allowed']) {
+        if (
+            isset($this->input['is_close_allowed'])
+            && !$this->input['is_close_allowed']
+        ) {
             $alert_user = new PluginNewsAlert_User();
             //get all Alert_User for this alert where state is hidden
             $all_alert = $alert_user->find(
