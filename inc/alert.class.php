@@ -220,62 +220,20 @@ class PluginNewsAlert extends CommonDBTM
     public function post_updateItem($history = true)
     {
         // @codingStandardsIgnoreEnd
-        if (
-            !isset($this->input['is_close_allowed'])
-            || $this->input['is_close_allowed'] !== '0'
-        ) {
-            return;
-        }
-
-        $alertUserId = $this->getAlertUserId($this->input['id']);
-
-        if ($alertUserId !== null) {
-            $this->updateAlertUserState($alertUserId, 0);
-        }
-    }
-
-    /**
-     * Find the alert user ID based on alert ID and user ID.
-     *
-     * @param int|string $alertId
-     * @return int|string|null
-     */
-    private function getAlertUserId($alertId)
-    {
-        $alertUser = new PluginNewsAlert_User();
-        $foundUsers = $alertUser->find(
-            [
-                'plugin_news_alerts_id' => $alertId,
-            ]
-        );
-
-        if (empty($foundUsers)) {
-            return null;
-        }
-
-        $firstUser = array_shift($foundUsers);
-        return isset($firstUser['id']) ? $firstUser['id'] : null;
-    }
-
-    /**
-     * Update the state of an alert user.
-     *
-     * @param int|string $alertUserId
-     * @param int $state
-     * @return void
-     */
-    private function updateAlertUserState($alertUserId, $state)
-    {
-        $alertUser = new PluginNewsAlert_User();
-        $alertUserData = $alertUser->getById($alertUserId);
-
-        if (isset($alertUserData->fields) && $alertUserData->fields['state'] != $state) {
-            $alertUser->update(
+        // if close is not allowed update all user alerts to force display
+        if (!$this->input['is_close_allowed']) {
+            $alert_user = new PluginNewsAlert_User();
+            //get all Alert_User for this alert where state is hidden
+            $all_alert = $alert_user->find(
                 [
-                    'id' => $alertUserId,
-                    'state' => $state,
+                    'plugin_news_alerts_id' => $this->getID(),
+                    'state' => PluginNewsAlert_User::HIDDEN
                 ]
             );
+            foreach ($all_alert as $alert) {
+                //update state to 0 to force display
+                $alert_user->update(['id' => $alert['id'], 'state' => 0]);
+            }
         }
     }
 
