@@ -227,8 +227,7 @@ class PluginNewsAlert extends CommonDBTM
             return;
         }
 
-        $userId = Session::getLoginUserID();
-        $alertUserId = $this->getAlertUserId($this->input['id'], $userId);
+        $alertUserId = $this->getAlertUserId($this->input['id']);
 
         if ($alertUserId !== null) {
             $this->updateAlertUserState($alertUserId, 0);
@@ -242,13 +241,14 @@ class PluginNewsAlert extends CommonDBTM
      * @param int|string $userId
      * @return int|string|null
      */
-    private function getAlertUserId($alertId, $userId)
+    private function getAlertUserId($alertId)
     {
         $alertUser = new PluginNewsAlert_User();
-        $foundUsers = $alertUser->find([
-            'plugin_news_alerts_id' => $alertId,
-            'users_id' => $userId,
-        ]);
+        $foundUsers = $alertUser->find(
+            [
+                'plugin_news_alerts_id' => $alertId,
+            ]
+        );
 
         if (empty($foundUsers)) {
             return null;
