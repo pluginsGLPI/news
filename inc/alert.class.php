@@ -216,8 +216,10 @@ class PluginNewsAlert extends CommonDBTM
         return $tab;
     }
 
+    // @codingStandardsIgnoreStart
     public function post_updateItem($history = true)
     {
+        // @codingStandardsIgnoreEnd
         if (
             !isset($this->input['is_close_allowed'])
             || $this->input['is_close_allowed'] !== '0'
@@ -235,7 +237,7 @@ class PluginNewsAlert extends CommonDBTM
 
     /**
      * Find the alert user ID based on alert ID and user ID.
-     * 
+     *
      * @param int|string $alertId
      * @param int|string $userId
      * @return int|string|null
@@ -258,7 +260,7 @@ class PluginNewsAlert extends CommonDBTM
 
     /**
      * Update the state of an alert user.
-     * 
+     *
      * @param int|string $alertUserId
      * @param int $state
      * @return void
