@@ -216,6 +216,67 @@ class PluginNewsAlert extends CommonDBTM
         return $tab;
     }
 
+    public function post_updateItem($history = true)
+    {
+        if (
+            !isset($this->input['is_close_allowed'])
+            || $this->input['is_close_allowed'] !== '0'
+        ) {
+            return;
+        }
+
+        $userId = Session::getLoginUserID();
+        $alertUserId = $this->getAlertUserId($this->input['id'], $userId);
+
+        if ($alertUserId !== null) {
+            $this->updateAlertUserState($alertUserId, 0);
+        }
+    }
+
+    /**
+     * Find the alert user ID based on alert ID and user ID.
+     * 
+     * @param int|string $alertId
+     * @param int|string $userId
+     * @return int|string|null
+     */
+    private function getAlertUserId($alertId, $userId)
+    {
+        $alertUser = new PluginNewsAlert_User();
+        $foundUsers = $alertUser->find([
+            'plugin_news_alerts_id' => $alertId,
+            'users_id' => $userId,
+        ]);
+
+        if (empty($foundUsers)) {
+            return null;
+        }
+
+        $firstUser = array_shift($foundUsers);
+        return isset($firstUser['id']) ? $firstUser['id'] : null;
+    }
+
+    /**
+     * Update the state of an alert user.
+     * 
+     * @param int|string $alertUserId
+     * @param int $state
+     * @return void
+     */
+    private function updateAlertUserState($alertUserId, $state)
+    {
+        $alertUser = new PluginNewsAlert_User();
+        $alertUserData = $alertUser->getById($alertUserId);
+
+        if (isset($alertUserData->fields) && $alertUserData->fields['state'] != $state) {
+            $alertUser->update(
+                [
+                    'id' => $alertUserId,
+                    'state' => $state,
+                ]
+            );
+        }
+    }
 
     public static function findAllToNotify($params = [])
     {
