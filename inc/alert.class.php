@@ -216,10 +216,8 @@ class PluginNewsAlert extends CommonDBTM
         return $tab;
     }
 
-    // @codingStandardsIgnoreStart
     public function post_updateItem($history = true)
     {
-        // @codingStandardsIgnoreEnd
         // if close is not allowed update all user alerts to force display
         if (!$this->input['is_close_allowed']) {
             $alert_user = new PluginNewsAlert_User();
