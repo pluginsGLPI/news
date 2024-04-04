@@ -238,7 +238,6 @@ class PluginNewsAlert extends CommonDBTM
      * Find the alert user ID based on alert ID and user ID.
      *
      * @param int|string $alertId
-     * @param int|string $userId
      * @return int|string|null
      */
     private function getAlertUserId($alertId)
