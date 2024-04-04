@@ -9,4 +9,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+- Fix closed alerts not reappear if 'close alert' option deactivated.
 - Improve alert text wrapping, preventing it from going outside the content of its parent
