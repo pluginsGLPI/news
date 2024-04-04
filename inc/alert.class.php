@@ -503,6 +503,10 @@ class PluginNewsAlert extends CommonDBTM
     */
     public static function getSizeClasses(string $size): string
     {
+        // Note: the 'w-100' class will be added using javascript when we are
+        // displaying ITIL forms.
+        // See display_alert.html.twig for more details.
+
         switch ($size) {
             case self::SMALL:
                 return "col-xxl-4 col-xl-4 col-12";

@@ -34,12 +34,11 @@
 </style>
 
 {% set js_rand = random() %}
-
 <div class="plugin_news_alert {{ size }}" data-id="{{ alert_fields.id|default(0) }}">
     <div
         class="
             alert-{{ js_rand }}
-            alert text-start bg-{{ alert_fields.background_color }}
+            alert bg-{{ alert_fields.background_color }}
             {{ can_close ? "alert-dismissible"  : ""}}
         "
         style="
@@ -49,7 +48,7 @@
     >
         <div class="d-flex">
             <i class="ti ti-{{ alert_fields.icon }} fa-2x me-2"></i>
-            <div>
+            <div class="overflow-hidden">
                 <h3 class="mt-1">
                     {{ alert_fields.name|verbatim_value  }}
                     {% if show_only_login_alerts %}
@@ -72,7 +71,7 @@
                         {{ alert_fields.date_end|formatted_datetime }}
                     </div>
                 {% endif %}
-                <div class="mt-2 plugin_news_alert-content">
+                <div class="plugin_news_alert-content overflow-hidden">
                     {{ content|safe_html }}
                 </div>
             </div>
@@ -100,5 +99,14 @@
                     .replace(')', ', 0.6)')
             )
         }
+
+        // ITIL form has a specified layout, we must always display the full size
+        // alert.
+        // The "col-12" class can't be directly used for this purpose because
+        // a GLPI's core script will automatically replace it by "col-6" when
+        // expending the sidebar.
+        $('form[id="itil-form"]')
+            .find('.plugin_news_alert')
+            .addClass('w-100');
     })();
 </script>
