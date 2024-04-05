@@ -231,146 +231,146 @@ class PluginNewsAlert extends CommonDBTM
             $p[$key] = $value;
         }
 
-      $alerts   = [];
-      $today    = date('Y-m-d H:i:s');
-      $table    = self::getTable();
-      $utable   = PluginNewsAlert_User::getTable();
-      $ttable   = PluginNewsAlert_Target::getTable();
-      $hidstate = PluginNewsAlert_User::HIDDEN;
-      $users_id = isset($_SESSION['glpiID'])? $_SESSION['glpiID']: -1;
-      $group_u  = new Group_User();
-      $fndgroup = [];
-      if (isset($_SESSION['glpiID'])
-          && $fndgroup_user = $group_u->find(['users_id' => $_SESSION['glpiID']])) {
-         foreach ($fndgroup_user as $group) {
-            $fndgroup[] = $group['groups_id'];
-         }
-      }
-      if (empty($fndgroup)) {
-         $fndgroup = [-1];
-      }
+        $alerts   = [];
+        $today    = date('Y-m-d H:i:s');
+        $table    = self::getTable();
+        $utable   = PluginNewsAlert_User::getTable();
+        $ttable   = PluginNewsAlert_Target::getTable();
+        $hidstate = PluginNewsAlert_User::HIDDEN;
+        $users_id = isset($_SESSION['glpiID'])? $_SESSION['glpiID']: -1;
+        $group_u  = new Group_User();
+        $fndgroup = [];
+        if (isset($_SESSION['glpiID'])
+            && $fndgroup_user = $group_u->find(['users_id' => $_SESSION['glpiID']])) {
+            foreach ($fndgroup_user as $group) {
+                $fndgroup[] = $group['groups_id'];
+            }
+        }
+        if (empty($fndgroup)) {
+            $fndgroup = [-1];
+        }
 
-      // filters for query
-      $targets_sql           = [];
-      $login_sql             = [];
-      $login_show_hidden_sql = ["{$utable}.id" => null];
-      $entity_sql            = [];
-      $show_helpdesk_sql     = [];
-      $show_central_sql      = [];
-      if (isset($_SESSION['glpiID']) && isset($_SESSION['glpiactiveprofile']['id'])) {
-         $targets_sql = [
-            'OR' => [
-               [
-                  'AND' => [
-                     "$ttable.itemtype" => 'Profile',
-                     'OR' => [
-                         "$ttable.items_id" => $_SESSION['glpiactiveprofile']['id'],
-                         "$ttable.all_items" => 1,
-                     ],
-                  ]
-               ],
-               [
-                  'AND' => [
-                     "$ttable.itemtype" => 'Group',
-                     "$ttable.items_id" => $fndgroup,
-                  ]
-               ],
-               [
-                  'AND' => [
-                     "$ttable.itemtype" => 'User',
-                     "$ttable.items_id" => $_SESSION['glpiID'],
-                  ]
-               ],
-            ]
-         ];
-      } else if ($p['show_only_login_alerts']) {
-         $login_sql = ["{$table}.is_displayed_onlogin" => 1];
-      }
+        // filters for query
+        $targets_sql           = [];
+        $login_sql             = [];
+        $login_show_hidden_sql = ["{$utable}.id" => null];
+        $entity_sql            = [];
+        $show_helpdesk_sql     = [];
+        $show_central_sql      = [];
+        if (isset($_SESSION['glpiID']) && isset($_SESSION['glpiactiveprofile']['id'])) {
+            $targets_sql = [
+                'OR' => [
+                [
+                    'AND' => [
+                        "$ttable.itemtype" => 'Profile',
+                        'OR' => [
+                            "$ttable.items_id" => $_SESSION['glpiactiveprofile']['id'],
+                            "$ttable.all_items" => 1,
+                        ],
+                    ]
+                ],
+                [
+                    'AND' => [
+                        "$ttable.itemtype" => 'Group',
+                        "$ttable.items_id" => $fndgroup,
+                    ]
+                ],
+                [
+                    'AND' => [
+                        "$ttable.itemtype" => 'User',
+                        "$ttable.items_id" => $_SESSION['glpiID'],
+                    ]
+                ],
+                ]
+            ];
+        } else if ($p['show_only_login_alerts']) {
+            $login_sql = ["{$table}.is_displayed_onlogin" => 1];
+        }
 
-      if ($p['show_hidden_alerts']) {
-         //dont show hidden alert if they should no longer be visible
-         $login_show_hidden_sql = ['NOT' => ["{$utable}.id" => null]];
-      }
+        if ($p['show_hidden_alerts']) {
+            //dont show hidden alert if they should no longer be visible
+            $login_show_hidden_sql = ['NOT' => ["{$utable}.id" => null]];
+        }
 
-      if ($p['show_only_central_alerts']) {
-         //dont show central alert if they should no longer be visible
-         $show_central_sql = ["{$table}.is_displayed_oncentral" => 1];
-      }
+        if ($p['show_only_central_alerts']) {
+            //dont show central alert if they should no longer be visible
+            $show_central_sql = ["{$table}.is_displayed_oncentral" => 1];
+        }
 
-      //If the alert must be displayed on helpdesk form : filter by ticket's entity
-      //and not the current entity
-      if ($p['show_only_helpdesk_alerts']) {
-         $show_helpdesk_sql = ["{$table}.is_displayed_onhelpdesk" => 1];
-      }
-      if (!$p['show_only_login_alerts']) {
-         $entity_sql = getEntitiesRestrictCriteria($table, '', $p['entities_id'], true);
-      }
-      $criteria = [
-         'SELECT' => ["$table.*"],
-         'DISTINCT' => true,
-         'FROM'   => $table,
-         'LEFT JOIN' => [
-            $utable => [
-               'ON' => [
-                  $utable => 'plugin_news_alerts_id',
-                  $table  => 'id',
-                  [
-                     "$utable.users_id" => $users_id,
-                     "$utable.state"    => $hidstate,
-                  ]
-               ]
-            ]
-         ],
-         'INNER JOIN' => [
-            $ttable => [
-               'ON' => [
-                  $ttable => 'plugin_news_alerts_id',
-                  $table  => 'id'
-               ]
-            ]
-         ],
-         'WHERE' => [
-            [$login_show_hidden_sql],
-            [
-               'OR' => [
-                  "$table.date_start" => ['<', $today],
-                  "$table.date_start" => $today,
-                  "$table.date_start" => null,
-               ]
+        //If the alert must be displayed on helpdesk form : filter by ticket's entity
+        //and not the current entity
+        if ($p['show_only_helpdesk_alerts']) {
+            $show_helpdesk_sql = ["{$table}.is_displayed_onhelpdesk" => 1];
+        }
+        if (!$p['show_only_login_alerts']) {
+            $entity_sql = getEntitiesRestrictCriteria($table, '', $p['entities_id'], true);
+        }
+        $criteria = [
+            'SELECT' => ["$table.*"],
+            'DISTINCT' => true,
+            'FROM'   => $table,
+            'LEFT JOIN' => [
+                $utable => [
+                'ON' => [
+                    $utable => 'plugin_news_alerts_id',
+                    $table  => 'id',
+                    [
+                        "$utable.users_id" => $users_id,
+                        "$utable.state"    => $hidstate,
+                    ]
+                ]
+                ]
             ],
-            [
-               'OR' => [
-                  "$table.date_end" => ['>', $today],
-                  "$table.date_end" => $today,
-                  "$table.date_end" => null,
-               ]
+            'INNER JOIN' => [
+                $ttable => [
+                'ON' => [
+                    $ttable => 'plugin_news_alerts_id',
+                    $table  => 'id'
+                ]
+                ]
             ],
-            'is_deleted' => 0,
-            'is_active'  => 1,
-         ]
-      ];
-      if (!empty($targets_sql)) {
-         $criteria['INNER JOIN'][$ttable]['ON'][] = $targets_sql;
-      }
-      if (!empty($entity_sql)) {
-         $criteria['WHERE'][] = [$entity_sql];
-      }
-      if (!empty($login_sql)) {
-         $criteria['WHERE'][0][] = $login_sql;
-      }
-      if (!empty($show_central_sql)) {
-         $criteria['WHERE'][0][] = $show_central_sql;
-      }
-      if (!empty($show_helpdesk_sql)) {
-         $criteria['WHERE'][0][] = $show_helpdesk_sql;
-      }
-      $it = $DB->request($criteria);
-      if (!count($it)) {
-         return false;
-      }
-      foreach ($it as $data) {
-         $alerts[] = $data;
-      }
+            'WHERE' => [
+                [$login_show_hidden_sql],
+                [
+                'OR' => [
+                    "$table.date_start" => ['<', $today],
+                    "$table.date_start" => $today,
+                    "$table.date_start" => null,
+                ]
+                ],
+                [
+                'OR' => [
+                    "$table.date_end" => ['>', $today],
+                    "$table.date_end" => $today,
+                    "$table.date_end" => null,
+                ]
+                ],
+                'is_deleted' => 0,
+                'is_active'  => 1,
+            ]
+        ];
+        if (!empty($targets_sql)) {
+            $criteria['INNER JOIN'][$ttable]['ON'][] = $targets_sql;
+        }
+        if (!empty($entity_sql)) {
+            $criteria['WHERE'][] = [$entity_sql];
+        }
+        if (!empty($login_sql)) {
+            $criteria['WHERE'][0][] = $login_sql;
+        }
+        if (!empty($show_central_sql)) {
+            $criteria['WHERE'][0][] = $show_central_sql;
+        }
+        if (!empty($show_helpdesk_sql)) {
+            $criteria['WHERE'][0][] = $show_helpdesk_sql;
+        }
+        $it = $DB->request($criteria);
+        if (!count($it)) {
+            return false;
+        }
+        foreach ($it as $data) {
+            $alerts[] = $data;
+        }
 
         return $alerts;
     }
