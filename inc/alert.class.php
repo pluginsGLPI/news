@@ -315,8 +315,10 @@ class PluginNewsAlert extends CommonDBTM
                         $utable => 'plugin_news_alerts_id',
                         $table  => 'id',
                         [
-                            "$utable.users_id" => $users_id,
-                            "$utable.state"    => $hidstate,
+                            'AND' => [
+                                "$utable.users_id" => $users_id,
+                                "$utable.state"    => $hidstate,
+                            ]
                         ]
                     ]
                 ]
