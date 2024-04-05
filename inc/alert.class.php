@@ -263,7 +263,10 @@ class PluginNewsAlert extends CommonDBTM
                [
                   'AND' => [
                      "$ttable.itemtype" => 'Profile',
-                     "$ttable.items_id" => $_SESSION['glpiactiveprofile']['id'],
+                     'OR' => [
+                         "$ttable.items_id" => $_SESSION['glpiactiveprofile']['id'],
+                         "$ttable.all_items" => 1,
+                     ],
                   ]
                ],
                [
