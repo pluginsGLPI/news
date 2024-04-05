@@ -237,15 +237,15 @@ class PluginNewsAlert extends CommonDBTM
         $utable   = PluginNewsAlert_User::getTable();
         $ttable   = PluginNewsAlert_Target::getTable();
         $hidstate = PluginNewsAlert_User::HIDDEN;
-        $users_id = isset($_SESSION['glpiID'])? $_SESSION['glpiID']: -1;
+        $users_id = isset($_SESSION['glpiID']) ? $_SESSION['glpiID'] : -1;
         $group_u  = new Group_User();
         $fndgroup = [];
-        if (isset($_SESSION['glpiID'])
-            && $fndgroup_user = $group_u->find(['users_id' => $_SESSION['glpiID']])) {
+        if (isset($_SESSION['glpiID']) && $fndgroup_user = $group_u->find(['users_id' => $_SESSION['glpiID']])) {
             foreach ($fndgroup_user as $group) {
                 $fndgroup[] = $group['groups_id'];
             }
         }
+
         if (empty($fndgroup)) {
             $fndgroup = [-1];
         }
@@ -260,27 +260,27 @@ class PluginNewsAlert extends CommonDBTM
         if (isset($_SESSION['glpiID']) && isset($_SESSION['glpiactiveprofile']['id'])) {
             $targets_sql = [
                 'OR' => [
-                [
-                    'AND' => [
-                        "$ttable.itemtype" => 'Profile',
-                        'OR' => [
-                            "$ttable.items_id" => $_SESSION['glpiactiveprofile']['id'],
-                            "$ttable.all_items" => 1,
-                        ],
-                    ]
-                ],
-                [
-                    'AND' => [
-                        "$ttable.itemtype" => 'Group',
-                        "$ttable.items_id" => $fndgroup,
-                    ]
-                ],
-                [
-                    'AND' => [
-                        "$ttable.itemtype" => 'User',
-                        "$ttable.items_id" => $_SESSION['glpiID'],
-                    ]
-                ],
+                    [
+                        'AND' => [
+                            "$ttable.itemtype" => 'Profile',
+                            'OR' => [
+                                "$ttable.items_id" => $_SESSION['glpiactiveprofile']['id'],
+                                "$ttable.all_items" => 1,
+                            ],
+                        ]
+                    ],
+                    [
+                        'AND' => [
+                            "$ttable.itemtype" => 'Group',
+                            "$ttable.items_id" => $fndgroup,
+                        ]
+                    ],
+                    [
+                        'AND' => [
+                            "$ttable.itemtype" => 'User',
+                            "$ttable.items_id" => $_SESSION['glpiID'],
+                        ]
+                    ],
                 ]
             ];
         } else if ($p['show_only_login_alerts']) {
@@ -311,39 +311,39 @@ class PluginNewsAlert extends CommonDBTM
             'FROM'   => $table,
             'LEFT JOIN' => [
                 $utable => [
-                'ON' => [
-                    $utable => 'plugin_news_alerts_id',
-                    $table  => 'id',
-                    [
-                        "$utable.users_id" => $users_id,
-                        "$utable.state"    => $hidstate,
+                    'ON' => [
+                        $utable => 'plugin_news_alerts_id',
+                        $table  => 'id',
+                        [
+                            "$utable.users_id" => $users_id,
+                            "$utable.state"    => $hidstate,
+                        ]
                     ]
-                ]
                 ]
             ],
             'INNER JOIN' => [
                 $ttable => [
-                'ON' => [
-                    $ttable => 'plugin_news_alerts_id',
-                    $table  => 'id'
-                ]
+                    'ON' => [
+                        $ttable => 'plugin_news_alerts_id',
+                        $table  => 'id'
+                    ]
                 ]
             ],
             'WHERE' => [
                 [$login_show_hidden_sql],
                 [
-                'OR' => [
-                    "$table.date_start" => ['<', $today],
-                    "$table.date_start" => $today,
-                    "$table.date_start" => null,
-                ]
+                    'OR' => [
+                        "$table.date_start" => ['<', $today],
+                        "$table.date_start" => $today,
+                        "$table.date_start" => null,
+                    ]
                 ],
                 [
-                'OR' => [
-                    "$table.date_end" => ['>', $today],
-                    "$table.date_end" => $today,
-                    "$table.date_end" => null,
-                ]
+                    'OR' => [
+                        "$table.date_end" => ['>', $today],
+                        "$table.date_end" => $today,
+                        "$table.date_end" => null,
+                    ]
                 ],
                 'is_deleted' => 0,
                 'is_active'  => 1,
