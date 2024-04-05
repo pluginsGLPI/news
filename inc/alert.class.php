@@ -307,6 +307,7 @@ class PluginNewsAlert extends CommonDBTM
       }
       $criteria = [
          'SELECT' => ["$table.*"],
+         'DISTINCT' => true,
          'FROM'   => $table,
          'LEFT JOIN' => [
             $utable => [
