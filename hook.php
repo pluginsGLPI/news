@@ -68,6 +68,30 @@ function plugin_news_install()
          PRIMARY KEY (`id`)
          ) ENGINE=InnoDB DEFAULT CHARSET={$default_charset} COLLATE={$default_collation} ROW_FORMAT=DYNAMIC;
       ");
+    } else {
+        $DB->updateOrDie(
+            PluginNewsAlert_User::getTable(),
+            [
+                'state' => 0
+            ],
+            [
+                'AND' => [
+                    'state' => 1,
+                    PluginNewsAlert::getTable() . '.is_close_allowed' => 0,
+                ]
+            ],
+            '',
+            [
+                'JOIN' => [
+                    PluginNewsAlert::getTable() => [
+                        'FKEY' => [
+                            PluginNewsAlert_User::getTable() => 'plugin_news_alerts_id',
+                            PluginNewsAlert::getTable() => 'id',
+                        ]
+                    ]
+                ]
+            ]
+        );
     }
 
     if (!$DB->tableExists('glpi_plugin_news_alerts_users')) {
