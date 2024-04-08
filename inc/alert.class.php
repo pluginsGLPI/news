@@ -356,13 +356,13 @@ class PluginNewsAlert extends CommonDBTM
             $criteria['WHERE'][] = $entity_sql;
         }
         if (!empty($login_sql)) {
-            $criteria['WHERE'][0][] = $login_sql;
+            $criteria['WHERE'][] = $login_sql;
         }
         if (!empty($show_central_sql)) {
-            $criteria['WHERE'][0][] = $show_central_sql;
+            $criteria['WHERE'][] = $show_central_sql;
         }
         if (!empty($show_helpdesk_sql)) {
-            $criteria['WHERE'][0][] = $show_helpdesk_sql;
+            $criteria['WHERE'][] = $show_helpdesk_sql;
         }
         $it = $DB->request($criteria);
         if (!count($it)) {
