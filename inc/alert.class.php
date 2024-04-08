@@ -353,7 +353,7 @@ class PluginNewsAlert extends CommonDBTM
             $criteria['INNER JOIN'][$ttable]['ON'][] = $targets_sql;
         }
         if (!empty($entity_sql)) {
-            $criteria['WHERE'][] = [$entity_sql];
+            $criteria['WHERE'][] = $entity_sql;
         }
         if (!empty($login_sql)) {
             $criteria['WHERE'][0][] = $login_sql;
