@@ -335,8 +335,7 @@ class PluginNewsAlert extends CommonDBTM
                 [$login_show_hidden_sql],
                 [
                     'OR' => [
-                        ["$table.date_start" => ['<', $today]],
-                        ["$table.date_start" => $today],
+                        ["$table.date_start" => ['<=', $today]],
                         ["$table.date_start" => null],
                     ]
                 ],
