@@ -38,6 +38,8 @@ class PluginNewsAlert_User extends CommonDBRelation
     // @codingStandardsIgnoreEnd
     const HIDDEN = 1;
 
+    const VISIBLE = 0;
+
     public static $itemtype_1 = 'PluginNewsAlert';
     public static $items_id_1 = 'plugin_news_alerts_id';
     public static $checkItem_1_Rights = self::HAVE_VIEW_RIGHT_ON_ITEM;

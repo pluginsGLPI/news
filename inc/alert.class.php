@@ -232,8 +232,13 @@ class PluginNewsAlert extends CommonDBTM
                 ]
             );
             foreach ($all_alert as $alert) {
-                //update state to 0 to force display
-                $alert_user->update(['id' => $alert['id'], 'state' => 0]);
+                //update state to force display
+                $alert_user->update(
+                    [
+                        'id' => $alert['id'],
+                        'state' => PluginNewsAlert_User::VISIBLE
+                    ]
+                );
             }
         }
     }

@@ -72,11 +72,11 @@ function plugin_news_install()
         $DB->updateOrDie(
             PluginNewsAlert_User::getTable(),
             [
-                'state' => 0
+                'state' => PluginNewsAlert_User::VISIBLE,
             ],
             [
                 'AND' => [
-                    'state' => 1,
+                    'state' => PluginNewsAlert_User::HIDDEN,
                     PluginNewsAlert::getTable() . '.is_close_allowed' => 0,
                 ]
             ],
