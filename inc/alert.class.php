@@ -342,8 +342,7 @@ class PluginNewsAlert extends CommonDBTM
                 ],
                 [
                     'OR' => [
-                        ["$table.date_end" => ['>', $today]],
-                        ["$table.date_end" => $today],
+                        ["$table.date_end" => ['>=', $today]],
                         ["$table.date_end" => null],
                     ]
                 ],
