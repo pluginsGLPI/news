@@ -216,6 +216,32 @@ class PluginNewsAlert extends CommonDBTM
         return $tab;
     }
 
+    public function post_updateItem($history = true)
+    {
+        // if close is not allowed update all user alerts to force display
+        if (
+            isset($this->input['is_close_allowed'])
+            && !$this->input['is_close_allowed']
+        ) {
+            $alert_user = new PluginNewsAlert_User();
+            //get all Alert_User for this alert where state is hidden
+            $all_alert = $alert_user->find(
+                [
+                    'plugin_news_alerts_id' => $this->getID(),
+                    'state' => PluginNewsAlert_User::HIDDEN
+                ]
+            );
+            foreach ($all_alert as $alert) {
+                //update state to force display
+                $alert_user->update(
+                    [
+                        'id' => $alert['id'],
+                        'state' => PluginNewsAlert_User::VISIBLE
+                    ]
+                );
+            }
+        }
+    }
 
     public static function findAllToNotify($params = [])
     {
