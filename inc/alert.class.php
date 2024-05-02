@@ -285,26 +285,30 @@ class PluginNewsAlert extends CommonDBTM
         $show_central_sql      = [];
         if (isset($_SESSION['glpiID']) && isset($_SESSION['glpiactiveprofile']['id'])) {
             $targets_sql = [
-                'OR' => [
+                'AND' => [
                     [
-                        'AND' => [
-                            "$ttable.itemtype" => 'Profile',
-                            'OR' => [
-                                "$ttable.items_id" => $_SESSION['glpiactiveprofile']['id'],
-                                "$ttable.all_items" => 1,
+                        'OR' => [
+                            [
+                                'AND' => [
+                                    "$ttable.itemtype" => 'Profile',
+                                    'OR' => [
+                                        "$ttable.items_id" => $_SESSION['glpiactiveprofile']['id'],
+                                        "$ttable.all_items" => 1,
+                                    ],
+                                ]
                             ],
-                        ]
-                    ],
-                    [
-                        'AND' => [
-                            "$ttable.itemtype" => 'Group',
-                            "$ttable.items_id" => $fndgroup,
-                        ]
-                    ],
-                    [
-                        'AND' => [
-                            "$ttable.itemtype" => 'User',
-                            "$ttable.items_id" => $_SESSION['glpiID'],
+                            [
+                                'AND' => [
+                                    "$ttable.itemtype" => 'Group',
+                                    "$ttable.items_id" => $fndgroup,
+                                ]
+                            ],
+                            [
+                                'AND' => [
+                                    "$ttable.itemtype" => 'User',
+                                    "$ttable.items_id" => $_SESSION['glpiID'],
+                                ]
+                            ],
                         ]
                     ],
                 ]
