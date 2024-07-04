@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
-- Fix how to that finds alerts for current user.
+- Prevent an issue where alerts targets restrictions were not applied correctly.
 
 ## [1.12.2] - 2024-04-08
 
