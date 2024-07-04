@@ -7,7 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [1.12.3] - 2024-07-04
 
-- Fix SQL query that finds alerts for current user.
+### Fixed
+
+- Fix how to that finds alerts for current user.
 
 ## [1.12.2] - 2024-04-08
 
