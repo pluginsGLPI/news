@@ -29,22 +29,22 @@
  */
 
 $AJAX_INCLUDE = 1;
-include("../../../inc/includes.php");
-header("Content-Type: text/html; charset=UTF-8");
+include('../../../inc/includes.php');
+header('Content-Type: text/html; charset=UTF-8');
 Html::header_nocache();
 
 Session::checkLoginUser();
 
 if (isset($_POST['type']) && !empty($_POST['type'])) {
     echo "<table class='tab_format'>";
-    echo "<tr>";
-    echo "<td>";
+    echo '<tr>';
+    echo '<td>';
     switch ($_POST['type']) {
         case 'User':
-            User::dropdown(['name'        => 'items_id',
-                'right'       => 'all',
-                'entity'      => $_POST['entities_id'],
-                'entity_sons' => $_POST['is_recursive'],
+            User::dropdown(['name' => 'items_id',
+                'right'            => 'all',
+                'entity'           => $_POST['entities_id'],
+                'entity_sons'      => $_POST['is_recursive'],
             ]);
             break;
 
@@ -53,14 +53,14 @@ if (isset($_POST['type']) && !empty($_POST['type'])) {
             break;
 
         case 'Profile':
-            Profile::dropdown(['name'  => 'items_id',
-                'toadd' => [-1 => __('All', 'news')]
+            Profile::dropdown(['name' => 'items_id',
+                'toadd'               => [-1 => __('All', 'news')],
             ]);
             break;
     }
-    echo "</td>";
+    echo '</td>';
     echo "<td><input type='submit' name='addvisibility' value=\"" . _sx('button', 'Add', 'news') . "\"
                    class='submit'></td>";
-    echo "</tr>";
-    echo "</table>";
+    echo '</tr>';
+    echo '</table>';
 }

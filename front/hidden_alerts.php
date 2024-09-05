@@ -28,21 +28,21 @@
  * -------------------------------------------------------------------------
  */
 
-include("../../../inc/includes.php");
+include('../../../inc/includes.php');
 
-if ($_SESSION["glpiactiveprofile"]["interface"] != "central") {
-    Html::helpHeader(__('Alerts', 'news'), $_SERVER['PHP_SELF'], $_SESSION["glpiname"]);
+if ($_SESSION['glpiactiveprofile']['interface'] != 'central') {
+    Html::helpHeader(__('Alerts', 'news'), $_SERVER['PHP_SELF'], $_SESSION['glpiname']);
 } else {
     Html::header(
         __('Alerts', 'news'),
-        $_SERVER["PHP_SELF"],
+        $_SERVER['PHP_SELF'],
         'tools',
-        "PluginNewsAlert"
+        'PluginNewsAlert'
     );
 }
 
 PluginNewsAlert::displayAlerts(['show_only_login_alerts' => false,
-    'show_hidden_alerts' => true
+    'show_hidden_alerts'                                 => true,
 ]);
 
 Html::footer();

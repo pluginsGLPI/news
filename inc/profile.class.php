@@ -80,7 +80,7 @@ class PluginNewsProfile extends Profile
         $profile->getFromDB($item->getID());
 
         $twig = TemplateRenderer::getInstance();
-        $twig->display("@news/profile.html.twig", [
+        $twig->display('@news/profile.html.twig', [
             'id'      => $item->getID(),
             'profile' => $profile,
             'title'   => PluginNewsAlert::getTypeName(Session::getPluralNumber()),
@@ -89,8 +89,8 @@ class PluginNewsProfile extends Profile
                     'itemtype' => PluginNewsAlert::getType(),
                     'label'    => PluginNewsAlert::getTypeName(Session::getPluralNumber()),
                     'field'    => PluginNewsAlert::$rightname,
-                ]
-            ]
+                ],
+            ],
         ]);
 
         return true;

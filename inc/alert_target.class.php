@@ -56,18 +56,18 @@ class PluginNewsAlert_Target extends CommonDBTM
     public function addNeededInfoToInput($input)
     {
         if (
-            $input['itemtype'] == 'Profile'
+            $input['itemtype']    == 'Profile'
             && $input['items_id'] == -1
         ) {
             $input['all_items'] = 1;
-            $input['items_id'] = 0;
+            $input['items_id']  = 0;
         }
+
         return $input;
     }
 
     public static function getSpecificValueToDisplay($field, $values, array $options = [])
     {
-
         if (!is_array($values)) {
             $values = [$field => $values];
         }
@@ -79,16 +79,18 @@ class PluginNewsAlert_Target extends CommonDBTM
                 ) {
                     $item = new $values['itemtype']();
                     if (
-                        $values['itemtype'] == "Profile"
+                        $values['itemtype']     == 'Profile'
                         && $values['all_items'] == 1
                     ) {
-                        return $item->getTypeName() . " - " . __('All', 'news');
+                        return $item->getTypeName() . ' - ' . __('All', 'news');
                     }
                     $item->getFromDB($values['items_id']);
-                    return $item->getTypeName() . " - " . $item->getName();
+
+                    return $item->getTypeName() . ' - ' . $item->getName();
                 }
                 break;
         }
+
         return parent::getSpecificValueToDisplay($field, $values, $options);
     }
 
@@ -99,6 +101,7 @@ class PluginNewsAlert_Target extends CommonDBTM
                 self::getTable(),
                 ['plugin_news_alerts_id' => $item->getID()]
             );
+
             return self::createTabEntry(self::getTypeName(Session::getPluralNumber()), $nb);
         }
 
@@ -123,26 +126,26 @@ class PluginNewsAlert_Target extends CommonDBTM
 
         $types = ['Group', 'Profile', 'User'];
         echo "<table class='plugin_news_alert-visibility'>";
-        echo "<tr>";
-        echo "<td>";
-        echo __('Add a target', 'news') . ":&nbsp;";
+        echo '<tr>';
+        echo '<td>';
+        echo __('Add a target', 'news') . ':&nbsp;';
         $addrand = Dropdown::showItemTypes('itemtype', $types, ['width' => '']);
-        echo "</td>";
-        $params  = ['type'         => '__VALUE__',
+        echo '</td>';
+        $params = ['type' => '__VALUE__',
             'entities_id'  => $alert->fields['entities_id'],
-            'is_recursive' => $alert->fields['is_recursive']
+            'is_recursive' => $alert->fields['is_recursive'],
         ];
         Ajax::updateItemOnSelectEvent(
-            "dropdown_itemtype" . $addrand,
+            'dropdown_itemtype' . $addrand,
             "visibility$rand",
-            Plugin::getWebDir('news') . "/ajax/targets.php",
+            Plugin::getWebDir('news') . '/ajax/targets.php',
             $params
         );
-        echo "<td>";
+        echo '<td>';
         echo "<span id='visibility$rand'></span>";
-        echo "</td>";
-        echo "<tr>";
-        echo "</table>";
+        echo '</td>';
+        echo '<tr>';
+        echo '</table>';
         Html::closeForm();
 
         echo "<div class='spaced'>";
@@ -151,46 +154,46 @@ class PluginNewsAlert_Target extends CommonDBTM
         if ($nb = count($found_target) > 0) {
             Html::openMassiveActionsForm('mass' . __CLASS__ . $rand);
             $massiveactionparams
-            = ['num_displayed'    => $nb,
+            = ['num_displayed'     => $nb,
                 'container'        => 'mass' . __CLASS__ . $rand,
-                'specific_actions' => ['delete' => _x('button', 'Delete permanently', 'news')]
+                'specific_actions' => ['delete' => _x('button', 'Delete permanently', 'news')],
             ];
             Html::showMassiveActions($massiveactionparams);
 
             echo "<table class='tab_cadre_fixehov'>";
 
-            echo "<tr>";
-            echo "<th width='10'>" . Html::getCheckAllAsCheckbox('mass' . __CLASS__ . $rand) . "</th>";
-            echo "<th>" . __('Type', 'news') . "</th>";
-            echo "<th>" . __('Recipient', 'news') . "</th>";
-            echo "</tr>";
+            echo '<tr>';
+            echo "<th width='10'>" . Html::getCheckAllAsCheckbox('mass' . __CLASS__ . $rand) . '</th>';
+            echo '<th>' . __('Type', 'news') . '</th>';
+            echo '<th>' . __('Recipient', 'news') . '</th>';
+            echo '</tr>';
 
             foreach ($found_target as $current_target) {
                 if (class_exists($current_target['itemtype'])) {
                     $item = new $current_target['itemtype']();
                     $item->getFromDB($current_target['items_id']);
                     $name = ($current_target['all_items'] == 1
-                        && $current_target['itemtype'] == "Profile")
+                        && $current_target['itemtype']    == 'Profile')
                            ? __('All', 'news')
                            : $item->getName(['complete' => true]);
 
                     echo "<tr class='tab_bg_2'>";
-                    echo "<td>";
-                     Html::showMassiveActionCheckBox(__CLASS__, $current_target["id"]);
-                     echo "</td>";
-                    echo "<td>" . $item->getTypeName() . "</td>";
+                    echo '<td>';
+                    Html::showMassiveActionCheckBox(__CLASS__, $current_target['id']);
+                    echo '</td>';
+                    echo '<td>' . $item->getTypeName() . '</td>';
                     echo "<td>$name</td>";
-                    echo "</tr>";
+                    echo '</tr>';
                 }
             }
 
-            echo "</table>";
+            echo '</table>';
 
             $massiveactionparams['ontop'] = false;
             Html::showMassiveActions($massiveactionparams);
             Html::closeForm();
         }
-        echo "</div>";
+        echo '</div>';
 
         return true;
     }
