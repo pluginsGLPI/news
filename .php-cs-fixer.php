@@ -47,12 +47,9 @@ foreach ($gitignorePaths as $path) {
 
 $config = new Config();
 
-$mandatoryRules = [
+$rules = [
     '@PSR12'                          => true,
     '@PER-CS2.0'                      => true,
-];
-
-$optionalRules = [
     'array_indentation'               => true,
     'array_syntax'                    => ['syntax' => 'short'],
     'binary_operator_spaces'          => ['default' => 'align_single_space_minimal'],
@@ -75,9 +72,6 @@ $optionalRules = [
     'unary_operator_spaces'           => true,
     'whitespace_after_comma_in_array' => true,
 ];
-
-$isFix = in_array('fix', $_SERVER['argv'], true);
-$rules = $isFix ? array_merge($mandatoryRules, $optionalRules) : $mandatoryRules;
 
 return $config
     ->setRules($rules)

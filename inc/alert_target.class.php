@@ -131,7 +131,7 @@ class PluginNewsAlert_Target extends CommonDBTM
         echo __('Add a target', 'news') . ':&nbsp;';
         $addrand = Dropdown::showItemTypes('itemtype', $types, ['width' => '']);
         echo '</td>';
-        $params = ['type' => '__VALUE__',
+        $params = ['type'  => '__VALUE__',
             'entities_id'  => $alert->fields['entities_id'],
             'is_recursive' => $alert->fields['is_recursive'],
         ];
