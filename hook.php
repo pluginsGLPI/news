@@ -90,7 +90,7 @@ function plugin_news_install()
                         ],
                     ],
                 ],
-            ],
+            ]
         );
     }
 
@@ -168,7 +168,7 @@ function plugin_news_install()
             $alert_table,
             'is_deleted',
             'is_deleted',
-            'TINYINT NOT NULL DEFAULT 0',
+            'TINYINT NOT NULL DEFAULT 0'
         );
     }
 
@@ -177,13 +177,13 @@ function plugin_news_install()
         $alert_table,
         'date_end',
         'date_end',
-        'TIMESTAMP NULL DEFAULT NULL',
+        'TIMESTAMP NULL DEFAULT NULL'
     );
     $migration->changeField(
         $alert_table,
         'date_start',
         'date_start',
-        'TIMESTAMP NULL DEFAULT NULL',
+        'TIMESTAMP NULL DEFAULT NULL'
     );
 
     if ($DB->fieldExists($alert_table, 'profiles_id')) {
@@ -205,8 +205,8 @@ function plugin_news_install()
             $DB->buildUpdate(
                 'glpi_plugin_news_alerts_targets',
                 ['items_id' => '0', 'all_items' => '1'],
-                ['items_id' => '-1'],
-            ),
+                ['items_id' => '-1']
+            )
         );
     }
 
@@ -228,7 +228,7 @@ function plugin_news_install()
             $alert_table,
             'is_displayed_oncentral',
             'bool',
-            ['value' => true],
+            ['value' => true]
         );
     }
 
@@ -238,7 +238,7 @@ function plugin_news_install()
             $alert_table,
             'background_color',
             'string',
-            ['value' => PluginNewsAlert::WHITE],
+            ['value' => PluginNewsAlert::WHITE]
         );
     }
 
@@ -248,7 +248,7 @@ function plugin_news_install()
             $alert_table,
             'text_color',
             'string',
-            ['value' => PluginNewsAlert::DARK],
+            ['value' => PluginNewsAlert::DARK]
         );
     }
 
@@ -258,7 +258,7 @@ function plugin_news_install()
             $alert_table,
             'emphasis_color',
             'string',
-            ['value' => PluginNewsAlert::DARK],
+            ['value' => PluginNewsAlert::DARK]
         );
     }
 
@@ -268,7 +268,7 @@ function plugin_news_install()
             $alert_table,
             'size',
             'string',
-            ['value' => PluginNewsAlert::MEDIUM],
+            ['value' => PluginNewsAlert::MEDIUM]
         );
     }
 
@@ -278,7 +278,7 @@ function plugin_news_install()
             $alert_table,
             'icon',
             'string',
-            ['value' => ''],
+            ['value' => '']
         );
     }
 
@@ -288,7 +288,7 @@ function plugin_news_install()
             $alert_table,
             'display_dates',
             'bool',
-            ['value' => '1'],
+            ['value' => '1']
         );
     }
 
@@ -302,14 +302,14 @@ function plugin_news_install()
                 $alert_table,
                 PluginNewsAlert::getTemplatesValues()[$type],
                 ['type' => $type],
-            ),
+            )
         );
     }
 
     // $migration->addRight() does not allow to copy an existing right, we must write some custom code
     $right_exist = countElementsInTable(
         'glpi_profilerights',
-        ['name' => PluginNewsAlert::$rightname],
+        ['name' => PluginNewsAlert::$rightname]
     ) > 0;
 
     // Add the same standard rights on alerts as the rights already granted on

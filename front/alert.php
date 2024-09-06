@@ -34,7 +34,7 @@ Html::header(
     __('Alerts', 'news'),
     $_SERVER['PHP_SELF'],
     'tools',
-    'PluginNewsAlert',
+    'PluginNewsAlert'
 );
 
 Search::show('PluginNewsAlert');

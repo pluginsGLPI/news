@@ -37,7 +37,7 @@ if ($_SESSION['glpiactiveprofile']['interface'] != 'central') {
         __('Alerts', 'news'),
         $_SERVER['PHP_SELF'],
         'tools',
-        'PluginNewsAlert',
+        'PluginNewsAlert'
     );
 }
 

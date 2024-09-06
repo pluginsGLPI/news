@@ -10,7 +10,8 @@ $finder = Finder::create()
 $config = new Config();
 
 $rules = [
-    '@PER-CS2.0' => true,
+    '@PER-CS2.0'                  => true,
+    'trailing_comma_in_multiline' => ['elements' => ['arrays']],
 ];
 
 return $config

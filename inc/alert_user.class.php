@@ -67,7 +67,7 @@ class PluginNewsAlert_User extends CommonDBRelation
             [
                 'plugin_news_alerts_id' => $plugin_news_alerts_id,
                 'users_id'              => $users_id,
-            ],
+            ]
         );
     }
 
