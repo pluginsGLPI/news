@@ -227,7 +227,7 @@ class PluginNewsAlert extends CommonDBTM
                 [
                     'plugin_news_alerts_id' => $this->getID(),
                     'state'                 => PluginNewsAlert_User::HIDDEN,
-                ]
+                ],
             );
             foreach ($all_alert as $alert) {
                 //update state to force display
@@ -235,7 +235,7 @@ class PluginNewsAlert extends CommonDBTM
                     [
                         'id'    => $alert['id'],
                         'state' => PluginNewsAlert_User::VISIBLE,
-                    ]
+                    ],
                 );
             }
         }
@@ -473,7 +473,7 @@ class PluginNewsAlert extends CommonDBTM
                 'itemtype'              => 'Profile',
                 'items_id'              => 0,
                 'all_items'             => 1,
-            ]
+            ],
         );
     }
 
