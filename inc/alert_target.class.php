@@ -99,7 +99,7 @@ class PluginNewsAlert_Target extends CommonDBTM
         if ($item instanceof PluginNewsAlert) {
             $nb = countElementsInTable(
                 self::getTable(),
-                ['plugin_news_alerts_id' => $item->getID()]
+                ['plugin_news_alerts_id' => $item->getID()],
             );
 
             return self::createTabEntry(self::getTypeName(Session::getPluralNumber()), $nb);
@@ -139,7 +139,7 @@ class PluginNewsAlert_Target extends CommonDBTM
             'dropdown_itemtype' . $addrand,
             "visibility$rand",
             Plugin::getWebDir('news') . '/ajax/targets.php',
-            $params
+            $params,
         );
         echo '<td>';
         echo "<span id='visibility$rand'></span>";

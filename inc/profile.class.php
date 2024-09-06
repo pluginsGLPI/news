@@ -63,14 +63,14 @@ class PluginNewsProfile extends Profile
     public function getTabNameForItem(CommonGLPI $item, $withtemplate = 0)
     {
         return self::createTabEntry(
-            PluginNewsAlert::getTypeName(Session::getPluralNumber())
+            PluginNewsAlert::getTypeName(Session::getPluralNumber()),
         );
     }
 
     public static function displayTabContentForItem(
         CommonGLPI $item,
         $tabnum = 1,
-        $withtemplate = 0
+        $withtemplate = 0,
     ) {
         if (!$item instanceof Profile || !self::canView()) {
             return false;
