@@ -31,9 +31,9 @@
 define('PLUGIN_NEWS_VERSION', '1.12.3');
 
 // Minimal GLPI version, inclusive
-define("PLUGIN_NEWS_MIN_GLPI", "10.0.0");
+define('PLUGIN_NEWS_MIN_GLPI', '10.0.0');
 // Maximum GLPI version, exclusive
-define("PLUGIN_NEWS_MAX_GLPI", "10.0.99");
+define('PLUGIN_NEWS_MAX_GLPI', '10.0.99');
 
 function plugin_init_news()
 {
@@ -52,15 +52,15 @@ function plugin_init_news()
     ) {
         Plugin::registerClass('PluginNewsProfile', ['addtabon' => 'Profile']);
 
-        $PLUGIN_HOOKS['add_css']['news'] = 'css/styles.css';
-        $PLUGIN_HOOKS['add_javascript']['news'][] = "js/news.js";
-        $PLUGIN_HOOKS['display_login']['news'] = [
-            "PluginNewsAlert", "displayOnLogin"
+        $PLUGIN_HOOKS['add_css']['news']          = 'css/styles.css';
+        $PLUGIN_HOOKS['add_javascript']['news'][] = 'js/news.js';
+        $PLUGIN_HOOKS['display_login']['news']    = [
+            'PluginNewsAlert', 'displayOnLogin',
         ];
         $PLUGIN_HOOKS['display_central']['news'] = [
-            "PluginNewsAlert", "displayOnCentral"
+            'PluginNewsAlert', 'displayOnCentral',
         ];
-        $PLUGIN_HOOKS['pre_item_list']['news'] = ["PluginNewsAlert", "preItemList"];
+        $PLUGIN_HOOKS['pre_item_list']['news'] = ['PluginNewsAlert', 'preItemList'];
 
         $PLUGIN_HOOKS['pre_item_form']['news'] = ['PluginNewsAlert', 'preItemForm'];
 
@@ -70,7 +70,7 @@ function plugin_init_news()
             ];
             $PLUGIN_HOOKS['config_page']['news'] = 'front/alert.php';
 
-           // require tinymce (for glpi >= 9.2)
+            // require tinymce (for glpi >= 9.2)
             $CFG_GLPI['javascript']['tools']['pluginnewsalert'] = ['tinymce'];
         }
     }
@@ -79,16 +79,16 @@ function plugin_init_news()
 function plugin_version_news()
 {
     return [
-        'name'           => __('Alerts', 'news'),
-        'version'        => PLUGIN_NEWS_VERSION,
-        'author'         => "<a href='mailto:contact@teclib.com'>TECLIB'</a>",
-        'license'        => "GPLv2+",
-        'homepage'       => 'https://github.com/pluginsGLPI/news',
-        'requirements'   => [
+        'name'         => __('Alerts', 'news'),
+        'version'      => PLUGIN_NEWS_VERSION,
+        'author'       => "<a href='mailto:contact@teclib.com'>TECLIB'</a>",
+        'license'      => 'GPLv2+',
+        'homepage'     => 'https://github.com/pluginsGLPI/news',
+        'requirements' => [
             'glpi' => [
                 'min' => PLUGIN_NEWS_MIN_GLPI,
                 'max' => PLUGIN_NEWS_MAX_GLPI,
-            ]
-        ]
+            ],
+        ],
     ];
 }

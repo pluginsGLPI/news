@@ -36,12 +36,12 @@ if (!defined('GLPI_ROOT')) {
 class PluginNewsAlert_User extends CommonDBRelation
 {
     // @codingStandardsIgnoreEnd
-    const HIDDEN = 1;
+    public const HIDDEN = 1;
 
-    const VISIBLE = 0;
+    public const VISIBLE = 0;
 
-    public static $itemtype_1 = 'PluginNewsAlert';
-    public static $items_id_1 = 'plugin_news_alerts_id';
+    public static $itemtype_1         = 'PluginNewsAlert';
+    public static $items_id_1         = 'plugin_news_alerts_id';
     public static $checkItem_1_Rights = self::HAVE_VIEW_RIGHT_ON_ITEM;
 
     public static $itemtype_2 = 'User';
@@ -57,7 +57,7 @@ class PluginNewsAlert_User extends CommonDBRelation
         }
 
         $plugin_news_alerts_id = intval($params['id']);
-        $users_id = $_SESSION['glpiID'];
+        $users_id              = $_SESSION['glpiID'];
 
         return $DB->updateOrInsert(
             self::getTable(),
@@ -66,8 +66,8 @@ class PluginNewsAlert_User extends CommonDBRelation
             ],
             [
                 'plugin_news_alerts_id' => $plugin_news_alerts_id,
-                'users_id' => $users_id,
-            ]
+                'users_id'              => $users_id,
+            ],
         );
     }
 
@@ -85,11 +85,11 @@ class PluginNewsAlert_User extends CommonDBRelation
         $tab = parent::rawSearchOptions();
 
         $tab[] = [
-            'id'               => 5,
-            'table'            => $this->getTable(),
-            'field'            => 'state',
-            'name'             => __('Status', 'news'),
-            'datatype'         => 'dropdown',
+            'id'       => 5,
+            'table'    => $this->getTable(),
+            'field'    => 'state',
+            'name'     => __('Status', 'news'),
+            'datatype' => 'dropdown',
         ];
 
         return $tab;
