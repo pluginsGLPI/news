@@ -45,7 +45,7 @@ function plugin_news_install()
         $white  = PluginNewsAlert::WHITE;
         $dark   = PluginNewsAlert::DARK;
         $medium = PluginNewsAlert::MEDIUM;
-        $DB->query("
+        $DB->doQuery("
          CREATE TABLE IF NOT EXISTS `$alert_table` (
          `id`                       INT {$default_key_sign} NOT NULL AUTO_INCREMENT,
          `date_mod`                 TIMESTAMP NOT NULL,
@@ -69,7 +69,7 @@ function plugin_news_install()
          ) ENGINE=InnoDB DEFAULT CHARSET={$default_charset} COLLATE={$default_collation} ROW_FORMAT=DYNAMIC;
       ");
     } else {
-        $DB->updateOrDie(
+        $DB->update(
             PluginNewsAlert_User::getTable(),
             [
                 'state' => PluginNewsAlert_User::VISIBLE,
@@ -80,7 +80,6 @@ function plugin_news_install()
                     PluginNewsAlert::getTable() . '.is_close_allowed' => 0,
                 ],
             ],
-            '',
             [
                 'JOIN' => [
                     PluginNewsAlert::getTable() => [
@@ -95,7 +94,7 @@ function plugin_news_install()
     }
 
     if (!$DB->tableExists('glpi_plugin_news_alerts_users')) {
-        $DB->query("
+        $DB->doQuery("
          CREATE TABLE IF NOT EXISTS `glpi_plugin_news_alerts_users` (
          `id`                    INT {$default_key_sign} NOT NULL AUTO_INCREMENT,
          `plugin_news_alerts_id` INT {$default_key_sign} NOT NULL,
@@ -109,7 +108,7 @@ function plugin_news_install()
     }
 
     if (!$DB->tableExists('glpi_plugin_news_alerts_targets')) {
-        $DB->query("
+        $DB->doQuery("
          CREATE TABLE IF NOT EXISTS `glpi_plugin_news_alerts_targets` (
          `id`                    INT {$default_key_sign} NOT NULL AUTO_INCREMENT,
          `plugin_news_alerts_id` INT {$default_key_sign} NOT NULL,
@@ -125,7 +124,7 @@ function plugin_news_install()
 
     /* Remove old table */
     if ($DB->tableExists('glpi_plugin_news_profiles')) {
-        $DB->query('DROP TABLE IF EXISTS `glpi_plugin_news_profiles`;');
+        $DB->doQuery('DROP TABLE IF EXISTS `glpi_plugin_news_profiles`;');
     }
 
     // add displayed on login flag
@@ -192,7 +191,7 @@ function plugin_news_install()
                            (plugin_news_alerts_id, itemtype, items_id)
                            SELECT id, 'Profile', profiles_id
                            FROM $alert_table";
-        $DB->query($query_targets) or die('fail to migration targets');
+        $DB->doQuery($query_targets);
 
         //drop old field
         $migration->dropField($alert_table, 'profiles_id');
@@ -214,7 +213,7 @@ function plugin_news_install()
     $dpreferences = new DisplayPreference();
     $found_dpref  = $dpreferences->find(['itemtype' => ['LIKE', '%PluginNews%']]);
     if (count($found_dpref) == 0) {
-        $DB->query("INSERT INTO `glpi_displaypreferences`
+        $DB->doQuery("INSERT INTO `glpi_displaypreferences`
                      (`itemtype`, `num`, `rank`, `users_id`)
                   VALUES
                      ('PluginNewsAlert', 2, 1, 0),
@@ -349,12 +348,12 @@ function plugin_news_uninstall()
     /** @var DBmysql $DB */
     global $DB;
 
-    $DB->query('DROP TABLE IF EXISTS `glpi_plugin_news_alerts`;');
-    $DB->query('DROP TABLE IF EXISTS `glpi_plugin_news_profiles`;');
-    $DB->query('DROP TABLE IF EXISTS `glpi_plugin_news_alerts_users`;');
-    $DB->query('DROP TABLE IF EXISTS `glpi_plugin_news_alerts_targets`;');
-    $DB->query("DELETE FROM `glpi_profiles` WHERE `name` LIKE '%plugin_news%';");
-    $DB->query("DELETE FROM `glpi_displaypreferences` WHERE `itemtype` LIKE '%PluginNews%';");
+    $DB->doQuery('DROP TABLE IF EXISTS `glpi_plugin_news_alerts`;');
+    $DB->doQuery('DROP TABLE IF EXISTS `glpi_plugin_news_profiles`;');
+    $DB->doQuery('DROP TABLE IF EXISTS `glpi_plugin_news_alerts_users`;');
+    $DB->doQuery('DROP TABLE IF EXISTS `glpi_plugin_news_alerts_targets`;');
+    $DB->doQuery("DELETE FROM `glpi_profiles` WHERE `name` LIKE '%plugin_news%';");
+    $DB->doQuery("DELETE FROM `glpi_displaypreferences` WHERE `itemtype` LIKE '%PluginNews%';");
 
     return true;
 }
