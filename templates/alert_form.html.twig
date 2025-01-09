@@ -181,7 +181,7 @@
 
                 // Load preview
                 $(".alert-preview").load(
-                    "{{ get_plugin_web_dir('news') }}/ajax/alert_preview.php",
+                    "{{ path('/plugins/news/ajax/alert_preview.php') }}",
                     $("form[name=asset_form]").serialize()
                 );
             };
