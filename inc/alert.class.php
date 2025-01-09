@@ -32,7 +32,8 @@ use Glpi\Application\View\TemplateRenderer;
 use Glpi\Toolbox\Sanitizer;
 
 if (!defined('GLPI_ROOT')) {
-    die("Sorry. You can't access directly to this file");
+    echo "Sorry. You can't access directly to this file";
+    return;
 }
 
 class PluginNewsAlert extends CommonDBTM
@@ -71,7 +72,7 @@ class PluginNewsAlert extends CommonDBTM
     public const YELLOW = 'yellow';
     public const LIME   = 'lime';
 
-    public static function canDelete()
+    public static function canDelete(): bool
     {
         return self::canPurge();
     }
@@ -532,6 +533,9 @@ class PluginNewsAlert extends CommonDBTM
 
     public static function displayAlerts($params = [])
     {
+        /** @var array $CFG_GLPI */
+        global $CFG_GLPI;
+
         $p['show_only_login_alerts']    = false;
         $p['show_only_central_alerts']  = false;
         $p['show_hidden_alerts']        = false;
@@ -562,7 +566,7 @@ class PluginNewsAlert extends CommonDBTM
             && !$p['show_hidden_alerts']
         ) {
             echo "<div class='center'>";
-            echo "<a href='" . Plugin::getWebDir('news') . "/front/hidden_alerts.php'>";
+            echo "<a href='" . $CFG_GLPI['root_doc'] . "/plugins/news/front/hidden_alerts.php'>";
             echo __('You have hidden alerts valid for current date', 'news');
             echo '</a>';
             echo '</div>';
@@ -609,7 +613,7 @@ class PluginNewsAlert extends CommonDBTM
         $twig->display('@news/display_alert.html.twig', [
             'size'                   => self::getSizeClasses($alert['size']),
             'alert_fields'           => $alert,
-            'content'                => Sanitizer::unsanitize($alert['message']),
+            'content'                => $alert['message'],
             'can_close'              => $alert['is_close_allowed'] && !$p['show_hidden_alerts'],
             'show_only_login_alerts' => $p['show_only_login_alerts'],
         ]);
