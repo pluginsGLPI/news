@@ -29,7 +29,8 @@
  */
 
 if (!defined('GLPI_ROOT')) {
-    die("Sorry. You can't access directly to this file");
+    echo "Sorry. You can't access directly to this file";
+    return;
 }
 
 // @codingStandardsIgnoreStart
@@ -43,12 +44,12 @@ class PluginNewsAlert_Target extends CommonDBTM
         return _n('Target', 'Targets', $nb, 'news');
     }
 
-    public static function canDelete()
+    public static function canDelete(): bool
     {
         return self::canUpdate();
     }
 
-    public static function canPurge()
+    public static function canPurge(): bool
     {
         return self::canUpdate();
     }
@@ -119,6 +120,8 @@ class PluginNewsAlert_Target extends CommonDBTM
 
     public static function showForAlert(PluginNewsAlert $alert)
     {
+        /** @var array $CFG_GLPI */
+        global $CFG_GLPI;
         $rand = mt_rand();
 
         echo "<form method='post' action='" . Toolbox::getItemTypeFormURL('PluginNewsAlert') . "'>";
@@ -138,7 +141,7 @@ class PluginNewsAlert_Target extends CommonDBTM
         Ajax::updateItemOnSelectEvent(
             'dropdown_itemtype' . $addrand,
             "visibility$rand",
-            Plugin::getWebDir('news') . '/ajax/targets.php',
+            $CFG_GLPI['root_doc'] . '/plugins/news/ajax/targets.php',
             $params,
         );
         echo '<td>';
