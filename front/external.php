@@ -28,8 +28,6 @@
  * -------------------------------------------------------------------------
  */
 
-include('../../../inc/includes.php');
-
 Html::nullHeader(PluginNewsAlert::getTypeName());
 $logged = isset($_SESSION['glpiID']);
 PluginNewsAlert::displayAlerts(['show_only_login_alerts' => !$logged]);
