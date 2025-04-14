@@ -4,6 +4,7 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.75",
+        "friendsoftwig/twigcs": "^6.1",
         "glpi-project/tools": "^0.7.4",
         "php-parallel-lint/php-parallel-lint": "^1.4",
         "phpstan/phpstan": "^2.1"
@@ -14,5 +15,10 @@
             "php": "7.4.0"
         },
         "sort-packages": true
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Glpi\\Tools\\": "../../tools/src/"
+        }
     }
 }

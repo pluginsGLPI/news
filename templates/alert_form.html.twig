@@ -91,7 +91,7 @@
         item.fields,
         __('Show on pages', 'news'),
         base_option
-    )}}
+    ) }}
     {{ fields.dropdownYesNo(
         'is_close_allowed',
         item.fields.is_close_allowed,
@@ -146,21 +146,21 @@
         item.fields.background_color,
         __('Background color', 'news'),
         base_option_small
-    )}}
+    ) }}
     {{ news_fields.colorField(
         "text_color",
         colors,
         item.fields.text_color,
         __('Text color', 'news'),
         base_option_small
-    )}}
+    ) }}
     {{ news_fields.colorField(
         "emphasis_color",
         colors,
         item.fields.emphasis_color,
         __('Emphasis color', 'news'),
         base_option_small
-    )}}
+    ) }}
 
     <div class="hr-text preview-section {{ item.isNewItem() ? "d-none" : "" }}">
         <i class="ti ti-eye"></i>
@@ -254,4 +254,3 @@
     </script>
 
 {% endblock %}
-

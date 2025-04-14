@@ -39,7 +39,7 @@
         class="
             alert-{{ js_rand }}
             alert bg-{{ alert_fields.background_color }}
-            {{ can_close ? "alert-dismissible"  : ""}}
+            {{ can_close ? "alert-dismissible" : "" }}
         "
         style="
             color: var(--tblr-{{ alert_fields.text_color }}) !important;
@@ -50,7 +50,7 @@
             <i class="ti ti-{{ alert_fields.icon }} fa-2x me-2"></i>
             <div class="overflow-hidden">
                 <h3 class="mt-1">
-                    {{ alert_fields.name|verbatim_value  }}
+                    {{ alert_fields.name|verbatim_value }}
                     {% if show_only_login_alerts %}
                         <a class="plugin_news_alert-toggle"></a>
                     {% endif %}
