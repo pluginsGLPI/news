@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e112db9152c73f1663cbd2c589dc675f",
+    "content-hash": "197261e0cf26cf6d7555cf4d02fa8af8",
     "packages": [],
     "packages-dev": [
         {
@@ -508,6 +508,61 @@
                 }
             ],
             "time": "2025-03-31T18:40:42+00:00"
+        },
+        {
+            "name": "friendsoftwig/twigcs",
+            "version": "v6.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/friendsoftwig/twigcs.git",
+                "reference": "3c36d606c4f19db0dd2a01b735ec7a8151b7f182"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/friendsoftwig/twigcs/zipball/3c36d606c4f19db0dd2a01b735ec7a8151b7f182",
+                "reference": "3c36d606c4f19db0dd2a01b735ec7a8151b7f182",
+                "shasum": ""
+            },
+            "require": {
+                "ext-ctype": "*",
+                "ext-hash": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "ext-simplexml": "*",
+                "php": "~7.4.0 || ~8.0.0 || ~8.1.0 || ~8.2.0",
+                "symfony/console": "^4.4 || ^5.3 || ^6.0",
+                "symfony/filesystem": "^4.4 || ^5.3 || ^6.0",
+                "symfony/finder": "^4.4 || ^5.3 || ^6.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5.20",
+                "symfony/phpunit-bridge": "^6.2.3"
+            },
+            "bin": [
+                "bin/twigcs"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "FriendsOfTwig\\Twigcs\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tristan Maindron",
+                    "email": "tmaindron@gmail.com"
+                }
+            ],
+            "description": "Checkstyle automation for Twig",
+            "support": {
+                "issues": "https://github.com/friendsoftwig/twigcs/issues",
+                "source": "https://github.com/friendsoftwig/twigcs/tree/v6.1.0"
+            },
+            "time": "2023-01-04T16:01:24+00:00"
         },
         {
             "name": "glpi-project/tools",
@@ -2798,16 +2853,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v3.11.2",
+            "version": "v3.11.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "5b580ec1882b54c98cbd8c0f8a3ca5d1904db6b1"
+                "reference": "3b06600ff3abefaf8ff55d5c336cd1c4253f8c7e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/5b580ec1882b54c98cbd8c0f8a3ca5d1904db6b1",
-                "reference": "5b580ec1882b54c98cbd8c0f8a3ca5d1904db6b1",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/3b06600ff3abefaf8ff55d5c336cd1c4253f8c7e",
+                "reference": "3b06600ff3abefaf8ff55d5c336cd1c4253f8c7e",
                 "shasum": ""
             },
             "require": {
@@ -2862,7 +2917,7 @@
             ],
             "support": {
                 "issues": "https://github.com/twigphp/Twig/issues",
-                "source": "https://github.com/twigphp/Twig/tree/v3.11.2"
+                "source": "https://github.com/twigphp/Twig/tree/v3.11.3"
             },
             "funding": [
                 {
@@ -2874,7 +2929,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-11-06T18:50:16+00:00"
+            "time": "2024-11-07T12:34:41+00:00"
         }
     ],
     "aliases": [],
@@ -2889,5 +2944,5 @@
     "platform-overrides": {
         "php": "7.4.0"
     },
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
