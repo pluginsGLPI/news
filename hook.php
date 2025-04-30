@@ -227,7 +227,7 @@ function plugin_news_install()
             $alert_table,
             'is_displayed_oncentral',
             'bool',
-            ['value' => true],
+            ['value' => '1'],
         );
     }
 
