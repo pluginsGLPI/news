@@ -28,8 +28,6 @@
  * -------------------------------------------------------------------------
  */
 
-include('../../../inc/includes.php');
-
 Session::checkLoginUser();
 
 PluginNewsAlert::displayAlert($_GET, [
