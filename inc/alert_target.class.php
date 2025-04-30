@@ -200,4 +200,9 @@ class PluginNewsAlert_Target extends CommonDBTM
 
         return true;
     }
+
+    public static function getIcon()
+    {
+        return 'ti ti-target';
+    }
 }
