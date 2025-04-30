@@ -28,6 +28,8 @@
  * -------------------------------------------------------------------------
  */
 
+Session::checkLoginUser();
+
 Html::header(
     __('Alerts', 'news'),
     $_SERVER['PHP_SELF'],
