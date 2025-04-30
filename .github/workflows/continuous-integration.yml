@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - "main"
-      - "feature/glpi-11.0"
     tags:
        - "*"
   pull_request:
