@@ -32,6 +32,8 @@ use Glpi\Event;
 
 include('../../../inc/includes.php');
 
+Session::checkLoginUser();
+
 if (!isset($_GET['id'])) {
     $_GET['id'] = '';
 }
