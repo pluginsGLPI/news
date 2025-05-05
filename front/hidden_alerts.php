@@ -30,6 +30,8 @@
 
 include('../../../inc/includes.php');
 
+Session::checkLoginUser();
+
 if ($_SESSION['glpiactiveprofile']['interface'] != 'central') {
     Html::helpHeader(__('Alerts', 'news'), $_SERVER['PHP_SELF'], $_SESSION['glpiname']);
 } else {
