@@ -30,7 +30,7 @@
 
 include('../../../inc/includes.php');
 
-Session::checkLoginUser();
+Session::checkRight("plugin_news_alert", READ);
 
 Html::header(
     __('Alerts', 'news'),
