@@ -28,12 +28,12 @@
  * -------------------------------------------------------------------------
  */
 
-define('PLUGIN_NEWS_VERSION', '1.12.4');
+define('PLUGIN_NEWS_VERSION', '1.13.0-beta1');
 
 // Minimal GLPI version, inclusive
-define('PLUGIN_NEWS_MIN_GLPI', '10.0.0');
+define('PLUGIN_NEWS_MIN_GLPI', '11.0.0');
 // Maximum GLPI version, exclusive
-define('PLUGIN_NEWS_MAX_GLPI', '10.0.99');
+define('PLUGIN_NEWS_MAX_GLPI', '11.0.99');
 
 function plugin_init_news()
 {

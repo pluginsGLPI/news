@@ -28,8 +28,6 @@
  * -------------------------------------------------------------------------
  */
 
-include('../../../inc/includes.php');
-
 Session::checkRight("plugin_news_alert", READ);
 
 Html::header(

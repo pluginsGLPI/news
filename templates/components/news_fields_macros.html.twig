@@ -39,8 +39,8 @@
                         type="checkbox"
                         value="1"
                         {{ current_values[key] ? 'checked' : '' }}
-                        {{ options.readonly ? 'readonly' : '' }}
-                        {{ options.disabled ? 'disabled' : '' }}
+                        {{ options.readonly|default(false) ? 'readonly' : '' }}
+                        {{ options.disabled|default(false) ? 'disabled' : '' }}
                     >
                     <span class="form-check-label">{{ label }}</span>
                 </label>
@@ -62,7 +62,6 @@
                         name="{{ name }}"
                         value=""
                         class="form-selectgroup-input"
-                        {{ value == key ? 'checked' : '' }}
                     >
                     <span class="form-selectgroup-label">{{ __('No icon', 'news') }}</span>
                 </label>
