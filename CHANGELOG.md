@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [unreleased]
+
+### Fixed
+
+- Fixed dynamic display of alert size.
+
 ## [1.12.4] - 2024-11-08
 
 - Update translations
