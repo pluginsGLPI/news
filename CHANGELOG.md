@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 
 - Fixed dynamic display of alert size.
+- Fixed the size of the alert on the login page (`max-height` and `min-width`)
 
 ## [1.12.4] - 2024-11-08
 
