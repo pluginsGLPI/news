@@ -61,12 +61,17 @@
    transition: max-height .25s ease-out;
    transition: padding .25s ease-out;
 }
+
 .plugin_news_alert-login .expanded .plugin_news_alert-content {
    padding: 5px 15px;
-   max-height: 300px;
+   max-height: 100%;
    overflow-y: auto;
    transition: max-height .25s ease-in;
    transition: padding .25s ease-in;
+}
+
+.plugin_news_alert-login .plugin_news_alert {
+   min-width: 50%;
 }
 
 .plugin_news_alert-toggle {
