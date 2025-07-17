@@ -28,8 +28,6 @@
  * -------------------------------------------------------------------------
  */
 
-include('../../../inc/includes.php');
-
 Session::checkLoginUser();
 
 if ($_SESSION['glpiactiveprofile']['interface'] != 'central') {
