@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-06 09:31+0000\n"
+"POT-Creation-Date: 2025-08-11 01:39+0000\n"
 "PO-Revision-Date: 2015-09-18 13:33+0000\n"
 "Last-Translator: INOUE Daisuke, 2023-2024\n"
 "Language-Team: Japanese (Japan) (http://app.transifex.com/teclib/glpi-plugin-news/language/ja_JP/)\n"
@@ -19,235 +19,224 @@ msgstr ""
 "Language: ja_JP\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: front/alert.form.php:61
-#, php-format
-msgid "%1$s adds the item %2$s"
-msgstr "%1$s がアイテム : %2$s を追加"
+#: templates/alert_form.html.twig inc/alert.class.php:111
+msgid "Name"
+msgstr "名前"
 
-#: front/alert.form.php:77
-#, php-format
-msgid "%s deletes an item"
-msgstr "%s がアイテムを削除　"
-
-#: front/alert.form.php:101
-#, php-format
-msgid "%s purges an item"
-msgstr "%s がアイテムを抹消"
-
-#: front/alert.form.php:89
-#, php-format
-msgid "%s restores an item"
-msgstr "%s がアイテムを復元"
-
-#: front/alert.form.php:49
-#, php-format
-msgid "%s updates an item"
-msgstr "%s がアイテムを更新"
-
-#: templates/alert_form.html.twig inc/alert.class.php:194
+#: templates/alert_form.html.twig inc/alert.class.php:192
 msgid "Active"
 msgstr "有効"
-
-#: ajax/targets.php:62
-msgctxt "button"
-msgid "Add"
-msgstr "追加"
-
-#: inc/alert_target.class.php:128
-msgid "Add a target"
-msgstr "対象を追加"
-
-#: inc/alert.class.php:656
-msgid "Alert circle"
-msgstr "円形の警告"
-
-#: inc/alert.class.php:658
-msgid "Alert octagon"
-msgstr "8 角形の警告"
-
-#: inc/alert.class.php:657
-msgid "Alert triangle"
-msgstr "三角形の警告"
-
-#: inc/alert.class.php:87 setup.php:82 front/hidden_alerts.php:34
-#: front/hidden_alerts.php:37 front/alert.php:34 front/alert.form.php:113
-msgid "Alerts"
-msgstr "アラート"
-
-#: inc/alert_target.class.php:85 inc/alert_target.class.php:174
-#: ajax/targets.php:57
-msgid "All"
-msgstr "すべて"
-
-#: templates/alert_form.html.twig
-msgid "Background color"
-msgstr "背景色"
-
-#: inc/alert.class.php:642
-msgid "Big"
-msgstr "大"
-
-#: inc/alert.class.php:670
-msgid "Black"
-msgstr "黒"
-
-#: inc/alert.class.php:672
-msgid "Blue"
-msgstr "青"
-
-#: templates/alert_form.html.twig inc/alert.class.php:167
-msgid "Can close alert"
-msgstr "閉じることができます"
-
-#: templates/alert_form.html.twig
-msgid "Central page"
-msgstr "センターページ"
-
-#: inc/alert.class.php:211
-msgid "Creation date"
-msgstr "作成日"
-
-#: templates/alert_form.html.twig
-msgid "Customization"
-msgstr "カスタマイズ"
-
-#: inc/alert.class.php:673
-msgid "Cyan"
-msgstr "シアン"
-
-#: inc/alert_target.class.php:156
-msgctxt "button"
-msgid "Delete permanently"
-msgstr "完全に削除"
 
 #: templates/alert_form.html.twig
 msgid "Description"
 msgstr "説明"
 
+#: templates/alert_form.html.twig inc/alert.class.php:121
+msgid "Visibility start date"
+msgstr "表示開始日"
+
+#: templates/alert_form.html.twig inc/alert.class.php:129
+msgid "Visibility end date"
+msgstr "表示終了日"
+
 #: templates/alert_form.html.twig
-msgid "Emphasis color"
-msgstr "強調色"
+msgid "Central page"
+msgstr "センターページ"
 
-#: inc/alert.class.php:139
-msgid "Entity"
-msgstr "エンティティー"
-
-#: inc/alert.class.php:625
-msgid "General"
-msgstr "全般"
+#: templates/alert_form.html.twig
+msgid "Login page"
+msgstr "ログイン ページ"
 
 #: templates/alert_form.html.twig
 msgid "Helpdesk page"
 msgstr "ヘルプデスク ページ"
 
 #: templates/alert_form.html.twig
+msgid "Show on pages"
+msgstr "ページに表示"
+
+#: templates/alert_form.html.twig inc/alert.class.php:165
+msgid "Can close alert"
+msgstr "閉じることができます"
+
+#: templates/alert_form.html.twig
+msgid "Customization"
+msgstr "カスタマイズ"
+
+#: templates/alert_form.html.twig
+msgid "Template"
+msgstr "テンプレート"
+
+#: templates/alert_form.html.twig
+msgid "Size"
+msgstr "大きさ"
+
+#: templates/alert_form.html.twig
 msgid "Icon"
 msgstr "アイコン"
 
-#: inc/alert.class.php:674
-msgid "Indigo"
-msgstr "インディゴ"
-
-#: inc/alert.class.php:626
-msgid "Information"
-msgstr "情報"
-
-#: inc/alert.class.php:202
-msgid "Last update"
-msgstr "最終更新"
-
-#: inc/alert.class.php:680
-msgid "Lime"
-msgstr "ライム"
+#: templates/alert_form.html.twig
+msgid "Show dates"
+msgstr "日付を表示"
 
 #: templates/alert_form.html.twig
-msgid "Login page"
-msgstr "ログイン ページ"
+msgid "Background color"
+msgstr "背景色"
 
-#: inc/alert.class.php:643
-msgid "Max"
-msgstr "最大"
+#: templates/alert_form.html.twig
+msgid "Text color"
+msgstr "文字色"
 
-#: inc/alert.class.php:641
-msgid "Medium"
-msgstr "中"
-
-#: templates/alert_form.html.twig inc/alert.class.php:113
-msgid "Name"
-msgstr "名前"
-
-#: templates/components/news_fields_macros.html.twig
-msgid "No icon"
-msgstr "アイコンなし"
-
-#: inc/alert.class.php:678
-msgid "Orange"
-msgstr "オレンジ"
-
-#: inc/alert.class.php:676
-msgid "Pink"
-msgstr "ピンク"
-
-#: inc/alert.class.php:438
-msgid "Please enter a name."
-msgstr "名前を入力してください。"
+#: templates/alert_form.html.twig
+msgid "Emphasis color"
+msgstr "強調色"
 
 #: templates/alert_form.html.twig
 msgid "Preview"
 msgstr "プレビュー"
-
-#: inc/alert.class.php:628
-msgid "Problem"
-msgstr "問題"
-
-#: inc/alert.class.php:675
-msgid "Purple"
-msgstr "紫"
-
-#: inc/alert_target.class.php:165
-msgid "Recipient"
-msgstr "受信者"
-
-#: inc/alert.class.php:147
-msgid "Recursive"
-msgstr "再帰"
-
-#: inc/alert.class.php:677
-msgid "Red"
-msgstr "赤"
 
 #: templates/profile.html.twig
 msgctxt "button"
 msgid "Save"
 msgstr "保存"
 
-#: inc/alert.class.php:655
-msgid "Settings"
-msgstr "設定"
+#: templates/components/news_fields_macros.html.twig
+msgid "No icon"
+msgstr "アイコンなし"
 
-#: templates/alert_form.html.twig
-msgid "Show dates"
-msgstr "日付を表示"
+#: setup.php:82 inc/alert.class.php:87 front/alert.php:36
+#: front/hidden_alerts.php:36 front/hidden_alerts.php:39
+#: front/alert.form.php:115
+msgid "Alerts"
+msgstr "アラート"
 
-#: inc/alert.class.php:185
-msgid "Show on helpdesk page"
-msgstr "ヘルプデスク ページに表示"
+#: inc/alert.class.php:137
+msgid "Entity"
+msgstr "エンティティー"
 
-#: inc/alert.class.php:176
+#: inc/alert.class.php:145
+msgid "Recursive"
+msgstr "再帰"
+
+#: inc/alert.class.php:174
 msgid "Show on login page"
 msgstr "ログイン ページに表示"
 
-#: templates/alert_form.html.twig
-msgid "Show on pages"
-msgstr "ページに表示"
+#: inc/alert.class.php:183
+msgid "Show on helpdesk page"
+msgstr "ヘルプデスク ページに表示"
 
-#: templates/alert_form.html.twig
-msgid "Size"
-msgstr "大きさ"
+#: inc/alert.class.php:200
+msgid "Last update"
+msgstr "最終更新"
 
-#: inc/alert.class.php:640
+#: inc/alert.class.php:209
+msgid "Creation date"
+msgstr "作成日"
+
+#: inc/alert.class.php:437
+msgid "Please enter a name."
+msgstr "名前を入力してください。"
+
+#: inc/alert.class.php:445
+msgid "The end date must be greater than the start date."
+msgstr "終了日を開始日より後にしてください。"
+
+#: inc/alert.class.php:566
+msgid "You have hidden alerts valid for current date"
+msgstr "本日時点で有効なアラートが非表示になっています"
+
+#: inc/alert.class.php:626
+msgid "General"
+msgstr "全般"
+
+#: inc/alert.class.php:627
+msgid "Information"
+msgstr "情報"
+
+#: inc/alert.class.php:628
+msgid "Warning"
+msgstr "警告"
+
+#: inc/alert.class.php:629
+msgid "Problem"
+msgstr "問題"
+
+#: inc/alert.class.php:641
 msgid "Small"
 msgstr "小"
+
+#: inc/alert.class.php:642
+msgid "Medium"
+msgstr "中"
+
+#: inc/alert.class.php:643
+msgid "Big"
+msgstr "大"
+
+#: inc/alert.class.php:644
+msgid "Max"
+msgstr "最大"
+
+#: inc/alert.class.php:656
+msgid "Settings"
+msgstr "設定"
+
+#: inc/alert.class.php:657
+msgid "Alert circle"
+msgstr "円形の警告"
+
+#: inc/alert.class.php:658
+msgid "Alert triangle"
+msgstr "三角形の警告"
+
+#: inc/alert.class.php:659
+msgid "Alert octagon"
+msgstr "8 角形の警告"
+
+#: inc/alert.class.php:671
+msgid "Black"
+msgstr "黒"
+
+#: inc/alert.class.php:672
+msgid "White"
+msgstr "白"
+
+#: inc/alert.class.php:673
+msgid "Blue"
+msgstr "青"
+
+#: inc/alert.class.php:674
+msgid "Cyan"
+msgstr "シアン"
+
+#: inc/alert.class.php:675
+msgid "Indigo"
+msgstr "インディゴ"
+
+#: inc/alert.class.php:676
+msgid "Purple"
+msgstr "紫"
+
+#: inc/alert.class.php:677
+msgid "Pink"
+msgstr "ピンク"
+
+#: inc/alert.class.php:678
+msgid "Red"
+msgstr "赤"
+
+#: inc/alert.class.php:679
+msgid "Orange"
+msgstr "オレンジ"
+
+#: inc/alert.class.php:680
+msgid "Yellow"
+msgstr "黄"
+
+#: inc/alert.class.php:681
+msgid "Lime"
+msgstr "ライム"
 
 #: inc/alert_user.class.php:91
 msgid "Status"
@@ -258,42 +247,54 @@ msgid "Target"
 msgid_plural "Targets"
 msgstr[0] "対象"
 
-#: templates/alert_form.html.twig
-msgid "Template"
-msgstr "テンプレート"
+#: inc/alert_target.class.php:85 inc/alert_target.class.php:177
+#: ajax/targets.php:57
+msgid "All"
+msgstr "すべて"
 
-#: templates/alert_form.html.twig
-msgid "Text color"
-msgstr "文字色"
+#: inc/alert_target.class.php:131
+msgid "Add a target"
+msgstr "対象を追加"
 
-#: inc/alert.class.php:446
-msgid "The end date must be greater than the start date."
-msgstr "終了日を開始日より後にしてください。"
+#: inc/alert_target.class.php:159
+msgctxt "button"
+msgid "Delete permanently"
+msgstr "完全に削除"
 
-#: inc/alert_target.class.php:164
+#: inc/alert_target.class.php:167
 msgid "Type"
 msgstr "タイプ"
 
-#: templates/alert_form.html.twig inc/alert.class.php:131
-msgid "Visibility end date"
-msgstr "表示終了日"
+#: inc/alert_target.class.php:168
+msgid "Recipient"
+msgstr "受信者"
 
-#: templates/alert_form.html.twig inc/alert.class.php:123
-msgid "Visibility start date"
-msgstr "表示開始日"
+#: front/alert.form.php:51
+#, php-format
+msgid "%s updates an item"
+msgstr "%s がアイテムを更新"
 
-#: inc/alert.class.php:627
-msgid "Warning"
-msgstr "警告"
+#: front/alert.form.php:63
+#, php-format
+msgid "%1$s adds the item %2$s"
+msgstr "%1$s がアイテム : %2$s を追加"
 
-#: inc/alert.class.php:671
-msgid "White"
-msgstr "白"
+#: front/alert.form.php:79
+#, php-format
+msgid "%s deletes an item"
+msgstr "%s がアイテムを削除　"
 
-#: inc/alert.class.php:679
-msgid "Yellow"
-msgstr "黄"
+#: front/alert.form.php:91
+#, php-format
+msgid "%s restores an item"
+msgstr "%s がアイテムを復元"
 
-#: inc/alert.class.php:565
-msgid "You have hidden alerts valid for current date"
-msgstr "本日時点で有効なアラートが非表示になっています"
+#: front/alert.form.php:103
+#, php-format
+msgid "%s purges an item"
+msgstr "%s がアイテムを抹消"
+
+#: ajax/targets.php:62
+msgctxt "button"
+msgid "Add"
+msgstr "追加"
