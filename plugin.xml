@@ -58,6 +58,11 @@ Fonctionnalités
          <compatibility>~11.0.0</compatibility>
          <download_url>https://github.com/pluginsGLPI/news/releases/download/1.13.0-beta2/glpi-news-1.13.0-beta2.tar.bz2</download_url>
       </version>
+       <version>
+           <num>1.12.5</num>
+           <compatibility>~10.0.0</compatibility>
+           <download_url>https://github.com/pluginsGLPI/news/releases/download/1.12.5/glpi-news-1.12.5.tar.bz2</download_url>
+       </version>
       <version>
          <num>1.12.4</num>
          <compatibility>~10.0.0</compatibility>
