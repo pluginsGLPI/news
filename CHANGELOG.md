@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [unreleased]
 
+## [1.12.5] - 2025-09-19
+
 ### Fixed
 
 - Fixed dynamic display of alert size.
