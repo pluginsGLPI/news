@@ -137,10 +137,8 @@ function plugin_news_install()
         $migration->addField($alert_table, 'is_displayed_onhelpdesk', 'bool');
     }
 
-    if (!$DB->fieldExists($alert_table, 'date_creation')) {
-        if ($migration->addField($alert_table, 'date_creation', 'date')) {
-            $migration->addKey($alert_table, 'date_creation');
-        }
+    if (!$DB->fieldExists($alert_table, 'date_creation') && $migration->addField($alert_table, 'date_creation', 'date')) {
+        $migration->addKey($alert_table, 'date_creation');
     }
 
     // add close allowed flag
@@ -154,10 +152,8 @@ function plugin_news_install()
     }
 
     // add activity flag
-    if (!$DB->fieldExists($alert_table, 'is_active')) {
-        if ($migration->addField($alert_table, 'is_active', 'bool')) {
-            $migration->addKey($alert_table, 'is_active');
-        }
+    if (!$DB->fieldExists($alert_table, 'is_active') && $migration->addField($alert_table, 'is_active', 'bool')) {
+        $migration->addKey($alert_table, 'is_active');
     }
 
     // fix is_default default value

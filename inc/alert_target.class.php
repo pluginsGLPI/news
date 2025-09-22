@@ -41,7 +41,7 @@ class PluginNewsAlert_Target extends CommonDBTM
 
     public static function getTypeName($nb = 0)
     {
-        return _n('Target', 'Targets', $nb, 'news');
+        return _sn('Target', 'Targets', $nb, 'news');
     }
 
     public static function canDelete(): bool
@@ -83,7 +83,7 @@ class PluginNewsAlert_Target extends CommonDBTM
                         $values['itemtype']     == 'Profile'
                         && $values['all_items'] == 1
                     ) {
-                        return $item->getTypeName() . ' - ' . __('All', 'news');
+                        return $item->getTypeName() . ' - ' . __s('All', 'news');
                     }
                     $item->getFromDB($values['items_id']);
 
@@ -131,7 +131,7 @@ class PluginNewsAlert_Target extends CommonDBTM
         echo "<table class='plugin_news_alert-visibility'>";
         echo '<tr>';
         echo '<td>';
-        echo __('Add a target', 'news') . ':&nbsp;';
+        echo __s('Add a target', 'news') . ':&nbsp;';
         $addrand = Dropdown::showItemTypes('itemtype', $types, ['width' => '']);
         echo '</td>';
         $params = ['type'  => '__VALUE__',
@@ -155,10 +155,10 @@ class PluginNewsAlert_Target extends CommonDBTM
         $target       = new self();
         $found_target = $target->find(['plugin_news_alerts_id' => $alert->getID()]);
         if ($nb = count($found_target) > 0) {
-            Html::openMassiveActionsForm('mass' . __CLASS__ . $rand);
+            Html::openMassiveActionsForm('mass' . self::class . $rand);
             $massiveactionparams
             = ['num_displayed'     => $nb,
-                'container'        => 'mass' . __CLASS__ . $rand,
+                'container'        => 'mass' . self::class . $rand,
                 'specific_actions' => ['delete' => _x('button', 'Delete permanently', 'news')],
             ];
             Html::showMassiveActions($massiveactionparams);
@@ -166,23 +166,23 @@ class PluginNewsAlert_Target extends CommonDBTM
             echo "<table class='tab_cadre_fixehov'>";
 
             echo '<tr>';
-            echo "<th width='10'>" . Html::getCheckAllAsCheckbox('mass' . __CLASS__ . $rand) . '</th>';
-            echo '<th>' . __('Type', 'news') . '</th>';
-            echo '<th>' . __('Recipient', 'news') . '</th>';
+            echo "<th width='10'>" . Html::getCheckAllAsCheckbox('mass' . self::class . $rand) . '</th>';
+            echo '<th>' . __s('Type', 'news') . '</th>';
+            echo '<th>' . __s('Recipient', 'news') . '</th>';
             echo '</tr>';
 
             foreach ($found_target as $current_target) {
-                if (class_exists($current_target['itemtype'])) {
+                if (is_a($current_target['itemtype'], CommonDBTM::class, true)) {
                     $item = new $current_target['itemtype']();
                     $item->getFromDB($current_target['items_id']);
                     $name = ($current_target['all_items'] == 1
                         && $current_target['itemtype']    == 'Profile')
-                           ? __('All', 'news')
+                           ? __s('All', 'news')
                            : $item->getName(['complete' => true]);
 
                     echo "<tr class='tab_bg_2'>";
                     echo '<td>';
-                    Html::showMassiveActionCheckBox(__CLASS__, $current_target['id']);
+                    Html::showMassiveActionCheckBox(self::class, $current_target['id']);
                     echo '</td>';
                     echo '<td>' . $item->getTypeName() . '</td>';
                     echo "<td>$name</td>";

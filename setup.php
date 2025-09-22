@@ -28,6 +28,8 @@
  * -------------------------------------------------------------------------
  */
 
+use function Safe\define;
+
 define('PLUGIN_NEWS_VERSION', '1.13.0');
 
 // Minimal GLPI version, inclusive
@@ -79,7 +81,7 @@ function plugin_init_news()
 function plugin_version_news()
 {
     return [
-        'name'         => __('Alerts', 'news'),
+        'name'         => __s('Alerts', 'news'),
         'version'      => PLUGIN_NEWS_VERSION,
         'author'       => "<a href='mailto:contact@teclib.com'>TECLIB'</a>",
         'license'      => 'GPLv2+',
