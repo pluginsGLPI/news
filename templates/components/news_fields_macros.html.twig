@@ -62,6 +62,7 @@
                         name="{{ name }}"
                         value=""
                         class="form-selectgroup-input"
+                        {{ value is empty ? 'checked' : '' }}
                     >
                     <span class="form-selectgroup-label">{{ __('No icon', 'news') }}</span>
                 </label>
