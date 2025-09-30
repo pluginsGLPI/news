@@ -23,8 +23,10 @@
  * along with News. If not, see <http://www.gnu.org/licenses/>.
  * -------------------------------------------------------------------------
  * @copyright Copyright (C) 2015-2023 by News plugin team.
+ * @copyright Copyright (C) 2018-2023 by Metabase plugin team.
  * @license   GPLv2 https://www.gnu.org/licenses/gpl-2.0.html
  * @link      https://github.com/pluginsGLPI/news
+ * @link      https://github.com/pluginsGLPI/metabase
  * -------------------------------------------------------------------------
  */
 
@@ -45,7 +47,7 @@ return RectorConfig::configure()
     ->withPhpVersion(PhpVersion::PHP_82)
     ->withCache(
         cacheClass: FileCacheStorage::class,
-        cacheDirectory: sys_get_temp_dir() . '/news-rector',
+        cacheDirectory: sys_get_temp_dir() . '/metabase-rector',
     )
     ->withRootFiles()
     ->withParallel(timeoutSeconds: 300)
