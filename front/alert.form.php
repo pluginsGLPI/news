@@ -30,8 +30,6 @@
 
 use Glpi\Event;
 
-include('../../../inc/includes.php');
-
 Session::checkLoginUser();
 
 if (!isset($_GET['id'])) {
@@ -48,7 +46,7 @@ if (isset($_POST['update'])) {
             'PluginNewsAlert',
             4,
             'admin',
-            sprintf(__('%s updates an item', 'news'), $_SESSION['glpiname']),
+            sprintf(__s('%s updates an item', 'news'), $_SESSION['glpiname']),
         );
     }
     Html::back();
@@ -60,7 +58,7 @@ if (isset($_POST['update'])) {
             'PluginNewsAlert',
             4,
             'admin',
-            sprintf(__('%1$s adds the item %2$s', 'news'), $_SESSION['glpiname'], $_POST['name']),
+            sprintf(__s('%1$s adds the item %2$s', 'news'), $_SESSION['glpiname'], $_POST['name']),
         );
 
         if ($_SESSION['glpibackcreated']) {
@@ -76,7 +74,7 @@ if (isset($_POST['update'])) {
             'PluginNewsAlert',
             4,
             'admin',
-            sprintf(__('%s deletes an item', 'news'), $_SESSION['glpiname']),
+            sprintf(__s('%s deletes an item', 'news'), $_SESSION['glpiname']),
         );
     }
     $alert->redirectToList();
@@ -88,7 +86,7 @@ if (isset($_POST['update'])) {
             'PluginNewsAlert',
             4,
             'admin',
-            sprintf(__('%s restores an item', 'news'), $_SESSION['glpiname']),
+            sprintf(__s('%s restores an item', 'news'), $_SESSION['glpiname']),
         );
     }
     Html::back();
@@ -100,7 +98,7 @@ if (isset($_POST['update'])) {
             'PluginNewsAlert',
             4,
             'admin',
-            sprintf(__('%s purges an item', 'news'), $_SESSION['glpiname']),
+            sprintf(__s('%s purges an item', 'news'), $_SESSION['glpiname']),
         );
     }
     $alert->redirectToList();
@@ -112,7 +110,7 @@ if (isset($_POST['update'])) {
 }
 
 Html::header(
-    __('Alerts', 'news'),
+    __s('Alerts', 'news'),
     $_SERVER['PHP_SELF'],
     'tools',
     'PluginNewsAlert',

@@ -28,12 +28,10 @@
  * -------------------------------------------------------------------------
  */
 
-include('../../../inc/includes.php');
-
 Session::checkRight("plugin_news_alert", READ);
 
 Html::header(
-    __('Alerts', 'news'),
+    __s('Alerts', 'news'),
     $_SERVER['PHP_SELF'],
     'tools',
     'PluginNewsAlert',

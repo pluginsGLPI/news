@@ -27,12 +27,14 @@
  * @link      https://github.com/pluginsGLPI/news
  * -------------------------------------------------------------------------
  */
-
 use Glpi\Application\View\TemplateRenderer;
-use Glpi\Toolbox\Sanitizer;
+
+use function Safe\preg_match;
+use function Safe\strtotime;
 
 if (!defined('GLPI_ROOT')) {
-    die("Sorry. You can't access directly to this file");
+    echo "Sorry. You can't access directly to this file";
+    return;
 }
 
 class PluginNewsAlert extends CommonDBTM
@@ -71,7 +73,7 @@ class PluginNewsAlert extends CommonDBTM
     public const YELLOW = 'yellow';
     public const LIME   = 'lime';
 
-    public static function canDelete()
+    public static function canDelete(): bool
     {
         return self::canPurge();
     }
@@ -84,7 +86,7 @@ class PluginNewsAlert extends CommonDBTM
      */
     public static function getTypeName($nb = 0)
     {
-        return __('Alerts', 'news');
+        return __s('Alerts', 'news');
     }
 
     /**
@@ -108,7 +110,7 @@ class PluginNewsAlert extends CommonDBTM
             'id'            => 1,
             'table'         => $this->getTable(),
             'field'         => 'name',
-            'name'          => __('Name', 'news'),
+            'name'          => __s('Name', 'news'),
             'datatype'      => 'itemlink',
             'itemlink_type' => $this->getType(),
             'massiveaction' => false,
@@ -118,7 +120,7 @@ class PluginNewsAlert extends CommonDBTM
             'id'       => 2,
             'table'    => $this->getTable(),
             'field'    => 'date_start',
-            'name'     => __('Visibility start date', 'news'),
+            'name'     => __s('Visibility start date', 'news'),
             'datatype' => 'date',
         ];
 
@@ -126,7 +128,7 @@ class PluginNewsAlert extends CommonDBTM
             'id'       => 3,
             'table'    => $this->getTable(),
             'field'    => 'date_end',
-            'name'     => __('Visibility end date', 'news'),
+            'name'     => __s('Visibility end date', 'news'),
             'datatype' => 'date',
         ];
 
@@ -134,7 +136,7 @@ class PluginNewsAlert extends CommonDBTM
             'id'            => 4,
             'table'         => 'glpi_entities',
             'field'         => 'completename',
-            'name'          => __('Entity', 'news'),
+            'name'          => __s('Entity', 'news'),
             'massiveaction' => false,
         ];
 
@@ -142,7 +144,7 @@ class PluginNewsAlert extends CommonDBTM
             'id'            => 5,
             'table'         => $this->getTable(),
             'field'         => 'is_recursive',
-            'name'          => __('Recursive', 'news'),
+            'name'          => __s('Recursive', 'news'),
             'datatype'      => 'bool',
             'massiveaction' => false,
         ];
@@ -162,7 +164,7 @@ class PluginNewsAlert extends CommonDBTM
             'id'            => 7,
             'table'         => $this->getTable(),
             'field'         => 'is_close_allowed',
-            'name'          => __('Can close alert', 'news'),
+            'name'          => __s('Can close alert', 'news'),
             'datatype'      => 'bool',
             'massiveaction' => false,
         ];
@@ -171,7 +173,7 @@ class PluginNewsAlert extends CommonDBTM
             'id'            => 8,
             'table'         => $this->getTable(),
             'field'         => 'is_displayed_onlogin',
-            'name'          => __('Show on login page', 'news'),
+            'name'          => __s('Show on login page', 'news'),
             'datatype'      => 'bool',
             'massiveaction' => false,
         ];
@@ -180,7 +182,7 @@ class PluginNewsAlert extends CommonDBTM
             'id'            => 9,
             'table'         => $this->getTable(),
             'field'         => 'is_displayed_onhelpdesk',
-            'name'          => __('Show on helpdesk page', 'news'),
+            'name'          => __s('Show on helpdesk page', 'news'),
             'datatype'      => 'bool',
             'massiveaction' => false,
         ];
@@ -189,7 +191,7 @@ class PluginNewsAlert extends CommonDBTM
             'id'       => 10,
             'table'    => $this->getTable(),
             'field'    => 'is_active',
-            'name'     => __('Active', 'news'),
+            'name'     => __s('Active', 'news'),
             'datatype' => 'bool',
         ];
 
@@ -197,7 +199,7 @@ class PluginNewsAlert extends CommonDBTM
             'id'            => 19,
             'table'         => $this->getTable(),
             'field'         => 'date_mod',
-            'name'          => __('Last update', 'news'),
+            'name'          => __s('Last update', 'news'),
             'datatype'      => 'datetime',
             'massiveaction' => false,
         ];
@@ -206,7 +208,7 @@ class PluginNewsAlert extends CommonDBTM
             'id'            => 121,
             'table'         => $this->getTable(),
             'field'         => 'date_creation',
-            'name'          => __('Creation date', 'news'),
+            'name'          => __s('Creation date', 'news'),
             'datatype'      => 'datetime',
             'massiveaction' => false,
         ];
@@ -261,7 +263,7 @@ class PluginNewsAlert extends CommonDBTM
         $utable   = PluginNewsAlert_User::getTable();
         $ttable   = PluginNewsAlert_Target::getTable();
         $hidstate = PluginNewsAlert_User::HIDDEN;
-        $users_id = isset($_SESSION['glpiID']) ? $_SESSION['glpiID'] : -1;
+        $users_id = $_SESSION['glpiID'] ?? -1;
         $group_u  = new Group_User();
         $fndgroup = [];
         if (isset($_SESSION['glpiID']) && $fndgroup_user = $group_u->find(['users_id' => $_SESSION['glpiID']])) {
@@ -270,7 +272,7 @@ class PluginNewsAlert extends CommonDBTM
             }
         }
 
-        if (empty($fndgroup)) {
+        if ($fndgroup === []) {
             $fndgroup = [-1];
         }
 
@@ -377,23 +379,23 @@ class PluginNewsAlert extends CommonDBTM
                 'is_active'  => 1,
             ],
         ];
-        if (!empty($targets_sql)) {
+        if ($targets_sql !== []) {
             $criteria['INNER JOIN'][$ttable]['ON'][] = $targets_sql;
         }
         if (!empty($entity_sql)) {
             $criteria['WHERE'][] = $entity_sql;
         }
-        if (!empty($login_sql)) {
+        if ($login_sql !== []) {
             $criteria['WHERE'][] = $login_sql;
         }
-        if (!empty($show_central_sql)) {
+        if ($show_central_sql !== []) {
             $criteria['WHERE'][] = $show_central_sql;
         }
-        if (!empty($show_helpdesk_sql)) {
+        if ($show_helpdesk_sql !== []) {
             $criteria['WHERE'][] = $show_helpdesk_sql;
         }
         $it = $DB->request($criteria);
-        if (!count($it)) {
+        if (count($it) === 0) {
             return false;
         }
         foreach ($it as $data) {
@@ -413,9 +415,9 @@ class PluginNewsAlert extends CommonDBTM
 
     public function checkDate($datetime)
     {
-        if (preg_match('/^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/', $datetime)) {
+        if (preg_match('/^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/', $datetime) !== 0) {
             $datetime                 = explode(' ', $datetime);
-            list($year, $month, $day) = explode('-', $datetime[0]);
+            [$year, $month, $day] = explode('-', $datetime[0]);
 
             return checkdate((int) $month, (int) $day, (int) $year);
         }
@@ -427,30 +429,21 @@ class PluginNewsAlert extends CommonDBTM
     {
         $errors = [];
 
-        if ($this->isNewItem()) {
-            $missing_name = empty($input['name'] ?? '');
-        } else {
-            $missing_name = isset($input['name']) && empty($input['name']);
-        }
+        $missing_name = $this->isNewItem() ? empty($input['name'] ?? '') : isset($input['name']) && empty($input['name']);
 
         if ($missing_name) {
-            array_push($errors, __('Please enter a name.', 'news'));
+            $errors[] = __s('Please enter a name.', 'news');
         }
 
-        if (
-            !empty($input['date_start'])
-            && !empty($input['date_end'])
-        ) {
-            if (strtotime($input['date_end']) < strtotime($input['date_start'])) {
-                array_push($errors, __('The end date must be greater than the start date.', 'news'));
-            }
+        if (!empty($input['date_start']) && !empty($input['date_end']) && strtotime($input['date_end']) < strtotime($input['date_start'])) {
+            $errors[] = __s('The end date must be greater than the start date.', 'news');
         }
 
-        if ($errors) {
+        if ($errors !== []) {
             Session::addMessageAfterRedirect(implode('<br />', $errors));
         }
 
-        return $errors ? false : $input;
+        return $errors !== [] ? false : $input;
     }
 
     public function prepareInputForUpdate($input)
@@ -532,6 +525,9 @@ class PluginNewsAlert extends CommonDBTM
 
     public static function displayAlerts($params = [])
     {
+        /** @var array $CFG_GLPI */
+        global $CFG_GLPI;
+
         $p['show_only_login_alerts']    = false;
         $p['show_only_central_alerts']  = false;
         $p['show_hidden_alerts']        = false;
@@ -562,8 +558,8 @@ class PluginNewsAlert extends CommonDBTM
             && !$p['show_hidden_alerts']
         ) {
             echo "<div class='center'>";
-            echo "<a href='" . Plugin::getWebDir('news') . "/front/hidden_alerts.php'>";
-            echo __('You have hidden alerts valid for current date', 'news');
+            echo "<a href='" . $CFG_GLPI['root_doc'] . "/plugins/news/front/hidden_alerts.php'>";
+            echo __s('You have hidden alerts valid for current date', 'news');
             echo '</a>';
             echo '</div>';
         }
@@ -609,7 +605,7 @@ class PluginNewsAlert extends CommonDBTM
         $twig->display('@news/display_alert.html.twig', [
             'size'                   => self::getSizeClasses($alert['size']),
             'alert_fields'           => $alert,
-            'content'                => Sanitizer::unsanitize($alert['message']),
+            'content'                => $alert['message'],
             'can_close'              => $alert['is_close_allowed'] && !$p['show_hidden_alerts'],
             'show_only_login_alerts' => $p['show_only_login_alerts'],
         ]);
@@ -623,10 +619,10 @@ class PluginNewsAlert extends CommonDBTM
     public static function getTypes(): array
     {
         return [
-            self::GENERAL => __('General', 'news'),
-            self::INFO    => __('Information', 'news'),
-            self::WARNING => __('Warning', 'news'),
-            self::PROBLEM => __('Problem', 'news'),
+            self::GENERAL => __s('General', 'news'),
+            self::INFO    => __s('Information', 'news'),
+            self::WARNING => __s('Warning', 'news'),
+            self::PROBLEM => __s('Problem', 'news'),
         ];
     }
 
@@ -638,10 +634,10 @@ class PluginNewsAlert extends CommonDBTM
     public static function getSizes(): array
     {
         return [
-            self::SMALL   => __('Small', 'news'),
-            self::MEDIUM  => __('Medium', 'news'),
-            self::BIG     => __('Big', 'news'),
-            self::MAXIMUM => __('Max', 'news'),
+            self::SMALL   => __s('Small', 'news'),
+            self::MEDIUM  => __s('Medium', 'news'),
+            self::BIG     => __s('Big', 'news'),
+            self::MAXIMUM => __s('Max', 'news'),
         ];
     }
 
@@ -653,10 +649,10 @@ class PluginNewsAlert extends CommonDBTM
     public static function getIcons(): array
     {
         return [
-            self::SETTINGS       => __('Settings', 'news'),
-            self::ALERT_CIRCLE   => __('Alert circle', 'news'),
-            self::ALERT_TRIANGLE => __('Alert triangle', 'news'),
-            self::ALERT_OCTAGON  => __('Alert octagon', 'news'),
+            self::SETTINGS       => __s('Settings', 'news'),
+            self::ALERT_CIRCLE   => __s('Alert circle', 'news'),
+            self::ALERT_TRIANGLE => __s('Alert triangle', 'news'),
+            self::ALERT_OCTAGON  => __s('Alert octagon', 'news'),
         ];
     }
 
@@ -668,17 +664,17 @@ class PluginNewsAlert extends CommonDBTM
     public static function getColors(): array
     {
         return [
-            self::DARK   => __('Black', 'news'),
-            self::WHITE  => __('White', 'news'),
-            self::BLUE   => __('Blue', 'news'),
-            self::CYAN   => __('Cyan', 'news'),
-            self::INDIGO => __('Indigo', 'news'),
-            self::PURPLE => __('Purple', 'news'),
-            self::PINK   => __('Pink', 'news'),
-            self::RED    => __('Red', 'news'),
-            self::ORANGE => __('Orange', 'news'),
-            self::YELLOW => __('Yellow', 'news'),
-            self::LIME   => __('Lime', 'news'),
+            self::DARK   => __s('Black', 'news'),
+            self::WHITE  => __s('White', 'news'),
+            self::BLUE   => __s('Blue', 'news'),
+            self::CYAN   => __s('Cyan', 'news'),
+            self::INDIGO => __s('Indigo', 'news'),
+            self::PURPLE => __s('Purple', 'news'),
+            self::PINK   => __s('Pink', 'news'),
+            self::RED    => __s('Red', 'news'),
+            self::ORANGE => __s('Orange', 'news'),
+            self::YELLOW => __s('Yellow', 'news'),
+            self::LIME   => __s('Lime', 'news'),
         ];
     }
 
@@ -731,9 +727,7 @@ class PluginNewsAlert extends CommonDBTM
         ) {
             $item        = $params['item'];
             $itemtype    = get_class($item);
-            $entities_id = isset($params['item']->fields['entities_id'])
-            ? $params['item']->fields['entities_id']
-            : false; // false to use current entity
+            $entities_id = $params['item']->fields['entities_id'] ?? false; // false to use current entity
             self::displayAlerts(['show_only_helpdesk_alerts' => true,
                 'show_hidden_alerts'                         => false,
                 'entities_id'                                => $entities_id,

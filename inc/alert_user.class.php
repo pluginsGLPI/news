@@ -29,7 +29,8 @@
  */
 
 if (!defined('GLPI_ROOT')) {
-    die("Sorry. You can't access directly to this file");
+    echo "Sorry. You can't access directly to this file";
+    return;
 }
 
 // @codingStandardsIgnoreStart
@@ -71,13 +72,9 @@ class PluginNewsAlert_User extends CommonDBRelation
         );
     }
 
-    public function canCreateItem()
+    public function canCreateItem(): bool
     {
-        if ($this->fields['users_id'] != Session::getLoginUserID()) {
-            return false;
-        }
-
-        return true;
+        return $this->fields['users_id'] == Session::getLoginUserID();
     }
 
     public function rawSearchOptions()
@@ -88,7 +85,7 @@ class PluginNewsAlert_User extends CommonDBRelation
             'id'       => 5,
             'table'    => $this->getTable(),
             'field'    => 'state',
-            'name'     => __('Status', 'news'),
+            'name'     => __s('Status', 'news'),
             'datatype' => 'dropdown',
         ];
 

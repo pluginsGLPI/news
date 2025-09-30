@@ -28,7 +28,7 @@
  * -------------------------------------------------------------------------
  */
 
-include('../../../inc/includes.php');
+Session::checkLoginUser();
 
 Html::nullHeader(PluginNewsAlert::getTypeName());
 $logged = isset($_SESSION['glpiID']);

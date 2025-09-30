@@ -29,7 +29,6 @@
  */
 
 $AJAX_INCLUDE = 1;
-include('../../../inc/includes.php');
 header('Content-Type: text/html; charset=UTF-8');
 Html::header_nocache();
 
@@ -54,7 +53,7 @@ if (isset($_POST['type']) && !empty($_POST['type'])) {
 
         case 'Profile':
             Profile::dropdown(['name' => 'items_id',
-                'toadd'               => [-1 => __('All', 'news')],
+                'toadd'               => [-1 => __s('All', 'news')],
             ]);
             break;
     }
