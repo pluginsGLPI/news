@@ -2,7 +2,7 @@
    <name>News</name>
    <key>news</key>
    <state>stable</state>
-   <logo>https://raw.githubusercontent.com/pluginsGLPI/news/main/pics/icon.png</logo>
+   <logo>https://raw.githubusercontent.com/pluginsGLPI/news/main/public/pics/icon.png</logo>
    <description>
       <short>
          <en>This plugin allows to display messages on the GLPI's homepage.</en>
