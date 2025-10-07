@@ -7,7 +7,7 @@ use FriendsOfTwig\Twigcs\Config\Config;
 use Glpi\Tools\GlpiTwigRuleset;
 
 $finder = TemplateFinder::create()
-    ->in(__DIR__ . '/templates')->in(__DIR__ . '/templates/components')
+    ->in(__DIR__ . '/templates')
     ->name('*.html.twig')
     ->ignoreVCSIgnored(true);
 
