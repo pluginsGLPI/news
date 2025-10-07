@@ -75,18 +75,18 @@
 }
 
 .plugin_news_alert-toggle {
-   background-image: url(../pics/toggle_down.png);
+   background-image: url("../pics/toggle_down.png");
    width: 16px;
    height: 16px;
    cursor: pointer;
-   opacity: .5;
    position: absolute;
    top: 3px;
    right: 0;
    opacity: .5;
 }
+
 .expanded .plugin_news_alert-toggle {
-   background-image: url(../pics/toggle_up.png);
+   background-image: url("../pics/toggle_up.png");
 }
 
 .plugin_news_alert-visibility {
