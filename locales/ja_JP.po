@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-11 01:39+0000\n"
+"POT-Creation-Date: 2025-11-10 01:22+0000\n"
 "PO-Revision-Date: 2015-09-18 13:33+0000\n"
 "Last-Translator: INOUE Daisuke, 2023-2024\n"
 "Language-Team: Japanese (Japan) (http://app.transifex.com/teclib/glpi-plugin-news/language/ja_JP/)\n"
@@ -19,11 +19,20 @@ msgstr ""
 "Language: ja_JP\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: templates/alert_form.html.twig inc/alert.class.php:111
+#: templates/profile.html.twig
+msgctxt "button"
+msgid "Save"
+msgstr "保存"
+
+#: templates/components/news_fields_macros.html.twig
+msgid "No icon"
+msgstr "アイコンなし"
+
+#: templates/alert_form.html.twig inc/alert.class.php:113
 msgid "Name"
 msgstr "名前"
 
-#: templates/alert_form.html.twig inc/alert.class.php:192
+#: templates/alert_form.html.twig inc/alert.class.php:194
 msgid "Active"
 msgstr "有効"
 
@@ -31,11 +40,11 @@ msgstr "有効"
 msgid "Description"
 msgstr "説明"
 
-#: templates/alert_form.html.twig inc/alert.class.php:121
+#: templates/alert_form.html.twig inc/alert.class.php:123
 msgid "Visibility start date"
 msgstr "表示開始日"
 
-#: templates/alert_form.html.twig inc/alert.class.php:129
+#: templates/alert_form.html.twig inc/alert.class.php:131
 msgid "Visibility end date"
 msgstr "表示終了日"
 
@@ -55,7 +64,7 @@ msgstr "ヘルプデスク ページ"
 msgid "Show on pages"
 msgstr "ページに表示"
 
-#: templates/alert_form.html.twig inc/alert.class.php:165
+#: templates/alert_form.html.twig inc/alert.class.php:167
 msgid "Can close alert"
 msgstr "閉じることができます"
 
@@ -95,206 +104,197 @@ msgstr "強調色"
 msgid "Preview"
 msgstr "プレビュー"
 
-#: templates/profile.html.twig
-msgctxt "button"
-msgid "Save"
-msgstr "保存"
-
-#: templates/components/news_fields_macros.html.twig
-msgid "No icon"
-msgstr "アイコンなし"
-
-#: setup.php:82 inc/alert.class.php:87 front/alert.php:36
-#: front/hidden_alerts.php:36 front/hidden_alerts.php:39
-#: front/alert.form.php:115
+#: setup.php:84 inc/alert.class.php:89 front/alert.php:34
+#: front/alert.form.php:113 front/hidden_alerts.php:34
+#: front/hidden_alerts.php:37
 msgid "Alerts"
 msgstr "アラート"
 
-#: inc/alert.class.php:137
+#: inc/alert.class.php:139
 msgid "Entity"
 msgstr "エンティティー"
 
-#: inc/alert.class.php:145
+#: inc/alert.class.php:147
 msgid "Recursive"
 msgstr "再帰"
 
-#: inc/alert.class.php:174
+#: inc/alert.class.php:176
 msgid "Show on login page"
 msgstr "ログイン ページに表示"
 
-#: inc/alert.class.php:183
+#: inc/alert.class.php:185
 msgid "Show on helpdesk page"
 msgstr "ヘルプデスク ページに表示"
 
-#: inc/alert.class.php:200
+#: inc/alert.class.php:202
 msgid "Last update"
 msgstr "最終更新"
 
-#: inc/alert.class.php:209
+#: inc/alert.class.php:211
 msgid "Creation date"
 msgstr "作成日"
 
-#: inc/alert.class.php:437
+#: inc/alert.class.php:435
 msgid "Please enter a name."
 msgstr "名前を入力してください。"
 
-#: inc/alert.class.php:445
+#: inc/alert.class.php:439
 msgid "The end date must be greater than the start date."
 msgstr "終了日を開始日より後にしてください。"
 
-#: inc/alert.class.php:566
+#: inc/alert.class.php:562
 msgid "You have hidden alerts valid for current date"
 msgstr "本日時点で有効なアラートが非表示になっています"
 
-#: inc/alert.class.php:626
+#: inc/alert.class.php:622
 msgid "General"
 msgstr "全般"
 
-#: inc/alert.class.php:627
+#: inc/alert.class.php:623
 msgid "Information"
 msgstr "情報"
 
-#: inc/alert.class.php:628
+#: inc/alert.class.php:624
 msgid "Warning"
 msgstr "警告"
 
-#: inc/alert.class.php:629
+#: inc/alert.class.php:625
 msgid "Problem"
 msgstr "問題"
 
-#: inc/alert.class.php:641
+#: inc/alert.class.php:637
 msgid "Small"
 msgstr "小"
 
-#: inc/alert.class.php:642
+#: inc/alert.class.php:638
 msgid "Medium"
 msgstr "中"
 
-#: inc/alert.class.php:643
+#: inc/alert.class.php:639
 msgid "Big"
 msgstr "大"
 
-#: inc/alert.class.php:644
+#: inc/alert.class.php:640
 msgid "Max"
 msgstr "最大"
 
-#: inc/alert.class.php:656
+#: inc/alert.class.php:652
 msgid "Settings"
 msgstr "設定"
 
-#: inc/alert.class.php:657
+#: inc/alert.class.php:653
 msgid "Alert circle"
 msgstr "円形の警告"
 
-#: inc/alert.class.php:658
+#: inc/alert.class.php:654
 msgid "Alert triangle"
 msgstr "三角形の警告"
 
-#: inc/alert.class.php:659
+#: inc/alert.class.php:655
 msgid "Alert octagon"
 msgstr "8 角形の警告"
 
-#: inc/alert.class.php:671
+#: inc/alert.class.php:667
 msgid "Black"
 msgstr "黒"
 
-#: inc/alert.class.php:672
+#: inc/alert.class.php:668
 msgid "White"
 msgstr "白"
 
-#: inc/alert.class.php:673
+#: inc/alert.class.php:669
 msgid "Blue"
 msgstr "青"
 
-#: inc/alert.class.php:674
+#: inc/alert.class.php:670
 msgid "Cyan"
 msgstr "シアン"
 
-#: inc/alert.class.php:675
+#: inc/alert.class.php:671
 msgid "Indigo"
 msgstr "インディゴ"
 
-#: inc/alert.class.php:676
+#: inc/alert.class.php:672
 msgid "Purple"
 msgstr "紫"
 
-#: inc/alert.class.php:677
+#: inc/alert.class.php:673
 msgid "Pink"
 msgstr "ピンク"
 
-#: inc/alert.class.php:678
+#: inc/alert.class.php:674
 msgid "Red"
 msgstr "赤"
 
-#: inc/alert.class.php:679
+#: inc/alert.class.php:675
 msgid "Orange"
 msgstr "オレンジ"
 
-#: inc/alert.class.php:680
+#: inc/alert.class.php:676
 msgid "Yellow"
 msgstr "黄"
 
-#: inc/alert.class.php:681
+#: inc/alert.class.php:677
 msgid "Lime"
 msgstr "ライム"
 
-#: inc/alert_user.class.php:91
-msgid "Status"
-msgstr "状態"
-
-#: inc/alert_target.class.php:43
+#: inc/alert_target.class.php:44
 msgid "Target"
 msgid_plural "Targets"
 msgstr[0] "対象"
 
-#: inc/alert_target.class.php:85 inc/alert_target.class.php:177
-#: ajax/targets.php:57
+#: inc/alert_target.class.php:86 inc/alert_target.class.php:180
+#: ajax/targets.php:56
 msgid "All"
 msgstr "すべて"
 
-#: inc/alert_target.class.php:131
+#: inc/alert_target.class.php:134
 msgid "Add a target"
 msgstr "対象を追加"
 
-#: inc/alert_target.class.php:159
+#: inc/alert_target.class.php:162
 msgctxt "button"
 msgid "Delete permanently"
 msgstr "完全に削除"
 
-#: inc/alert_target.class.php:167
+#: inc/alert_target.class.php:170
 msgid "Type"
 msgstr "タイプ"
 
-#: inc/alert_target.class.php:168
+#: inc/alert_target.class.php:171
 msgid "Recipient"
 msgstr "受信者"
 
-#: front/alert.form.php:51
+#: inc/alert_user.class.php:88
+msgid "Status"
+msgstr "状態"
+
+#: front/alert.form.php:49
 #, php-format
 msgid "%s updates an item"
 msgstr "%s がアイテムを更新"
 
-#: front/alert.form.php:63
+#: front/alert.form.php:61
 #, php-format
 msgid "%1$s adds the item %2$s"
 msgstr "%1$s がアイテム : %2$s を追加"
 
-#: front/alert.form.php:79
+#: front/alert.form.php:77
 #, php-format
 msgid "%s deletes an item"
 msgstr "%s がアイテムを削除　"
 
-#: front/alert.form.php:91
+#: front/alert.form.php:89
 #, php-format
 msgid "%s restores an item"
 msgstr "%s がアイテムを復元"
 
-#: front/alert.form.php:103
+#: front/alert.form.php:101
 #, php-format
 msgid "%s purges an item"
 msgstr "%s がアイテムを抹消"
 
-#: ajax/targets.php:62
+#: ajax/targets.php:61
 msgctxt "button"
 msgid "Add"
 msgstr "追加"
