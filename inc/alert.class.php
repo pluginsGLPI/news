@@ -602,8 +602,9 @@ class PluginNewsAlert extends CommonDBTM
     public static function displayAlert($alert, $p)
     {
         $twig = TemplateRenderer::getInstance();
+        $size = $p['show_only_login_alerts'] ? 'col-12' : self::getSizeClasses($alert['size']);
         $twig->display('@news/display_alert.html.twig', [
-            'size'                   => self::getSizeClasses($alert['size']),
+            'size'                   => $size,
             'alert_fields'           => $alert,
             'content'                => $alert['message'],
             'can_close'              => $alert['is_close_allowed'] && !$p['show_hidden_alerts'],
