@@ -188,6 +188,15 @@ class PluginNewsAlert extends CommonDBTM
         ];
 
         $tab[] = [
+            'id'            => 11,
+            'table'         => $this->getTable(),
+            'field'         => 'is_displayed_onservicecatalog',
+            'name'          => __s('Show on service catalog page', 'news'),
+            'datatype'      => 'bool',
+            'massiveaction' => false,
+        ];
+
+        $tab[] = [
             'id'       => 10,
             'table'    => $this->getTable(),
             'field'    => 'is_active',
@@ -248,11 +257,12 @@ class PluginNewsAlert extends CommonDBTM
         /** @var DBmysql $DB */
         global $DB;
 
-        $p['show_only_login_alerts']    = false;
-        $p['show_only_central_alerts']  = false;
-        $p['show_hidden_alerts']        = false;
-        $p['show_only_helpdesk_alerts'] = false;
-        $p['entities_id']               = false;
+        $p['show_only_login_alerts']            = false;
+        $p['show_only_central_alerts']          = false;
+        $p['show_hidden_alerts']                = false;
+        $p['show_only_helpdesk_alerts']         = false;
+        $p['show_only_service_catalog_alerts']  = false;
+        $p['entities_id']                       = false;
         foreach ($params as $key => $value) {
             $p[$key] = $value;
         }
@@ -277,12 +287,13 @@ class PluginNewsAlert extends CommonDBTM
         }
 
         // filters for query
-        $targets_sql           = [];
-        $login_sql             = [];
-        $login_show_hidden_sql = ["{$utable}.id" => null];
-        $entity_sql            = [];
-        $show_helpdesk_sql     = [];
-        $show_central_sql      = [];
+        $targets_sql                = [];
+        $login_sql                  = [];
+        $login_show_hidden_sql      = ["{$utable}.id" => null];
+        $entity_sql                 = [];
+        $show_helpdesk_sql          = [];
+        $show_central_sql           = [];
+        $show_service_catalog_sql   = [];
         if (isset($_SESSION['glpiID']) && isset($_SESSION['glpiactiveprofile']['id'])) {
             $targets_sql = [
                 'AND' => [
@@ -331,6 +342,9 @@ class PluginNewsAlert extends CommonDBTM
         //and not the current entity
         if ($p['show_only_helpdesk_alerts']) {
             $show_helpdesk_sql = ["{$table}.is_displayed_onhelpdesk" => 1];
+        }
+        if ($p['show_only_service_catalog_alerts']) {
+            $show_service_catalog_sql = ["{$table}.is_displayed_onservicecatalog" => 1];
         }
         if (!$p['show_only_login_alerts']) {
             $entity_sql = getEntitiesRestrictCriteria($table, '', $p['entities_id'], true);
@@ -393,6 +407,9 @@ class PluginNewsAlert extends CommonDBTM
         }
         if ($show_helpdesk_sql !== []) {
             $criteria['WHERE'][] = $show_helpdesk_sql;
+        }
+        if ($show_service_catalog_sql !== []) {
+            $criteria['WHERE'][] = $show_service_catalog_sql;
         }
         $it = $DB->request($criteria);
         if (count($it) === 0) {
@@ -523,16 +540,22 @@ class PluginNewsAlert extends CommonDBTM
         echo '</th></tr>';
     }
 
+    public static function displayOnServiceCatalog()
+    {
+        self::displayAlerts(['show_only_service_catalog_alerts' => true]);
+    }
+
     public static function displayAlerts($params = [])
     {
         /** @var array $CFG_GLPI */
         global $CFG_GLPI;
 
-        $p['show_only_login_alerts']    = false;
-        $p['show_only_central_alerts']  = false;
-        $p['show_hidden_alerts']        = false;
-        $p['show_only_helpdesk_alerts'] = false;
-        $p['entities_id']               = false;
+        $p['show_only_login_alerts']           = false;
+        $p['show_only_central_alerts']         = false;
+        $p['show_hidden_alerts']               = false;
+        $p['show_only_helpdesk_alerts']        = false;
+        $p['show_only_service_catalog_alerts'] = false;
+        $p['entities_id']                      = false;
         foreach ($params as $key => $value) {
             $p[$key] = $value;
         }
@@ -545,11 +568,12 @@ class PluginNewsAlert extends CommonDBTM
         }
 
         $hidden_params = [
-            'show_hidden_alerts'        => true,
-            'show_only_login_alerts'    => false,
-            'show_only_central_alerts'  => $p['show_only_central_alerts'],
-            'show_only_helpdesk_alerts' => $p['show_only_helpdesk_alerts'],
-            'entities_id'               => $p['entities_id'],
+            'show_hidden_alerts'               => true,
+            'show_only_login_alerts'           => false,
+            'show_only_central_alerts'         => $p['show_only_central_alerts'],
+            'show_only_helpdesk_alerts'        => $p['show_only_helpdesk_alerts'],
+            'show_only_service_catalog_alerts' => $p['show_only_service_catalog_alerts'],
+            'entities_id'                      => $p['entities_id'],
         ];
 
         if (

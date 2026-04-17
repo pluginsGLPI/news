@@ -55,8 +55,9 @@ function plugin_news_install()
          `date_end`                 TIMESTAMP NULL DEFAULT NULL,
          `type`                     INT NOT NULL,
          `is_deleted`               TINYINT NOT NULL DEFAULT 0,
-         `is_displayed_onlogin`     TINYINT NOT NULL,
-         `is_displayed_oncentral`   TINYINT NOT NULL,
+         `is_displayed_onlogin`            TINYINT NOT NULL,
+         `is_displayed_oncentral`          TINYINT NOT NULL,
+         `is_displayed_onservicecatalog`   TINYINT NOT NULL DEFAULT 0,
          `display_dates`            TINYINT NOT NULL DEFAULT 1,
          `background_color`         VARCHAR(255) NOT NULL DEFAULT '$white',
          `text_color`               VARCHAR(255) NOT NULL DEFAULT '$dark',
@@ -215,6 +216,11 @@ function plugin_news_install()
                      ('PluginNewsAlert', 2, 1, 0),
                      ('PluginNewsAlert', 3, 2, 0),
                      ('PluginNewsAlert', 6, 4, 0)");
+    }
+
+    // add displayed on service catalog flag
+    if (!$DB->fieldExists($alert_table, 'is_displayed_onservicecatalog')) {
+        $migration->addField($alert_table, 'is_displayed_onservicecatalog', 'bool');
     }
 
     // add displayed on central flag
