@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-28 01:28+0000\n"
+"POT-Creation-Date: 2026-04-23 02:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,20 +18,20 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
+#: templates/components/news_fields_macros.html.twig
+msgid "No icon"
+msgstr ""
+
 #: templates/profile.html.twig
 msgctxt "button"
 msgid "Save"
-msgstr ""
-
-#: templates/components/news_fields_macros.html.twig
-msgid "No icon"
 msgstr ""
 
 #: templates/alert_form.html.twig inc/alert.class.php:113
 msgid "Name"
 msgstr ""
 
-#: templates/alert_form.html.twig inc/alert.class.php:194
+#: templates/alert_form.html.twig inc/alert.class.php:203
 msgid "Active"
 msgstr ""
 
@@ -57,6 +57,10 @@ msgstr ""
 
 #: templates/alert_form.html.twig
 msgid "Helpdesk page"
+msgstr ""
+
+#: templates/alert_form.html.twig
+msgid "Service catalog page"
 msgstr ""
 
 #: templates/alert_form.html.twig
@@ -103,170 +107,19 @@ msgstr ""
 msgid "Preview"
 msgstr ""
 
-#: setup.php:84 inc/alert.class.php:89 front/alert.php:34
-#: front/alert.form.php:113 front/hidden_alerts.php:34
-#: front/hidden_alerts.php:37
-msgid "Alerts"
-msgstr ""
-
-#: inc/alert.class.php:139
-msgid "Entity"
-msgstr ""
-
-#: inc/alert.class.php:147
-msgid "Recursive"
-msgstr ""
-
-#: inc/alert.class.php:176
-msgid "Show on login page"
-msgstr ""
-
-#: inc/alert.class.php:185
-msgid "Show on helpdesk page"
-msgstr ""
-
-#: inc/alert.class.php:202
-msgid "Last update"
-msgstr ""
-
-#: inc/alert.class.php:211
-msgid "Creation date"
-msgstr ""
-
-#: inc/alert.class.php:435
-msgid "Please enter a name."
-msgstr ""
-
-#: inc/alert.class.php:439
-msgid "The end date must be greater than the start date."
-msgstr ""
-
-#: inc/alert.class.php:562
-msgid "You have hidden alerts valid for current date"
-msgstr ""
-
-#: inc/alert.class.php:622
-msgid "General"
-msgstr ""
-
-#: inc/alert.class.php:623
-msgid "Information"
-msgstr ""
-
-#: inc/alert.class.php:624
-msgid "Warning"
-msgstr ""
-
-#: inc/alert.class.php:625
-msgid "Problem"
-msgstr ""
-
-#: inc/alert.class.php:637
-msgid "Small"
-msgstr ""
-
-#: inc/alert.class.php:638
-msgid "Medium"
-msgstr ""
-
-#: inc/alert.class.php:639
-msgid "Big"
-msgstr ""
-
-#: inc/alert.class.php:640
-msgid "Max"
-msgstr ""
-
-#: inc/alert.class.php:652
-msgid "Settings"
-msgstr ""
-
-#: inc/alert.class.php:653
-msgid "Alert circle"
-msgstr ""
-
-#: inc/alert.class.php:654
-msgid "Alert triangle"
-msgstr ""
-
-#: inc/alert.class.php:655
-msgid "Alert octagon"
-msgstr ""
-
-#: inc/alert.class.php:667
-msgid "Black"
-msgstr ""
-
-#: inc/alert.class.php:668
-msgid "White"
-msgstr ""
-
-#: inc/alert.class.php:669
-msgid "Blue"
-msgstr ""
-
-#: inc/alert.class.php:670
-msgid "Cyan"
-msgstr ""
-
-#: inc/alert.class.php:671
-msgid "Indigo"
-msgstr ""
-
-#: inc/alert.class.php:672
-msgid "Purple"
-msgstr ""
-
-#: inc/alert.class.php:673
-msgid "Pink"
-msgstr ""
-
-#: inc/alert.class.php:674
-msgid "Red"
-msgstr ""
-
-#: inc/alert.class.php:675
-msgid "Orange"
-msgstr ""
-
-#: inc/alert.class.php:676
-msgid "Yellow"
-msgstr ""
-
-#: inc/alert.class.php:677
-msgid "Lime"
-msgstr ""
-
-#: inc/alert_target.class.php:44
-msgid "Target"
-msgid_plural "Targets"
-msgstr[0] ""
-msgstr[1] ""
-
-#: inc/alert_target.class.php:86 inc/alert_target.class.php:180
-#: ajax/targets.php:56
+#: ajax/targets.php:56 inc/alert_target.class.php:86
+#: inc/alert_target.class.php:180
 msgid "All"
 msgstr ""
 
-#: inc/alert_target.class.php:134
-msgid "Add a target"
-msgstr ""
-
-#: inc/alert_target.class.php:162
+#: ajax/targets.php:61
 msgctxt "button"
-msgid "Delete permanently"
+msgid "Add"
 msgstr ""
 
-#: inc/alert_target.class.php:170
-msgid "Type"
-msgstr ""
-
-#: inc/alert_target.class.php:171
-msgid "Recipient"
-msgstr ""
-
-#: inc/alert_user.class.php:88
-msgid "Status"
+#: setup.php:87 front/alert.form.php:113 front/hidden_alerts.php:34
+#: front/hidden_alerts.php:37 front/alert.php:34 inc/alert.class.php:89
+msgid "Alerts"
 msgstr ""
 
 #: front/alert.form.php:49
@@ -294,7 +147,161 @@ msgstr ""
 msgid "%s purges an item"
 msgstr ""
 
-#: ajax/targets.php:61
+#: inc/alert_target.class.php:44
+msgid "Target"
+msgid_plural "Targets"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/alert_target.class.php:134
+msgid "Add a target"
+msgstr ""
+
+#: inc/alert_target.class.php:162
 msgctxt "button"
-msgid "Add"
+msgid "Delete permanently"
+msgstr ""
+
+#: inc/alert_target.class.php:170
+msgid "Type"
+msgstr ""
+
+#: inc/alert_target.class.php:171
+msgid "Recipient"
+msgstr ""
+
+#: inc/alert.class.php:139
+msgid "Entity"
+msgstr ""
+
+#: inc/alert.class.php:147
+msgid "Recursive"
+msgstr ""
+
+#: inc/alert.class.php:176
+msgid "Show on login page"
+msgstr ""
+
+#: inc/alert.class.php:185
+msgid "Show on helpdesk page"
+msgstr ""
+
+#: inc/alert.class.php:194
+msgid "Show on service catalog page"
+msgstr ""
+
+#: inc/alert.class.php:211
+msgid "Last update"
+msgstr ""
+
+#: inc/alert.class.php:220
+msgid "Creation date"
+msgstr ""
+
+#: inc/alert.class.php:452
+msgid "Please enter a name."
+msgstr ""
+
+#: inc/alert.class.php:456
+msgid "The end date must be greater than the start date."
+msgstr ""
+
+#: inc/alert.class.php:586
+msgid "You have hidden alerts valid for current date"
+msgstr ""
+
+#: inc/alert.class.php:646
+msgid "General"
+msgstr ""
+
+#: inc/alert.class.php:647
+msgid "Information"
+msgstr ""
+
+#: inc/alert.class.php:648
+msgid "Warning"
+msgstr ""
+
+#: inc/alert.class.php:649
+msgid "Problem"
+msgstr ""
+
+#: inc/alert.class.php:661
+msgid "Small"
+msgstr ""
+
+#: inc/alert.class.php:662
+msgid "Medium"
+msgstr ""
+
+#: inc/alert.class.php:663
+msgid "Big"
+msgstr ""
+
+#: inc/alert.class.php:664
+msgid "Max"
+msgstr ""
+
+#: inc/alert.class.php:676
+msgid "Settings"
+msgstr ""
+
+#: inc/alert.class.php:677
+msgid "Alert circle"
+msgstr ""
+
+#: inc/alert.class.php:678
+msgid "Alert triangle"
+msgstr ""
+
+#: inc/alert.class.php:679
+msgid "Alert octagon"
+msgstr ""
+
+#: inc/alert.class.php:691
+msgid "Black"
+msgstr ""
+
+#: inc/alert.class.php:692
+msgid "White"
+msgstr ""
+
+#: inc/alert.class.php:693
+msgid "Blue"
+msgstr ""
+
+#: inc/alert.class.php:694
+msgid "Cyan"
+msgstr ""
+
+#: inc/alert.class.php:695
+msgid "Indigo"
+msgstr ""
+
+#: inc/alert.class.php:696
+msgid "Purple"
+msgstr ""
+
+#: inc/alert.class.php:697
+msgid "Pink"
+msgstr ""
+
+#: inc/alert.class.php:698
+msgid "Red"
+msgstr ""
+
+#: inc/alert.class.php:699
+msgid "Orange"
+msgstr ""
+
+#: inc/alert.class.php:700
+msgid "Yellow"
+msgstr ""
+
+#: inc/alert.class.php:701
+msgid "Lime"
+msgstr ""
+
+#: inc/alert_user.class.php:88
+msgid "Status"
 msgstr ""
