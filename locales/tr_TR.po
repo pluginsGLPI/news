@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-12 01:40+0000\n"
+"POT-Creation-Date: 2026-04-23 02:26+0000\n"
 "PO-Revision-Date: 2015-09-18 13:33+0000\n"
 "Last-Translator: Kaya Zeren <kayazeren@gmail.com>, 2015-2016,2018,2021,2023\n"
 "Language-Team: Turkish (Turkey) (http://app.transifex.com/teclib/glpi-plugin-news/language/tr_TR/)\n"
@@ -18,20 +18,20 @@ msgstr ""
 "Language: tr_TR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#: templates/components/news_fields_macros.html.twig
+msgid "No icon"
+msgstr "Simge yok"
+
 #: templates/profile.html.twig
 msgctxt "button"
 msgid "Save"
 msgstr "Kaydet"
 
-#: templates/components/news_fields_macros.html.twig
-msgid "No icon"
-msgstr "Simge yok"
-
 #: templates/alert_form.html.twig inc/alert.class.php:113
 msgid "Name"
 msgstr "Ad"
 
-#: templates/alert_form.html.twig inc/alert.class.php:194
+#: templates/alert_form.html.twig inc/alert.class.php:203
 msgid "Active"
 msgstr "Etkin"
 
@@ -58,6 +58,10 @@ msgstr "Oturum açma sayfası"
 #: templates/alert_form.html.twig
 msgid "Helpdesk page"
 msgstr "Yardım masası sayfası"
+
+#: templates/alert_form.html.twig
+msgid "Service catalog page"
+msgstr ""
 
 #: templates/alert_form.html.twig
 msgid "Show on pages"
@@ -103,171 +107,20 @@ msgstr "Vurgu rengi"
 msgid "Preview"
 msgstr "Ön izleme"
 
-#: setup.php:84 inc/alert.class.php:89 front/alert.php:34
-#: front/alert.form.php:113 front/hidden_alerts.php:34
-#: front/hidden_alerts.php:37
-msgid "Alerts"
-msgstr "Uyarılar"
-
-#: inc/alert.class.php:139
-msgid "Entity"
-msgstr "Birim"
-
-#: inc/alert.class.php:147
-msgid "Recursive"
-msgstr "Alt ögeler"
-
-#: inc/alert.class.php:176
-msgid "Show on login page"
-msgstr "Oturum açma sayfasında görüntülensin"
-
-#: inc/alert.class.php:185
-msgid "Show on helpdesk page"
-msgstr "Destek sayfasında görüntülensin"
-
-#: inc/alert.class.php:202
-msgid "Last update"
-msgstr "Güncellenme tarihi"
-
-#: inc/alert.class.php:211
-msgid "Creation date"
-msgstr "Oluşturulma tarihi"
-
-#: inc/alert.class.php:435
-msgid "Please enter a name."
-msgstr "Lütfen bir ad yazın."
-
-#: inc/alert.class.php:439
-msgid "The end date must be greater than the start date."
-msgstr "Bitiş tarihi başlangıç tarihinden sonra olmalıdır."
-
-#: inc/alert.class.php:562
-msgid "You have hidden alerts valid for current date"
-msgstr "Güncel tarih için geçerli olan gizli uyarılarınız var"
-
-#: inc/alert.class.php:622
-msgid "General"
-msgstr "Genel"
-
-#: inc/alert.class.php:623
-msgid "Information"
-msgstr "Bilgiler"
-
-#: inc/alert.class.php:624
-msgid "Warning"
-msgstr "Uyarı"
-
-#: inc/alert.class.php:625
-msgid "Problem"
-msgstr "Sorun"
-
-#: inc/alert.class.php:637
-msgid "Small"
-msgstr "Küçük"
-
-#: inc/alert.class.php:638
-msgid "Medium"
-msgstr "Orta"
-
-#: inc/alert.class.php:639
-msgid "Big"
-msgstr "Büyük"
-
-#: inc/alert.class.php:640
-msgid "Max"
-msgstr "En fazla"
-
-#: inc/alert.class.php:652
-msgid "Settings"
-msgstr "Ayarlar"
-
-#: inc/alert.class.php:653
-msgid "Alert circle"
-msgstr "Daire uyarı"
-
-#: inc/alert.class.php:654
-msgid "Alert triangle"
-msgstr "Üçgen uyarı"
-
-#: inc/alert.class.php:655
-msgid "Alert octagon"
-msgstr "Altıgen uyarı"
-
-#: inc/alert.class.php:667
-msgid "Black"
-msgstr "Siyah"
-
-#: inc/alert.class.php:668
-msgid "White"
-msgstr "Beyaz"
-
-#: inc/alert.class.php:669
-msgid "Blue"
-msgstr "Mavi"
-
-#: inc/alert.class.php:670
-msgid "Cyan"
-msgstr "Cam göbeği"
-
-#: inc/alert.class.php:671
-msgid "Indigo"
-msgstr "Çivit mavisi"
-
-#: inc/alert.class.php:672
-msgid "Purple"
-msgstr "Mor"
-
-#: inc/alert.class.php:673
-msgid "Pink"
-msgstr "Pembe"
-
-#: inc/alert.class.php:674
-msgid "Red"
-msgstr "Kırmızı"
-
-#: inc/alert.class.php:675
-msgid "Orange"
-msgstr "Turuncu"
-
-#: inc/alert.class.php:676
-msgid "Yellow"
-msgstr "Sarı"
-
-#: inc/alert.class.php:677
-msgid "Lime"
-msgstr "Limon"
-
-#: inc/alert_target.class.php:44
-msgid "Target"
-msgid_plural "Targets"
-msgstr[0] "Hedef"
-msgstr[1] "Hedefler"
-
-#: inc/alert_target.class.php:86 inc/alert_target.class.php:180
-#: ajax/targets.php:56
+#: ajax/targets.php:56 inc/alert_target.class.php:86
+#: inc/alert_target.class.php:180
 msgid "All"
 msgstr "Tümü"
 
-#: inc/alert_target.class.php:134
-msgid "Add a target"
-msgstr "Bir hedef ekle"
-
-#: inc/alert_target.class.php:162
+#: ajax/targets.php:61
 msgctxt "button"
-msgid "Delete permanently"
-msgstr "Kalıcı olarak sil"
+msgid "Add"
+msgstr "Ekle"
 
-#: inc/alert_target.class.php:170
-msgid "Type"
-msgstr "Tür"
-
-#: inc/alert_target.class.php:171
-msgid "Recipient"
-msgstr "Alıcı"
-
-#: inc/alert_user.class.php:88
-msgid "Status"
-msgstr "Durum"
+#: setup.php:87 front/alert.form.php:113 front/hidden_alerts.php:34
+#: front/hidden_alerts.php:37 front/alert.php:34 inc/alert.class.php:89
+msgid "Alerts"
+msgstr "Uyarılar"
 
 #: front/alert.form.php:49
 #, php-format
@@ -294,7 +147,161 @@ msgstr "%s bir ögeyi geri yükledi"
 msgid "%s purges an item"
 msgstr "%s bir ögeyi kalıcı olarak sildi"
 
-#: ajax/targets.php:61
+#: inc/alert_target.class.php:44
+msgid "Target"
+msgid_plural "Targets"
+msgstr[0] "Hedef"
+msgstr[1] "Hedefler"
+
+#: inc/alert_target.class.php:134
+msgid "Add a target"
+msgstr "Bir hedef ekle"
+
+#: inc/alert_target.class.php:162
 msgctxt "button"
-msgid "Add"
-msgstr "Ekle"
+msgid "Delete permanently"
+msgstr "Kalıcı olarak sil"
+
+#: inc/alert_target.class.php:170
+msgid "Type"
+msgstr "Tür"
+
+#: inc/alert_target.class.php:171
+msgid "Recipient"
+msgstr "Alıcı"
+
+#: inc/alert.class.php:139
+msgid "Entity"
+msgstr "Birim"
+
+#: inc/alert.class.php:147
+msgid "Recursive"
+msgstr "Alt ögeler"
+
+#: inc/alert.class.php:176
+msgid "Show on login page"
+msgstr "Oturum açma sayfasında görüntülensin"
+
+#: inc/alert.class.php:185
+msgid "Show on helpdesk page"
+msgstr "Destek sayfasında görüntülensin"
+
+#: inc/alert.class.php:194
+msgid "Show on service catalog page"
+msgstr ""
+
+#: inc/alert.class.php:211
+msgid "Last update"
+msgstr "Güncellenme tarihi"
+
+#: inc/alert.class.php:220
+msgid "Creation date"
+msgstr "Oluşturulma tarihi"
+
+#: inc/alert.class.php:452
+msgid "Please enter a name."
+msgstr "Lütfen bir ad yazın."
+
+#: inc/alert.class.php:456
+msgid "The end date must be greater than the start date."
+msgstr "Bitiş tarihi başlangıç tarihinden sonra olmalıdır."
+
+#: inc/alert.class.php:586
+msgid "You have hidden alerts valid for current date"
+msgstr "Güncel tarih için geçerli olan gizli uyarılarınız var"
+
+#: inc/alert.class.php:646
+msgid "General"
+msgstr "Genel"
+
+#: inc/alert.class.php:647
+msgid "Information"
+msgstr "Bilgiler"
+
+#: inc/alert.class.php:648
+msgid "Warning"
+msgstr "Uyarı"
+
+#: inc/alert.class.php:649
+msgid "Problem"
+msgstr "Sorun"
+
+#: inc/alert.class.php:661
+msgid "Small"
+msgstr "Küçük"
+
+#: inc/alert.class.php:662
+msgid "Medium"
+msgstr "Orta"
+
+#: inc/alert.class.php:663
+msgid "Big"
+msgstr "Büyük"
+
+#: inc/alert.class.php:664
+msgid "Max"
+msgstr "En fazla"
+
+#: inc/alert.class.php:676
+msgid "Settings"
+msgstr "Ayarlar"
+
+#: inc/alert.class.php:677
+msgid "Alert circle"
+msgstr "Daire uyarı"
+
+#: inc/alert.class.php:678
+msgid "Alert triangle"
+msgstr "Üçgen uyarı"
+
+#: inc/alert.class.php:679
+msgid "Alert octagon"
+msgstr "Altıgen uyarı"
+
+#: inc/alert.class.php:691
+msgid "Black"
+msgstr "Siyah"
+
+#: inc/alert.class.php:692
+msgid "White"
+msgstr "Beyaz"
+
+#: inc/alert.class.php:693
+msgid "Blue"
+msgstr "Mavi"
+
+#: inc/alert.class.php:694
+msgid "Cyan"
+msgstr "Cam göbeği"
+
+#: inc/alert.class.php:695
+msgid "Indigo"
+msgstr "Çivit mavisi"
+
+#: inc/alert.class.php:696
+msgid "Purple"
+msgstr "Mor"
+
+#: inc/alert.class.php:697
+msgid "Pink"
+msgstr "Pembe"
+
+#: inc/alert.class.php:698
+msgid "Red"
+msgstr "Kırmızı"
+
+#: inc/alert.class.php:699
+msgid "Orange"
+msgstr "Turuncu"
+
+#: inc/alert.class.php:700
+msgid "Yellow"
+msgstr "Sarı"
+
+#: inc/alert.class.php:701
+msgid "Lime"
+msgstr "Limon"
+
+#: inc/alert_user.class.php:88
+msgid "Status"
+msgstr "Durum"

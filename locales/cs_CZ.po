@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-12 01:40+0000\n"
+"POT-Creation-Date: 2026-04-23 02:26+0000\n"
 "PO-Revision-Date: 2015-09-18 13:33+0000\n"
 "Last-Translator: David Stepan <stepand@tiscali.cz>, 2024\n"
 "Language-Team: Czech (Czech Republic) (http://app.transifex.com/teclib/glpi-plugin-news/language/cs_CZ/)\n"
@@ -19,20 +19,20 @@ msgstr ""
 "Language: cs_CZ\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
+#: templates/components/news_fields_macros.html.twig
+msgid "No icon"
+msgstr "Žádná ikona"
+
 #: templates/profile.html.twig
 msgctxt "button"
 msgid "Save"
 msgstr "Uložit"
 
-#: templates/components/news_fields_macros.html.twig
-msgid "No icon"
-msgstr "Žádná ikona"
-
 #: templates/alert_form.html.twig inc/alert.class.php:113
 msgid "Name"
 msgstr "Jméno"
 
-#: templates/alert_form.html.twig inc/alert.class.php:194
+#: templates/alert_form.html.twig inc/alert.class.php:203
 msgid "Active"
 msgstr "Aktivní"
 
@@ -59,6 +59,10 @@ msgstr "Přihlašovací stránka"
 #: templates/alert_form.html.twig
 msgid "Helpdesk page"
 msgstr "Stránka Helpdesku"
+
+#: templates/alert_form.html.twig
+msgid "Service catalog page"
+msgstr ""
 
 #: templates/alert_form.html.twig
 msgid "Show on pages"
@@ -104,173 +108,20 @@ msgstr "Barva zvýraznění"
 msgid "Preview"
 msgstr "Náhled"
 
-#: setup.php:84 inc/alert.class.php:89 front/alert.php:34
-#: front/alert.form.php:113 front/hidden_alerts.php:34
-#: front/hidden_alerts.php:37
-msgid "Alerts"
-msgstr "Upozornění"
-
-#: inc/alert.class.php:139
-msgid "Entity"
-msgstr "Entita"
-
-#: inc/alert.class.php:147
-msgid "Recursive"
-msgstr "Rekurzivní"
-
-#: inc/alert.class.php:176
-msgid "Show on login page"
-msgstr "Zobrazit na přihlašovací stránce"
-
-#: inc/alert.class.php:185
-msgid "Show on helpdesk page"
-msgstr "Zobrazit na stránce služby podpory"
-
-#: inc/alert.class.php:202
-msgid "Last update"
-msgstr "Poslední aktualizace"
-
-#: inc/alert.class.php:211
-msgid "Creation date"
-msgstr "Datum vytvoření"
-
-#: inc/alert.class.php:435
-msgid "Please enter a name."
-msgstr "Prosím zadejte název."
-
-#: inc/alert.class.php:439
-msgid "The end date must be greater than the start date."
-msgstr "Je třeba, aby datum konce bylo později než začátku."
-
-#: inc/alert.class.php:562
-msgid "You have hidden alerts valid for current date"
-msgstr "Máte skrytá upozornění platná pro aktuální datum"
-
-#: inc/alert.class.php:622
-msgid "General"
-msgstr "Obecné"
-
-#: inc/alert.class.php:623
-msgid "Information"
-msgstr "Informace"
-
-#: inc/alert.class.php:624
-msgid "Warning"
-msgstr "Varování"
-
-#: inc/alert.class.php:625
-msgid "Problem"
-msgstr "Problém"
-
-#: inc/alert.class.php:637
-msgid "Small"
-msgstr "Malý"
-
-#: inc/alert.class.php:638
-msgid "Medium"
-msgstr "Střední"
-
-#: inc/alert.class.php:639
-msgid "Big"
-msgstr "Velké"
-
-#: inc/alert.class.php:640
-msgid "Max"
-msgstr "Max"
-
-#: inc/alert.class.php:652
-msgid "Settings"
-msgstr "Nastavení"
-
-#: inc/alert.class.php:653
-msgid "Alert circle"
-msgstr "Kruh upozornění"
-
-#: inc/alert.class.php:654
-msgid "Alert triangle"
-msgstr "Výstražný trojúhelník"
-
-#: inc/alert.class.php:655
-msgid "Alert octagon"
-msgstr "Výstražný osmiúhelník"
-
-#: inc/alert.class.php:667
-msgid "Black"
-msgstr "Černá"
-
-#: inc/alert.class.php:668
-msgid "White"
-msgstr "Bílá"
-
-#: inc/alert.class.php:669
-msgid "Blue"
-msgstr "Modrá"
-
-#: inc/alert.class.php:670
-msgid "Cyan"
-msgstr "Tyrkysová"
-
-#: inc/alert.class.php:671
-msgid "Indigo"
-msgstr "Indigo"
-
-#: inc/alert.class.php:672
-msgid "Purple"
-msgstr "Nachová"
-
-#: inc/alert.class.php:673
-msgid "Pink"
-msgstr "Růžová"
-
-#: inc/alert.class.php:674
-msgid "Red"
-msgstr "Červená"
-
-#: inc/alert.class.php:675
-msgid "Orange"
-msgstr "Oranžová"
-
-#: inc/alert.class.php:676
-msgid "Yellow"
-msgstr "Žlutá"
-
-#: inc/alert.class.php:677
-msgid "Lime"
-msgstr "Limetka"
-
-#: inc/alert_target.class.php:44
-msgid "Target"
-msgid_plural "Targets"
-msgstr[0] "Cíl"
-msgstr[1] "Cílů"
-msgstr[2] "Cílů"
-msgstr[3] "Cíle"
-
-#: inc/alert_target.class.php:86 inc/alert_target.class.php:180
-#: ajax/targets.php:56
+#: ajax/targets.php:56 inc/alert_target.class.php:86
+#: inc/alert_target.class.php:180
 msgid "All"
 msgstr "Vše"
 
-#: inc/alert_target.class.php:134
-msgid "Add a target"
-msgstr "Přidat cíl"
-
-#: inc/alert_target.class.php:162
+#: ajax/targets.php:61
 msgctxt "button"
-msgid "Delete permanently"
-msgstr "Trvale odstranit"
+msgid "Add"
+msgstr "Přidat"
 
-#: inc/alert_target.class.php:170
-msgid "Type"
-msgstr "Typ"
-
-#: inc/alert_target.class.php:171
-msgid "Recipient"
-msgstr "Příjemce"
-
-#: inc/alert_user.class.php:88
-msgid "Status"
-msgstr "Stav"
+#: setup.php:87 front/alert.form.php:113 front/hidden_alerts.php:34
+#: front/hidden_alerts.php:37 front/alert.php:34 inc/alert.class.php:89
+msgid "Alerts"
+msgstr "Upozornění"
 
 #: front/alert.form.php:49
 #, php-format
@@ -297,7 +148,163 @@ msgstr "%s obnoví položku"
 msgid "%s purges an item"
 msgstr "%s vyčistí položku"
 
-#: ajax/targets.php:61
+#: inc/alert_target.class.php:44
+msgid "Target"
+msgid_plural "Targets"
+msgstr[0] "Cíl"
+msgstr[1] "Cílů"
+msgstr[2] "Cílů"
+msgstr[3] "Cíle"
+
+#: inc/alert_target.class.php:134
+msgid "Add a target"
+msgstr "Přidat cíl"
+
+#: inc/alert_target.class.php:162
 msgctxt "button"
-msgid "Add"
-msgstr "Přidat"
+msgid "Delete permanently"
+msgstr "Trvale odstranit"
+
+#: inc/alert_target.class.php:170
+msgid "Type"
+msgstr "Typ"
+
+#: inc/alert_target.class.php:171
+msgid "Recipient"
+msgstr "Příjemce"
+
+#: inc/alert.class.php:139
+msgid "Entity"
+msgstr "Entita"
+
+#: inc/alert.class.php:147
+msgid "Recursive"
+msgstr "Rekurzivní"
+
+#: inc/alert.class.php:176
+msgid "Show on login page"
+msgstr "Zobrazit na přihlašovací stránce"
+
+#: inc/alert.class.php:185
+msgid "Show on helpdesk page"
+msgstr "Zobrazit na stránce služby podpory"
+
+#: inc/alert.class.php:194
+msgid "Show on service catalog page"
+msgstr ""
+
+#: inc/alert.class.php:211
+msgid "Last update"
+msgstr "Poslední aktualizace"
+
+#: inc/alert.class.php:220
+msgid "Creation date"
+msgstr "Datum vytvoření"
+
+#: inc/alert.class.php:452
+msgid "Please enter a name."
+msgstr "Prosím zadejte název."
+
+#: inc/alert.class.php:456
+msgid "The end date must be greater than the start date."
+msgstr "Je třeba, aby datum konce bylo později než začátku."
+
+#: inc/alert.class.php:586
+msgid "You have hidden alerts valid for current date"
+msgstr "Máte skrytá upozornění platná pro aktuální datum"
+
+#: inc/alert.class.php:646
+msgid "General"
+msgstr "Obecné"
+
+#: inc/alert.class.php:647
+msgid "Information"
+msgstr "Informace"
+
+#: inc/alert.class.php:648
+msgid "Warning"
+msgstr "Varování"
+
+#: inc/alert.class.php:649
+msgid "Problem"
+msgstr "Problém"
+
+#: inc/alert.class.php:661
+msgid "Small"
+msgstr "Malý"
+
+#: inc/alert.class.php:662
+msgid "Medium"
+msgstr "Střední"
+
+#: inc/alert.class.php:663
+msgid "Big"
+msgstr "Velké"
+
+#: inc/alert.class.php:664
+msgid "Max"
+msgstr "Max"
+
+#: inc/alert.class.php:676
+msgid "Settings"
+msgstr "Nastavení"
+
+#: inc/alert.class.php:677
+msgid "Alert circle"
+msgstr "Kruh upozornění"
+
+#: inc/alert.class.php:678
+msgid "Alert triangle"
+msgstr "Výstražný trojúhelník"
+
+#: inc/alert.class.php:679
+msgid "Alert octagon"
+msgstr "Výstražný osmiúhelník"
+
+#: inc/alert.class.php:691
+msgid "Black"
+msgstr "Černá"
+
+#: inc/alert.class.php:692
+msgid "White"
+msgstr "Bílá"
+
+#: inc/alert.class.php:693
+msgid "Blue"
+msgstr "Modrá"
+
+#: inc/alert.class.php:694
+msgid "Cyan"
+msgstr "Tyrkysová"
+
+#: inc/alert.class.php:695
+msgid "Indigo"
+msgstr "Indigo"
+
+#: inc/alert.class.php:696
+msgid "Purple"
+msgstr "Nachová"
+
+#: inc/alert.class.php:697
+msgid "Pink"
+msgstr "Růžová"
+
+#: inc/alert.class.php:698
+msgid "Red"
+msgstr "Červená"
+
+#: inc/alert.class.php:699
+msgid "Orange"
+msgstr "Oranžová"
+
+#: inc/alert.class.php:700
+msgid "Yellow"
+msgstr "Žlutá"
+
+#: inc/alert.class.php:701
+msgid "Lime"
+msgstr "Limetka"
+
+#: inc/alert_user.class.php:88
+msgid "Status"
+msgstr "Stav"

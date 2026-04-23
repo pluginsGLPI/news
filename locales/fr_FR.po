@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-12 01:40+0000\n"
+"POT-Creation-Date: 2026-04-23 02:26+0000\n"
 "PO-Revision-Date: 2015-09-18 13:33+0000\n"
 "Last-Translator: Cédric Anne, 2018,2021,2023\n"
 "Language-Team: French (France) (http://app.transifex.com/teclib/glpi-plugin-news/language/fr_FR/)\n"
@@ -20,20 +20,20 @@ msgstr ""
 "Language: fr_FR\n"
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
+#: templates/components/news_fields_macros.html.twig
+msgid "No icon"
+msgstr "Pas d'icone"
+
 #: templates/profile.html.twig
 msgctxt "button"
 msgid "Save"
 msgstr "Enregistrer"
 
-#: templates/components/news_fields_macros.html.twig
-msgid "No icon"
-msgstr "Pas d'icone"
-
 #: templates/alert_form.html.twig inc/alert.class.php:113
 msgid "Name"
 msgstr "Nom"
 
-#: templates/alert_form.html.twig inc/alert.class.php:194
+#: templates/alert_form.html.twig inc/alert.class.php:203
 msgid "Active"
 msgstr "Actif"
 
@@ -60,6 +60,10 @@ msgstr "Page de connexion"
 #: templates/alert_form.html.twig
 msgid "Helpdesk page"
 msgstr "Page d'assistance"
+
+#: templates/alert_form.html.twig
+msgid "Service catalog page"
+msgstr ""
 
 #: templates/alert_form.html.twig
 msgid "Show on pages"
@@ -105,172 +109,20 @@ msgstr "Couleur d'emphase"
 msgid "Preview"
 msgstr "Prévisualisation"
 
-#: setup.php:84 inc/alert.class.php:89 front/alert.php:34
-#: front/alert.form.php:113 front/hidden_alerts.php:34
-#: front/hidden_alerts.php:37
-msgid "Alerts"
-msgstr "Alertes"
-
-#: inc/alert.class.php:139
-msgid "Entity"
-msgstr "Entité"
-
-#: inc/alert.class.php:147
-msgid "Recursive"
-msgstr "Récursif"
-
-#: inc/alert.class.php:176
-msgid "Show on login page"
-msgstr "Affiche sur la page de connexion"
-
-#: inc/alert.class.php:185
-msgid "Show on helpdesk page"
-msgstr "Affiche sur la page d'assistance"
-
-#: inc/alert.class.php:202
-msgid "Last update"
-msgstr "Dernière modification"
-
-#: inc/alert.class.php:211
-msgid "Creation date"
-msgstr "Date de création"
-
-#: inc/alert.class.php:435
-msgid "Please enter a name."
-msgstr "Veuillez saisir un nom."
-
-#: inc/alert.class.php:439
-msgid "The end date must be greater than the start date."
-msgstr "La date de fin doit succéder la date de début."
-
-#: inc/alert.class.php:562
-msgid "You have hidden alerts valid for current date"
-msgstr "Vous avez des alertes cachées valides pour la date courante"
-
-#: inc/alert.class.php:622
-msgid "General"
-msgstr "Général"
-
-#: inc/alert.class.php:623
-msgid "Information"
-msgstr "Information"
-
-#: inc/alert.class.php:624
-msgid "Warning"
-msgstr "Avertissement"
-
-#: inc/alert.class.php:625
-msgid "Problem"
-msgstr "Problème"
-
-#: inc/alert.class.php:637
-msgid "Small"
-msgstr "Petit"
-
-#: inc/alert.class.php:638
-msgid "Medium"
-msgstr "Moyen"
-
-#: inc/alert.class.php:639
-msgid "Big"
-msgstr "Grand"
-
-#: inc/alert.class.php:640
-msgid "Max"
-msgstr "Maximum"
-
-#: inc/alert.class.php:652
-msgid "Settings"
-msgstr "Configuration"
-
-#: inc/alert.class.php:653
-msgid "Alert circle"
-msgstr "Cercle"
-
-#: inc/alert.class.php:654
-msgid "Alert triangle"
-msgstr "Triangle"
-
-#: inc/alert.class.php:655
-msgid "Alert octagon"
-msgstr "Octogone"
-
-#: inc/alert.class.php:667
-msgid "Black"
-msgstr "Noir"
-
-#: inc/alert.class.php:668
-msgid "White"
-msgstr "Blanc"
-
-#: inc/alert.class.php:669
-msgid "Blue"
-msgstr "Bleu"
-
-#: inc/alert.class.php:670
-msgid "Cyan"
-msgstr "Cyan"
-
-#: inc/alert.class.php:671
-msgid "Indigo"
-msgstr "Indigo"
-
-#: inc/alert.class.php:672
-msgid "Purple"
-msgstr "Violet"
-
-#: inc/alert.class.php:673
-msgid "Pink"
-msgstr "Rose"
-
-#: inc/alert.class.php:674
-msgid "Red"
-msgstr "Rouge"
-
-#: inc/alert.class.php:675
-msgid "Orange"
-msgstr "Orange"
-
-#: inc/alert.class.php:676
-msgid "Yellow"
-msgstr "Jaune"
-
-#: inc/alert.class.php:677
-msgid "Lime"
-msgstr "Citron vert"
-
-#: inc/alert_target.class.php:44
-msgid "Target"
-msgid_plural "Targets"
-msgstr[0] "Cible"
-msgstr[1] "Cibles"
-msgstr[2] "Cibles"
-
-#: inc/alert_target.class.php:86 inc/alert_target.class.php:180
-#: ajax/targets.php:56
+#: ajax/targets.php:56 inc/alert_target.class.php:86
+#: inc/alert_target.class.php:180
 msgid "All"
 msgstr "Tous"
 
-#: inc/alert_target.class.php:134
-msgid "Add a target"
-msgstr "Ajouter une cible"
-
-#: inc/alert_target.class.php:162
+#: ajax/targets.php:61
 msgctxt "button"
-msgid "Delete permanently"
-msgstr "Supprimer définitivement"
+msgid "Add"
+msgstr "Ajouter"
 
-#: inc/alert_target.class.php:170
-msgid "Type"
-msgstr "Type"
-
-#: inc/alert_target.class.php:171
-msgid "Recipient"
-msgstr "Destinataire"
-
-#: inc/alert_user.class.php:88
-msgid "Status"
-msgstr "Statut"
+#: setup.php:87 front/alert.form.php:113 front/hidden_alerts.php:34
+#: front/hidden_alerts.php:37 front/alert.php:34 inc/alert.class.php:89
+msgid "Alerts"
+msgstr "Alertes"
 
 #: front/alert.form.php:49
 #, php-format
@@ -297,7 +149,162 @@ msgstr "%s restaure un élément"
 msgid "%s purges an item"
 msgstr "%s purge un élément"
 
-#: ajax/targets.php:61
+#: inc/alert_target.class.php:44
+msgid "Target"
+msgid_plural "Targets"
+msgstr[0] "Cible"
+msgstr[1] "Cibles"
+msgstr[2] "Cibles"
+
+#: inc/alert_target.class.php:134
+msgid "Add a target"
+msgstr "Ajouter une cible"
+
+#: inc/alert_target.class.php:162
 msgctxt "button"
-msgid "Add"
-msgstr "Ajouter"
+msgid "Delete permanently"
+msgstr "Supprimer définitivement"
+
+#: inc/alert_target.class.php:170
+msgid "Type"
+msgstr "Type"
+
+#: inc/alert_target.class.php:171
+msgid "Recipient"
+msgstr "Destinataire"
+
+#: inc/alert.class.php:139
+msgid "Entity"
+msgstr "Entité"
+
+#: inc/alert.class.php:147
+msgid "Recursive"
+msgstr "Récursif"
+
+#: inc/alert.class.php:176
+msgid "Show on login page"
+msgstr "Affiche sur la page de connexion"
+
+#: inc/alert.class.php:185
+msgid "Show on helpdesk page"
+msgstr "Affiche sur la page d'assistance"
+
+#: inc/alert.class.php:194
+msgid "Show on service catalog page"
+msgstr ""
+
+#: inc/alert.class.php:211
+msgid "Last update"
+msgstr "Dernière modification"
+
+#: inc/alert.class.php:220
+msgid "Creation date"
+msgstr "Date de création"
+
+#: inc/alert.class.php:452
+msgid "Please enter a name."
+msgstr "Veuillez saisir un nom."
+
+#: inc/alert.class.php:456
+msgid "The end date must be greater than the start date."
+msgstr "La date de fin doit succéder la date de début."
+
+#: inc/alert.class.php:586
+msgid "You have hidden alerts valid for current date"
+msgstr "Vous avez des alertes cachées valides pour la date courante"
+
+#: inc/alert.class.php:646
+msgid "General"
+msgstr "Général"
+
+#: inc/alert.class.php:647
+msgid "Information"
+msgstr "Information"
+
+#: inc/alert.class.php:648
+msgid "Warning"
+msgstr "Avertissement"
+
+#: inc/alert.class.php:649
+msgid "Problem"
+msgstr "Problème"
+
+#: inc/alert.class.php:661
+msgid "Small"
+msgstr "Petit"
+
+#: inc/alert.class.php:662
+msgid "Medium"
+msgstr "Moyen"
+
+#: inc/alert.class.php:663
+msgid "Big"
+msgstr "Grand"
+
+#: inc/alert.class.php:664
+msgid "Max"
+msgstr "Maximum"
+
+#: inc/alert.class.php:676
+msgid "Settings"
+msgstr "Configuration"
+
+#: inc/alert.class.php:677
+msgid "Alert circle"
+msgstr "Cercle"
+
+#: inc/alert.class.php:678
+msgid "Alert triangle"
+msgstr "Triangle"
+
+#: inc/alert.class.php:679
+msgid "Alert octagon"
+msgstr "Octogone"
+
+#: inc/alert.class.php:691
+msgid "Black"
+msgstr "Noir"
+
+#: inc/alert.class.php:692
+msgid "White"
+msgstr "Blanc"
+
+#: inc/alert.class.php:693
+msgid "Blue"
+msgstr "Bleu"
+
+#: inc/alert.class.php:694
+msgid "Cyan"
+msgstr "Cyan"
+
+#: inc/alert.class.php:695
+msgid "Indigo"
+msgstr "Indigo"
+
+#: inc/alert.class.php:696
+msgid "Purple"
+msgstr "Violet"
+
+#: inc/alert.class.php:697
+msgid "Pink"
+msgstr "Rose"
+
+#: inc/alert.class.php:698
+msgid "Red"
+msgstr "Rouge"
+
+#: inc/alert.class.php:699
+msgid "Orange"
+msgstr "Orange"
+
+#: inc/alert.class.php:700
+msgid "Yellow"
+msgstr "Jaune"
+
+#: inc/alert.class.php:701
+msgid "Lime"
+msgstr "Citron vert"
+
+#: inc/alert_user.class.php:88
+msgid "Status"
+msgstr "Statut"
