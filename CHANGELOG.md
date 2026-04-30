@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.14.0] - 2026-04-30
+
 ### Added
 
 - Added support for displaying alerts on the service catalog page.
