@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Added support for displaying alerts on the service catalog page.
 
+### Fixed
+
+- Fix alert overflow on large login screens.
+
 ## [1.13.0] - 2025-09-22
 
 ### Added
