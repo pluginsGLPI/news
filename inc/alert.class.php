@@ -542,7 +542,19 @@ class PluginNewsAlert extends CommonDBTM
 
     public static function displayOnServiceCatalog()
     {
+        if (!self::hasServiceCatalogDisplayFlag()) {
+            return;
+        }
+
         self::displayAlerts(['show_only_service_catalog_alerts' => true]);
+    }
+
+    private static function hasServiceCatalogDisplayFlag(): bool
+    {
+        /** @var DBmysql $DB */
+        global $DB;
+
+        return $DB->fieldExists(self::getTable(), 'is_displayed_onservicecatalog');
     }
 
     public static function displayAlerts($params = [])

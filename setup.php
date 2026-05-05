@@ -42,8 +42,9 @@ function plugin_init_news()
     /**
      * @var array $PLUGIN_HOOKS
      * @var array $CFG_GLPI
+     * @var DBmysql $DB
      */
-    global $PLUGIN_HOOKS, $CFG_GLPI;
+    global $PLUGIN_HOOKS, $CFG_GLPI, $DB;
 
     $PLUGIN_HOOKS['csrf_compliant']['news'] = true;
 
@@ -62,9 +63,11 @@ function plugin_init_news()
         $PLUGIN_HOOKS['display_central']['news'] = [
             'PluginNewsAlert', 'displayOnCentral',
         ];
-        $PLUGIN_HOOKS['display_service_catalog']['news'] = [
-            'PluginNewsAlert', 'displayOnServiceCatalog',
-        ];
+        if ($DB->fieldExists(PluginNewsAlert::getTable(), 'is_displayed_onservicecatalog')) {
+            $PLUGIN_HOOKS['display_service_catalog']['news'] = [
+                'PluginNewsAlert', 'displayOnServiceCatalog',
+            ];
+        }
         $PLUGIN_HOOKS['pre_item_list']['news'] = ['PluginNewsAlert', 'preItemList'];
 
         $PLUGIN_HOOKS['pre_item_form']['news'] = ['PluginNewsAlert', 'preItemForm'];
