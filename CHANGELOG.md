@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+
+- Prevent a crash on the service catalog page when plugin files are updated before the database schema migration is applied.
+
 ## [1.14.0] - 2026-04-30
 
 ### Added
