@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-23 02:26+0000\n"
+"POT-Creation-Date: 2026-05-08 02:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -210,95 +210,95 @@ msgstr ""
 msgid "You have hidden alerts valid for current date"
 msgstr ""
 
-#: inc/alert.class.php:646
+#: inc/alert.class.php:647
 msgid "General"
 msgstr ""
 
-#: inc/alert.class.php:647
+#: inc/alert.class.php:648
 msgid "Information"
 msgstr ""
 
-#: inc/alert.class.php:648
+#: inc/alert.class.php:649
 msgid "Warning"
 msgstr ""
 
-#: inc/alert.class.php:649
+#: inc/alert.class.php:650
 msgid "Problem"
 msgstr ""
 
-#: inc/alert.class.php:661
+#: inc/alert.class.php:662
 msgid "Small"
 msgstr ""
 
-#: inc/alert.class.php:662
+#: inc/alert.class.php:663
 msgid "Medium"
 msgstr ""
 
-#: inc/alert.class.php:663
+#: inc/alert.class.php:664
 msgid "Big"
 msgstr ""
 
-#: inc/alert.class.php:664
+#: inc/alert.class.php:665
 msgid "Max"
 msgstr ""
 
-#: inc/alert.class.php:676
+#: inc/alert.class.php:677
 msgid "Settings"
 msgstr ""
 
-#: inc/alert.class.php:677
+#: inc/alert.class.php:678
 msgid "Alert circle"
 msgstr ""
 
-#: inc/alert.class.php:678
+#: inc/alert.class.php:679
 msgid "Alert triangle"
 msgstr ""
 
-#: inc/alert.class.php:679
+#: inc/alert.class.php:680
 msgid "Alert octagon"
 msgstr ""
 
-#: inc/alert.class.php:691
+#: inc/alert.class.php:692
 msgid "Black"
 msgstr ""
 
-#: inc/alert.class.php:692
+#: inc/alert.class.php:693
 msgid "White"
 msgstr ""
 
-#: inc/alert.class.php:693
+#: inc/alert.class.php:694
 msgid "Blue"
 msgstr ""
 
-#: inc/alert.class.php:694
+#: inc/alert.class.php:695
 msgid "Cyan"
 msgstr ""
 
-#: inc/alert.class.php:695
+#: inc/alert.class.php:696
 msgid "Indigo"
 msgstr ""
 
-#: inc/alert.class.php:696
+#: inc/alert.class.php:697
 msgid "Purple"
 msgstr ""
 
-#: inc/alert.class.php:697
+#: inc/alert.class.php:698
 msgid "Pink"
 msgstr ""
 
-#: inc/alert.class.php:698
+#: inc/alert.class.php:699
 msgid "Red"
 msgstr ""
 
-#: inc/alert.class.php:699
+#: inc/alert.class.php:700
 msgid "Orange"
 msgstr ""
 
-#: inc/alert.class.php:700
+#: inc/alert.class.php:701
 msgid "Yellow"
 msgstr ""
 
-#: inc/alert.class.php:701
+#: inc/alert.class.php:702
 msgid "Lime"
 msgstr ""
 
