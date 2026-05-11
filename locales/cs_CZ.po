@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-23 02:26+0000\n"
+"POT-Creation-Date: 2026-05-01 02:48+0000\n"
 "PO-Revision-Date: 2015-09-18 13:33+0000\n"
 "Last-Translator: David Stepan <stepand@tiscali.cz>, 2024\n"
 "Language-Team: Czech (Czech Republic) (http://app.transifex.com/teclib/glpi-plugin-news/language/cs_CZ/)\n"
@@ -213,95 +213,95 @@ msgstr "Je třeba, aby datum konce bylo později než začátku."
 msgid "You have hidden alerts valid for current date"
 msgstr "Máte skrytá upozornění platná pro aktuální datum"
 
-#: inc/alert.class.php:646
+#: inc/alert.class.php:647
 msgid "General"
 msgstr "Obecné"
 
-#: inc/alert.class.php:647
+#: inc/alert.class.php:648
 msgid "Information"
 msgstr "Informace"
 
-#: inc/alert.class.php:648
+#: inc/alert.class.php:649
 msgid "Warning"
 msgstr "Varování"
 
-#: inc/alert.class.php:649
+#: inc/alert.class.php:650
 msgid "Problem"
 msgstr "Problém"
 
-#: inc/alert.class.php:661
+#: inc/alert.class.php:662
 msgid "Small"
 msgstr "Malý"
 
-#: inc/alert.class.php:662
+#: inc/alert.class.php:663
 msgid "Medium"
 msgstr "Střední"
 
-#: inc/alert.class.php:663
+#: inc/alert.class.php:664
 msgid "Big"
 msgstr "Velké"
 
-#: inc/alert.class.php:664
+#: inc/alert.class.php:665
 msgid "Max"
 msgstr "Max"
 
-#: inc/alert.class.php:676
+#: inc/alert.class.php:677
 msgid "Settings"
 msgstr "Nastavení"
 
-#: inc/alert.class.php:677
+#: inc/alert.class.php:678
 msgid "Alert circle"
 msgstr "Kruh upozornění"
 
-#: inc/alert.class.php:678
+#: inc/alert.class.php:679
 msgid "Alert triangle"
 msgstr "Výstražný trojúhelník"
 
-#: inc/alert.class.php:679
+#: inc/alert.class.php:680
 msgid "Alert octagon"
 msgstr "Výstražný osmiúhelník"
 
-#: inc/alert.class.php:691
+#: inc/alert.class.php:692
 msgid "Black"
 msgstr "Černá"
 
-#: inc/alert.class.php:692
+#: inc/alert.class.php:693
 msgid "White"
 msgstr "Bílá"
 
-#: inc/alert.class.php:693
+#: inc/alert.class.php:694
 msgid "Blue"
 msgstr "Modrá"
 
-#: inc/alert.class.php:694
+#: inc/alert.class.php:695
 msgid "Cyan"
 msgstr "Tyrkysová"
 
-#: inc/alert.class.php:695
+#: inc/alert.class.php:696
 msgid "Indigo"
 msgstr "Indigo"
 
-#: inc/alert.class.php:696
+#: inc/alert.class.php:697
 msgid "Purple"
 msgstr "Nachová"
 
-#: inc/alert.class.php:697
+#: inc/alert.class.php:698
 msgid "Pink"
 msgstr "Růžová"
 
-#: inc/alert.class.php:698
+#: inc/alert.class.php:699
 msgid "Red"
 msgstr "Červená"
 
-#: inc/alert.class.php:699
+#: inc/alert.class.php:700
 msgid "Orange"
 msgstr "Oranžová"
 
-#: inc/alert.class.php:700
+#: inc/alert.class.php:701
 msgid "Yellow"
 msgstr "Žlutá"
 
-#: inc/alert.class.php:701
+#: inc/alert.class.php:702
 msgid "Lime"
 msgstr "Limetka"
 

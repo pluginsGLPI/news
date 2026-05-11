@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-23 02:26+0000\n"
+"POT-Creation-Date: 2026-05-01 02:48+0000\n"
 "PO-Revision-Date: 2015-09-18 13:33+0000\n"
 "Last-Translator: INOUE Daisuke, 2023-2024\n"
 "Language-Team: Japanese (Japan) (http://app.transifex.com/teclib/glpi-plugin-news/language/ja_JP/)\n"
@@ -210,95 +210,95 @@ msgstr "終了日を開始日より後にしてください。"
 msgid "You have hidden alerts valid for current date"
 msgstr "本日時点で有効なアラートが非表示になっています"
 
-#: inc/alert.class.php:646
+#: inc/alert.class.php:647
 msgid "General"
 msgstr "全般"
 
-#: inc/alert.class.php:647
+#: inc/alert.class.php:648
 msgid "Information"
 msgstr "情報"
 
-#: inc/alert.class.php:648
+#: inc/alert.class.php:649
 msgid "Warning"
 msgstr "警告"
 
-#: inc/alert.class.php:649
+#: inc/alert.class.php:650
 msgid "Problem"
 msgstr "問題"
 
-#: inc/alert.class.php:661
+#: inc/alert.class.php:662
 msgid "Small"
 msgstr "小"
 
-#: inc/alert.class.php:662
+#: inc/alert.class.php:663
 msgid "Medium"
 msgstr "中"
 
-#: inc/alert.class.php:663
+#: inc/alert.class.php:664
 msgid "Big"
 msgstr "大"
 
-#: inc/alert.class.php:664
+#: inc/alert.class.php:665
 msgid "Max"
 msgstr "最大"
 
-#: inc/alert.class.php:676
+#: inc/alert.class.php:677
 msgid "Settings"
 msgstr "設定"
 
-#: inc/alert.class.php:677
+#: inc/alert.class.php:678
 msgid "Alert circle"
 msgstr "円形の警告"
 
-#: inc/alert.class.php:678
+#: inc/alert.class.php:679
 msgid "Alert triangle"
 msgstr "三角形の警告"
 
-#: inc/alert.class.php:679
+#: inc/alert.class.php:680
 msgid "Alert octagon"
 msgstr "8 角形の警告"
 
-#: inc/alert.class.php:691
+#: inc/alert.class.php:692
 msgid "Black"
 msgstr "黒"
 
-#: inc/alert.class.php:692
+#: inc/alert.class.php:693
 msgid "White"
 msgstr "白"
 
-#: inc/alert.class.php:693
+#: inc/alert.class.php:694
 msgid "Blue"
 msgstr "青"
 
-#: inc/alert.class.php:694
+#: inc/alert.class.php:695
 msgid "Cyan"
 msgstr "シアン"
 
-#: inc/alert.class.php:695
+#: inc/alert.class.php:696
 msgid "Indigo"
 msgstr "インディゴ"
 
-#: inc/alert.class.php:696
+#: inc/alert.class.php:697
 msgid "Purple"
 msgstr "紫"
 
-#: inc/alert.class.php:697
+#: inc/alert.class.php:698
 msgid "Pink"
 msgstr "ピンク"
 
-#: inc/alert.class.php:698
+#: inc/alert.class.php:699
 msgid "Red"
 msgstr "赤"
 
-#: inc/alert.class.php:699
+#: inc/alert.class.php:700
 msgid "Orange"
 msgstr "オレンジ"
 
-#: inc/alert.class.php:700
+#: inc/alert.class.php:701
 msgid "Yellow"
 msgstr "黄"
 
-#: inc/alert.class.php:701
+#: inc/alert.class.php:702
 msgid "Lime"
 msgstr "ライム"
 
