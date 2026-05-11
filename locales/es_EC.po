@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-23 02:26+0000\n"
+"POT-Creation-Date: 2026-05-01 02:48+0000\n"
 "PO-Revision-Date: 2015-09-18 13:33+0000\n"
 "Last-Translator: Soporte Infraestructura Standby, 2023\n"
 "Language-Team: Spanish (Ecuador) (http://app.transifex.com/teclib/glpi-plugin-news/language/es_EC/)\n"
@@ -212,95 +212,95 @@ msgstr "La fecha final debe ser mayor que la fecha de inicio."
 msgid "You have hidden alerts valid for current date"
 msgstr "Tienes alertas ocultas válidas para la fecha actual"
 
-#: inc/alert.class.php:646
+#: inc/alert.class.php:647
 msgid "General"
 msgstr "General"
 
-#: inc/alert.class.php:647
+#: inc/alert.class.php:648
 msgid "Information"
 msgstr "Información"
 
-#: inc/alert.class.php:648
+#: inc/alert.class.php:649
 msgid "Warning"
 msgstr "Advertencia|"
 
-#: inc/alert.class.php:649
+#: inc/alert.class.php:650
 msgid "Problem"
 msgstr "Problema"
 
-#: inc/alert.class.php:661
+#: inc/alert.class.php:662
 msgid "Small"
 msgstr "Pequeño"
 
-#: inc/alert.class.php:662
+#: inc/alert.class.php:663
 msgid "Medium"
 msgstr "Medio"
 
-#: inc/alert.class.php:663
+#: inc/alert.class.php:664
 msgid "Big"
 msgstr "Grande"
 
-#: inc/alert.class.php:664
+#: inc/alert.class.php:665
 msgid "Max"
 msgstr "Máximo"
 
-#: inc/alert.class.php:676
+#: inc/alert.class.php:677
 msgid "Settings"
 msgstr "Configuración"
 
-#: inc/alert.class.php:677
+#: inc/alert.class.php:678
 msgid "Alert circle"
 msgstr "Círculo de alerta"
 
-#: inc/alert.class.php:678
+#: inc/alert.class.php:679
 msgid "Alert triangle"
 msgstr "Triángulo de alerta"
 
-#: inc/alert.class.php:679
+#: inc/alert.class.php:680
 msgid "Alert octagon"
 msgstr "Octágono de alerta"
 
-#: inc/alert.class.php:691
+#: inc/alert.class.php:692
 msgid "Black"
 msgstr "Negro"
 
-#: inc/alert.class.php:692
+#: inc/alert.class.php:693
 msgid "White"
 msgstr "Blanco"
 
-#: inc/alert.class.php:693
+#: inc/alert.class.php:694
 msgid "Blue"
 msgstr "Azul"
 
-#: inc/alert.class.php:694
+#: inc/alert.class.php:695
 msgid "Cyan"
 msgstr "Cian"
 
-#: inc/alert.class.php:695
+#: inc/alert.class.php:696
 msgid "Indigo"
 msgstr "Índigo"
 
-#: inc/alert.class.php:696
+#: inc/alert.class.php:697
 msgid "Purple"
 msgstr "Morado"
 
-#: inc/alert.class.php:697
+#: inc/alert.class.php:698
 msgid "Pink"
 msgstr "Rosa"
 
-#: inc/alert.class.php:698
+#: inc/alert.class.php:699
 msgid "Red"
 msgstr "Rojo"
 
-#: inc/alert.class.php:699
+#: inc/alert.class.php:700
 msgid "Orange"
 msgstr "Naranja"
 
-#: inc/alert.class.php:700
+#: inc/alert.class.php:701
 msgid "Yellow"
 msgstr "Amarillo"
 
-#: inc/alert.class.php:701
+#: inc/alert.class.php:702
 msgid "Lime"
 msgstr "Lima"
 
