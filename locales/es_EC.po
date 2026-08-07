@@ -4,12 +4,12 @@
 # 
 # Translators:
 # Soporte Infraestructura Standby, 2023
-# Jairo Cervantes, 2023
+# Soporte Infraestructura Standby, 2023
 msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-01 02:48+0000\n"
+"POT-Creation-Date: 2026-08-07 02:30+0000\n"
 "PO-Revision-Date: 2015-09-18 13:33+0000\n"
 "Last-Translator: Soporte Infraestructura Standby, 2023\n"
 "Language-Team: Spanish (Ecuador) (http://app.transifex.com/teclib/glpi-plugin-news/language/es_EC/)\n"
@@ -18,15 +18,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: es_EC\n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
-
-#: templates/components/news_fields_macros.html.twig
-msgid "No icon"
-msgstr "Sin icono"
-
-#: templates/profile.html.twig
-msgctxt "button"
-msgid "Save"
-msgstr "Guardar"
 
 #: templates/alert_form.html.twig inc/alert.class.php:113
 msgid "Name"
@@ -108,18 +99,18 @@ msgstr "Color de énfasis"
 msgid "Preview"
 msgstr "Vista previa"
 
-#: ajax/targets.php:56 inc/alert_target.class.php:86
-#: inc/alert_target.class.php:180
-msgid "All"
-msgstr "Todo"
+#: templates/components/news_fields_macros.html.twig
+msgid "No icon"
+msgstr "Sin icono"
 
-#: ajax/targets.php:61
+#: templates/profile.html.twig
 msgctxt "button"
-msgid "Add"
-msgstr "Agregar"
+msgid "Save"
+msgstr "Guardar"
 
-#: setup.php:87 front/alert.form.php:113 front/hidden_alerts.php:34
-#: front/hidden_alerts.php:37 front/alert.php:34 inc/alert.class.php:89
+#: front/hidden_alerts.php:34 front/hidden_alerts.php:37
+#: front/alert.form.php:113 front/alert.php:34 setup.php:87
+#: inc/alert.class.php:89
 msgid "Alerts"
 msgstr "Alertas"
 
@@ -148,29 +139,15 @@ msgstr "%s restaura un elemento"
 msgid "%s purges an item"
 msgstr "%s depura un elemento"
 
-#: inc/alert_target.class.php:44
-msgid "Target"
-msgid_plural "Targets"
-msgstr[0] "Objetivos"
-msgstr[1] "Objetivos"
-msgstr[2] "Objetivos"
+#: ajax/targets.php:56 inc/alert_target.class.php:86
+#: inc/alert_target.class.php:180
+msgid "All"
+msgstr "Todo"
 
-#: inc/alert_target.class.php:134
-msgid "Add a target"
-msgstr "Agregar un destino"
-
-#: inc/alert_target.class.php:162
+#: ajax/targets.php:61
 msgctxt "button"
-msgid "Delete permanently"
-msgstr "Eliminar permanentemente"
-
-#: inc/alert_target.class.php:170
-msgid "Type"
-msgstr "Tipo"
-
-#: inc/alert_target.class.php:171
-msgid "Recipient"
-msgstr "Destinatario"
+msgid "Add"
+msgstr "Agregar"
 
 #: inc/alert.class.php:139
 msgid "Entity"
@@ -200,110 +177,134 @@ msgstr "Última actualización"
 msgid "Creation date"
 msgstr "Fecha de creación"
 
-#: inc/alert.class.php:452
+#: inc/alert.class.php:447
 msgid "Please enter a name."
 msgstr "Por favor, introduzca un nombre."
 
-#: inc/alert.class.php:456
+#: inc/alert.class.php:451
 msgid "The end date must be greater than the start date."
 msgstr "La fecha final debe ser mayor que la fecha de inicio."
 
-#: inc/alert.class.php:586
+#: inc/alert.class.php:581
 msgid "You have hidden alerts valid for current date"
 msgstr "Tienes alertas ocultas válidas para la fecha actual"
 
-#: inc/alert.class.php:647
+#: inc/alert.class.php:642
 msgid "General"
 msgstr "General"
 
-#: inc/alert.class.php:648
+#: inc/alert.class.php:643
 msgid "Information"
 msgstr "Información"
 
-#: inc/alert.class.php:649
+#: inc/alert.class.php:644
 msgid "Warning"
 msgstr "Advertencia|"
 
-#: inc/alert.class.php:650
+#: inc/alert.class.php:645
 msgid "Problem"
 msgstr "Problema"
 
-#: inc/alert.class.php:662
+#: inc/alert.class.php:657
 msgid "Small"
 msgstr "Pequeño"
 
-#: inc/alert.class.php:663
+#: inc/alert.class.php:658
 msgid "Medium"
 msgstr "Medio"
 
-#: inc/alert.class.php:664
+#: inc/alert.class.php:659
 msgid "Big"
 msgstr "Grande"
 
-#: inc/alert.class.php:665
+#: inc/alert.class.php:660
 msgid "Max"
 msgstr "Máximo"
 
-#: inc/alert.class.php:677
+#: inc/alert.class.php:672
 msgid "Settings"
 msgstr "Configuración"
 
-#: inc/alert.class.php:678
+#: inc/alert.class.php:673
 msgid "Alert circle"
 msgstr "Círculo de alerta"
 
-#: inc/alert.class.php:679
+#: inc/alert.class.php:674
 msgid "Alert triangle"
 msgstr "Triángulo de alerta"
 
-#: inc/alert.class.php:680
+#: inc/alert.class.php:675
 msgid "Alert octagon"
 msgstr "Octágono de alerta"
 
-#: inc/alert.class.php:692
+#: inc/alert.class.php:687
 msgid "Black"
 msgstr "Negro"
 
-#: inc/alert.class.php:693
+#: inc/alert.class.php:688
 msgid "White"
 msgstr "Blanco"
 
-#: inc/alert.class.php:694
+#: inc/alert.class.php:689
 msgid "Blue"
 msgstr "Azul"
 
-#: inc/alert.class.php:695
+#: inc/alert.class.php:690
 msgid "Cyan"
 msgstr "Cian"
 
-#: inc/alert.class.php:696
+#: inc/alert.class.php:691
 msgid "Indigo"
 msgstr "Índigo"
 
-#: inc/alert.class.php:697
+#: inc/alert.class.php:692
 msgid "Purple"
 msgstr "Morado"
 
-#: inc/alert.class.php:698
+#: inc/alert.class.php:693
 msgid "Pink"
 msgstr "Rosa"
 
-#: inc/alert.class.php:699
+#: inc/alert.class.php:694
 msgid "Red"
 msgstr "Rojo"
 
-#: inc/alert.class.php:700
+#: inc/alert.class.php:695
 msgid "Orange"
 msgstr "Naranja"
 
-#: inc/alert.class.php:701
+#: inc/alert.class.php:696
 msgid "Yellow"
 msgstr "Amarillo"
 
-#: inc/alert.class.php:702
+#: inc/alert.class.php:697
 msgid "Lime"
 msgstr "Lima"
 
 #: inc/alert_user.class.php:88
 msgid "Status"
 msgstr "Estado"
+
+#: inc/alert_target.class.php:44
+msgid "Target"
+msgid_plural "Targets"
+msgstr[0] "Objetivos"
+msgstr[1] "Objetivos"
+msgstr[2] "Objetivos"
+
+#: inc/alert_target.class.php:134
+msgid "Add a target"
+msgstr "Agregar un destino"
+
+#: inc/alert_target.class.php:162
+msgctxt "button"
+msgid "Delete permanently"
+msgstr "Eliminar permanentemente"
+
+#: inc/alert_target.class.php:170
+msgid "Type"
+msgstr "Tipo"
+
+#: inc/alert_target.class.php:171
+msgid "Recipient"
+msgstr "Destinatario"
