@@ -3,30 +3,21 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# INOUE Daisuke, 2023
-# INOUE Daisuke, 2023-2024
+# Daisuke INOUE, 2023
+# Daisuke INOUE, 2023-2024
 msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-01 02:48+0000\n"
+"POT-Creation-Date: 2026-08-07 02:30+0000\n"
 "PO-Revision-Date: 2015-09-18 13:33+0000\n"
-"Last-Translator: INOUE Daisuke, 2023-2024\n"
+"Last-Translator: Daisuke INOUE, 2023-2024\n"
 "Language-Team: Japanese (Japan) (http://app.transifex.com/teclib/glpi-plugin-news/language/ja_JP/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ja_JP\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-
-#: templates/components/news_fields_macros.html.twig
-msgid "No icon"
-msgstr "アイコンなし"
-
-#: templates/profile.html.twig
-msgctxt "button"
-msgid "Save"
-msgstr "保存"
 
 #: templates/alert_form.html.twig inc/alert.class.php:113
 msgid "Name"
@@ -108,18 +99,18 @@ msgstr "強調色"
 msgid "Preview"
 msgstr "プレビュー"
 
-#: ajax/targets.php:56 inc/alert_target.class.php:86
-#: inc/alert_target.class.php:180
-msgid "All"
-msgstr "すべて"
+#: templates/components/news_fields_macros.html.twig
+msgid "No icon"
+msgstr "アイコンなし"
 
-#: ajax/targets.php:61
+#: templates/profile.html.twig
 msgctxt "button"
-msgid "Add"
-msgstr "追加"
+msgid "Save"
+msgstr "保存"
 
-#: setup.php:87 front/alert.form.php:113 front/hidden_alerts.php:34
-#: front/hidden_alerts.php:37 front/alert.php:34 inc/alert.class.php:89
+#: front/hidden_alerts.php:34 front/hidden_alerts.php:37
+#: front/alert.form.php:113 front/alert.php:34 setup.php:87
+#: inc/alert.class.php:89
 msgid "Alerts"
 msgstr "アラート"
 
@@ -148,27 +139,15 @@ msgstr "%s がアイテムを復元"
 msgid "%s purges an item"
 msgstr "%s がアイテムを抹消"
 
-#: inc/alert_target.class.php:44
-msgid "Target"
-msgid_plural "Targets"
-msgstr[0] "対象"
+#: ajax/targets.php:56 inc/alert_target.class.php:86
+#: inc/alert_target.class.php:180
+msgid "All"
+msgstr "すべて"
 
-#: inc/alert_target.class.php:134
-msgid "Add a target"
-msgstr "対象を追加"
-
-#: inc/alert_target.class.php:162
+#: ajax/targets.php:61
 msgctxt "button"
-msgid "Delete permanently"
-msgstr "完全に削除"
-
-#: inc/alert_target.class.php:170
-msgid "Type"
-msgstr "タイプ"
-
-#: inc/alert_target.class.php:171
-msgid "Recipient"
-msgstr "受信者"
+msgid "Add"
+msgstr "追加"
 
 #: inc/alert.class.php:139
 msgid "Entity"
@@ -198,110 +177,132 @@ msgstr "最終更新"
 msgid "Creation date"
 msgstr "作成日"
 
-#: inc/alert.class.php:452
+#: inc/alert.class.php:447
 msgid "Please enter a name."
 msgstr "名前を入力してください。"
 
-#: inc/alert.class.php:456
+#: inc/alert.class.php:451
 msgid "The end date must be greater than the start date."
 msgstr "終了日を開始日より後にしてください。"
 
-#: inc/alert.class.php:586
+#: inc/alert.class.php:581
 msgid "You have hidden alerts valid for current date"
 msgstr "本日時点で有効なアラートが非表示になっています"
 
-#: inc/alert.class.php:647
+#: inc/alert.class.php:642
 msgid "General"
 msgstr "全般"
 
-#: inc/alert.class.php:648
+#: inc/alert.class.php:643
 msgid "Information"
 msgstr "情報"
 
-#: inc/alert.class.php:649
+#: inc/alert.class.php:644
 msgid "Warning"
 msgstr "警告"
 
-#: inc/alert.class.php:650
+#: inc/alert.class.php:645
 msgid "Problem"
 msgstr "問題"
 
-#: inc/alert.class.php:662
+#: inc/alert.class.php:657
 msgid "Small"
 msgstr "小"
 
-#: inc/alert.class.php:663
+#: inc/alert.class.php:658
 msgid "Medium"
 msgstr "中"
 
-#: inc/alert.class.php:664
+#: inc/alert.class.php:659
 msgid "Big"
 msgstr "大"
 
-#: inc/alert.class.php:665
+#: inc/alert.class.php:660
 msgid "Max"
 msgstr "最大"
 
-#: inc/alert.class.php:677
+#: inc/alert.class.php:672
 msgid "Settings"
 msgstr "設定"
 
-#: inc/alert.class.php:678
+#: inc/alert.class.php:673
 msgid "Alert circle"
 msgstr "円形の警告"
 
-#: inc/alert.class.php:679
+#: inc/alert.class.php:674
 msgid "Alert triangle"
 msgstr "三角形の警告"
 
-#: inc/alert.class.php:680
+#: inc/alert.class.php:675
 msgid "Alert octagon"
 msgstr "8 角形の警告"
 
-#: inc/alert.class.php:692
+#: inc/alert.class.php:687
 msgid "Black"
 msgstr "黒"
 
-#: inc/alert.class.php:693
+#: inc/alert.class.php:688
 msgid "White"
 msgstr "白"
 
-#: inc/alert.class.php:694
+#: inc/alert.class.php:689
 msgid "Blue"
 msgstr "青"
 
-#: inc/alert.class.php:695
+#: inc/alert.class.php:690
 msgid "Cyan"
 msgstr "シアン"
 
-#: inc/alert.class.php:696
+#: inc/alert.class.php:691
 msgid "Indigo"
 msgstr "インディゴ"
 
-#: inc/alert.class.php:697
+#: inc/alert.class.php:692
 msgid "Purple"
 msgstr "紫"
 
-#: inc/alert.class.php:698
+#: inc/alert.class.php:693
 msgid "Pink"
 msgstr "ピンク"
 
-#: inc/alert.class.php:699
+#: inc/alert.class.php:694
 msgid "Red"
 msgstr "赤"
 
-#: inc/alert.class.php:700
+#: inc/alert.class.php:695
 msgid "Orange"
 msgstr "オレンジ"
 
-#: inc/alert.class.php:701
+#: inc/alert.class.php:696
 msgid "Yellow"
 msgstr "黄"
 
-#: inc/alert.class.php:702
+#: inc/alert.class.php:697
 msgid "Lime"
 msgstr "ライム"
 
 #: inc/alert_user.class.php:88
 msgid "Status"
 msgstr "状態"
+
+#: inc/alert_target.class.php:44
+msgid "Target"
+msgid_plural "Targets"
+msgstr[0] "対象"
+
+#: inc/alert_target.class.php:134
+msgid "Add a target"
+msgstr "対象を追加"
+
+#: inc/alert_target.class.php:162
+msgctxt "button"
+msgid "Delete permanently"
+msgstr "完全に削除"
+
+#: inc/alert_target.class.php:170
+msgid "Type"
+msgstr "タイプ"
+
+#: inc/alert_target.class.php:171
+msgid "Recipient"
+msgstr "受信者"
