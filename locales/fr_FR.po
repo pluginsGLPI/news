@@ -6,13 +6,14 @@
 # alexandre delaunay <delaunay.alexandre@gmail.com>, 2016
 # Cédric Anne, 2018,2021,2023
 # Christophe Brissy <metastase83@gmail.com>, 2019
+# EpicIT33, 2026
 msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-07 02:30+0000\n"
+"POT-Creation-Date: 2026-08-18 01:01+0000\n"
 "PO-Revision-Date: 2015-09-18 13:33+0000\n"
-"Last-Translator: Cédric Anne, 2018,2021,2023\n"
+"Last-Translator: EpicIT33, 2026\n"
 "Language-Team: French (France) (http://app.transifex.com/teclib/glpi-plugin-news/language/fr_FR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -54,7 +55,7 @@ msgstr "Page d'assistance"
 
 #: templates/alert_form.html.twig
 msgid "Service catalog page"
-msgstr ""
+msgstr "Page du catalogue de services"
 
 #: templates/alert_form.html.twig
 msgid "Show on pages"
@@ -100,18 +101,17 @@ msgstr "Couleur d'emphase"
 msgid "Preview"
 msgstr "Prévisualisation"
 
-#: templates/components/news_fields_macros.html.twig
-msgid "No icon"
-msgstr "Pas d'icone"
-
 #: templates/profile.html.twig
 msgctxt "button"
 msgid "Save"
 msgstr "Enregistrer"
 
-#: front/hidden_alerts.php:34 front/hidden_alerts.php:37
-#: front/alert.form.php:113 front/alert.php:34 setup.php:87
-#: inc/alert.class.php:89
+#: templates/components/news_fields_macros.html.twig
+msgid "No icon"
+msgstr "Pas d'icone"
+
+#: front/hidden_alerts.php:34 front/hidden_alerts.php:37 front/alert.php:34
+#: front/alert.form.php:113 setup.php:87 inc/alert.class.php:89
 msgid "Alerts"
 msgstr "Alertes"
 
@@ -140,15 +140,38 @@ msgstr "%s restaure un élément"
 msgid "%s purges an item"
 msgstr "%s purge un élément"
 
-#: ajax/targets.php:56 inc/alert_target.class.php:86
-#: inc/alert_target.class.php:180
+#: inc/alert_user.class.php:88
+msgid "Status"
+msgstr "Statut"
+
+#: inc/alert_target.class.php:44
+msgid "Target"
+msgid_plural "Targets"
+msgstr[0] "Cible"
+msgstr[1] "Cibles"
+msgstr[2] "Cibles"
+
+#: inc/alert_target.class.php:86 inc/alert_target.class.php:180
+#: ajax/targets.php:56
 msgid "All"
 msgstr "Tous"
 
-#: ajax/targets.php:61
+#: inc/alert_target.class.php:134
+msgid "Add a target"
+msgstr "Ajouter une cible"
+
+#: inc/alert_target.class.php:162
 msgctxt "button"
-msgid "Add"
-msgstr "Ajouter"
+msgid "Delete permanently"
+msgstr "Supprimer définitivement"
+
+#: inc/alert_target.class.php:170
+msgid "Type"
+msgstr "Type"
+
+#: inc/alert_target.class.php:171
+msgid "Recipient"
+msgstr "Destinataire"
 
 #: inc/alert.class.php:139
 msgid "Entity"
@@ -168,7 +191,7 @@ msgstr "Affiche sur la page d'assistance"
 
 #: inc/alert.class.php:194
 msgid "Show on service catalog page"
-msgstr ""
+msgstr "Affiche sur la page du catalogue de services"
 
 #: inc/alert.class.php:211
 msgid "Last update"
@@ -282,30 +305,7 @@ msgstr "Jaune"
 msgid "Lime"
 msgstr "Citron vert"
 
-#: inc/alert_user.class.php:88
-msgid "Status"
-msgstr "Statut"
-
-#: inc/alert_target.class.php:44
-msgid "Target"
-msgid_plural "Targets"
-msgstr[0] "Cible"
-msgstr[1] "Cibles"
-msgstr[2] "Cibles"
-
-#: inc/alert_target.class.php:134
-msgid "Add a target"
-msgstr "Ajouter une cible"
-
-#: inc/alert_target.class.php:162
+#: ajax/targets.php:61
 msgctxt "button"
-msgid "Delete permanently"
-msgstr "Supprimer définitivement"
-
-#: inc/alert_target.class.php:170
-msgid "Type"
-msgstr "Type"
-
-#: inc/alert_target.class.php:171
-msgid "Recipient"
-msgstr "Destinataire"
+msgid "Add"
+msgstr "Ajouter"

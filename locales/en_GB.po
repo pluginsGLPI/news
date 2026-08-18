@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-07 02:30+0000\n"
-"PO-Revision-Date: 2026-08-07 02:30+0000\n"
+"POT-Creation-Date: 2026-08-18 01:01+0000\n"
+"PO-Revision-Date: 2026-08-18 01:01+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en_GB\n"
@@ -97,18 +97,17 @@ msgstr "Emphasis color"
 msgid "Preview"
 msgstr "Preview"
 
-#: templates/components/news_fields_macros.html.twig
-msgid "No icon"
-msgstr "No icon"
-
 #: templates/profile.html.twig
 msgctxt "button"
 msgid "Save"
 msgstr "Save"
 
-#: front/hidden_alerts.php:34 front/hidden_alerts.php:37
-#: front/alert.form.php:113 front/alert.php:34 setup.php:87
-#: inc/alert.class.php:89
+#: templates/components/news_fields_macros.html.twig
+msgid "No icon"
+msgstr "No icon"
+
+#: front/hidden_alerts.php:34 front/hidden_alerts.php:37 front/alert.php:34
+#: front/alert.form.php:113 setup.php:87 inc/alert.class.php:89
 msgid "Alerts"
 msgstr "Alerts"
 
@@ -137,15 +136,37 @@ msgstr "%s restores an item"
 msgid "%s purges an item"
 msgstr "%s purges an item"
 
-#: ajax/targets.php:56 inc/alert_target.class.php:86
-#: inc/alert_target.class.php:180
+#: inc/alert_user.class.php:88
+msgid "Status"
+msgstr "Status"
+
+#: inc/alert_target.class.php:44
+msgid "Target"
+msgid_plural "Targets"
+msgstr[0] "Target"
+msgstr[1] "Targets"
+
+#: inc/alert_target.class.php:86 inc/alert_target.class.php:180
+#: ajax/targets.php:56
 msgid "All"
 msgstr "All"
 
-#: ajax/targets.php:61
+#: inc/alert_target.class.php:134
+msgid "Add a target"
+msgstr "Add a target"
+
+#: inc/alert_target.class.php:162
 msgctxt "button"
-msgid "Add"
-msgstr "Add"
+msgid "Delete permanently"
+msgstr "Delete permanently"
+
+#: inc/alert_target.class.php:170
+msgid "Type"
+msgstr "Type"
+
+#: inc/alert_target.class.php:171
+msgid "Recipient"
+msgstr "Recipient"
 
 #: inc/alert.class.php:139
 msgid "Entity"
@@ -279,29 +300,7 @@ msgstr "Yellow"
 msgid "Lime"
 msgstr "Lime"
 
-#: inc/alert_user.class.php:88
-msgid "Status"
-msgstr "Status"
-
-#: inc/alert_target.class.php:44
-msgid "Target"
-msgid_plural "Targets"
-msgstr[0] "Target"
-msgstr[1] "Targets"
-
-#: inc/alert_target.class.php:134
-msgid "Add a target"
-msgstr "Add a target"
-
-#: inc/alert_target.class.php:162
+#: ajax/targets.php:61
 msgctxt "button"
-msgid "Delete permanently"
-msgstr "Delete permanently"
-
-#: inc/alert_target.class.php:170
-msgid "Type"
-msgstr "Type"
-
-#: inc/alert_target.class.php:171
-msgid "Recipient"
-msgstr "Recipient"
+msgid "Add"
+msgstr "Add"
