@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-07 02:30+0000\n"
+"POT-Creation-Date: 2026-08-17 01:03+0000\n"
 "PO-Revision-Date: 2015-09-18 13:33+0000\n"
 "Last-Translator: Matheus Rafael, 2023\n"
 "Language-Team: Portuguese (Brazil) (http://app.transifex.com/teclib/glpi-plugin-news/language/pt_BR/)\n"
@@ -100,18 +100,17 @@ msgstr "Cor de destaque"
 msgid "Preview"
 msgstr "Visualização"
 
-#: templates/components/news_fields_macros.html.twig
-msgid "No icon"
-msgstr "Sem ícone"
-
 #: templates/profile.html.twig
 msgctxt "button"
 msgid "Save"
 msgstr "Salvar"
 
-#: front/hidden_alerts.php:34 front/hidden_alerts.php:37
-#: front/alert.form.php:113 front/alert.php:34 setup.php:87
-#: inc/alert.class.php:89
+#: templates/components/news_fields_macros.html.twig
+msgid "No icon"
+msgstr "Sem ícone"
+
+#: front/hidden_alerts.php:34 front/hidden_alerts.php:37 front/alert.php:34
+#: front/alert.form.php:113 setup.php:87 inc/alert.class.php:89
 msgid "Alerts"
 msgstr "Alertas"
 
@@ -140,15 +139,38 @@ msgstr "%s restaura um item"
 msgid "%s purges an item"
 msgstr "%s limpa um item"
 
-#: ajax/targets.php:56 inc/alert_target.class.php:86
-#: inc/alert_target.class.php:180
+#: inc/alert_user.class.php:88
+msgid "Status"
+msgstr "Status"
+
+#: inc/alert_target.class.php:44
+msgid "Target"
+msgid_plural "Targets"
+msgstr[0] "Alvo"
+msgstr[1] "Alvos"
+msgstr[2] "Alvos"
+
+#: inc/alert_target.class.php:86 inc/alert_target.class.php:180
+#: ajax/targets.php:56
 msgid "All"
 msgstr "Todos"
 
-#: ajax/targets.php:61
+#: inc/alert_target.class.php:134
+msgid "Add a target"
+msgstr "Adicionar um alvo"
+
+#: inc/alert_target.class.php:162
 msgctxt "button"
-msgid "Add"
-msgstr "Adicionar"
+msgid "Delete permanently"
+msgstr "Deletar permanentemente"
+
+#: inc/alert_target.class.php:170
+msgid "Type"
+msgstr "Tipo"
+
+#: inc/alert_target.class.php:171
+msgid "Recipient"
+msgstr "Destinatário"
 
 #: inc/alert.class.php:139
 msgid "Entity"
@@ -282,30 +304,7 @@ msgstr "Amarelo"
 msgid "Lime"
 msgstr "Lima"
 
-#: inc/alert_user.class.php:88
-msgid "Status"
-msgstr "Status"
-
-#: inc/alert_target.class.php:44
-msgid "Target"
-msgid_plural "Targets"
-msgstr[0] "Alvo"
-msgstr[1] "Alvos"
-msgstr[2] "Alvos"
-
-#: inc/alert_target.class.php:134
-msgid "Add a target"
-msgstr "Adicionar um alvo"
-
-#: inc/alert_target.class.php:162
+#: ajax/targets.php:61
 msgctxt "button"
-msgid "Delete permanently"
-msgstr "Deletar permanentemente"
-
-#: inc/alert_target.class.php:170
-msgid "Type"
-msgstr "Tipo"
-
-#: inc/alert_target.class.php:171
-msgid "Recipient"
-msgstr "Destinatário"
+msgid "Add"
+msgstr "Adicionar"

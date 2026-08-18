@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-07 02:30+0000\n"
+"POT-Creation-Date: 2026-08-17 01:03+0000\n"
 "PO-Revision-Date: 2015-09-18 13:33+0000\n"
 "Last-Translator: David Stepan <stepand@tiscali.cz>, 2024\n"
 "Language-Team: Czech (Czech Republic) (http://app.transifex.com/teclib/glpi-plugin-news/language/cs_CZ/)\n"
@@ -99,18 +99,17 @@ msgstr "Barva zvýraznění"
 msgid "Preview"
 msgstr "Náhled"
 
-#: templates/components/news_fields_macros.html.twig
-msgid "No icon"
-msgstr "Žádná ikona"
-
 #: templates/profile.html.twig
 msgctxt "button"
 msgid "Save"
 msgstr "Uložit"
 
-#: front/hidden_alerts.php:34 front/hidden_alerts.php:37
-#: front/alert.form.php:113 front/alert.php:34 setup.php:87
-#: inc/alert.class.php:89
+#: templates/components/news_fields_macros.html.twig
+msgid "No icon"
+msgstr "Žádná ikona"
+
+#: front/hidden_alerts.php:34 front/hidden_alerts.php:37 front/alert.php:34
+#: front/alert.form.php:113 setup.php:87 inc/alert.class.php:89
 msgid "Alerts"
 msgstr "Upozornění"
 
@@ -139,15 +138,39 @@ msgstr "%s obnoví položku"
 msgid "%s purges an item"
 msgstr "%s vyčistí položku"
 
-#: ajax/targets.php:56 inc/alert_target.class.php:86
-#: inc/alert_target.class.php:180
+#: inc/alert_user.class.php:88
+msgid "Status"
+msgstr "Stav"
+
+#: inc/alert_target.class.php:44
+msgid "Target"
+msgid_plural "Targets"
+msgstr[0] "Cíl"
+msgstr[1] "Cílů"
+msgstr[2] "Cílů"
+msgstr[3] "Cíle"
+
+#: inc/alert_target.class.php:86 inc/alert_target.class.php:180
+#: ajax/targets.php:56
 msgid "All"
 msgstr "Vše"
 
-#: ajax/targets.php:61
+#: inc/alert_target.class.php:134
+msgid "Add a target"
+msgstr "Přidat cíl"
+
+#: inc/alert_target.class.php:162
 msgctxt "button"
-msgid "Add"
-msgstr "Přidat"
+msgid "Delete permanently"
+msgstr "Trvale odstranit"
+
+#: inc/alert_target.class.php:170
+msgid "Type"
+msgstr "Typ"
+
+#: inc/alert_target.class.php:171
+msgid "Recipient"
+msgstr "Příjemce"
 
 #: inc/alert.class.php:139
 msgid "Entity"
@@ -281,31 +304,7 @@ msgstr "Žlutá"
 msgid "Lime"
 msgstr "Limetka"
 
-#: inc/alert_user.class.php:88
-msgid "Status"
-msgstr "Stav"
-
-#: inc/alert_target.class.php:44
-msgid "Target"
-msgid_plural "Targets"
-msgstr[0] "Cíl"
-msgstr[1] "Cílů"
-msgstr[2] "Cílů"
-msgstr[3] "Cíle"
-
-#: inc/alert_target.class.php:134
-msgid "Add a target"
-msgstr "Přidat cíl"
-
-#: inc/alert_target.class.php:162
+#: ajax/targets.php:61
 msgctxt "button"
-msgid "Delete permanently"
-msgstr "Trvale odstranit"
-
-#: inc/alert_target.class.php:170
-msgid "Type"
-msgstr "Typ"
-
-#: inc/alert_target.class.php:171
-msgid "Recipient"
-msgstr "Příjemce"
+msgid "Add"
+msgstr "Přidat"

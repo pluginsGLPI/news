@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-07 02:30+0000\n"
+"POT-Creation-Date: 2026-08-17 01:03+0000\n"
 "PO-Revision-Date: 2015-09-18 13:33+0000\n"
 "Last-Translator: Daisuke INOUE, 2023-2024\n"
 "Language-Team: Japanese (Japan) (http://app.transifex.com/teclib/glpi-plugin-news/language/ja_JP/)\n"
@@ -99,18 +99,17 @@ msgstr "強調色"
 msgid "Preview"
 msgstr "プレビュー"
 
-#: templates/components/news_fields_macros.html.twig
-msgid "No icon"
-msgstr "アイコンなし"
-
 #: templates/profile.html.twig
 msgctxt "button"
 msgid "Save"
 msgstr "保存"
 
-#: front/hidden_alerts.php:34 front/hidden_alerts.php:37
-#: front/alert.form.php:113 front/alert.php:34 setup.php:87
-#: inc/alert.class.php:89
+#: templates/components/news_fields_macros.html.twig
+msgid "No icon"
+msgstr "アイコンなし"
+
+#: front/hidden_alerts.php:34 front/hidden_alerts.php:37 front/alert.php:34
+#: front/alert.form.php:113 setup.php:87 inc/alert.class.php:89
 msgid "Alerts"
 msgstr "アラート"
 
@@ -139,15 +138,36 @@ msgstr "%s がアイテムを復元"
 msgid "%s purges an item"
 msgstr "%s がアイテムを抹消"
 
-#: ajax/targets.php:56 inc/alert_target.class.php:86
-#: inc/alert_target.class.php:180
+#: inc/alert_user.class.php:88
+msgid "Status"
+msgstr "状態"
+
+#: inc/alert_target.class.php:44
+msgid "Target"
+msgid_plural "Targets"
+msgstr[0] "対象"
+
+#: inc/alert_target.class.php:86 inc/alert_target.class.php:180
+#: ajax/targets.php:56
 msgid "All"
 msgstr "すべて"
 
-#: ajax/targets.php:61
+#: inc/alert_target.class.php:134
+msgid "Add a target"
+msgstr "対象を追加"
+
+#: inc/alert_target.class.php:162
 msgctxt "button"
-msgid "Add"
-msgstr "追加"
+msgid "Delete permanently"
+msgstr "完全に削除"
+
+#: inc/alert_target.class.php:170
+msgid "Type"
+msgstr "タイプ"
+
+#: inc/alert_target.class.php:171
+msgid "Recipient"
+msgstr "受信者"
 
 #: inc/alert.class.php:139
 msgid "Entity"
@@ -281,28 +301,7 @@ msgstr "黄"
 msgid "Lime"
 msgstr "ライム"
 
-#: inc/alert_user.class.php:88
-msgid "Status"
-msgstr "状態"
-
-#: inc/alert_target.class.php:44
-msgid "Target"
-msgid_plural "Targets"
-msgstr[0] "対象"
-
-#: inc/alert_target.class.php:134
-msgid "Add a target"
-msgstr "対象を追加"
-
-#: inc/alert_target.class.php:162
+#: ajax/targets.php:61
 msgctxt "button"
-msgid "Delete permanently"
-msgstr "完全に削除"
-
-#: inc/alert_target.class.php:170
-msgid "Type"
-msgstr "タイプ"
-
-#: inc/alert_target.class.php:171
-msgid "Recipient"
-msgstr "受信者"
+msgid "Add"
+msgstr "追加"
