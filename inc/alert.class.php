@@ -39,8 +39,8 @@ if (!defined('GLPI_ROOT')) {
 
 class PluginNewsAlert extends CommonDBTM
 {
-    public static $rightname = 'plugin_news_alert';
-    public $dohistory        = true;
+    public static string $rightname = 'plugin_news_alert';
+    public bool $dohistory        = true;
 
     // Available templates
     public const GENERAL = 1;
@@ -391,7 +391,7 @@ class PluginNewsAlert extends CommonDBTM
         if ($targets_sql !== []) {
             $criteria['INNER JOIN'][$ttable]['ON'][] = $targets_sql;
         }
-        if (!empty($entity_sql)) {
+        if ($entity_sql !== []) {
             $criteria['WHERE'][] = $entity_sql;
         }
         if ($login_sql !== []) {
