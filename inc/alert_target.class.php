@@ -37,7 +37,7 @@ if (!defined('GLPI_ROOT')) {
 class PluginNewsAlert_Target extends CommonDBTM
 {
     // @codingStandardsIgnoreEnd
-    public static $rightname = 'plugin_news_alert';
+    public static string $rightname = 'plugin_news_alert';
 
     public static function getTypeName($nb = 0)
     {
