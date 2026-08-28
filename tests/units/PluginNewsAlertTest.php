@@ -30,6 +30,7 @@
 
 namespace GlpiPlugin\News\Tests\Units;
 
+use Glpi\Application\View\TemplateRenderer;
 use Glpi\Tests\DbTestCase;
 use PluginNewsAlert;
 use PluginNewsAlert_User;
@@ -229,5 +230,96 @@ class PluginNewsAlertTest extends DbTestCase
 
         $this->assertSame(PluginNewsAlert_User::VISIBLE, $this->getAlertUserState($alert_user_1_id));
         $this->assertSame(PluginNewsAlert_User::HIDDEN, $this->getAlertUserState($alert_user_2_id));
+    }
+
+    /**
+     * The alert preview script reads the current field values from their
+     * 'plugin-news-alert-field' wrapper rather than from the surrounding <form>,
+     * because that <form> is only rendered when the item is editable (a recursive
+     * alert consulted from a sub-entity is shown read-only, with no <form> at all).
+     * This asserts that the fields keep that marker, and stay usable (not disabled,
+     * carrying their real value), whether or not the item is editable.
+     */
+    public function testAlertPreviewDisplaysWhetherYouCanEditOrNot(): void
+    {
+        $this->login('glpi');
+
+        $alert = $this->createItem(
+            PluginNewsAlert::class,
+            [
+                'name'                          => 'Recursive alert',
+                'message'                       => 'Alert preview content',
+                'type'                          => 1,
+                'size'                          => 'medium',
+                'icon'                          => 'settings',
+                'background_color'              => 'white',
+                'text_color'                    => 'dark',
+                'emphasis_color'                => 'dark',
+                'is_active'                     => 1,
+                'entities_id'                   => 0,
+                'is_close_allowed'              => 1,
+                'is_displayed_onlogin'          => 0,
+                'is_displayed_oncentral'        => 0,
+                'is_displayed_onhelpdesk'       => 0,
+                'is_displayed_onservicecatalog' => 0,
+
+            ],
+        );
+
+        $render = function () use ($alert): string {
+            return TemplateRenderer::getInstance()->render('@news/alert_form.html.twig', [
+                'item'             => $alert,
+                'templates'        => PluginNewsAlert::getTypes(),
+                'sizes'            => PluginNewsAlert::getSizes(),
+                'colors'           => PluginNewsAlert::getColors(),
+                'icons'            => PluginNewsAlert::getIcons(),
+                'templates_values' => PluginNewsAlert::getTemplatesValues(),
+            ]);
+        };
+
+        //Both scenarios will ensure that plugin-news-alert-field class is present,
+        // as it ensures our fields values are carried to the backend.
+
+        // First scenario: Render template in editable mode, we check the form is present.
+        $editable_html = $render();
+        $this->assertStringContainsString('name="asset_form"', $editable_html);
+        $this->assertStringContainsString('plugin-news-alert-field', $editable_html);
+        $this->assertStringContainsString('name="message"', $editable_html);
+        $this->assertStringContainsString('Alert preview content', $editable_html);
+
+        // Second scenario: Render template in readonly mode, we check the form is absent
+        $profile = $this->createItem(\Profile::class, [
+            'name'      => 'News read-only',
+            'interface' => 'central',
+        ]);
+        $readonly_user = $this->createItem(User::class, [
+            'name' => 'news_readonly_user',
+        ]);
+        $this->createItem(\Profile_User::class, [
+            'users_id'    => $readonly_user->getID(),
+            'profiles_id' => $profile->getID(),
+            'entities_id' => 0,
+        ]);
+
+        global $DB;
+        $DB->update(\ProfileRight::getTable(), ['rights' => 0], ['profiles_id' => $profile->getID()]);
+        \ProfileRight::updateProfileRights($profile->getID(), [
+            PluginNewsAlert::$rightname => READ,
+        ]);
+
+        $this->login('news_readonly_user');
+        $this->assertFalse($alert->canEdit($alert->getID()));
+
+        $readonly_html = $render();
+        $this->assertStringNotContainsString('name="asset_form"', $readonly_html);
+        $this->assertStringContainsString('plugin-news-alert-field', $readonly_html);
+        $this->assertStringContainsString('name="message"', $readonly_html);
+        $this->assertStringContainsString('Alert preview content', $readonly_html);
+
+        // The checked "background_color" radio must not be disabled, or jQuery's
+        // serialize() (used by the preview script) would silently drop it.
+        $found = preg_match('/<input[^>]*name="background_color"[^>]*checked[^>]*>/', $readonly_html, $matches);
+        $this->assertSame(1, $found);
+        $this->assertStringNotContainsString('disabled', $matches[0]);
     }
 }

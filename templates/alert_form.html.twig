@@ -37,8 +37,10 @@
     {# Horizontal mode solve a few layout problems for this page, such as displaying
        properly a field on an entire row or splitting the layout into 3 columns
        without losing too much space #}
+    {# The 'plugin-news-alert-field' class is used by the preview script below #}
     {% set base_option = {
         'is_horizontal' : false,
+        'add_field_class' : 'plugin-news-alert-field',
     } %}
     {% set base_option_small = {
         'field_class' : 'col-xxl-4 col-xl-6',
@@ -173,6 +175,8 @@
 
     <script>
         (async function () {
+            const $fields = $(".plugin-news-alert-field");
+
             const reload_preview = function () {
                 // Show preview section if hidden
                 $('.preview-section').removeClass('d-none');
@@ -180,10 +184,9 @@
                 // Send tinymce content to the forms textarea
                 tinyMCE.triggerSave();
 
-                // Load preview
                 $(".alert-preview").load(
                     "{{ path('/plugins/news/ajax/alert_preview.php') }}",
-                    $("form[name=asset_form]").serialize()
+                    $fields.find(':input').serialize()
                 );
             };
 
@@ -192,7 +195,7 @@
 
             // Any input or dropdown change on our form
             let updating_template = false;
-            $("form[name=asset_form] :input").on('input', function(e) {
+            $fields.find(':input').on('input', function(e) {
                 if (updating_template) {
                     // Prevent infinite loops as modifying the template will trigger
                     // an update on others fields
@@ -210,19 +213,19 @@
                     }
 
                     // Clear values
-                    $('form[name="asset_form"] input[name="icon"]').prop('checked', false);
-                    $('form[name="asset_form"] input[name="background_color"]').prop('checked', false);
-                    $('form[name="asset_form"] input[name="text_color"]').prop('checked', false);
-                    $('form[name="asset_form"] input[name="emphasis_color"]').prop('checked', false);
+                    $fields.find('input[name="icon"]').prop('checked', false);
+                    $fields.find('input[name="background_color"]').prop('checked', false);
+                    $fields.find('input[name="text_color"]').prop('checked', false);
+                    $fields.find('input[name="emphasis_color"]').prop('checked', false);
 
                     // Apply template values
                     switch ($(e.target).val()) {
                         {% for key, values in templates_values %}
                             case '{{ key }}':
-                                $('form[name="asset_form"] input[name="icon"][value="{{ values.icon }}"]').prop('checked', true);
-                                $('form[name="asset_form"] input[name="background_color"][value="{{ values.background_color }}"]').prop('checked', true);
-                                $('form[name="asset_form"] input[name="text_color"][value="{{ values.text_color }}"]').prop('checked', true);
-                                $('form[name="asset_form"] input[name="emphasis_color"][value="{{ values.emphasis_color }}"]').prop('checked', true);
+                                $fields.find('input[name="icon"][value="{{ values.icon }}"]').prop('checked', true);
+                                $fields.find('input[name="background_color"][value="{{ values.background_color }}"]').prop('checked', true);
+                                $fields.find('input[name="text_color"][value="{{ values.text_color }}"]').prop('checked', true);
+                                $fields.find('input[name="emphasis_color"][value="{{ values.emphasis_color }}"]').prop('checked', true);
                                 break;
                         {% endfor %}
                     }
@@ -230,7 +233,7 @@
                     updating_template = false;
                 } else if (['icon', 'background_color', 'text_color', 'emphasis_color'].includes($(e.target).prop('name'))) {
                     // Manual color or icon change, disable templating
-                    $("form[name=asset_form] select[name=type]").val(0).trigger("change");
+                    $fields.find('select[name=type]').val(0).trigger("change");
                 }
 
                 reload_preview_debounced();
