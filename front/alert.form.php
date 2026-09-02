@@ -32,9 +32,7 @@ use Glpi\Event;
 
 Session::checkLoginUser();
 
-if (!isset($_GET['id'])) {
-    $_GET['id'] = '';
-}
+$_GET['id'] ??= '';
 
 $alert = new PluginNewsAlert();
 
