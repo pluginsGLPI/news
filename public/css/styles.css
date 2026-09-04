@@ -56,32 +56,97 @@
 
 .plugin_news_alert-login .plugin_news_alert-content {
    max-height: 0;
-   padding: 0;
+   padding: 0 15px;
    overflow: hidden;
-   transition: max-height .25s ease-out;
-   transition: padding .25s ease-out;
+   transition: max-height .25s ease-out, padding .25s ease-out;
 }
 
 .plugin_news_alert-login .expanded .plugin_news_alert-content {
    padding: 5px 15px;
    max-height: 100%;
    overflow-y: auto;
-   transition: max-height .25s ease-in;
-   transition: padding .25s ease-in;
+   transition: max-height .25s ease-in, padding .25s ease-in;
 }
 
 .plugin_news_alert-login .plugin_news_alert {
    min-width: 50%;
 }
 
+.page-anonymous .row.justify-content-center {
+   align-items: flex-start;
+}
+
+.page-anonymous .plugin_news_alert-login {
+   width: 22rem;
+   max-width: calc(100vw - 2rem);
+   margin-bottom: 0;
+   text-align: left;
+}
+
+.page-anonymous .plugin_news_alert-login .alert {
+   border: 1px solid rgb(32 107 196 / 18%);
+   border-radius: .55rem;
+   box-shadow: 0 8px 24px rgb(15 23 42 / 8%);
+   padding: .7rem .8rem;
+}
+
+@media (min-width: 768px) {
+   .page-anonymous .plugin_news_alert-login {
+      margin-top: 4.75rem;
+   }
+}
+
+.page-anonymous .plugin_news_alert-login .plugin_news_alert {
+   margin: 0;
+   min-width: 100%;
+}
+
+.page-anonymous .plugin_news_alert-login .plugin_news_alert h3 {
+   margin: 0 0 .7rem;
+   padding-left: .1rem;
+   padding-right: 1.5rem;
+   font-size: 1.15rem;
+   font-weight: 600;
+   letter-spacing: .01em;
+}
+
+.plugin_news_alert .alert .d-flex > i[class*="ti-"] {
+   flex-shrink: 0;
+   line-height: 1;
+}
+
+.page-anonymous .plugin_news_alert-login .plugin_news_alert-content {
+   margin-top: .4rem;
+   line-height: 1.45;
+   overflow-wrap: anywhere;
+   word-break: break-word;
+}
+
+.page-anonymous .plugin_news_alert-login .plugin_news_alert-content p {
+   margin-bottom: .55rem;
+}
+
+.page-anonymous .plugin_news_alert-login .btn-close {
+   top: .45rem;
+   right: .45rem;
+   opacity: .55;
+}
+
+.page-anonymous .plugin_news_alert-login .btn-close:hover {
+   opacity: .85;
+}
+
 .plugin_news_alert-toggle {
    background-image: url("../pics/toggle_down.png");
+   background-repeat: no-repeat;
+   background-size: contain;
    width: 16px;
    height: 16px;
    cursor: pointer;
    position: absolute;
-   top: 3px;
+   top: 50%;
    right: 0;
+   transform: translateY(-50%);
    opacity: .5;
 }
 
