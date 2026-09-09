@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-17 01:03+0000\n"
+"POT-Creation-Date: 2026-09-04 02:49+0000\n"
 "PO-Revision-Date: 2015-09-18 13:33+0000\n"
 "Last-Translator: Simon, 2023\n"
 "Language-Team: German (Germany) (http://app.transifex.com/teclib/glpi-plugin-news/language/de_DE/)\n"
@@ -109,8 +109,8 @@ msgstr "Speichern"
 msgid "No icon"
 msgstr "Kein Icon"
 
-#: front/hidden_alerts.php:34 front/hidden_alerts.php:37 front/alert.php:34
-#: front/alert.form.php:113 setup.php:87 inc/alert.class.php:89
+#: setup.php:87 front/hidden_alerts.php:34 front/hidden_alerts.php:37
+#: front/alert.php:34 front/alert.form.php:113 inc/alert.class.php:89
 msgid "Alerts"
 msgstr "Alarme"
 
