@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-16 03:14+0000\n"
+"POT-Creation-Date: 2026-09-17 03:19+0000\n"
 "PO-Revision-Date: 2015-09-18 13:33+0000\n"
 "Last-Translator: Rui Melo <viper5000pt@gmail.com>, 2019\n"
 "Language-Team: Portuguese (Portugal) (http://app.transifex.com/teclib/glpi-plugin-news/language/pt_PT/)\n"
@@ -32,11 +32,11 @@ msgstr "Descrição"
 
 #: templates/alert_form.html.twig inc/alert.class.php:123
 msgid "Visibility start date"
-msgstr "Data de início de visibilidade"
+msgstr "Data de início"
 
 #: templates/alert_form.html.twig inc/alert.class.php:131
 msgid "Visibility end date"
-msgstr "Data de fim de visibilidade"
+msgstr "Data de fim"
 
 #: templates/alert_form.html.twig
 msgid "Central page"
@@ -48,11 +48,11 @@ msgstr "Página de login"
 
 #: templates/alert_form.html.twig
 msgid "Helpdesk page"
-msgstr "Página do helpdesk"
+msgstr "Página helpdesk"
 
 #: templates/alert_form.html.twig
 msgid "Service catalog page"
-msgstr "Página do catálogo de serviços"
+msgstr "Página catálogo serviços"
 
 #: templates/alert_form.html.twig
 msgid "Show on pages"
@@ -84,11 +84,11 @@ msgstr "Mostrar datas"
 
 #: templates/alert_form.html.twig
 msgid "Background color"
-msgstr "Cor de fundo"
+msgstr "Background color"
 
 #: templates/alert_form.html.twig
 msgid "Text color"
-msgstr "Cor do texto"
+msgstr "Text color"
 
 #: templates/alert_form.html.twig
 msgid "Emphasis color"
@@ -101,7 +101,7 @@ msgstr "Preview"
 #: templates/profile.html.twig
 msgctxt "button"
 msgid "Save"
-msgstr "Guardar"
+msgstr "Save"
 
 #: templates/components/news_fields_macros.html.twig
 msgid "No icon"
@@ -220,7 +220,7 @@ msgstr "Information"
 
 #: inc/alert.class.php:644
 msgid "Warning"
-msgstr "Aviso"
+msgstr "Warning"
 
 #: inc/alert.class.php:645
 msgid "Problem"
