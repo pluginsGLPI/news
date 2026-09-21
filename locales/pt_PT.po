@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-16 03:14+0000\n"
+"POT-Creation-Date: 2026-09-18 03:05+0000\n"
 "PO-Revision-Date: 2015-09-18 13:33+0000\n"
 "Last-Translator: Rui Melo <viper5000pt@gmail.com>, 2019\n"
 "Language-Team: Portuguese (Portugal) (http://app.transifex.com/teclib/glpi-plugin-news/language/pt_PT/)\n"
@@ -44,15 +44,15 @@ msgstr "Página central"
 
 #: templates/alert_form.html.twig
 msgid "Login page"
-msgstr "Página de login"
+msgstr "Página de início de sessão"
 
 #: templates/alert_form.html.twig
 msgid "Helpdesk page"
-msgstr "Página do helpdesk"
+msgstr "Página de helpdesk"
 
 #: templates/alert_form.html.twig
 msgid "Service catalog page"
-msgstr "Página do catálogo de serviços"
+msgstr "Página de catálogo de serviços"
 
 #: templates/alert_form.html.twig
 msgid "Show on pages"
@@ -92,11 +92,11 @@ msgstr "Cor do texto"
 
 #: templates/alert_form.html.twig
 msgid "Emphasis color"
-msgstr "Emphasis color"
+msgstr "Cor de ênfase"
 
 #: templates/alert_form.html.twig
 msgid "Preview"
-msgstr "Preview"
+msgstr "Pré-visualização"
 
 #: templates/profile.html.twig
 msgctxt "button"
@@ -105,41 +105,41 @@ msgstr "Guardar"
 
 #: templates/components/news_fields_macros.html.twig
 msgid "No icon"
-msgstr "No icon"
+msgstr "Sem ícone"
 
 #: setup.php:87 front/hidden_alerts.php:34 front/hidden_alerts.php:37
 #: front/alert.php:34 front/alert.form.php:113 inc/alert.class.php:89
 msgid "Alerts"
-msgstr "Alerts"
+msgstr "Alertas"
 
 #: front/alert.form.php:49
 #, php-format
 msgid "%s updates an item"
-msgstr "%s updates an item"
+msgstr "%s atualiza um item"
 
 #: front/alert.form.php:61
 #, php-format
 msgid "%1$s adds the item %2$s"
-msgstr "%1$s adds the item %2$s"
+msgstr "%1$s adiciona o item %2$s"
 
 #: front/alert.form.php:77
 #, php-format
 msgid "%s deletes an item"
-msgstr "%s deletes an item"
+msgstr "%s elimina um item"
 
 #: front/alert.form.php:89
 #, php-format
 msgid "%s restores an item"
-msgstr "%s restores an item"
+msgstr "%s restaura um item"
 
 #: front/alert.form.php:101
 #, php-format
 msgid "%s purges an item"
-msgstr "%s purges an item"
+msgstr "%s purga um item"
 
 #: inc/alert_user.class.php:88
 msgid "Status"
-msgstr "Status"
+msgstr "Estado"
 
 #: inc/alert_target.class.php:44
 msgid "Target"
@@ -151,11 +151,11 @@ msgstr[2] ""
 #: inc/alert_target.class.php:86 inc/alert_target.class.php:180
 #: ajax/targets.php:56
 msgid "All"
-msgstr "All"
+msgstr "Todos"
 
 #: inc/alert_target.class.php:134
 msgid "Add a target"
-msgstr "Add a target"
+msgstr "Adicionar um alvo"
 
 #: inc/alert_target.class.php:162
 msgctxt "button"
@@ -164,59 +164,59 @@ msgstr "Delete permanently"
 
 #: inc/alert_target.class.php:170
 msgid "Type"
-msgstr "Type"
+msgstr "Tipo"
 
 #: inc/alert_target.class.php:171
 msgid "Recipient"
-msgstr "Recipient"
+msgstr "Destinatário"
 
 #: inc/alert.class.php:139
 msgid "Entity"
-msgstr "Entity"
+msgstr "Entidade"
 
 #: inc/alert.class.php:147
 msgid "Recursive"
-msgstr "Recursive"
+msgstr "Recursivo"
 
 #: inc/alert.class.php:176
 msgid "Show on login page"
-msgstr "Show on login page"
+msgstr "Mostrar na página de início de sessão"
 
 #: inc/alert.class.php:185
 msgid "Show on helpdesk page"
-msgstr "Show on helpdesk page"
+msgstr "Mostrar na página de helpdesk"
 
 #: inc/alert.class.php:194
 msgid "Show on service catalog page"
-msgstr "Show on service catalog page"
+msgstr "Mostrar na página de catálogo de serviços"
 
 #: inc/alert.class.php:211
 msgid "Last update"
-msgstr "Last update"
+msgstr "Última atualização"
 
 #: inc/alert.class.php:220
 msgid "Creation date"
-msgstr "Creation date"
+msgstr "Data de criação"
 
 #: inc/alert.class.php:447
 msgid "Please enter a name."
-msgstr "Please enter a name."
+msgstr "Por favor introduza um nome."
 
 #: inc/alert.class.php:451
 msgid "The end date must be greater than the start date."
-msgstr "The end date must be greater than the start date."
+msgstr "A data de fim deve ser maior que a data de início."
 
 #: inc/alert.class.php:581
 msgid "You have hidden alerts valid for current date"
-msgstr "You have hidden alerts valid for current date"
+msgstr "Tem alertas ocultos válidos para a data atual"
 
 #: inc/alert.class.php:642
 msgid "General"
-msgstr "General"
+msgstr "Geral"
 
 #: inc/alert.class.php:643
 msgid "Information"
-msgstr "Information"
+msgstr "Informação"
 
 #: inc/alert.class.php:644
 msgid "Warning"
@@ -224,83 +224,83 @@ msgstr "Aviso"
 
 #: inc/alert.class.php:645
 msgid "Problem"
-msgstr "Problem"
+msgstr "Problema"
 
 #: inc/alert.class.php:657
 msgid "Small"
-msgstr "Small"
+msgstr "Pequeno"
 
 #: inc/alert.class.php:658
 msgid "Medium"
-msgstr "Medium"
+msgstr "Médio"
 
 #: inc/alert.class.php:659
 msgid "Big"
-msgstr "Big"
+msgstr "Grande"
 
 #: inc/alert.class.php:660
 msgid "Max"
-msgstr "Max"
+msgstr "Máximo"
 
 #: inc/alert.class.php:672
 msgid "Settings"
-msgstr "Settings"
+msgstr "Definições"
 
 #: inc/alert.class.php:673
 msgid "Alert circle"
-msgstr "Alert circle"
+msgstr "Círculo de alerta"
 
 #: inc/alert.class.php:674
 msgid "Alert triangle"
-msgstr "Alert triangle"
+msgstr "Triângulo de alerta"
 
 #: inc/alert.class.php:675
 msgid "Alert octagon"
-msgstr "Alert octagon"
+msgstr "Octógono de alerta"
 
 #: inc/alert.class.php:687
 msgid "Black"
-msgstr "Black"
+msgstr "Preto"
 
 #: inc/alert.class.php:688
 msgid "White"
-msgstr "White"
+msgstr "Branco"
 
 #: inc/alert.class.php:689
 msgid "Blue"
-msgstr "Blue"
+msgstr "Azul"
 
 #: inc/alert.class.php:690
 msgid "Cyan"
-msgstr "Cyan"
+msgstr "Ciano"
 
 #: inc/alert.class.php:691
 msgid "Indigo"
-msgstr "Indigo"
+msgstr "Índigo"
 
 #: inc/alert.class.php:692
 msgid "Purple"
-msgstr "Purple"
+msgstr "Roxo"
 
 #: inc/alert.class.php:693
 msgid "Pink"
-msgstr "Pink"
+msgstr "Rosa"
 
 #: inc/alert.class.php:694
 msgid "Red"
-msgstr "Red"
+msgstr "Vermelho"
 
 #: inc/alert.class.php:695
 msgid "Orange"
-msgstr "Orange"
+msgstr "Laranja"
 
 #: inc/alert.class.php:696
 msgid "Yellow"
-msgstr "Yellow"
+msgstr "Amarelo"
 
 #: inc/alert.class.php:697
 msgid "Lime"
-msgstr "Lime"
+msgstr "Lima"
 
 #: ajax/targets.php:61
 msgctxt "button"
