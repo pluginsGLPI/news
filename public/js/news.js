@@ -27,7 +27,7 @@
  */
 
 pluginNewsCloseAlerts = function() {
-    $(document).on("mousedown", ".plugin_news_alert .alert a[data-bs-dismiss=alert]", function(event) {
+    $(document).on("mousedown", ".plugin_news_alert .alert a[data-bs-dismiss=alert]", function() {
         var alert = $(this).closest(".plugin_news_alert");
         var id    = alert.attr('data-id');
         var a_url = CFG_GLPI.root_doc+"/plugins/news/ajax";

@@ -28,7 +28,7 @@
  * -------------------------------------------------------------------------
  */
 
-Session::checkRight("plugin_news_alert", READ);
+Session::checkRight(PluginNewsAlert::$rightname, READ);
 
 Html::header(
     __s('Alerts', 'news'),
