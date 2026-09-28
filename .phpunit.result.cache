@@ -1,0 +1,1 @@
+{"version":2,"defects":[],"times":{"GlpiPlugin\\News\\Tests\\Units\\PluginNewsAlertTest::testPostUpdateItemResetsHiddenAlerts":0.779,"GlpiPlugin\\News\\Tests\\Units\\PluginNewsAlertTest::testPostUpdateItemDoesNotAffectOtherAlerts":0.278}}

@@ -34,7 +34,7 @@
 </style>
 
 {% set js_rand = random() %}
-<div class="plugin_news_alert {{ size }}" data-id="{{ alert_fields.id|default(0) }}">
+<div class="plugin_news_alert {{ size }} {{ show_only_login_alerts ? 'expanded' : '' }}" data-id="{{ alert_fields.id|default(0) }}">
     <div
         class="
             alert-{{ js_rand }}
