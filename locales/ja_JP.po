@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-24 03:02+0000\n"
+"POT-Creation-Date: 2026-09-25 03:19+0000\n"
 "PO-Revision-Date: 2015-09-18 13:33+0000\n"
 "Last-Translator: Daisuke INOUE, 2023-2024\n"
 "Language-Team: Japanese (Japan) (http://app.transifex.com/teclib/glpi-plugin-news/language/ja_JP/)\n"
@@ -18,6 +18,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ja_JP\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: templates/components/news_fields_macros.html.twig
+msgid "No icon"
+msgstr "アイコンなし"
+
+#: templates/profile.html.twig
+msgctxt "button"
+msgid "Save"
+msgstr "保存"
 
 #: templates/alert_form.html.twig inc/alert.class.php:113
 msgid "Name"
@@ -99,17 +108,8 @@ msgstr "強調色"
 msgid "Preview"
 msgstr "プレビュー"
 
-#: templates/profile.html.twig
-msgctxt "button"
-msgid "Save"
-msgstr "保存"
-
-#: templates/components/news_fields_macros.html.twig
-msgid "No icon"
-msgstr "アイコンなし"
-
-#: setup.php:87 front/hidden_alerts.php:34 front/hidden_alerts.php:37
-#: front/alert.php:34 front/alert.form.php:113 inc/alert.class.php:89
+#: front/alert.php:34 front/hidden_alerts.php:34 front/hidden_alerts.php:37
+#: front/alert.form.php:113 inc/alert.class.php:89 setup.php:87
 msgid "Alerts"
 msgstr "アラート"
 
@@ -141,33 +141,6 @@ msgstr "%s がアイテムを抹消"
 #: inc/alert_user.class.php:88
 msgid "Status"
 msgstr "状態"
-
-#: inc/alert_target.class.php:44
-msgid "Target"
-msgid_plural "Targets"
-msgstr[0] "対象"
-
-#: inc/alert_target.class.php:86 inc/alert_target.class.php:180
-#: ajax/targets.php:56
-msgid "All"
-msgstr "すべて"
-
-#: inc/alert_target.class.php:134
-msgid "Add a target"
-msgstr "対象を追加"
-
-#: inc/alert_target.class.php:162
-msgctxt "button"
-msgid "Delete permanently"
-msgstr "完全に削除"
-
-#: inc/alert_target.class.php:170
-msgid "Type"
-msgstr "タイプ"
-
-#: inc/alert_target.class.php:171
-msgid "Recipient"
-msgstr "受信者"
 
 #: inc/alert.class.php:139
 msgid "Entity"
@@ -300,6 +273,33 @@ msgstr "黄"
 #: inc/alert.class.php:697
 msgid "Lime"
 msgstr "ライム"
+
+#: inc/alert_target.class.php:44
+msgid "Target"
+msgid_plural "Targets"
+msgstr[0] "対象"
+
+#: inc/alert_target.class.php:86 inc/alert_target.class.php:180
+#: ajax/targets.php:56
+msgid "All"
+msgstr "すべて"
+
+#: inc/alert_target.class.php:134
+msgid "Add a target"
+msgstr "対象を追加"
+
+#: inc/alert_target.class.php:162
+msgctxt "button"
+msgid "Delete permanently"
+msgstr "完全に削除"
+
+#: inc/alert_target.class.php:170
+msgid "Type"
+msgstr "タイプ"
+
+#: inc/alert_target.class.php:171
+msgid "Recipient"
+msgstr "受信者"
 
 #: ajax/targets.php:61
 msgctxt "button"
