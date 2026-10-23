@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased ##
 
+### Added
+
+- Add Transifex translations link to README
+
 ### Fixed
 
 - Alert preview display in readonly mode
