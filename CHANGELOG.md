@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [UNRELEASED]
+
+### Fixed
+
+- Login page CSS and JS URLs when the plugin is installed outside the GLPI root directory
+
 ## [1.14.2] - 2026-10-06
 
 ### Fixed
