@@ -522,7 +522,7 @@ class PluginNewsAlert extends CommonDBTM
 
     public static function displayOnLogin()
     {
-        echo Html::css(Plugin::getPhpDir('news', false) . '/css/styles.css');
+        echo Html::css('/plugins/news/css/styles.css');
         echo "<div class='plugin_news_alert-login'>";
         self::displayAlerts(['show_only_login_alerts' => true]);
         echo '</div>';
@@ -585,7 +585,7 @@ class PluginNewsAlert extends CommonDBTM
         echo '</div>';
 
         if ($p['show_only_login_alerts']) {
-            echo Html::script(Plugin::getPhpDir('news', false) . '/js/news.js');
+            echo Html::script('/plugins/news/js/news.js');
         }
     }
 
