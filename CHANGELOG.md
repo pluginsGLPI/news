@@ -5,17 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [UNRELEASED]
+
+### Added
+
+- Add Transifex translations link to README
+
+### Fixed
+
+- Login page CSS and JS URLs when the plugin is installed outside the GLPI root directory
+
 ## [1.15.0] - 2026-10-06
 
 ### Added
 
 - GLPI 12 compatibility
-
-## Unreleased ##
-
-### Added
-
-- Add Transifex translations link to README
 
 ### Fixed
 
