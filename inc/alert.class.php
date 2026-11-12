@@ -227,24 +227,18 @@ class PluginNewsAlert extends CommonDBTM
 
     public function post_updateItem($history = true)
     {
+        /** @var DBmysql $DB */
+        global $DB;
+
         // force display of alerts after update regardless of their closable state
-        $alert_user = new PluginNewsAlert_User();
-        //get all Alert_User for this alert where state is hidden
-        $all_alert = $alert_user->find(
+        $DB->update(
+            PluginNewsAlert_User::getTable(),
+            ['state' => PluginNewsAlert_User::VISIBLE],
             [
                 'plugin_news_alerts_id' => $this->getID(),
                 'state'                 => PluginNewsAlert_User::HIDDEN,
             ],
         );
-        foreach ($all_alert as $alert) {
-            //update state to force display
-            $alert_user->update(
-                [
-                    'id'    => $alert['id'],
-                    'state' => PluginNewsAlert_User::VISIBLE,
-                ],
-            );
-        }
     }
 
     public static function findAllToNotify($params = [])

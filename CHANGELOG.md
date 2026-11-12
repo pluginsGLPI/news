@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [Unreleased]
+
+### Fixed
+
+- Faster display of pages showing alerts (ticket form, central page, ticket list) when many alerts exist
+- Faster display of the alert targets tab
+- Closing an alert sent one request per tab previously opened on the page
+
 ## [1.14.2] - 2026-10-06
 
 ### Fixed

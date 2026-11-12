@@ -120,8 +120,11 @@ class PluginNewsAlert_Target extends CommonDBTM
 
     public static function showForAlert(PluginNewsAlert $alert)
     {
-        /** @var array $CFG_GLPI */
-        global $CFG_GLPI;
+        /**
+         * @var array $CFG_GLPI
+         * @var DBmysql $DB
+         */
+        global $CFG_GLPI, $DB;
         $rand = mt_rand();
 
         echo "<form method='post' action='" . Toolbox::getItemTypeFormURL('PluginNewsAlert') . "'>";
@@ -171,10 +174,24 @@ class PluginNewsAlert_Target extends CommonDBTM
             echo '<th>' . __s('Recipient', 'news') . '</th>';
             echo '</tr>';
 
+            // Load the targeted items with one query per itemtype instead of one per target
+            $ids_by_itemtype = [];
+            foreach ($found_target as $current_target) {
+                if (is_a($current_target['itemtype'], CommonDBTM::class, true) && $current_target['items_id'] > 0) {
+                    $ids_by_itemtype[$current_target['itemtype']][] = $current_target['items_id'];
+                }
+            }
+            $rows_by_itemtype = [];
+            foreach ($ids_by_itemtype as $itemtype => $ids) {
+                foreach ($DB->request(['FROM' => getTableForItemType($itemtype),'WHERE' => ['id' => $ids]]) as $row) {
+                    $rows_by_itemtype[$itemtype][$row['id']] = $row;
+                }
+            }
+
             foreach ($found_target as $current_target) {
                 if (is_a($current_target['itemtype'], CommonDBTM::class, true)) {
                     $item = new $current_target['itemtype']();
-                    $item->getFromDB($current_target['items_id']);
+                    $item->getFromResultSet($rows_by_itemtype[$current_target['itemtype']][$current_target['items_id']] ?? []);
                     $name = ($current_target['all_items'] == 1
                         && $current_target['itemtype']    == 'Profile')
                            ? __s('All', 'news')

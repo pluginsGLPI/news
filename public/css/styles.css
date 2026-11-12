@@ -26,8 +26,22 @@
  * -------------------------------------------------------------------------
  */
 
+/* Missing tabler variable */
+:root {
+   --tblr-lime: #74b816;
+}
+
 .plugin_news_alert-container {
    margin-bottom: 1rem;
+}
+
+/*
+ * ITIL form has a specified layout, we must always display the full size alert.
+ * The "col-12" class can't be directly used for this purpose because a GLPI's core
+ * script will automatically replace it by "col-6" when expanding the sidebar.
+ */
+#itil-form .plugin_news_alert {
+   width: 100% !important;
 }
 
 /* Needed to have similar height for alerts on the same row */
