@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Faster display of the alert targets tab
 - Closing an alert sent one request per tab previously opened on the page
 
+## [1.14.3] - 2026-11-05
+
+### Fixed
+
+- Login page CSS and JS URLs when the plugin is installed outside the GLPI root directory
+
 ## [1.14.2] - 2026-10-06
 
 ### Fixed

@@ -30,7 +30,7 @@
 
 use function Safe\define;
 
-define('PLUGIN_NEWS_VERSION', '1.14.2');
+define('PLUGIN_NEWS_VERSION', '1.14.3');
 
 // Minimal GLPI version, inclusive
 define('PLUGIN_NEWS_MIN_GLPI', '11.0.0');
