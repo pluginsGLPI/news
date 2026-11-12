@@ -157,6 +157,9 @@ function plugin_news_install()
         $migration->addKey($alert_table, 'is_active');
     }
 
+    // index used to find the alerts to display, which would otherwise scan every past alert
+    $migration->addKey($alert_table, ['is_active', 'is_deleted', 'date_end'], 'is_active_is_deleted_date_end');
+
     // fix is_default default value
     $alert_fields = $DB->listFields($alert_table);
     if ($alert_fields['is_deleted']['Default'] !== '0') {

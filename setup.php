@@ -47,37 +47,31 @@ function plugin_init_news()
 
     $PLUGIN_HOOKS['csrf_compliant']['news'] = true;
 
-    $plugin = new Plugin();
-    if (
-        $plugin->isInstalled('news')
-        && $plugin->isActivated('news')
-    ) {
-        Plugin::registerClass('PluginNewsProfile', ['addtabon' => 'Profile']);
+    Plugin::registerClass('PluginNewsProfile', ['addtabon' => 'Profile']);
 
-        $PLUGIN_HOOKS['add_css']['news']          = 'css/styles.css';
-        $PLUGIN_HOOKS['add_javascript']['news'][] = 'js/news.js';
-        $PLUGIN_HOOKS['display_login']['news']    = [
-            'PluginNewsAlert', 'displayOnLogin',
+    $PLUGIN_HOOKS['add_css']['news']          = 'css/styles.css';
+    $PLUGIN_HOOKS['add_javascript']['news'][] = 'js/news.js';
+    $PLUGIN_HOOKS['display_login']['news']    = [
+        'PluginNewsAlert', 'displayOnLogin',
+    ];
+    $PLUGIN_HOOKS['display_central']['news'] = [
+        'PluginNewsAlert', 'displayOnCentral',
+    ];
+    $PLUGIN_HOOKS['display_service_catalog']['news'] = [
+        'PluginNewsAlert', 'displayOnServiceCatalog',
+    ];
+    $PLUGIN_HOOKS['pre_item_list']['news'] = ['PluginNewsAlert', 'preItemList'];
+
+    $PLUGIN_HOOKS['pre_item_form']['news'] = ['PluginNewsAlert', 'preItemForm'];
+
+    if (Session::haveRight(PluginNewsAlert::$rightname, READ)) {
+        $PLUGIN_HOOKS['menu_toadd']['news'] = [
+            'tools' => 'PluginNewsAlert',
         ];
-        $PLUGIN_HOOKS['display_central']['news'] = [
-            'PluginNewsAlert', 'displayOnCentral',
-        ];
-        $PLUGIN_HOOKS['display_service_catalog']['news'] = [
-            'PluginNewsAlert', 'displayOnServiceCatalog',
-        ];
-        $PLUGIN_HOOKS['pre_item_list']['news'] = ['PluginNewsAlert', 'preItemList'];
+        $PLUGIN_HOOKS['config_page']['news'] = 'front/alert.php';
 
-        $PLUGIN_HOOKS['pre_item_form']['news'] = ['PluginNewsAlert', 'preItemForm'];
-
-        if (Session::haveRight(PluginNewsAlert::$rightname, READ)) {
-            $PLUGIN_HOOKS['menu_toadd']['news'] = [
-                'tools' => 'PluginNewsAlert',
-            ];
-            $PLUGIN_HOOKS['config_page']['news'] = 'front/alert.php';
-
-            // require tinymce (for glpi >= 9.2)
-            $CFG_GLPI['javascript']['tools']['pluginnewsalert'] = ['tinymce'];
-        }
+        // require tinymce (for glpi >= 9.2)
+        $CFG_GLPI['javascript']['tools']['pluginnewsalert'] = ['tinymce'];
     }
 }
 
