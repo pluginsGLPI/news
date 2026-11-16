@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-25 03:19+0000\n"
+"POT-Creation-Date: 2026-11-06 04:59+0000\n"
 "PO-Revision-Date: 2015-09-18 13:33+0000\n"
 "Last-Translator: Daisuke INOUE, 2023-2024\n"
 "Language-Team: Japanese (Japan) (http://app.transifex.com/teclib/glpi-plugin-news/language/ja_JP/)\n"
@@ -19,14 +19,14 @@ msgstr ""
 "Language: ja_JP\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: templates/components/news_fields_macros.html.twig
-msgid "No icon"
-msgstr "アイコンなし"
-
 #: templates/profile.html.twig
 msgctxt "button"
 msgid "Save"
 msgstr "保存"
+
+#: templates/components/news_fields_macros.html.twig
+msgid "No icon"
+msgstr "アイコンなし"
 
 #: templates/alert_form.html.twig inc/alert.class.php:113
 msgid "Name"
@@ -108,35 +108,46 @@ msgstr "強調色"
 msgid "Preview"
 msgstr "プレビュー"
 
-#: front/alert.php:34 front/hidden_alerts.php:34 front/hidden_alerts.php:37
-#: front/alert.form.php:113 inc/alert.class.php:89 setup.php:87
-msgid "Alerts"
-msgstr "アラート"
-
-#: front/alert.form.php:49
+#: front/alert.form.php:47
 #, php-format
 msgid "%s updates an item"
 msgstr "%s がアイテムを更新"
 
-#: front/alert.form.php:61
+#: front/alert.form.php:59
 #, php-format
 msgid "%1$s adds the item %2$s"
 msgstr "%1$s がアイテム : %2$s を追加"
 
-#: front/alert.form.php:77
+#: front/alert.form.php:75
 #, php-format
 msgid "%s deletes an item"
 msgstr "%s がアイテムを削除　"
 
-#: front/alert.form.php:89
+#: front/alert.form.php:87
 #, php-format
 msgid "%s restores an item"
 msgstr "%s がアイテムを復元"
 
-#: front/alert.form.php:101
+#: front/alert.form.php:99
 #, php-format
 msgid "%s purges an item"
 msgstr "%s がアイテムを抹消"
+
+#: front/alert.form.php:111 front/hidden_alerts.php:34
+#: front/hidden_alerts.php:37 front/alert.php:34 setup.php:87
+#: inc/alert.class.php:89
+msgid "Alerts"
+msgstr "アラート"
+
+#: ajax/targets.php:56 inc/alert_target.class.php:86
+#: inc/alert_target.class.php:180
+msgid "All"
+msgstr "すべて"
+
+#: ajax/targets.php:61
+msgctxt "button"
+msgid "Add"
+msgstr "追加"
 
 #: inc/alert_user.class.php:88
 msgid "Status"
@@ -279,11 +290,6 @@ msgid "Target"
 msgid_plural "Targets"
 msgstr[0] "対象"
 
-#: inc/alert_target.class.php:86 inc/alert_target.class.php:180
-#: ajax/targets.php:56
-msgid "All"
-msgstr "すべて"
-
 #: inc/alert_target.class.php:134
 msgid "Add a target"
 msgstr "対象を追加"
@@ -300,8 +306,3 @@ msgstr "タイプ"
 #: inc/alert_target.class.php:171
 msgid "Recipient"
 msgstr "受信者"
-
-#: ajax/targets.php:61
-msgctxt "button"
-msgid "Add"
-msgstr "追加"
