@@ -39,7 +39,7 @@
     {# No whitespace inside the container: it is hidden by CSS when :empty #}
     <div class="plugin_news_alert-container row align-items-stretch">
         {%- for alert in alerts -%}
-            {{ include('@news/display_alert.html.twig', alert, with_context=false) }}
+            {{ include('@news/display_alert.html.twig', alert, with_context = false) }}
         {%- endfor -%}
 
         {%- if hidden_alerts_url is not null -%}

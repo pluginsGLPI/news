@@ -61,6 +61,7 @@
 /* White alerts: white background, border and icon of the text color (normal and important) */
 .alert.plugin_news_alert-white {
    --tblr-alert-color: var(--tblr-body-color);
+
    color: var(--tblr-body-color);
    background-color: var(--tblr-white);
    border-color: var(--tblr-body-color);
