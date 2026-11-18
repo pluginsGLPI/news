@@ -53,7 +53,7 @@
 }
 
 /* Links must stay readable on the filled background of important alerts */
-.plugin_news_alert .alert-important a:not(.btn-close) {
+.plugin_news_alert .alert-important .plugin_news_alert-content a {
    color: inherit;
    text-decoration: underline;
 }
@@ -76,6 +76,11 @@
    margin-bottom: 40px;
 }
 
+/* The login card centers its text */
+.plugin_news_alert-login .alert {
+   text-align: start;
+}
+
 .plugin_news_alert-login .plugin_news_alert-content {
    max-height: 0;
    padding: 0;
@@ -85,7 +90,7 @@
 }
 
 .plugin_news_alert-login .expanded .plugin_news_alert-content {
-   padding: 5px 15px;
+   padding: 5px 0;
    max-height: 100%;
    overflow-y: auto;
    transition: max-height .25s ease-in;
@@ -102,6 +107,7 @@
 }
 
 .plugin_news_alert-toggle .ti {
+   display: inline-block; /* transform does not apply to inline elements */
    transition: transform .25s;
 }
 

@@ -39,7 +39,7 @@
 
 <div class="plugin_news_alert {{ size }}" data-id="{{ alert_fields.id|default(0) }}">
     <div class="alert {{ color_class }} {{ is_important ? 'alert-important' : '' }} {{ can_close ? 'alert-dismissible' : '' }}" role="alert">
-        <div class="d-flex">
+        <div class="d-flex flex-grow-1 overflow-hidden">
             {% if alert_fields.icon is not empty %}
                 <div class="me-2">
                     <i class="ti ti-{{ alert_fields.icon }} fs-2x alert-icon"></i>
