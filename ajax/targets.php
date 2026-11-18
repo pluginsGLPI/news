@@ -28,38 +28,19 @@
  * -------------------------------------------------------------------------
  */
 
+use Glpi\Application\View\TemplateRenderer;
+
 $AJAX_INCLUDE = 1;
 header('Content-Type: text/html; charset=UTF-8');
 Html::header_nocache();
 
 Session::checkLoginUser();
 
-if (isset($_POST['type']) && !empty($_POST['type'])) {
-    echo "<table class='tab_format'>";
-    echo '<tr>';
-    echo '<td>';
-    switch ($_POST['type']) {
-        case 'User':
-            User::dropdown(['name' => 'items_id',
-                'right'            => 'all',
-                'entity'           => $_POST['entities_id'],
-                'entity_sons'      => $_POST['is_recursive'],
-            ]);
-            break;
-
-        case 'Group':
-            Group::dropdown(['name' => 'items_id']);
-            break;
-
-        case 'Profile':
-            Profile::dropdown(['name' => 'items_id',
-                'toadd'               => [-1 => __s('All', 'news')],
-            ]);
-            break;
-    }
-    echo '</td>';
-    echo "<td><input type='submit' name='addvisibility' value=\"" . _sx('button', 'Add', 'news') . "\"
-                   class='submit'></td>";
-    echo '</tr>';
-    echo '</table>';
+$type = $_POST['type'] ?? '';
+if (in_array($type, ['Group', 'Profile', 'User'], true)) {
+    TemplateRenderer::getInstance()->display('@news/target_dropdown.html.twig', [
+        'type'         => $type,
+        'entities_id'  => $_POST['entities_id'] ?? -1,
+        'is_recursive' => $_POST['is_recursive'] ?? 0,
+    ]);
 }

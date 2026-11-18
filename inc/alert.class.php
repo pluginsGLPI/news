@@ -32,11 +32,6 @@ use Glpi\Application\View\TemplateRenderer;
 use function Safe\preg_match;
 use function Safe\strtotime;
 
-if (!defined('GLPI_ROOT')) {
-    echo "Sorry. You can't access directly to this file";
-    return;
-}
-
 class PluginNewsAlert extends CommonDBTM
 {
     public static $rightname = 'plugin_news_alert';
@@ -515,24 +510,17 @@ class PluginNewsAlert extends CommonDBTM
 
     public static function displayOnCentral()
     {
-        echo "<tr><td colspan='2'>";
-        self::displayAlerts(['show_only_central_alerts' => true]);
-        echo '</td></tr>';
+        self::displayAlerts(['show_only_central_alerts' => true], 'central');
     }
 
     public static function displayOnLogin()
     {
-        echo Html::css('/plugins/news/css/styles.css');
-        echo "<div class='plugin_news_alert-login'>";
-        self::displayAlerts(['show_only_login_alerts' => true]);
-        echo '</div>';
+        self::displayAlerts(['show_only_login_alerts' => true], 'login');
     }
 
     public static function displayOnTicket()
     {
-        echo "<tr><th colspan='2'>";
-        self::displayAlerts(['show_only_helpdesk_alerts' => true]);
-        echo '</th></tr>';
+        self::displayAlerts(['show_only_helpdesk_alerts' => true], 'list');
     }
 
     public static function displayOnServiceCatalog()
@@ -540,7 +528,12 @@ class PluginNewsAlert extends CommonDBTM
         self::displayAlerts(['show_only_service_catalog_alerts' => true]);
     }
 
-    public static function displayAlerts($params = [])
+    /**
+     * @param array       $params
+     * @param string|null $wrapper Markup surrounding the alerts, depending on the hook location
+     *                             (see alerts.html.twig)
+     */
+    public static function displayAlerts($params = [], ?string $wrapper = null)
     {
         /** @var array $CFG_GLPI */
         global $CFG_GLPI;
@@ -555,11 +548,9 @@ class PluginNewsAlert extends CommonDBTM
             $p[$key] = $value;
         }
 
-        echo "<div class='plugin_news_alert-container row align-items-stretch'>";
-        if ($alerts = self::findAllToNotify($p)) {
-            foreach ($alerts as $alert) {
-                self::displayAlert($alert, $p);
-            }
+        $alerts = [];
+        foreach (self::findAllToNotify($p) ?: [] as $alert) {
+            $alerts[] = self::getAlertTemplateParams($alert, $p);
         }
 
         $hidden_params = [
@@ -571,22 +562,18 @@ class PluginNewsAlert extends CommonDBTM
             'entities_id'                      => $p['entities_id'],
         ];
 
-        if (
-            !$p['show_only_login_alerts']
-            && $alerts = self::findAllToNotify($hidden_params)
+        $has_hidden_alerts = !$p['show_only_login_alerts']
             && !$p['show_hidden_alerts']
-        ) {
-            echo "<div class='center'>";
-            echo "<a href='" . $CFG_GLPI['root_doc'] . "/plugins/news/front/hidden_alerts.php'>";
-            echo __s('You have hidden alerts valid for current date', 'news');
-            echo '</a>';
-            echo '</div>';
-        }
-        echo '</div>';
+            && self::findAllToNotify($hidden_params);
 
-        if ($p['show_only_login_alerts']) {
-            echo Html::script('/plugins/news/js/news.js');
-        }
+        TemplateRenderer::getInstance()->display('@news/alerts.html.twig', [
+            'alerts'            => $alerts,
+            'hidden_alerts_url' => $has_hidden_alerts
+                ? $CFG_GLPI['root_doc'] . '/plugins/news/front/hidden_alerts.php'
+                : null,
+            'wrapper'           => $wrapper,
+            'load_script'       => $p['show_only_login_alerts'],
+        ]);
     }
 
     /**
@@ -620,15 +607,29 @@ class PluginNewsAlert extends CommonDBTM
 
     public static function displayAlert($alert, $p)
     {
-        $twig = TemplateRenderer::getInstance();
-        $size = $p['show_only_login_alerts'] ? 'col-12' : self::getSizeClasses($alert['size']);
-        $twig->display('@news/display_alert.html.twig', [
-            'size'                   => $size,
+        TemplateRenderer::getInstance()->display(
+            '@news/display_alert.html.twig',
+            self::getAlertTemplateParams($alert, $p),
+        );
+    }
+
+    /**
+     * Get the display_alert.html.twig parameters of an alert
+     *
+     * @param array $alert Alert fields
+     * @param array $p     Display parameters (see displayAlerts())
+     *
+     * @return array
+     */
+    private static function getAlertTemplateParams(array $alert, array $p): array
+    {
+        return [
+            'size'                   => $p['show_only_login_alerts'] ? 'col-12' : self::getSizeClasses($alert['size']),
             'alert_fields'           => $alert,
             'content'                => $alert['message'],
             'can_close'              => $alert['is_close_allowed'] && !$p['show_hidden_alerts'],
             'show_only_login_alerts' => $p['show_only_login_alerts'],
-        ]);
+        ];
     }
 
     /**
@@ -707,28 +708,24 @@ class PluginNewsAlert extends CommonDBTM
     {
         return [
             self::GENERAL => [
-                'icon'             => self::SETTINGS,
-                'background_color' => self::WHITE,
-                'text_color'       => self::DARK,
-                'emphasis_color'   => self::DARK,
+                'icon'           => self::SETTINGS,
+                'emphasis_color' => self::DARK,
+                'is_important'   => 0,
             ],
             self::INFO => [
-                'icon'             => self::ALERT_CIRCLE,
-                'background_color' => self::WHITE,
-                'text_color'       => self::DARK,
-                'emphasis_color'   => self::BLUE,
+                'icon'           => self::ALERT_CIRCLE,
+                'emphasis_color' => self::BLUE,
+                'is_important'   => 0,
             ],
             self::WARNING => [
-                'icon'             => self::ALERT_TRIANGLE,
-                'background_color' => self::ORANGE,
-                'text_color'       => self::WHITE,
-                'emphasis_color'   => self::ORANGE,
+                'icon'           => self::ALERT_TRIANGLE,
+                'emphasis_color' => self::ORANGE,
+                'is_important'   => 1,
             ],
             self::PROBLEM => [
-                'icon'             => self::ALERT_OCTAGON,
-                'background_color' => self::RED,
-                'text_color'       => self::WHITE,
-                'emphasis_color'   => self::RED,
+                'icon'           => self::ALERT_OCTAGON,
+                'emphasis_color' => self::RED,
+                'is_important'   => 1,
             ],
         ];
     }
@@ -758,9 +755,7 @@ class PluginNewsAlert extends CommonDBTM
     public static function preItemList($params = [])
     {
         if (isset($params['itemtype']) && $params['itemtype'] == 'Ticket') {
-            echo "<tr><th colspan='2'>";
-            self::displayAlerts(['show_only_helpdesk_alerts' => true]);
-            echo '</th></tr>';
+            self::displayAlerts(['show_only_helpdesk_alerts' => true], 'list');
         }
     }
 

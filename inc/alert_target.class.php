@@ -28,10 +28,7 @@
  * -------------------------------------------------------------------------
  */
 
-if (!defined('GLPI_ROOT')) {
-    echo "Sorry. You can't access directly to this file";
-    return;
-}
+use Glpi\Application\View\TemplateRenderer;
 
 // @codingStandardsIgnoreStart
 class PluginNewsAlert_Target extends CommonDBTM
@@ -122,81 +119,38 @@ class PluginNewsAlert_Target extends CommonDBTM
     {
         /** @var array $CFG_GLPI */
         global $CFG_GLPI;
-        $rand = mt_rand();
 
-        echo "<form method='post' action='" . Toolbox::getItemTypeFormURL('PluginNewsAlert') . "'>";
-        echo "<input type='hidden' name='plugin_news_alerts_id' value='" . $alert->getID() . "'>";
+        $entries = [];
+        $target  = new self();
+        foreach ($target->find(['plugin_news_alerts_id' => $alert->getID()]) as $current_target) {
+            if (is_a($current_target['itemtype'], CommonDBTM::class, true)) {
+                $item = new $current_target['itemtype']();
+                $item->getFromDB($current_target['items_id']);
+                $name = ($current_target['all_items'] == 1
+                    && $current_target['itemtype']    == 'Profile')
+                       ? __('All', 'news')
+                       : $item->getName(['complete' => true]);
 
-        $types = ['Group', 'Profile', 'User'];
-        echo "<table class='plugin_news_alert-visibility'>";
-        echo '<tr>';
-        echo '<td>';
-        echo __s('Add a target', 'news') . ':&nbsp;';
-        $addrand = Dropdown::showItemTypes('itemtype', $types, ['width' => '']);
-        echo '</td>';
-        $params = ['type'  => '__VALUE__',
-            'entities_id'  => $alert->fields['entities_id'],
-            'is_recursive' => $alert->fields['is_recursive'],
-        ];
-        Ajax::updateItemOnSelectEvent(
-            'dropdown_itemtype' . $addrand,
-            "visibility$rand",
-            $CFG_GLPI['root_doc'] . '/plugins/news/ajax/targets.php',
-            $params,
-        );
-        echo '<td>';
-        echo "<span id='visibility$rand'></span>";
-        echo '</td>';
-        echo '<tr>';
-        echo '</table>';
-        Html::closeForm();
-
-        echo "<div class='spaced'>";
-        $target       = new self();
-        $found_target = $target->find(['plugin_news_alerts_id' => $alert->getID()]);
-        if ($nb = count($found_target) > 0) {
-            Html::openMassiveActionsForm('mass' . self::class . $rand);
-            $massiveactionparams
-            = ['num_displayed'     => $nb,
-                'container'        => 'mass' . self::class . $rand,
-                'specific_actions' => ['delete' => _x('button', 'Delete permanently', 'news')],
-            ];
-            Html::showMassiveActions($massiveactionparams);
-
-            echo "<table class='tab_cadre_fixehov'>";
-
-            echo '<tr>';
-            echo "<th width='10'>" . Html::getCheckAllAsCheckbox('mass' . self::class . $rand) . '</th>';
-            echo '<th>' . __s('Type', 'news') . '</th>';
-            echo '<th>' . __s('Recipient', 'news') . '</th>';
-            echo '</tr>';
-
-            foreach ($found_target as $current_target) {
-                if (is_a($current_target['itemtype'], CommonDBTM::class, true)) {
-                    $item = new $current_target['itemtype']();
-                    $item->getFromDB($current_target['items_id']);
-                    $name = ($current_target['all_items'] == 1
-                        && $current_target['itemtype']    == 'Profile')
-                           ? __s('All', 'news')
-                           : $item->getName(['complete' => true]);
-
-                    echo "<tr class='tab_bg_2'>";
-                    echo '<td>';
-                    Html::showMassiveActionCheckBox(self::class, $current_target['id']);
-                    echo '</td>';
-                    echo '<td>' . $item->getTypeName() . '</td>';
-                    echo "<td>$name</td>";
-                    echo '</tr>';
-                }
+                $entries[] = [
+                    'itemtype'  => self::class,
+                    'id'        => $current_target['id'],
+                    'type'      => $item->getTypeName(),
+                    'recipient' => $name,
+                ];
             }
-
-            echo '</table>';
-
-            $massiveactionparams['ontop'] = false;
-            Html::showMassiveActions($massiveactionparams);
-            Html::closeForm();
         }
-        echo '</div>';
+
+        TemplateRenderer::getInstance()->display('@news/alert_targets.html.twig', [
+            'alert'          => $alert,
+            'rand'           => mt_rand(),
+            'canedit'        => $alert->canUpdateItem(),
+            'entries'        => $entries,
+            'targets_url'    => $CFG_GLPI['root_doc'] . '/plugins/news/ajax/targets.php',
+            'targets_params' => [
+                'entities_id'  => $alert->fields['entities_id'],
+                'is_recursive' => $alert->fields['is_recursive'],
+            ],
+        ]);
 
         return true;
     }

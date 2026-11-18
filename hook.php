@@ -59,7 +59,8 @@ function plugin_news_install()
          `is_displayed_oncentral`          TINYINT NOT NULL,
          `is_displayed_onservicecatalog`   TINYINT NOT NULL DEFAULT 0,
          `display_dates`            TINYINT NOT NULL DEFAULT 1,
-         `background_color`         VARCHAR(255) NOT NULL DEFAULT '$white',
+         `is_important`             TINYINT NOT NULL DEFAULT 0,
+         `background_color`        VARCHAR(255) NOT NULL DEFAULT '$white',
          `text_color`               VARCHAR(255) NOT NULL DEFAULT '$dark',
          `emphasis_color`           VARCHAR(255) NOT NULL DEFAULT '$dark',
          `size`                     VARCHAR(255) NOT NULL DEFAULT '$medium',
@@ -290,6 +291,16 @@ function plugin_news_install()
             'display_dates',
             'bool',
             ['value' => '1'],
+        );
+    }
+
+    // Add is_important field (GLPI "alert-important" style: filled background)
+    if (!$DB->fieldExists($alert_table, 'is_important')) {
+        $migration->addField(
+            $alert_table,
+            'is_important',
+            'bool',
+            ['value' => '0'],
         );
     }
 

@@ -143,26 +143,21 @@
         base_option_small
     ) }}
 
-    {{ news_fields.colorField(
-        "background_color",
-        colors,
-        item.fields.background_color,
-        __('Background color', 'news'),
-        base_option_small
-    ) }}
-    {{ news_fields.colorField(
-        "text_color",
-        colors,
-        item.fields.text_color,
-        __('Text color', 'news'),
-        base_option_small
-    ) }}
+    {# Alerts use the GLPI alert style: a single color #}
     {{ news_fields.colorField(
         "emphasis_color",
         colors,
         item.fields.emphasis_color,
-        __('Emphasis color', 'news'),
+        __('Color', 'news'),
         base_option_small
+    ) }}
+    {{ fields.dropdownYesNo(
+        'is_important',
+        item.fields.is_important,
+        __('Important', 'news'),
+        {
+            'helper': __('Important alerts are displayed with a filled background.', 'news'),
+        }|merge(base_option_small)
     ) }}
 
     <div class="hr-text preview-section {{ item.isNewItem() ? "d-none" : "" }}">
@@ -214,8 +209,6 @@
 
                     // Clear values
                     $fields.find('input[name="icon"]').prop('checked', false);
-                    $fields.find('input[name="background_color"]').prop('checked', false);
-                    $fields.find('input[name="text_color"]').prop('checked', false);
                     $fields.find('input[name="emphasis_color"]').prop('checked', false);
 
                     // Apply template values
@@ -223,15 +216,14 @@
                         {% for key, values in templates_values %}
                             case '{{ key }}':
                                 $fields.find('input[name="icon"][value="{{ values.icon }}"]').prop('checked', true);
-                                $fields.find('input[name="background_color"][value="{{ values.background_color }}"]').prop('checked', true);
-                                $fields.find('input[name="text_color"][value="{{ values.text_color }}"]').prop('checked', true);
+                                $fields.find('select[name="is_important"]').val('{{ values.is_important }}').trigger('change');
                                 $fields.find('input[name="emphasis_color"][value="{{ values.emphasis_color }}"]').prop('checked', true);
                                 break;
                         {% endfor %}
                     }
 
                     updating_template = false;
-                } else if (['icon', 'background_color', 'text_color', 'emphasis_color'].includes($(e.target).prop('name'))) {
+                } else if (['icon', 'emphasis_color', 'is_important'].includes($(e.target).prop('name'))) {
                     // Manual color or icon change, disable templating
                     $fields.find('select[name=type]').val(0).trigger("change");
                 }

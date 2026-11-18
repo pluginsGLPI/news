@@ -316,9 +316,9 @@ class PluginNewsAlertTest extends DbTestCase
         $this->assertStringContainsString('name="message"', $readonly_html);
         $this->assertStringContainsString('Alert preview content', $readonly_html);
 
-        // The checked "background_color" radio must not be disabled, or jQuery's
+        // The checked "emphasis_color" radio must not be disabled, or jQuery's
         // serialize() (used by the preview script) would silently drop it.
-        $found = preg_match('/<input[^>]*name="background_color"[^>]*checked[^>]*>/', $readonly_html, $matches);
+        $found = preg_match('/<input[^>]*name="emphasis_color"[^>]*checked[^>]*>/', $readonly_html, $matches);
         $this->assertSame(1, $found);
         $this->assertStringNotContainsString('disabled', $matches[0]);
     }
