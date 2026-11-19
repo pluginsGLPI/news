@@ -35,6 +35,7 @@ use Glpi\Tests\DbTestCase;
 use PluginNewsAlert;
 use PluginNewsAlert_Target;
 use Profile;
+use Symfony\Component\DomCrawler\Crawler;
 use User;
 
 class PluginNewsDisplayTest extends DbTestCase
@@ -130,6 +131,56 @@ class PluginNewsDisplayTest extends DbTestCase
         $this->assertStringContainsString('All', $output);
         $this->assertStringContainsString(User::getTypeName(1), $output);
         $this->assertStringContainsString('tech', $output);
+    }
+
+    /**
+     * @param array<string, mixed> $alert_fields
+     */
+    private function renderAlert(array $alert_fields): Crawler
+    {
+        return new Crawler(TemplateRenderer::getInstance()->render('@news/display_alert.html.twig', [
+            'alert_fields'           => $alert_fields + [
+                'id'            => 1,
+                'name'          => 'Alert',
+                'icon'          => 'settings',
+                'display_dates' => 0,
+                'date_start'    => null,
+                'date_end'      => null,
+            ],
+            'content'              => 'Alert message',
+            'size'                   => 'medium',
+            'can_close'              => true,
+            'show_only_login_alerts' => true,
+        ]));
+    }
+
+    public function testImportantAlertOnLightColorHasDarkText(): void
+    {
+        foreach (['yellow', 'lime'] as $color) {
+            $alert = $this->renderAlert(['emphasis_color' => $color, 'is_important' => 1])->filter('.alert');
+            $this->assertStringContainsString('plugin_news_alert-dark-text', $alert->attr('class') ?? '');
+            $this->assertStringNotContainsString('btn-close-white', $alert->filter('.btn-close')->attr('class') ?? '');
+        }
+
+        // Other colors keep the white text of GLPI important alerts
+        $alert = $this->renderAlert(['emphasis_color' => 'red', 'is_important' => 1])->filter('.alert');
+        $this->assertStringNotContainsString('plugin_news_alert-dark-text', $alert->attr('class') ?? '');
+        $this->assertStringContainsString('btn-close-white', $alert->filter('.btn-close')->attr('class') ?? '');
+
+        // A normal alert on a light color already has a dark text
+        $alert = $this->renderAlert(['emphasis_color' => 'yellow', 'is_important' => 0])->filter('.alert');
+        $this->assertStringNotContainsString('plugin_news_alert-dark-text', $alert->attr('class') ?? '');
+    }
+
+    public function testAlertToggleIsAButtonAndDatesNeedAValue(): void
+    {
+        $crawler = $this->renderAlert(['emphasis_color' => 'blue', 'display_dates' => 1]);
+        $this->assertCount(1, $crawler->filter('button.plugin_news_alert-toggle[type="button"][aria-label]'));
+        // Without any date, the calendar icon would be displayed alone
+        $this->assertCount(0, $crawler->filter('.ti-calendar-event'));
+
+        $crawler = $this->renderAlert(['emphasis_color' => 'blue', 'display_dates' => 1, 'date_start' => '2026-11-19 09:00:00']);
+        $this->assertCount(1, $crawler->filter('.ti-calendar-event'));
     }
 
     public function testTargetDropdownByType(): void

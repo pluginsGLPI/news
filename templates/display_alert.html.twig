@@ -36,6 +36,11 @@
 {% endif %}
 {# There is no "white" alert in GLPI: white background with a border of the text color (see styles.css) #}
 {% set color_class = color == 'white' ? 'plugin_news_alert-white' : 'alert-' ~ color %}
+{# White text would not be readable on the light background of these colors (see styles.css) #}
+{% set has_dark_text = is_important and color in ['yellow', 'lime'] %}
+{% if has_dark_text %}
+    {% set color_class = color_class ~ ' plugin_news_alert-dark-text' %}
+{% endif %}
 
 <div class="plugin_news_alert {{ size }}" data-id="{{ alert_fields.id|default(0) }}">
     <div class="alert {{ color_class }} {{ is_important ? 'alert-important' : '' }} {{ can_close ? 'alert-dismissible' : '' }}" role="alert">
@@ -49,12 +54,12 @@
                 <h4 class="alert-title d-flex align-items-center">
                     <span>{{ alert_fields.name }}</span>
                     {% if show_only_login_alerts %}
-                        <a class="plugin_news_alert-toggle ms-auto" role="button" aria-label="{{ __('Show / hide', 'news') }}">
+                        <button type="button" class="plugin_news_alert-toggle border-0 bg-transparent p-0 ms-auto" aria-label="{{ __('Show / hide', 'news') }}">
                             <i class="ti ti-chevron-down"></i>
-                        </a>
+                        </button>
                     {% endif %}
                 </h4>
-                {% if alert_fields.display_dates %}
+                {% if alert_fields.display_dates and (alert_fields.date_start is not empty or alert_fields.date_end is not empty) %}
                     <div class="{{ text_class }} small mb-1">
                         <i class="ti ti-calendar-event me-1"></i>
                         {{ alert_fields.date_start|formatted_datetime }}
@@ -70,7 +75,7 @@
             </div>
         </div>
         {% if can_close %}
-            <a class="btn-close {{ is_important and color != 'white' ? 'btn-close-white' : '' }}" aria-label="{{ __('Close') }}" data-bs-dismiss="alert"></a>
+            <a class="btn-close {{ is_important and color != 'white' and not has_dark_text ? 'btn-close-white' : '' }}" aria-label="{{ __('Close') }}" data-bs-dismiss="alert"></a>
         {% endif %}
     </div>
 </div>

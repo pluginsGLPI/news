@@ -28,6 +28,8 @@
  * -------------------------------------------------------------------------
  */
 
+use Glpi\DBAL\QueryExpression;
+
 function plugin_news_install()
 {
     /** @var DBmysql $DB */
@@ -301,6 +303,17 @@ function plugin_news_install()
             'is_important',
             'bool',
             ['value' => '0'],
+        );
+        // Custom alerts with a colored background become important alerts of that color
+        $migration->addPostQuery(
+            $DB->buildUpdate(
+                $alert_table,
+                [
+                    'is_important'   => 1,
+                    'emphasis_color' => new QueryExpression($DB::quoteName('background_color')),
+                ],
+                ['NOT' => ['background_color' => PluginNewsAlert::WHITE]],
+            ),
         );
     }
 
