@@ -72,6 +72,11 @@
    border-color: var(--tblr-body-color);
 }
 
+/* A normal white alert only needs a light border, the dark one stands out for important alerts */
+.alert.plugin_news_alert-white:not(.alert-important) {
+   border-color: var(--tblr-border-color);
+}
+
 /* ITIL forms have their own layout: always display full size alerts.
    The "col-12" class can't be used, the GLPI core replaces it by "col-6" when expanding the sidebar. */
 #itil-form .plugin_news_alert {
