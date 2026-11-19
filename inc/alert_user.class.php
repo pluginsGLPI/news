@@ -28,11 +28,6 @@
  * -------------------------------------------------------------------------
  */
 
-if (!defined('GLPI_ROOT')) {
-    echo "Sorry. You can't access directly to this file";
-    return;
-}
-
 // @codingStandardsIgnoreStart
 class PluginNewsAlert_User extends CommonDBRelation
 {
