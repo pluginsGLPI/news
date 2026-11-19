@@ -316,10 +316,75 @@ class PluginNewsAlertTest extends DbTestCase
         $this->assertStringContainsString('name="message"', $readonly_html);
         $this->assertStringContainsString('Alert preview content', $readonly_html);
 
-        // The checked "background_color" radio must not be disabled, or jQuery's
+        // The checked "emphasis_color" radio must not be disabled, or jQuery's
         // serialize() (used by the preview script) would silently drop it.
-        $found = preg_match('/<input[^>]*name="background_color"[^>]*checked[^>]*>/', $readonly_html, $matches);
+        $found = preg_match('/<input[^>]*name="emphasis_color"[^>]*checked[^>]*>/', $readonly_html, $matches);
         $this->assertSame(1, $found);
         $this->assertStringNotContainsString('disabled', $matches[0]);
+    }
+
+    public function testUpgradeTurnsColoredCustomAlertsIntoImportantOnes(): void
+    {
+        /** @var \DBmysql $DB */
+        global $DB;
+
+        $this->login('glpi');
+
+        // The upgrade drops and adds a column, which is not allowed inside the test transaction: the test runs outside of
+        // it and deletes its alerts itself, then opens a new transaction for tearDown()
+        $DB->rollBack();
+
+        $alerts_ids = [];
+        $create_custom_alert = function (string $background_color, string $emphasis_color) use (&$alerts_ids): PluginNewsAlert {
+            $alert = $this->createItem(PluginNewsAlert::class, [
+                'name'                          => 'Custom alert on ' . $background_color,
+                'message'                       => 'Custom alert',
+                'type'                          => 0,
+                'background_color'              => $background_color,
+                'emphasis_color'                => $emphasis_color,
+                'is_important'                  => 0,
+                'size'                          => 'medium',
+                'icon'                          => 'settings',
+                'display_dates'                 => 1,
+                'is_displayed_onlogin'          => 1,
+                'is_displayed_oncentral'        => 1,
+                'is_displayed_onhelpdesk'       => 1,
+                'is_displayed_onservicecatalog' => 1,
+                'is_close_allowed'              => 1,
+                'is_active'                     => 1,
+                'entities_id'                   => 0,
+            ]);
+            $alerts_ids[] = $alert->getID();
+
+            return $alert;
+        };
+
+        try {
+            $colored = $create_custom_alert(PluginNewsAlert::RED, PluginNewsAlert::DARK);
+            $white   = $create_custom_alert(PluginNewsAlert::WHITE, PluginNewsAlert::BLUE);
+
+            // Upgrade from a version without the "is_important" field
+            $DB->doQuery('ALTER TABLE `glpi_plugin_news_alerts` DROP COLUMN `is_important`');
+            require_once dirname(__DIR__, 2) . '/hook.php';
+            plugin_news_install();
+
+            // The colored background becomes the color of an important alert
+            $this->assertTrue($colored->getFromDB($colored->getID()));
+            $this->assertSame(1, (int) $colored->fields['is_important']);
+            $this->assertSame(PluginNewsAlert::RED, $colored->fields['emphasis_color']);
+
+            // A white background stays a normal alert, with its color
+            $this->assertTrue($white->getFromDB($white->getID()));
+            $this->assertSame(0, (int) $white->fields['is_important']);
+            $this->assertSame(PluginNewsAlert::BLUE, $white->fields['emphasis_color']);
+        } finally {
+            if ($alerts_ids !== []) {
+                $DB->delete('glpi_plugin_news_alerts', ['id' => $alerts_ids]);
+            }
+            if (!$DB->fieldExists('glpi_plugin_news_alerts', 'is_important', false)) {
+                $DB->doQuery('ALTER TABLE `glpi_plugin_news_alerts` ADD `is_important` TINYINT NOT NULL DEFAULT 0');
+            }
+            $DB->beginTransaction();
+        }
     }
 }

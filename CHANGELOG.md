@@ -5,11 +5,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+<<<<<<< HEAD
 ## [1.15.1] - 2026-11-05
 
 ### Added
 
 - Add Transifex translations link to README
+=======
+## [Unreleased]
+
+### Added
+
+- "Important" option on alerts: important alerts have a filled background of the alert color, the other ones a transparent tint of it
+
+### Changed
+
+- Alerts use the GLPI alert style, with a single "Color" option: the "Background color" and "Text color" options are removed
+- White alerts have a white background with a border of the text color
+- Alerts are aligned on the page grid
+- Targets tab uses the GLPI list, with the native massive actions
+- Pages rendered with Twig templates instead of PHP `echo`
+
+## [1.14.3] - 2026-11-05
+>>>>>>> e3690fa (Refactor: replace PHP echo with Twig templates and use GLPI alert style (#258))
 
 ### Fixed
 
