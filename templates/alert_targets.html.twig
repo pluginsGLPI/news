@@ -42,7 +42,7 @@
                 }) }}
             </div>
             <span hidden data-news-rand="{{ rand }}" data-news-targets-url="{{ targets_url }}" data-news-targets-params="{{ targets_params|json_encode }}"></span>
-            {{ call('Html::script', ['/plugins/news/js/alert_targets.js', {}, false])|raw }}
+            {{ call('Html::script', ['/plugins/news/js/alert_targets.js', {'version': constant('PLUGIN_NEWS_VERSION')}, false])|raw }}
         </form>
     </div>
 {% endif %}

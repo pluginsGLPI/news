@@ -169,6 +169,6 @@
     </div>
 
     <span hidden data-news-preview-url="{{ path('/plugins/news/ajax/alert_preview.php') }}" data-news-templates-values="{{ templates_values|json_encode }}" data-news-load-preview="{{ item.isNewItem() ? '0' : '1' }}"></span>
-    {{ call('Html::script', ['/plugins/news/js/alert_form.js', {}, false])|raw }}
+    {{ call('Html::script', ['/plugins/news/js/alert_form.js', {'version': constant('PLUGIN_NEWS_VERSION')}, false])|raw }}
 
 {% endblock %}
