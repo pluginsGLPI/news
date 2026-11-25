@@ -26,55 +26,56 @@
  # -------------------------------------------------------------------------
  #}
 
-{# Accentuation color has a lower opacity, unless it is the background color (= no accent) #}
-{% set accent = 'var(--tblr-' ~ alert_fields.emphasis_color ~ ')' %}
-{% if alert_fields.emphasis_color != alert_fields.background_color %}
-    {% set accent = 'color-mix(in srgb, ' ~ accent ~ ' 60%, transparent)' %}
+{# Same markup as the GLPI alerts (components/alerts_macros.html.twig), normal or important (filled background) #}
+{% set is_important = alert_fields.is_important|default(false) %}
+{# On a filled background, the muted text would not be readable #}
+{% set text_class = is_important ? '' : 'text-muted' %}
+{% set color = alert_fields.emphasis_color ?? '' %}
+{% if color is empty %}
+    {% set color = 'secondary' %}
 {% endif %}
+{# There is no "white" alert in GLPI: white background with a border of the text color (see styles.css) #}
+{% set color_class = color == 'white' ? 'plugin_news_alert-white' : 'alert-' ~ color %}
+{# White text would not be readable on the light background of these colors (see styles.css) #}
+{% set has_dark_text = is_important and color in ['yellow', 'lime'] %}
+{% if has_dark_text %}
+    {% set color_class = color_class ~ ' plugin_news_alert-dark-text' %}
+{% endif %}
+
 <div class="plugin_news_alert {{ size }}" data-id="{{ alert_fields.id|default(0) }}">
-    <div
-        class="
-            alert bg-{{ alert_fields.background_color }}
-            {{ can_close ? "alert-dismissible" : "" }}
-        "
-        style="
-            color: var(--tblr-{{ alert_fields.text_color }}) !important;
-            border-left-color: {{ accent }} !important;
-        "
-    >
-        <div class="d-flex">
-            <i class="ti ti-{{ alert_fields.icon }} fa-2x me-2"></i>
-            <div class="overflow-hidden">
-                <h3 class="mt-1">
-                    {{ alert_fields.name }}
+    <div class="alert {{ color_class }} {{ is_important ? 'alert-important' : '' }} {{ can_close ? 'alert-dismissible' : '' }}" role="alert">
+        <div class="d-flex flex-grow-1 overflow-hidden">
+            {% if alert_fields.icon is not empty %}
+                <div class="me-2">
+                    <i class="ti ti-{{ alert_fields.icon }} fs-2x alert-icon"></i>
+                </div>
+            {% endif %}
+            <div class="flex-grow-1 overflow-hidden">
+                <h4 class="alert-title d-flex align-items-center">
+                    <span>{{ alert_fields.name }}</span>
                     {% if show_only_login_alerts %}
-                        <a class="plugin_news_alert-toggle"></a>
+                        <button type="button" class="plugin_news_alert-toggle border-0 bg-transparent p-0 ms-auto" aria-label="{{ __('Show / hide', 'news') }}">
+                            <i class="ti ti-chevron-down"></i>
+                        </button>
                     {% endif %}
-                </h3>
-                {% if alert_fields.display_dates %}
-                    <div
-                        {# Different color for dates if the background color allows it #}
-                        {% if alert_fields.background_color in ['dark', 'white', 'yellow', 'lime'] %}
-                            class="text-muted"
-                        {% else %}
-                            style="font-style: italic"
-                        {% endif %}
-                    >
+                </h4>
+                {% if alert_fields.display_dates and (alert_fields.date_start is not empty or alert_fields.date_end is not empty) %}
+                    <div class="{{ text_class }} small mb-1">
+                        <i class="ti ti-calendar-event me-1"></i>
                         {{ alert_fields.date_start|formatted_datetime }}
-                        {% if not alert_fields.date_start is empty and not alert_fields.date_end is empty %}
+                        {% if alert_fields.date_start is not empty and alert_fields.date_end is not empty %}
                             -
                         {% endif %}
                         {{ alert_fields.date_end|formatted_datetime }}
                     </div>
                 {% endif %}
-                <div class="plugin_news_alert-content overflow-hidden">
+                <div class="plugin_news_alert-content {{ text_class }} overflow-hidden">
                     {{ content|safe_html }}
                 </div>
             </div>
         </div>
         {% if can_close %}
-            <a class="btn-close" aria-label="close" data-bs-dismiss="alert"></a>
+            <a class="btn-close {{ is_important and color != 'white' and not has_dark_text ? 'btn-close-white' : '' }}" aria-label="{{ __('Close') }}" data-bs-dismiss="alert"></a>
         {% endif %}
     </div>
 </div>
-

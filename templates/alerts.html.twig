@@ -1,0 +1,67 @@
+{#
+ # -------------------------------------------------------------------------
+ # News plugin for GLPI
+ # -------------------------------------------------------------------------
+ #
+ # LICENSE
+ #
+ # This file is part of News.
+ #
+ # News is free software; you can redistribute it and/or modify
+ # it under the terms of the GNU General Public License as published by
+ # the Free Software Foundation; either version 2 of the License, or
+ # (at your option) any later version.
+ #
+ # News is distributed in the hope that it will be useful,
+ # but WITHOUT ANY WARRANTY; without even the implied warranty of
+ # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ # GNU General Public License for more details.
+ #
+ # You should have received a copy of the GNU General Public License
+ # along with News. If not, see <http://www.gnu.org/licenses/>.
+ # -------------------------------------------------------------------------
+ # @copyright Copyright (C) 2015-2023 by News plugin team.
+ # @license   GPLv2 https://www.gnu.org/licenses/gpl-2.0.html
+ # @link      https://github.com/pluginsGLPI/news
+ # -------------------------------------------------------------------------
+ #}
+
+{#
+ # Alerts list, displayed by the GLPI hooks.
+ # `wrapper` matches the place of the hook output:
+ #   - 'central': inside the central page table,
+ #   - 'list':    above a list (table header row),
+ #   - 'login':   on the login page,
+ #   - null:      no wrapper.
+ #}
+
+{% set alerts_html %}
+    {# No whitespace inside the container: it is hidden by CSS when :empty #}
+    <div class="plugin_news_alert-container row align-items-stretch">
+        {%- for alert in alerts -%}
+            {{ include('@news/display_alert.html.twig', alert, with_context = false) }}
+        {%- endfor -%}
+
+        {%- if hidden_alerts_url is not null -%}
+            <div class="center">
+                <a href="{{ hidden_alerts_url }}">{{ __('You have hidden alerts valid for current date', 'news') }}</a>
+            </div>
+        {%- endif -%}
+    </div>
+{% endset %}
+
+{% if wrapper == 'central' %}
+    <tr><td colspan="2">{{ alerts_html }}</td></tr>
+{% elseif wrapper == 'list' %}
+    <tr><th colspan="2">{{ alerts_html }}</th></tr>
+{% elseif wrapper == 'login' %}
+    {{ call('Html::css', ['/plugins/news/css/styles.css'])|raw }}
+    <div class="plugin_news_alert-login">{{ alerts_html }}</div>
+{% else %}
+    {{ alerts_html }}
+{% endif %}
+
+{% if load_script %}
+    {{ call('Html::script', ['/plugins/news/js/news.js'])|raw }}
+{% endif %}
+
