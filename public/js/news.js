@@ -27,7 +27,7 @@
  */
 
 pluginNewsCloseAlerts = function() {
-    $(document).on("mousedown", ".plugin_news_alert .alert a[data-bs-dismiss=alert]", function(event) {
+    $(document).off("mousedown.pluginnews").on("mousedown.pluginnews", ".plugin_news_alert .alert a[data-bs-dismiss=alert]", function(event) {
         var alert = $(this).closest(".plugin_news_alert");
         var id    = alert.attr('data-id');
         var a_url = CFG_GLPI.root_doc+"/plugins/news/ajax";
@@ -36,18 +36,14 @@ pluginNewsCloseAlerts = function() {
 };
 
 pluginNewsToggleAlerts = function() {
-    $(document).on("click", ".plugin_news_alert-toggle",function() {
+    $(document).off("click.pluginnews").on("click.pluginnews", ".plugin_news_alert-toggle",function() {
         var alert = $(this).closest(".plugin_news_alert");
         alert.toggleClass('expanded');
     });
 }
 
+// Handlers are delegated on document: bound once, they also cover alerts loaded later in tabs
 $(function() {
     pluginNewsCloseAlerts();
     pluginNewsToggleAlerts();
-
-    $(document).on('glpi.tab.loaded', function() {
-        pluginNewsCloseAlerts();
-        pluginNewsToggleAlerts();
-    });
 });

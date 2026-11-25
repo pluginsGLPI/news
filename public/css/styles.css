@@ -26,6 +26,11 @@
  * -------------------------------------------------------------------------
  */
 
+/* Missing tabler variable */
+:root {
+   --tblr-lime: #74b816;
+}
+
 .plugin_news_alert-container {
    margin-bottom: 1rem;
 }

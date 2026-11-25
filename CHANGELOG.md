@@ -19,6 +19,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Targets tab uses the GLPI list, with the native massive actions
 - Pages rendered with Twig templates instead of PHP `echo`
 
+### Fixed
+
+- Faster display of pages showing alerts (ticket form, central page, ticket list) when many alerts exist
+- Faster display of the alert targets tab
+- Closing an alert sent one request per tab previously opened on the page
+
 ## [1.14.3] - 2026-11-05
 
 ### Fixed
