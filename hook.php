@@ -385,3 +385,17 @@ function plugin_news_uninstall()
 
     return true;
 }
+
+/**
+ * Declare foreign keys to core tables, so that core usage checks and replacements take them into account
+ *
+ * @return array
+ */
+function plugin_news_getDatabaseRelations()
+{
+    return [
+        'glpi_entities' => [
+            'glpi_plugin_news_alerts' => 'entities_id',
+        ],
+    ];
+}
