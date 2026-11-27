@@ -19,6 +19,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Targets tab uses the GLPI list, with the native massive actions
 - Pages rendered with Twig templates instead of PHP `echo`
 
+### Fixed
+
+- Fix alerts left in a deleted entity: declare their entity relation so it is checked and replaced on entity deletion
+
 ## [1.14.3] - 2026-11-05
 
 ### Fixed
