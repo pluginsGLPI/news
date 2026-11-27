@@ -84,12 +84,13 @@ function plugin_init_news()
 function plugin_version_news()
 {
     return [
-        'name'         => __s('Alerts', 'news'),
-        'version'      => PLUGIN_NEWS_VERSION,
-        'author'       => "<a href='mailto:contact@teclib.com'>TECLIB'</a>",
-        'license'      => 'GPLv2+',
-        'homepage'     => 'https://github.com/pluginsGLPI/news',
-        'requirements' => [
+        'name'          => __s('Alerts', 'news'),
+        'version'       => PLUGIN_NEWS_VERSION,
+        'author'        => "<a href='mailto:contact@teclib.com'>TECLIB'</a>",
+        'license'       => 'GPLv2+',
+        'homepage'      => 'https://github.com/pluginsGLPI/news',
+        'csp_compliant' => true,
+        'requirements'  => [
             'glpi' => [
                 'min' => PLUGIN_NEWS_MIN_GLPI,
                 'max' => PLUGIN_NEWS_MAX_GLPI,
