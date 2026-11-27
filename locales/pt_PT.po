@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-06 04:59+0000\n"
+"POT-Creation-Date: 2026-11-20 05:39+0000\n"
 "PO-Revision-Date: 2015-09-18 13:33+0000\n"
 "Last-Translator: Rui Melo <viper5000pt@gmail.com>, 2019\n"
 "Language-Team: Portuguese (Portugal) (http://app.transifex.com/teclib/glpi-plugin-news/language/pt_PT/)\n"
@@ -17,15 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pt_PT\n"
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
-
-#: templates/profile.html.twig
-msgctxt "button"
-msgid "Save"
-msgstr "Guardar"
-
-#: templates/components/news_fields_macros.html.twig
-msgid "No icon"
-msgstr "Sem ícone"
 
 #: templates/alert_form.html.twig inc/alert.class.php:113
 msgid "Name"
@@ -107,50 +98,19 @@ msgstr "Cor de ênfase"
 msgid "Preview"
 msgstr "Pré-visualização"
 
-#: front/alert.form.php:47
-#, php-format
-msgid "%s updates an item"
-msgstr "%s atualiza um item"
+#: templates/profile.html.twig
+msgctxt "button"
+msgid "Save"
+msgstr "Guardar"
 
-#: front/alert.form.php:59
-#, php-format
-msgid "%1$s adds the item %2$s"
-msgstr "%1$s adiciona o item %2$s"
+#: templates/components/news_fields_macros.html.twig
+msgid "No icon"
+msgstr "Sem ícone"
 
-#: front/alert.form.php:75
-#, php-format
-msgid "%s deletes an item"
-msgstr "%s elimina um item"
-
-#: front/alert.form.php:87
-#, php-format
-msgid "%s restores an item"
-msgstr "%s restaura um item"
-
-#: front/alert.form.php:99
-#, php-format
-msgid "%s purges an item"
-msgstr "%s purga um item"
-
-#: front/alert.form.php:111 front/hidden_alerts.php:34
-#: front/hidden_alerts.php:37 front/alert.php:34 setup.php:87
-#: inc/alert.class.php:89
+#: inc/alert.class.php:89 setup.php:87 front/alert.form.php:111
+#: front/alert.php:34 front/hidden_alerts.php:34 front/hidden_alerts.php:37
 msgid "Alerts"
 msgstr "Alertas"
-
-#: ajax/targets.php:56 inc/alert_target.class.php:86
-#: inc/alert_target.class.php:180
-msgid "All"
-msgstr "Todos"
-
-#: ajax/targets.php:61
-msgctxt "button"
-msgid "Add"
-msgstr "Add"
-
-#: inc/alert_user.class.php:88
-msgid "Status"
-msgstr "Estado"
 
 #: inc/alert.class.php:139
 msgid "Entity"
@@ -291,6 +251,11 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
+#: inc/alert_target.class.php:86 inc/alert_target.class.php:180
+#: ajax/targets.php:56
+msgid "All"
+msgstr "Todos"
+
 #: inc/alert_target.class.php:134
 msgid "Add a target"
 msgstr "Adicionar um alvo"
@@ -307,3 +272,37 @@ msgstr "Tipo"
 #: inc/alert_target.class.php:171
 msgid "Recipient"
 msgstr "Destinatário"
+
+#: inc/alert_user.class.php:88
+msgid "Status"
+msgstr "Estado"
+
+#: front/alert.form.php:47
+#, php-format
+msgid "%s updates an item"
+msgstr "%s atualiza um item"
+
+#: front/alert.form.php:59
+#, php-format
+msgid "%1$s adds the item %2$s"
+msgstr "%1$s adiciona o item %2$s"
+
+#: front/alert.form.php:75
+#, php-format
+msgid "%s deletes an item"
+msgstr "%s elimina um item"
+
+#: front/alert.form.php:87
+#, php-format
+msgid "%s restores an item"
+msgstr "%s restaura um item"
+
+#: front/alert.form.php:99
+#, php-format
+msgid "%s purges an item"
+msgstr "%s purga um item"
+
+#: ajax/targets.php:61
+msgctxt "button"
+msgid "Add"
+msgstr "Add"

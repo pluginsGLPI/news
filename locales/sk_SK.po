@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Plugin - News\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-16 04:40+0000\n"
+"POT-Creation-Date: 2026-11-20 05:39+0000\n"
 "PO-Revision-Date: 2015-09-18 13:33+0000\n"
 "Last-Translator: feonsu <feonsu@gmail.com>, 2018,2022-2023,2026\n"
 "Language-Team: Slovak (Slovakia) (http://app.transifex.com/teclib/glpi-plugin-news/language/sk_SK/)\n"
@@ -17,15 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: sk_SK\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
-
-#: templates/profile.html.twig
-msgctxt "button"
-msgid "Save"
-msgstr "Uložiť"
-
-#: templates/components/news_fields_macros.html.twig
-msgid "No icon"
-msgstr "Bez ikony"
 
 #: templates/alert_form.html.twig inc/alert.class.php:113
 msgid "Name"
@@ -107,50 +98,19 @@ msgstr "Farba zvýraznenia"
 msgid "Preview"
 msgstr "Ukážka"
 
-#: front/alert.form.php:47
-#, php-format
-msgid "%s updates an item"
-msgstr "%s aktualizoval položku"
+#: templates/profile.html.twig
+msgctxt "button"
+msgid "Save"
+msgstr "Uložiť"
 
-#: front/alert.form.php:59
-#, php-format
-msgid "%1$s adds the item %2$s"
-msgstr "%1$s pridal položku %2$s"
+#: templates/components/news_fields_macros.html.twig
+msgid "No icon"
+msgstr "Bez ikony"
 
-#: front/alert.form.php:75
-#, php-format
-msgid "%s deletes an item"
-msgstr "%s zmazal položku"
-
-#: front/alert.form.php:87
-#, php-format
-msgid "%s restores an item"
-msgstr "%s obnovil položku"
-
-#: front/alert.form.php:99
-#, php-format
-msgid "%s purges an item"
-msgstr "%s vymazal položku"
-
-#: front/alert.form.php:111 front/hidden_alerts.php:34
-#: front/hidden_alerts.php:37 front/alert.php:34 setup.php:87
-#: inc/alert.class.php:89
+#: inc/alert.class.php:89 setup.php:87 front/alert.form.php:111
+#: front/alert.php:34 front/hidden_alerts.php:34 front/hidden_alerts.php:37
 msgid "Alerts"
 msgstr "Upozornenia"
-
-#: ajax/targets.php:56 inc/alert_target.class.php:86
-#: inc/alert_target.class.php:180
-msgid "All"
-msgstr "Všetky"
-
-#: ajax/targets.php:61
-msgctxt "button"
-msgid "Add"
-msgstr "Pridať"
-
-#: inc/alert_user.class.php:88
-msgid "Status"
-msgstr "Stav"
 
 #: inc/alert.class.php:139
 msgid "Entity"
@@ -292,6 +252,11 @@ msgstr[1] "Ciele"
 msgstr[2] "Ciele"
 msgstr[3] "Ciele"
 
+#: inc/alert_target.class.php:86 inc/alert_target.class.php:180
+#: ajax/targets.php:56
+msgid "All"
+msgstr "Všetky"
+
 #: inc/alert_target.class.php:134
 msgid "Add a target"
 msgstr "Pridať cieľ"
@@ -308,3 +273,37 @@ msgstr "Typ"
 #: inc/alert_target.class.php:171
 msgid "Recipient"
 msgstr "Príjemca"
+
+#: inc/alert_user.class.php:88
+msgid "Status"
+msgstr "Stav"
+
+#: front/alert.form.php:47
+#, php-format
+msgid "%s updates an item"
+msgstr "%s aktualizoval položku"
+
+#: front/alert.form.php:59
+#, php-format
+msgid "%1$s adds the item %2$s"
+msgstr "%1$s pridal položku %2$s"
+
+#: front/alert.form.php:75
+#, php-format
+msgid "%s deletes an item"
+msgstr "%s zmazal položku"
+
+#: front/alert.form.php:87
+#, php-format
+msgid "%s restores an item"
+msgstr "%s obnovil položku"
+
+#: front/alert.form.php:99
+#, php-format
+msgid "%s purges an item"
+msgstr "%s vymazal položku"
+
+#: ajax/targets.php:61
+msgctxt "button"
+msgid "Add"
+msgstr "Pridať"
