@@ -174,22 +174,8 @@
 }
 
 .plugin_news_alert-toggle {
-<<<<<<< HEAD
-   background-image: url("../pics/toggle_down.png");
-   background-repeat: no-repeat;
-   background-size: contain;
-   width: 16px;
-   height: 16px;
-   cursor: pointer;
-   position: absolute;
-   top: 50%;
-   right: 0;
-   transform: translateY(-50%);
-   opacity: .5;
-=======
    cursor: pointer;
    color: inherit;
->>>>>>> e3690fa (Refactor: replace PHP echo with Twig templates and use GLPI alert style (#258))
 }
 
 .plugin_news_alert-toggle .ti {

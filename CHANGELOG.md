@@ -5,13 +5,6 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-<<<<<<< HEAD
-## [1.15.1] - 2026-11-05
-
-### Added
-
-- Add Transifex translations link to README
-=======
 ## [Unreleased]
 
 ### Added
@@ -26,8 +19,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Targets tab uses the GLPI list, with the native massive actions
 - Pages rendered with Twig templates instead of PHP `echo`
 
-## [1.14.3] - 2026-11-05
->>>>>>> e3690fa (Refactor: replace PHP echo with Twig templates and use GLPI alert style (#258))
+## [1.15.1] - 2026-11-05
+
+### Added
+
+- Add Transifex translations link to README
 
 ### Fixed
 

@@ -42,27 +42,7 @@
     {% set color_class = color_class ~ ' plugin_news_alert-dark-text' %}
 {% endif %}
 
-<<<<<<< HEAD
-{% set js_rand = random() %}
 <div class="plugin_news_alert {{ size }} {{ show_only_login_alerts ? 'expanded' : '' }}" data-id="{{ alert_fields.id|default(0) }}">
-    <div
-        class="
-            alert-{{ js_rand }}
-            alert bg-{{ alert_fields.background_color }}
-            {{ can_close ? "alert-dismissible" : "" }}
-        "
-        style="
-            color: var(--tblr-{{ alert_fields.text_color }}) !important;
-            border-left-color: var(--tblr-{{ alert_fields.emphasis_color }}) !important;
-        "
-    >
-        <div class="d-flex">
-            <i class="ti ti-{{ alert_fields.icon }} fa-2x me-2"></i>
-            <div class="overflow-hidden">
-                <h3 class="mt-1">
-                    {{ alert_fields.name }}
-=======
-<div class="plugin_news_alert {{ size }}" data-id="{{ alert_fields.id|default(0) }}">
     <div class="alert {{ color_class }} {{ is_important ? 'alert-important' : '' }} {{ can_close ? 'alert-dismissible' : '' }}" role="alert">
         <div class="d-flex flex-grow-1 overflow-hidden">
             {% if alert_fields.icon is not empty %}
@@ -73,7 +53,6 @@
             <div class="flex-grow-1 overflow-hidden">
                 <h4 class="alert-title d-flex align-items-center">
                     <span>{{ alert_fields.name }}</span>
->>>>>>> e3690fa (Refactor: replace PHP echo with Twig templates and use GLPI alert style (#258))
                     {% if show_only_login_alerts %}
                         <button type="button" class="plugin_news_alert-toggle border-0 bg-transparent p-0 ms-auto" aria-label="{{ __('Show / hide', 'news') }}">
                             <i class="ti ti-chevron-down"></i>

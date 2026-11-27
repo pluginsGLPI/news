@@ -32,7 +32,6 @@
     <div class="mb-3">
         <form method="post" action="{{ 'PluginNewsAlert'|itemtype_form_path }}">
             <input type="hidden" name="plugin_news_alerts_id" value="{{ alert.getID() }}">
-            {{ fields.csrfField() }}
             <div class="d-flex flex-wrap">
                 {{ fields.dropdownItemTypes('itemtype', '', __('Add a target', 'news'), {
                     types: ['Group', 'Profile', 'User'],
