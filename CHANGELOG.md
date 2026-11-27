@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Alerts are aligned on the page grid
 - Targets tab uses the GLPI list, with the native massive actions
 - Pages rendered with Twig templates instead of PHP `echo`
+- Make the plugin compatible with the Content Security Policy
 
 ### Fixed
 
