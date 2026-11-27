@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [Unreleased]
+
+### Fixed
+
+- Fix alerts left in a deleted entity: declare their entity relation so it is checked and replaced on entity deletion
+
 ## [1.15.1] - 2026-11-05
 
 ### Added

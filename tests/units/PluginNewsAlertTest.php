@@ -30,6 +30,7 @@
 
 namespace GlpiPlugin\News\Tests\Units;
 
+use Entity;
 use Glpi\Application\View\TemplateRenderer;
 use Glpi\Tests\DbTestCase;
 use PluginNewsAlert;
@@ -321,5 +322,38 @@ class PluginNewsAlertTest extends DbTestCase
         $found = preg_match('/<input[^>]*name="background_color"[^>]*checked[^>]*>/', $readonly_html, $matches);
         $this->assertSame(1, $found);
         $this->assertStringNotContainsString('disabled', $matches[0]);
+    }
+
+    public function testAlertIsMovedWhenItsEntityIsReplaced(): void
+    {
+        $this->login('glpi');
+        $root_id = getItemByTypeName(Entity::class, '_test_root_entity', true);
+
+        $entity = $this->createItem(Entity::class, [
+            'name'        => __FUNCTION__,
+            'entities_id' => $root_id,
+        ]);
+        $alert = $this->createItem(PluginNewsAlert::class, [
+            'name'        => __FUNCTION__,
+            'message'     => __FUNCTION__,
+            'type'        => 1,
+            'is_displayed_onlogin' => 1,
+            'is_displayed_oncentral' => 1,
+            'is_displayed_onservicecatalog' => 1,
+            'is_displayed_onhelpdesk' => 1,
+            'display_dates' => 0,
+            'emphasis_color' => 'dark',
+            'size' => 'medium',
+            'icon' => 'settings',
+            'is_active'   => 1,
+            'is_close_allowed' => 1,
+            'entities_id' => $entity->getID(),
+        ]);
+
+        $this->assertTrue($entity->isUsed());
+
+        $this->assertTrue($entity->delete(['id' => $entity->getID(), '_replace_by' => $root_id], true));
+        $this->assertTrue($alert->getFromDB($alert->getID()));
+        $this->assertSame($root_id, $alert->fields['entities_id']);
     }
 }
